@@ -1,1 +1,1 @@
-# Android app för TDA367
+# Windows phone app för TDA367
