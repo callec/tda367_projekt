@@ -31,7 +31,7 @@ körbar prototyp
 	- klar till handl möte på fredag
 
 user stories -- TODO
-	- skriv till trella snarast!!!
+	- skriv till trello snarast!!!
 	- följ mallen!!!
 	- anpassa difficulty beroende på hur kunniga vi är
 
