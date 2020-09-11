@@ -1,1 +1,1 @@
-# iPhone app för TDA367
+# Android app för TDA367
