@@ -1,0 +1,64 @@
+# Meeting Agenda
+
+Group: down to earth rats
+Date: 11/9/2020
+Chair: oliver
+Participants: carl, erik, henrik, louise, sara, oliver
+
+
+## Objectives (5 min) 
+
+Ställa frågor från tidigare möte
+Generell genomgång av vart vi ligger och ska ligga
+
+
+## Reports (15 min) from previous meeting
+
+Hade möte tidigare så inget här.
+
+
+## Discussion items (35 min)
+
+domänmodell
+	- _inte_ uml, endast för att förklara tänkt funktion av applikationen
+	- OK modell
+		- eventuellt simplifiera lite
+
+körbar prototyp
+	- bestäms av user stories
+		- skall vara en faktisk applikation som man kan se
+		- ex. visa upp en fråga och välja svar
+	- klar till handl möte på fredag
+
+user stories -- TODO
+	- skriv till trella snarast!!!
+	- följ mallen!!!
+	- anpassa difficulty beroende på hur kunniga vi är
+
+designmodell
+	- föreläsning måndag
+	- inte inlämning *men* ska med i rapport
+	- levande dokument, kan vänta, prioritera prototyp
+
+prototyping
+	- ser bra ut!
+	- utöka med navigation, main menu, etc
+
+sprint 1
+	- ta inte för mycket
+	- han tycker det var rimligt med arbete från de user stories vi specificerat
+
+rad
+	- skrivit lite
+	- ok
+
+
+## Outcomes and assignments (5 min)
+
+domänmodell klar
+user stories KLARA till måndag kl 10:00, ligger efter
+
+
+## Wrap up
+
+gör user stories
