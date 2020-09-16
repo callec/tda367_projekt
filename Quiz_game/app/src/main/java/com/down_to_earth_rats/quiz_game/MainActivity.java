@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+//This class will be our start screen later
 public class MainActivity extends AppCompatActivity {
 
     @Override
