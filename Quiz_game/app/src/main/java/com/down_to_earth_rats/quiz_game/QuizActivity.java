@@ -1,5 +1,6 @@
 package com.down_to_earth_rats.quiz_game;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -31,7 +32,16 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        handleSupportActionBar();
         setup();
+        update();
+    }
+
+    private void handleSupportActionBar() {
+        ActionBar sb = getSupportActionBar();
+        sb.setTitle("Matematik - Årskurs 6");
+        // TODO: ask the user to make sure he wants to end the quiz and go back
+        sb.setDisplayHomeAsUpEnabled(true);
     }
 
     private void setup(){
@@ -40,8 +50,6 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         a3 = findViewById(R.id.answerButton3);
         a4 = findViewById(R.id.answerButton4);
         q = findViewById(R.id.questionText);
-
-        update();
     }
 
     void update(){
