@@ -1,26 +1,37 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.os.Bundle;
+import com.down_to_earth_rats.quiz_game.databinding.ActivitySubCategoryBinding;
 
 //Class created by Erik and Louise
 //This class represents the view of the choosing of subCategory, ex. Addition.
 public class SubCategoryActivity extends AppCompatActivity {
 
+    private ActivitySubCategoryBinding viewBinding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_category);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_subCategory);
+
+        viewBinding = ActivitySubCategoryBinding.inflate(getLayoutInflater());
+
+        //Configure toolbar
+        Toolbar toolbar = viewBinding.toolbarSubCategory;
+        toolbar.setTitle(R.string.category_title);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Kategori");
 
         //Added by Louise to be able to go back to SubjectActivity (The arrow in the right left corner).
         ActionBar ab = getSupportActionBar();
-        ab.setDisplayHomeAsUpEnabled(true);
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
+
+        setContentView(viewBinding.getRoot());
 
     }
 }

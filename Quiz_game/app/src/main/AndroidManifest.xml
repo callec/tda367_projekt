@@ -10,14 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity
-            android:name=".SubCategoryActivity">
-            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.SubjectActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.SubjectActivity"/>
-        </activity>
+
 
         <!-- TODO Temporary Change, official start screen for project -->
         <activity android:name=".MainActivity" />
@@ -27,6 +20,15 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
         -->
+
+        <activity
+            android:name=".SubCategoryActivity"
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.SubjectActivity">
+            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.down_to_earth_rats.quiz_game.SubjectActivity"/>
+        </activity>
 
         <activity android:name=".SubjectActivity">
             <intent-filter>
