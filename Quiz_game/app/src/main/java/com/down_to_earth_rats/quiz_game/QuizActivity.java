@@ -9,7 +9,10 @@ import android.widget.TextView;
 
 
 // Henrik, Sara, Carl
-//
+
+// TODO:
+//  - how to handle alternatives from viewmodel
+//  - how to update with new question_textview
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
 
@@ -67,19 +70,41 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
 
                 Button b = (Button)view;
 
+                // TODO: this case
+
                 if (b.getText().equals(correctAnswer)) {
-                    wasCorrectChoice = true;
-                    correctChoice(b);
+                    //wasCorrectChoice = true;
+                    //correctChoice(b);
+                    guess(true, view);
                 } else{
-                    //TODO remove maybe?
-                    b.setBackgroundColor(0xFFFF0000);
+                    //b.setBackgroundColor(0xFFFF0000);
+                    guess(false, view);
                 }
                 break;
         }
     }
 
     private void correctChoice(Button b){
-        b.setBackgroundColor(0xFF00FF00);
+        //b.setBackgroundColor(0xFF00FF00);
+        b.setBackgroundResource(R.drawable.correct_button);
+    }
+
+    private void grayOutButtons() {
+        Button[] blist = {a1, a2, a3, a4};
+        for (Button b : blist) {
+            b.setClickable(false);
+            b.setBackgroundResource(R.drawable.grey_button);
+        }
+    }
+
+    private void guess(boolean guess, View v) {
+        //grayOutButtons();
+        if (guess) {
+            v.setBackgroundResource(R.drawable.correct_button);
+        } else {
+            v.setBackgroundResource(R.drawable.wrong_button);
+            // TODO: find correct button and set correct_grey_button
+        }
     }
 
 }

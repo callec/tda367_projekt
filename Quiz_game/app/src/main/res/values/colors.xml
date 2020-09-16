@@ -3,4 +3,9 @@
     <color name="colorPrimary">#6200EE</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
+    <color name="answerButton">#ffffff</color>
+    <color name="quizBg">#f3f8fb</color>
+    <color name="colorCorrect">#8db600</color>
+    <color name="colorWrong">#fe6f5e</color>
+    <color name="colorGrey">#ecf1f1</color>
 </resources>
