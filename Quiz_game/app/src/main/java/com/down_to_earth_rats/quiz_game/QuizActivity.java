@@ -78,6 +78,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //TODO ADD WHAT SHOULD HAPPEN WHEN CORRECT CHOICE
     private void correctChoice(Button b){
         b.setBackgroundColor(0xFF00FF00);
     }
