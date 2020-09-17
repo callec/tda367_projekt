@@ -3,19 +3,27 @@ package com.down_to_earth_rats.quiz_game;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
-// Henrik, Sara, Carl
+import java.util.Timer;
+import java.util.TimerTask;
+
+
+// Henrik, Sara, Carl, Erik, Louise
 
 // TODO:
 //  - how to handle alternatives from viewmodel
 //  - how to update with new question_textview
 public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private ActivityQuizBinding viewBinding;
 
     Button a1;
     Button a2;
@@ -31,37 +39,34 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+
+        viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
+
         handleSupportActionBar();
-        setup();
         update();
+
+        setContentView(viewBinding.getRoot());
+
     }
 
     private void handleSupportActionBar() {
         ActionBar sb = getSupportActionBar();
         sb.setTitle("Matematik - Årskurs 6");
         // TODO: ask the user to make sure he wants to end the quiz and go back
-        sb.setDisplayHomeAsUpEnabled(true);
+        //sb.setDisplayHomeAsUpEnabled(true);
     }
 
-    private void setup(){
-        a1 = findViewById(R.id.answerButton1);
-        a2 = findViewById(R.id.answerButton2);
-        a3 = findViewById(R.id.answerButton3);
-        a4 = findViewById(R.id.answerButton4);
-        q = findViewById(R.id.questionText);
-    }
 
     void update(){
 
         wasCorrectChoice = false;
 
-        q.setText("Hur mycket är 8,00 - 4,73?");
+        viewBinding.questionText.setText("Hur mycket är 8,00 - 4,73?");
 
-        a1.setText("4,73");
-        a2.setText("4,37");
-        a3.setText("3,37");
-        a4.setText("3,27");
+        viewBinding.answerButton1.setText("4,73");
+        viewBinding.answerButton2.setText("4,37");
+        viewBinding.answerButton3.setText("3,37");
+        viewBinding.answerButton4.setText("3,27");
 
         correctAnswer = "3,27";
     }
@@ -69,28 +74,55 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view){
 
-
         switch (view.getId()){
             case R.id.answerButton1:
             case R.id.answerButton2:
             case R.id.answerButton3:
             case R.id.answerButton4:
 
-                Button b = (Button)view;
+                Button b = (Button) view;
 
                 // TODO: this case
 
+                grayOutButtons();
                 if (b.getText().equals(correctAnswer)) {
                     //wasCorrectChoice = true;
                     //correctChoice(b);
-                    guess(true, view);
+                    //guess(true, view);
+                    b.setBackgroundResource(R.drawable.correct_button);
                 } else{
                     //b.setBackgroundColor(0xFFFF0000);
-                    guess(false, view);
+                    //guess(false, view);
+                    b.setBackgroundResource(R.drawable.wrong_button);
                 }
+
+                CountDown();
+
                 break;
         }
     }
+
+    private void SwitchActivity(){
+        Intent intent = new Intent(this, QuizActivity.class);
+        startActivity(intent);
+    }
+
+    private void CountDown(){
+        new CountDownTimer(3000, 1000 ){
+
+            @Override
+            public void onTick(long l) {
+                viewBinding.questionText.setText("Nästa fråga: " + (l / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                SwitchActivity();
+            }
+        }.start();
+    }
+
+
 
     //TODO ADD WHAT SHOULD HAPPEN WHEN CORRECT CHOICE
     private void correctChoice(Button b){
@@ -99,7 +131,10 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void grayOutButtons() {
-        Button[] blist = {a1, a2, a3, a4};
+        Button[] blist = {viewBinding.answerButton1,
+                          viewBinding.answerButton2,
+                          viewBinding.answerButton3,
+                          viewBinding.answerButton4};
         for (Button b : blist) {
             b.setClickable(false);
             b.setBackgroundResource(R.drawable.grey_button);
@@ -107,13 +142,18 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void guess(boolean guess, View v) {
-        //grayOutButtons();
+        grayOutButtons();
         if (guess) {
             v.setBackgroundResource(R.drawable.correct_button);
         } else {
             v.setBackgroundResource(R.drawable.wrong_button);
             // TODO: find correct button and set correct_grey_button
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+
     }
 
 }
