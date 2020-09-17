@@ -4,6 +4,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.BlendMode;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -21,16 +22,9 @@ import java.util.TimerTask;
 // TODO:
 //  - how to handle alternatives from viewmodel
 //  - how to update with new question_textview
-public class QuizActivity extends AppCompatActivity implements View.OnClickListener {
+public class QuizActivity extends AppCompatActivity {
 
     private ActivityQuizBinding viewBinding;
-
-    Button a1;
-    Button a2;
-    Button a3;
-    Button a4;
-
-    TextView q;
 
     String correctAnswer;
 
@@ -71,8 +65,8 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         correctAnswer = "3,27";
     }
 
-    @Override
-    public void onClick(View view){
+
+    public void clickAlternative(View view){
 
         switch (view.getId()){
             case R.id.answerButton1:
@@ -107,18 +101,24 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         startActivity(intent);
     }
 
+    //Count down to next question
     private void CountDown(){
-        new CountDownTimer(3000, 1000 ){
+        viewBinding.progressBar.setVisibility(View.VISIBLE);
+
+        new CountDownTimer(3000, 30 ){
 
             @Override
             public void onTick(long l) {
                 viewBinding.questionText.setText("Nästa fråga: " + (l / 1000));
+                viewBinding.progressBar.incrementProgressBy(1);
+
             }
 
             @Override
             public void onFinish() {
                 SwitchActivity();
             }
+
         }.start();
     }
 
@@ -151,6 +151,7 @@ public class QuizActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
+    //Consume back press
     @Override
     public void onBackPressed() {
 
