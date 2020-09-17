@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Quiz_game</string>
+    <string name="back_button">Avsluta</string>
+    <string name="retry_button">Försök igen?</string>
 </resources>
