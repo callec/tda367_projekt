@@ -77,7 +77,7 @@ public class QuizActivity extends AppCompatActivity {
                 Button b = (Button) view;
 
                 // TODO: this case
-
+                // want to add hint button later, guess() would reduce clutter
                 grayOutButtons();
                 if (b.getText().equals(correctAnswer)) {
                     //wasCorrectChoice = true;
@@ -109,7 +109,7 @@ public class QuizActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText("Nästa fråga: " + (l / 1000));
+                viewBinding.questionText.setText("Nästa fråga: " + ((l / 1000) + 1));
                 viewBinding.progressBar.incrementProgressBy(1);
 
             }
@@ -131,6 +131,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void grayOutButtons() {
+        // why not use attributes? might use the buttons again
         Button[] blist = {viewBinding.answerButton1,
                           viewBinding.answerButton2,
                           viewBinding.answerButton3,
