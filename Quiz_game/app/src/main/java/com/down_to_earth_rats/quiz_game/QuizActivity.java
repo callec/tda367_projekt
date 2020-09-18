@@ -114,7 +114,7 @@ public class QuizActivity extends AppCompatActivity {
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText("Nästa fråga: " + ((l / 1000) + 1));
+                viewBinding.questionText.setText("Resultat om: " + ((l / 1000) + 1));
                 viewBinding.progressBar.incrementProgressBy(1);
 
             }
