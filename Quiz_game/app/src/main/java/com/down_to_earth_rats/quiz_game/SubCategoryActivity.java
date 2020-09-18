@@ -1,6 +1,8 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,7 +33,19 @@ public class SubCategoryActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
+        viewBinding.textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startQuiz();
+            }
+        });
+
         setContentView(viewBinding.getRoot());
 
+    }
+
+    private void startQuiz(){
+        Intent intent = new Intent(this, QuizActivity.class);
+        startActivity(intent);
     }
 }

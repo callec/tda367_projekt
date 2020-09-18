@@ -33,6 +33,8 @@ public class SubjectActivity extends AppCompatActivity {
             }
         });
 
+
+
         setContentView(viewBinding.getRoot());
     }
 

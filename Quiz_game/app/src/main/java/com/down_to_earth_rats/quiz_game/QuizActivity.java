@@ -2,6 +2,7 @@ package com.down_to_earth_rats.quiz_game;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.graphics.BlendMode;
@@ -44,8 +45,12 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void handleSupportActionBar() {
-        ActionBar sb = getSupportActionBar();
-        sb.setTitle("Matematik - Årskurs 6");
+
+        Toolbar toolbar = viewBinding.toolbarQuiz;
+        toolbar.setTitle(R.string.math_subject);
+
+        setSupportActionBar(toolbar);
+
         // TODO: ask the user to make sure he wants to end the quiz and go back
         //sb.setDisplayHomeAsUpEnabled(true);
     }
