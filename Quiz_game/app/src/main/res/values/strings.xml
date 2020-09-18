@@ -3,4 +3,5 @@
     <string name="math_subject">Matematik</string>
     <string name="category_title">Kategori</string>
     <string name="subject_title">Ämne</string>
+    <string name="next_question">Nästa fråga:</string>
 </resources>
