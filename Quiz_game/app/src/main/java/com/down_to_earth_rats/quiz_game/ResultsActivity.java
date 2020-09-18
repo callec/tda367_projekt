@@ -62,10 +62,16 @@ public class ResultsActivity extends AppCompatActivity {
     }
 
     private void backButtonPressed(View view) {
-        startActivity(new Intent(this, MainActivity.class));
+        onBackPressed();
     }
 
     private void retryButtonPressed(View view) {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, QuizActivity.class));
+    }
+
+    //Change
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, SubjectActivity.class));
     }
 }

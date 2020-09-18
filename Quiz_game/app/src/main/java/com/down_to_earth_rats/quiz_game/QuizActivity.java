@@ -102,7 +102,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
     private void SwitchActivity(){
-        Intent intent = new Intent(this, QuizActivity.class);
+        Intent intent = new Intent(this, ResultsActivity.class);
         startActivity(intent);
     }
 
@@ -110,7 +110,7 @@ public class QuizActivity extends AppCompatActivity {
     private void CountDown(){
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(3000, 30 ){
+        new CountDownTimer(5000, 50 ){
 
             @Override
             public void onTick(long l) {
