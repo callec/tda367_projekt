@@ -2,6 +2,7 @@ package com.down_to_earth_rats.quiz_game;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -22,14 +23,15 @@ public class ResultsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_results);
+
         viewBinding = ActivityResultsBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
 
         // perhaps toolbar stuff here but disregarded for now
         // is it really necessary with two exit points?
-        ActionBar ab = getSupportActionBar();
-        ab.setTitle("Resultat");
+        Toolbar toolbar = viewBinding.resultToolbar;
+        toolbar.setTitle("Resultat");
+        setSupportActionBar(toolbar);
 
         setupButtons();
         setupText();
