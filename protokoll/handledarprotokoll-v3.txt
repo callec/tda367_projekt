@@ -1,0 +1,55 @@
+# Meeting Agenda
+
+Group: 14
+Date: 20200918
+Chair: Oliver Karmetun
+Participants: Carl, Erik, Henrik, Louise, Sara
+
+
+## Objectives (5 min) 
+
+Diskutera frågor
+Oliver genomgång
+
+
+## Reports (15 min) from previous meeting
+
+Ser bra ut!
+
+
+## Discussion items (35 min)
+
+Contributions från varje medlem
+RAD dokumentet
+Trello
+Test
+Applikationen
+
+
+## Outcomes and assignments (5 min)
+
+Var noga med att alla får koda
+	- satsa på ungefär lika mycket kod
+Skriv lite på RAD dokumentet under kursens gång
+Skriv fler user stories
+	  - skriv rätt i RAD
+Bra trello
+	- bra detalj på vad som ska arbetas med
+Testa
+	- testa GUI om möjligt
+	- model och viewmodel viktigast
+	  - junit
+Applikationen
+	- gör javadoc
+	- börja med viewmodel
+	  - testa
+	- börja med model
+	  - testa
+	- gör designmodell
+börja möte 16:00 framöver
+
+
+## Wrap up
+
+Oliver tycker det verkar bra
+
