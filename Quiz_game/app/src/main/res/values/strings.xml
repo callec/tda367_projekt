@@ -4,4 +4,6 @@
     <string name="category_title">Kategori</string>
     <string name="subject_title">Ämne</string>
     <string name="next_question">Nästa fråga:</string>
+    <string name="back_button">Avsluta</string>
+    <string name="retry_button">Försök igen?</string>
 </resources>
