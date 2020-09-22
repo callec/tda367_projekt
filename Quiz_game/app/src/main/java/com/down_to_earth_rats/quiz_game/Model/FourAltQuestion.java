@@ -1,12 +1,24 @@
 package com.down_to_earth_rats.quiz_game.Model;
 
-public class FourAltQuestion {
+import java.util.ArrayList;
+import java.util.List;
+
+class FourAltQuestion {
 
     private String correctAlt;
     private String secondAlt;
     private String thirdAlt;
     private String fourthAlt;
 
+
+    List<String> getAllAlternatives(){
+        List<String> testList = new ArrayList<>();
+        testList.add(getSecondAlt());
+        testList.add(getThirdAlt());
+        testList.add(getFourthAlt());
+
+        return testList;
+    }
 
 
     public String getCorrectAlt() {
@@ -18,7 +30,7 @@ public class FourAltQuestion {
     }
 
 
-    public String getSecondAlt() {
+    String getSecondAlt() {
         return secondAlt;
     }
 
@@ -26,7 +38,7 @@ public class FourAltQuestion {
         this.secondAlt = secondAlt;
     }
 
-    public String getThirdAlt() {
+    String getThirdAlt() {
         return thirdAlt;
     }
 
@@ -34,7 +46,7 @@ public class FourAltQuestion {
         this.thirdAlt = thirdAlt;
     }
 
-    public String getFourthAlt() {
+    String getFourthAlt() {
         return fourthAlt;
     }
 

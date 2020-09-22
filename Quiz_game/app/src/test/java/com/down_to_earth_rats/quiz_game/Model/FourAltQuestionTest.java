@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.List;
 import java.util.TreeMap;
 
 import static org.junit.Assert.*;
@@ -25,7 +26,12 @@ public class FourAltQuestionTest {
         question.setThirdAlt(thirdAlt);
         question.setFourthAlt(fourthAlt);
     }
-
+    
+    @Test
+    public void getCorrectAlt() {
+        String r = question.getCorrectAlt();
+        Assert.assertEquals(correctAlt, r);
+    }
 
     @Test
     public void setCorrectAlt(){
@@ -35,15 +41,20 @@ public class FourAltQuestionTest {
     }
 
     @Test
-    public void getCorrectAlt() {
-        String r = question.getCorrectAlt();
-        Assert.assertEquals(correctAlt, r);
+    public void getAllAlternativesSize() {
+        List<String> list = question.getAllAlternatives();
+
+        assertEquals(3, list.size());
     }
 
     @Test
-    public void getSecondAlt() {
-        String r = question.getSecondAlt();
-        assertEquals(secondAlt, r);
+    public void checkAlternatives() {
+
+        List<String> list = question.getAllAlternatives();
+        assertEquals(secondAlt, list.get(0));
+        assertEquals(thirdAlt, list.get(1));
+        assertEquals(fourthAlt, list.get(2));
+
     }
 
     @Test
@@ -54,22 +65,10 @@ public class FourAltQuestionTest {
     }
 
     @Test
-    public void getThirdAlt() {
-        String r = question.getThirdAlt();
-        assertEquals(thirdAlt, r);
-    }
-
-    @Test
     public void setThirdAlt() {
         String thirdTest = "ThirdTest";
         question.setThirdAlt(thirdTest);
         assertEquals(thirdTest, question.getThirdAlt());
-    }
-
-    @Test
-    public void getFourthAlt() {
-        String r = question.getFourthAlt();
-        assertEquals(fourthAlt, r);
     }
 
     @Test
