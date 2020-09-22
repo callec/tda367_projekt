@@ -20,61 +20,28 @@ public class FourAltQuestionTest {
 
     @Before
     public void initialize(){
-        question = new FourAltQuestion();
-        question.setCorrectAlt(correctAlt);
-        question.setSecondAlt(secondAlt);
-        question.setThirdAlt(thirdAlt);
-        question.setFourthAlt(fourthAlt);
+        question = new FourAltQuestion(correctAlt, secondAlt, thirdAlt, fourthAlt);
+
     }
     
     @Test
-    public void getCorrectAlt() {
-        String r = question.getCorrectAlt();
+    public void checkCorrectAlt() {
+        String r = question.getCorrectAlternative();
         Assert.assertEquals(correctAlt, r);
     }
 
     @Test
-    public void setCorrectAlt(){
-        String correctTest = "CorrectTest";
-        question.setCorrectAlt(correctTest);
-        assertEquals(correctTest, question.getCorrectAlt());
-    }
-
-    @Test
     public void getAllAlternativesSize() {
-        List<String> list = question.getAllAlternatives();
-
+        List<String> list = question.getFalseAlternatives();
         assertEquals(3, list.size());
     }
 
     @Test
     public void checkAlternatives() {
-
-        List<String> list = question.getAllAlternatives();
+        List<String> list = question.getFalseAlternatives();
         assertEquals(secondAlt, list.get(0));
         assertEquals(thirdAlt, list.get(1));
         assertEquals(fourthAlt, list.get(2));
 
-    }
-
-    @Test
-    public void setSecondAlt() {
-        String secondTest = "SecondTest";
-        question.setSecondAlt(secondTest);
-        assertEquals(secondTest, question.getSecondAlt());
-    }
-
-    @Test
-    public void setThirdAlt() {
-        String thirdTest = "ThirdTest";
-        question.setThirdAlt(thirdTest);
-        assertEquals(thirdTest, question.getThirdAlt());
-    }
-
-    @Test
-    public void setFourthAlt() {
-        String fourthTest = "FourthTest";
-        question.setFourthAlt(fourthTest);
-        assertEquals(fourthTest, question.getFourthAlt());
     }
 }

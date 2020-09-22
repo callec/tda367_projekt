@@ -3,54 +3,32 @@ package com.down_to_earth_rats.quiz_game.Model;
 import java.util.ArrayList;
 import java.util.List;
 
-class FourAltQuestion {
+class FourAltQuestion implements IQuestion {
 
     private String correctAlt;
     private String secondAlt;
     private String thirdAlt;
     private String fourthAlt;
 
-
-    List<String> getAllAlternatives(){
-        List<String> testList = new ArrayList<>();
-        testList.add(getSecondAlt());
-        testList.add(getThirdAlt());
-        testList.add(getFourthAlt());
-
-        return testList;
+    public FourAltQuestion(String correctAlt, String secondAlt, String thirdAlt, String fourthAlt) {
+        this.correctAlt = correctAlt;
+        this.secondAlt = secondAlt;
+        this.thirdAlt = thirdAlt;
+        this.fourthAlt = fourthAlt;
     }
 
-
-    public String getCorrectAlt() {
+    @Override
+    public String getCorrectAlternative() {
         return correctAlt;
     }
 
-    public void setCorrectAlt(String correctAlt) {
-        this.correctAlt = correctAlt;
-    }
+    @Override
+    public List<String> getFalseAlternatives() {
+        List<String> testList = new ArrayList<>();
+        testList.add(secondAlt);
+        testList.add(thirdAlt);
+        testList.add(fourthAlt);
 
-
-    String getSecondAlt() {
-        return secondAlt;
-    }
-
-    public void setSecondAlt(String secondAlt) {
-        this.secondAlt = secondAlt;
-    }
-
-    String getThirdAlt() {
-        return thirdAlt;
-    }
-
-    public void setThirdAlt(String thirdAlt) {
-        this.thirdAlt = thirdAlt;
-    }
-
-    String getFourthAlt() {
-        return fourthAlt;
-    }
-
-    public void setFourthAlt(String fourthAlt) {
-        this.fourthAlt = fourthAlt;
+        return testList;
     }
 }
