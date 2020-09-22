@@ -1,6 +1,7 @@
 package com.down_to_earth_rats.quiz_game.Model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 class FourAltQuestion implements IQuestion {
@@ -23,12 +24,12 @@ class FourAltQuestion implements IQuestion {
     }
 
     @Override
-    public List<String> getFalseAlternatives() {
-        List<String> testList = new ArrayList<>();
-        testList.add(secondAlt);
-        testList.add(thirdAlt);
-        testList.add(fourthAlt);
+    public Iterator<String> getFalseAlternatives() {
+        List<String> list = new ArrayList<>();
+        list.add(secondAlt);
+        list.add(thirdAlt);
+        list.add(fourthAlt);
 
-        return testList;
+        return new ListIterator<>(list);
     }
 }
