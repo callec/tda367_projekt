@@ -5,10 +5,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Iterator;
-import java.util.List;
-import java.util.TreeMap;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class FourAltQuestionTest {
 
@@ -19,12 +17,20 @@ public class FourAltQuestionTest {
     private String thirdAlt = "Third";
     private String fourthAlt = "Fourth";
 
+    private String questionText = "This is a question text";
+
     @Before
     public void initialize(){
-        question = new FourAltQuestion(correctAlt, secondAlt, thirdAlt, fourthAlt);
+        question = new FourAltQuestion(questionText, correctAlt, secondAlt, thirdAlt, fourthAlt);
 
     }
-    
+
+    @Test
+    public void getQuestionText() {
+        String text = question.getQuestionText();
+        assertEquals(questionText, text);
+    }
+
     @Test
     public void checkCorrectAlt() {
         String r = question.getCorrectAlternative();
