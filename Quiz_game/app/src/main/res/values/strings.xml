@@ -6,4 +6,5 @@
     <string name="next_question">Nästa fråga:</string>
     <string name="back_button">Hem</string>
     <string name="retry_button">Försök igen?</string>
+    <string name="quit_quiz_modal">Spel pausat</string>
 </resources>

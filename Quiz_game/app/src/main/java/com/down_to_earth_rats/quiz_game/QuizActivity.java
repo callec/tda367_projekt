@@ -3,7 +3,11 @@ package com.down_to_earth_rats.quiz_game;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.BlendMode;
 import android.os.Bundle;
@@ -30,6 +34,8 @@ public class QuizActivity extends AppCompatActivity {
     String correctAnswer;
 
     boolean wasCorrectChoice;
+
+    modalFragment modal;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,7 +166,9 @@ public class QuizActivity extends AppCompatActivity {
     //Consume back press
     @Override
     public void onBackPressed() {
-
+        modal = new modalFragment(this.getResources().getString(R.string.quit_quiz_modal), this.getResources().getStringArray(R.array.quit_quiz_modal), this);
+        modal.show(this.getSupportFragmentManager(), "s");
+        modal.setCancelable(false);
     }
 
 }
