@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <!-- TODO Temporary Change, official start screen for project -->
-        <activity android:name=".MainActivity" />
+
+
+
+        <activity android:name=".SubjectActivity" />
         <!--
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -27,7 +30,7 @@
                 android:value="com.down_to_earth_rats.quiz_game.SubjectActivity"/>
         </activity>
 
-        <activity android:name=".SubjectActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
