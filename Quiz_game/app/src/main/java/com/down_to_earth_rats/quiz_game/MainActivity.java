@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
                 gotoResult(view);
             }
         });
+
+
     }
 
     public void gotoResult(View view) {

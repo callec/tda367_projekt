@@ -18,7 +18,7 @@ class FourAltQuestion implements IQuestion {
     private String questionText;
 
     private String correctAlt;
-    private String secondAlt;
+    private String secondAlt;  //Maybe: "wrongAlt1"
     private String thirdAlt;
     private String fourthAlt;
 

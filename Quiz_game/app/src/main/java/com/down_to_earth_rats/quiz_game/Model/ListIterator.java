@@ -19,7 +19,7 @@ class ListIterator<T> implements Iterator<T> {
 
     private List<T> list = new ArrayList<>();
 
-    private int pos = -1;
+    private int position = -1;
 
     public ListIterator(List<T> list) {
         this.list.addAll(list);
@@ -27,11 +27,13 @@ class ListIterator<T> implements Iterator<T> {
 
     @Override
     public boolean hasNext() {
-        return ++pos < list.size();
+        return ++position < list.size();
     }
 
     @Override
     public T next() {
-        return list.get(pos);
+        return list.get(position);
     }
+
+
 }
