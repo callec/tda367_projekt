@@ -2,6 +2,7 @@ package com.down_to_earth_rats.quiz_game.Model;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
@@ -20,9 +21,14 @@ class QuizModel implements IQuizModel {
     @Override
     public void insertQuestions(Iterator<IQuestion> questions) {
 
+        List<IQuestion> shuffleList = new ArrayList<>();
         while(questions.hasNext()){
-            questionStack.push(questions.next());
+            shuffleList.add(questions.next());
+            //questionStack.push(questions.next());
         }
+
+        Collections.shuffle(shuffleList);
+        questionStack.addAll(shuffleList);
     }
 
     @Override

@@ -25,7 +25,7 @@ public class QuizModelTest {
 
 
     @Test
-    public void insertQuestions() {
+    public void insertQuestion() {
         List<IQuestion> list = new ArrayList<>();
         IQuestion testQuestion = new FourAltQuestion("Test Text", "1", "2", "3", "4");
         list.add(testQuestion);
@@ -37,4 +37,7 @@ public class QuizModelTest {
         assertEquals(testQuestion.getQuestionText(), returnQuestion.getQuestionText());
 
     }
+
+    
+
 }
