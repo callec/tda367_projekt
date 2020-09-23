@@ -1,5 +1,6 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,6 +8,8 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivitySubCategoryBinding;
 
@@ -15,6 +18,10 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivitySubCategoryBinding;
 public class SubCategoryActivity extends AppCompatActivity {
 
     private ActivitySubCategoryBinding viewBinding;
+
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter mAdapter;
+    private RecyclerView.LayoutManager layoutManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,14 +40,26 @@ public class SubCategoryActivity extends AppCompatActivity {
             ab.setDisplayHomeAsUpEnabled(true);
         }
 
-        viewBinding.textView.setOnClickListener(new View.OnClickListener() {
+        /*viewBinding.textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startQuiz();
             }
-        });
+        });*/
 
         setContentView(viewBinding.getRoot());
+
+        recyclerView = viewBinding.recyclerView;
+
+        //REMOVE IF NEED TO CHANGE SIZE DURING RUNTIME
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter (see also next example)
+        //mAdapter = new MyAdapter(myDataset);
+        //recyclerView.setAdapter(mAdapter);
 
     }
 
