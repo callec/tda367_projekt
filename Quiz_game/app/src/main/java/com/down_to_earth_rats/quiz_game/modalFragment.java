@@ -10,6 +10,10 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 
+/**
+ * Henrik, Carl
+ * Opens a modal panel with choices (from an array).
+ */
 public class modalFragment extends DialogFragment {
 
     private String title;
