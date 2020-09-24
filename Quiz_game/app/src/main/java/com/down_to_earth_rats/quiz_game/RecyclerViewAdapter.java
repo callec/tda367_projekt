@@ -1,14 +1,17 @@
 package com.down_to_earth_rats.quiz_game;
 
-
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+
     private String[] mDataset;
+    // this should probably be an interface so we can use recyclerviewadapter on more occasions
+    private static IRecyclerViewActivity parent;
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -16,14 +19,30 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textView;
-        public MyViewHolder(TextView v) {
+        //private TextRowItemBinding t;
+
+        public MyViewHolder(View v) {
             super(v);
-            textView = v;
+            //t = TextRowItemBinding.inflate(parent.getLayoutInflater());
+
+            v.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // at the moment it doesn't care what category/subject it is, just starts quiz
+                    String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
+                    parent.handleClick(s);
+                }
+            });
+
+            // add viewbinding? how??
+            textView = (TextView) v.findViewById(R.id.textView);
+            //textView = (TextView) t.textView;
         }
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public RecyclerViewAdapter(String[] myDataset) {
+    public RecyclerViewAdapter(String[] myDataset, SubCategoryActivity parent) {
+        this.parent = parent;
         mDataset = myDataset;
     }
 
@@ -31,8 +50,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        TextView v = (TextView) LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.activity_sub_category, parent, false);
+        View v = (View) LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.text_row_item, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }

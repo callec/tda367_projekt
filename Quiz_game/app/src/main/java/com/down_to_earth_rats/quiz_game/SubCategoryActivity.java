@@ -1,9 +1,7 @@
 package com.down_to_earth_rats.quiz_game;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,13 +13,15 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivitySubCategoryBinding;
 
 //Class created by Erik and Louise
 //This class represents the view of the choosing of subCategory, ex. Addition.
-public class SubCategoryActivity extends AppCompatActivity {
+public class SubCategoryActivity extends AppCompatActivity implements IRecyclerViewActivity {
 
     private ActivitySubCategoryBinding viewBinding;
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+
+    private String[] subjects;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +47,8 @@ public class SubCategoryActivity extends AppCompatActivity {
             }
         });*/
 
+        this.subjects = new String[]{"Addition", "Division", "Multiplikation", "Subtraktion"};
+
         setContentView(viewBinding.getRoot());
 
         recyclerView = viewBinding.recyclerView;
@@ -58,13 +60,22 @@ public class SubCategoryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter (see also next example)
-        //mAdapter = new MyAdapter(myDataset);
-        //recyclerView.setAdapter(mAdapter);
-
+        mAdapter = new RecyclerViewAdapter(subjects, this);
+        recyclerView.setAdapter(mAdapter);
     }
 
-    private void startQuiz(){
-        Intent intent = new Intent(this, QuizActivity.class);
-        startActivity(intent);
+    // this function should take subcategory in consideration
+    @Override
+    public void handleClick(String s){
+        switch(s) {
+            case "Addition":
+                Intent intent = new Intent(this, QuizActivity.class);
+                startActivity(intent);
+                break;
+            case "Division":
+                break;
+            default:
+                // do nothing, subcategory doesn't exist.
+        }
     }
 }
