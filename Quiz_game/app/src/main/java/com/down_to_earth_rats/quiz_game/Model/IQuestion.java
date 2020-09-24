@@ -15,6 +15,6 @@ public interface IQuestion {
 
     String getQuestionText();
 
-    Iterator<Tuple<Boolean, String>> getAlternatives();
+    Iterator<Tuple<String, Boolean>> getAlternatives();
 
 }

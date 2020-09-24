@@ -17,16 +17,16 @@ class FourAltQuestion implements IQuestion {
 
     private String questionText;
 
-    private List<Tuple<Boolean, String>> alternativeList = new ArrayList<>();
+    private List<Tuple<String, Boolean>> alternativeList = new ArrayList<>();
 
     public FourAltQuestion(String questionText, String correctAlt,
                            String secondAlt, String thirdAlt, String fourthAlt) {
 
         this.questionText = questionText;
-        alternativeList.add(new Tuple<>(true, correctAlt));
-        alternativeList.add(new Tuple<>(false, secondAlt));
-        alternativeList.add(new Tuple<>(false, thirdAlt));
-        alternativeList.add(new Tuple<>(false, fourthAlt));
+        alternativeList.add(new Tuple<>(correctAlt, true));
+        alternativeList.add(new Tuple<>(secondAlt, false));
+        alternativeList.add(new Tuple<>(thirdAlt, false));
+        alternativeList.add(new Tuple<>(fourthAlt, false));
     }
 
     @Override
@@ -35,7 +35,7 @@ class FourAltQuestion implements IQuestion {
     }
 
     @Override
-    public Iterator<Tuple<Boolean, String>> getAlternatives() {
+    public Iterator<Tuple<String, Boolean>> getAlternatives() {
 
         return new ListIterator<>(alternativeList);
     }

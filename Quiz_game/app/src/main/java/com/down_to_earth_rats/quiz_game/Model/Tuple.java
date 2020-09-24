@@ -1,6 +1,9 @@
 package com.down_to_earth_rats.quiz_game.Model;
 
-public class Tuple<A,B> {
+/**
+ * Created by Erik Blomberg, Louise Tranborg
+ */
+public class Tuple<A, B> {
 
     private A value1;
     private B value2;
