@@ -18,17 +18,30 @@ class QuizModel implements IQuizModel {
 
     private Deque<IQuestion> questionStack = new ArrayDeque<>();
 
+    
     @Override
     public void insertQuestions(Iterator<IQuestion> questions) {
 
         List<IQuestion> shuffleList = new ArrayList<>();
         while(questions.hasNext()){
-            shuffleList.add(questions.next());
-            //questionStack.push(questions.next());
+            shuffleList.add(shuffleAlternatives(questions.next()));
         }
 
-        Collections.shuffle(shuffleList);
-        questionStack.addAll(shuffleList);
+        shuffleQuestions(shuffleList);
+
+    }
+
+    private IQuestion shuffleAlternatives(IQuestion question){
+        ScrambledQuestion scrambledQuestion = new ScrambledQuestion();
+        scrambledQuestion.setBaseQuestion(question);
+
+        return scrambledQuestion;
+
+    }
+
+    private void shuffleQuestions(List<IQuestion> list){
+        Collections.shuffle(list);
+        questionStack.addAll(list);
     }
 
     @Override

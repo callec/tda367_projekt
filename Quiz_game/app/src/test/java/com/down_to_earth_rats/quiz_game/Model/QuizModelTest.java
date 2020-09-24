@@ -33,11 +33,34 @@ public class QuizModelTest {
         model.insertQuestions(new ListIterator<>(list));
         IQuestion returnQuestion = model.getQuestion();
 
-        assertEquals(testQuestion, returnQuestion);
         assertEquals(testQuestion.getQuestionText(), returnQuestion.getQuestionText());
 
     }
 
-    
 
+    @Test
+    public void checkIfQuestionsAreScrambled() {
+
+        List<IQuestion> questions = new ArrayList<>();
+
+        for (int i = 0; i < 10 ; i++) {
+            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
+        }
+
+        model.insertQuestions(new ListIterator<>(questions));
+
+        IQuestion q = model.getQuestion();
+
+        boolean condition = false;
+
+        for (IQuestion question : questions){
+            if(question.getQuestionText().equals(q.getQuestionText())){
+                condition = true;
+                break;
+            }
+        }
+
+        assertTrue(condition);
+
+    }
 }
