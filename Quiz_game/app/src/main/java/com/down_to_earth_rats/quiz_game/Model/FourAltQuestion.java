@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Erik Blomberg
+ * Created by Erik Blomberg, Louise Tranborg
  *
  *
  * This class represents a simple 4 alternative question.
@@ -17,19 +17,16 @@ class FourAltQuestion implements IQuestion {
 
     private String questionText;
 
-    private String correctAlt;
-    private String secondAlt;  //Maybe: "wrongAlt1"
-    private String thirdAlt;
-    private String fourthAlt;
+    private List<Tuple<Boolean, String>> alternativeList = new ArrayList<>();
 
     public FourAltQuestion(String questionText, String correctAlt,
                            String secondAlt, String thirdAlt, String fourthAlt) {
 
         this.questionText = questionText;
-        this.correctAlt = correctAlt;
-        this.secondAlt = secondAlt;
-        this.thirdAlt = thirdAlt;
-        this.fourthAlt = fourthAlt;
+        alternativeList.add(new Tuple<>(true, correctAlt));
+        alternativeList.add(new Tuple<>(false, secondAlt));
+        alternativeList.add(new Tuple<>(false, thirdAlt));
+        alternativeList.add(new Tuple<>(false, fourthAlt));
     }
 
     @Override
@@ -38,17 +35,10 @@ class FourAltQuestion implements IQuestion {
     }
 
     @Override
-    public String getCorrectAlternative() {
-        return correctAlt;
+    public Iterator<Tuple<Boolean, String>> getAlternatives() {
+
+        return new ListIterator<>(alternativeList);
     }
 
-    @Override
-    public Iterator<String> getFalseAlternatives() {
-        List<String> list = new ArrayList<>();
-        list.add(secondAlt);
-        list.add(thirdAlt);
-        list.add(fourthAlt);
 
-        return new ListIterator<>(list);
-    }
 }

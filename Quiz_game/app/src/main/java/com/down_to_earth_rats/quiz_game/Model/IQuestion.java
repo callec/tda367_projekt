@@ -4,7 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 
 /**
- * Created by Erik Blomberg
+ * Created by Erik Blomberg, Louise Tranborg
  *
  *
  * Interface representing the structure of a multiple alternative question
@@ -15,8 +15,6 @@ public interface IQuestion {
 
     String getQuestionText();
 
-    String getCorrectAlternative();
-
-    Iterator<String> getFalseAlternatives();
+    Iterator<Tuple<Boolean, String>> getAlternatives();
 
 }

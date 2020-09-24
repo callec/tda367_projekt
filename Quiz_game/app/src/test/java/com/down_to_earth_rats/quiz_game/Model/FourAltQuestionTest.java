@@ -7,6 +7,7 @@ import org.junit.Test;
 import java.util.Iterator;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class FourAltQuestionTest {
 
@@ -33,36 +34,47 @@ public class FourAltQuestionTest {
 
     @Test
     public void checkCorrectAlt() {
-        String r = question.getCorrectAlternative();
-        Assert.assertEquals(correctAlt, r);
+        boolean correctAltFound = false;
+        Iterator<Tuple<Boolean, String>> iterator = question.getAlternatives();
+
+        while(iterator.hasNext()){
+
+            if(iterator.next().getValue1()){
+                correctAltFound = !correctAltFound;
+            }
+        }
+
+        assertTrue(correctAltFound);
     }
 
     @Test
     public void getAllAlternativesSize() {
         int counter = 0;
-        Iterator<String> iterator = question.getFalseAlternatives();
+        Iterator<Tuple<Boolean, String>> iterator = question.getAlternatives();
 
         while(iterator.hasNext()){
             counter++;
         }
 
-        assertEquals(3, counter);
+        assertEquals(4, counter);
 
     }
 
     @Test
     public void checkAlternatives() {
-        Iterator<String> iterator = question.getFalseAlternatives();
+        Iterator<Tuple<Boolean, String>> iterator = question.getAlternatives();
 
         iterator.hasNext();
-        assertEquals(secondAlt, iterator.next());
+        assertEquals(correctAlt, iterator.next().getValue2());
 
         iterator.hasNext();
-
-        assertEquals(thirdAlt, iterator.next());
+        assertEquals(secondAlt, iterator.next().getValue2());
 
         iterator.hasNext();
-        assertEquals(fourthAlt,iterator.next());
+        assertEquals(thirdAlt, iterator.next().getValue2());
+
+        iterator.hasNext();
+        assertEquals(fourthAlt,iterator.next().getValue2());
 
     }
 
