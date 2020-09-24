@@ -71,6 +71,8 @@
         android:layout_marginTop="48dp"
         android:layout_marginEnd="116dp"
         android:contentDescription="@string/pictureKiwi_description"
+        android:src="@drawable/kiwi"
+        app:srcCompat="@drawable/kiwi"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
