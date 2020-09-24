@@ -16,30 +16,13 @@ import static org.junit.Assert.*;
 
 public class QuizModelTest {
 
-    private IQuizModel model;
 
-    @Before
-    public void setUp() throws Exception {
-        model = new QuizModel();
-    }
+
+
 
 
     @Test
-    public void insertQuestion() {
-        List<IQuestion> list = new ArrayList<>();
-        IQuestion testQuestion = new FourAltQuestion("Test Text", "1", "2", "3", "4");
-        list.add(testQuestion);
-
-        model.insertQuestions(new ListIterator<>(list));
-        IQuestion returnQuestion = model.getQuestion();
-
-        assertEquals(testQuestion.getQuestionText(), returnQuestion.getQuestionText());
-
-    }
-
-
-    @Test
-    public void checkIfQuestionsAreScrambled() {
+    public void insertQuestions() {
 
         List<IQuestion> questions = new ArrayList<>();
 
@@ -47,7 +30,7 @@ public class QuizModelTest {
             questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
         }
 
-        model.insertQuestions(new ListIterator<>(questions));
+        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         IQuestion q = model.getQuestion();
 

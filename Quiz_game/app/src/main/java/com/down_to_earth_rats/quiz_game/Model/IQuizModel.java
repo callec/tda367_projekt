@@ -11,8 +11,10 @@ import java.util.Iterator;
 public interface IQuizModel {
 
     //TODO comment!
-    void insertQuestions(Iterator<IQuestion> questions);
+    //void insertQuestions(Iterator<IQuestion> questions);
 
     IQuestion getQuestion();
+
+    
 
 }

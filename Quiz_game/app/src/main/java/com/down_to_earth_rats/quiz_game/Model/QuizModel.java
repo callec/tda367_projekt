@@ -19,8 +19,8 @@ class QuizModel implements IQuizModel {
     private Deque<IQuestion> questionStack = new ArrayDeque<>();
 
     
-    @Override
-    public void insertQuestions(Iterator<IQuestion> questions) {
+
+    void insertQuestions(Iterator<IQuestion> questions) {
 
         List<IQuestion> shuffleList = new ArrayList<>();
         while(questions.hasNext()){
