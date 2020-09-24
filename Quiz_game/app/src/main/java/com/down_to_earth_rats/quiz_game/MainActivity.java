@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void gotoResult(View view) {
-        Intent intent = new Intent(this, ResultsActivity.class);
+        Intent intent = new Intent(this, SubjectActivity.class);
         startActivity(intent);
     }
 }
