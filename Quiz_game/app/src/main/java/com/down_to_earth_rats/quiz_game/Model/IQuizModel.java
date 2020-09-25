@@ -14,6 +14,10 @@ public interface IQuizModel {
 
     void answerQuestion(boolean alternative);
 
+    int getTotalQuestions();
+
+    int getResult();
+
     void registerObserver(IModelObserver observer);
 
     void removeObserver(IModelObserver observer);

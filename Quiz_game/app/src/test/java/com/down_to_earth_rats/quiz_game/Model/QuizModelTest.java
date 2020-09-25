@@ -101,6 +101,37 @@ public class QuizModelTest {
     }
 
 
+    @Test
+    public void testTotal() {
+        List<IQuestion> questions = new ArrayList<>();
+
+        for (int i = 0; i < 10 ; i++) {
+            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
+        }
+
+        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+
+        assertEquals(10, model.getTotalQuestions());
+    }
+
+    @Test
+    public void testResult() {
+
+        List<IQuestion> questions = new ArrayList<>();
+
+        for (int i = 0; i < 10 ; i++) {
+            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
+        }
+
+        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+
+        model.answerQuestion(true);
+        model.answerQuestion(false);
+
+        assertEquals(1, model.getResult());
+
+    }
+
     static class TestModelObserver implements IModelObserver{
 
         private boolean condition = false;

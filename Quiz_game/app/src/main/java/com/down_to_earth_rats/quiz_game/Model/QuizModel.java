@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Queue;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
@@ -20,6 +19,10 @@ class QuizModel implements IQuizModel {
 
     private List<IModelObserver> observerList = new ArrayList<>();
 
+    private int totalQuestions = 0;
+
+    private int correctAnswers = 0;
+
     void insertQuestions(Iterator<IQuestion> questions) {
 
         List<IQuestion> shuffleList = new ArrayList<>();
@@ -27,6 +30,7 @@ class QuizModel implements IQuizModel {
             shuffleList.add(shuffleAlternatives(questions.next()));
         }
 
+        totalQuestions = shuffleList.size();
         shuffleQuestions(shuffleList);
 
     }
@@ -64,7 +68,19 @@ class QuizModel implements IQuizModel {
 
     @Override
     public void answerQuestion(boolean alternative) {
+        if(alternative){
+            correctAnswers++;
+        }
+    }
 
+    @Override
+    public int getTotalQuestions() {
+        return totalQuestions;
+    }
+
+    @Override
+    public int getResult() {
+        return correctAnswers;
     }
 
     @Override
