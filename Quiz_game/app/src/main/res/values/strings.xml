@@ -1,9 +1,14 @@
 <resources>
-    <string name="app_name">Quiz_game</string>
+    <string name="app_name">Qiwi-Quiz</string>
+    <string name="play_button">Spela!</string>
+    <string name="highscore_button">Highscore</string>
+    <string name="settings_button">Inställningar</string>
     <string name="math_subject">Matematik</string>
     <string name="category_title">Kategori</string>
     <string name="subject_title">Ämne</string>
     <string name="next_question">Nästa fråga:</string>
     <string name="back_button">Hem</string>
     <string name="retry_button">Försök igen?</string>
+
+    <string name="pictureKiwi_description">loggo, picture of a kiwi bird.</string>
 </resources>

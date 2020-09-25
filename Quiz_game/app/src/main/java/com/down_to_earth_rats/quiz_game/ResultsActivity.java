@@ -74,6 +74,6 @@ public class ResultsActivity extends AppCompatActivity {
     //Change
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(this, SubjectActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
