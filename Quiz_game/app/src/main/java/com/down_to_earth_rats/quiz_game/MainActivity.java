@@ -9,9 +9,11 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-//Modified by Sara
-
-//This class will be our start screen later
+/**
+ * Modified by Sara
+ *
+ * This class is our start screen
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding viewBinder;
@@ -32,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void gotoPlay(View view) {
+    private void gotoPlay(View view) {
         Intent intent = new Intent(this, SubjectActivity.class);
         startActivity(intent);
     }
