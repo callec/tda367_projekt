@@ -1,0 +1,76 @@
+# Meeting Agenda
+
+Group: 14
+Date: 20200925
+Chair: Oliver Karmetun
+Participants: Carl, Erik, Henrik, Louise, Sara
+
+
+## Objectives (5 min) 
+
+Diskutera frågor
+Oliver genomgång
+
+
+## Reports (15 min) from previous meeting
+
+Vi har arbetat med flera user stories
+
+
+## Discussion items (35 min)
+
+modell
+user stories
+protokoll
+sdd
+domän/designmodell
+bedömning
+bibliotek
+
+
+## Outcomes and assignments (5 min)
+
+start av modell
+	- modell klar
+	- resten av modell i user stories
+	- kvar att implementera med activities
+	- modellen skall vara fristående
+user stories
+	- id09
+	  - för stor
+	  - modelldelen klar
+	- nästa vecka
+	  - implementera model!!! viktigt!!!
+protokoll
+	- protokollen såg bra ut
+sdd
+	- skriv lite på den
+	- peer review inlämning fredag 02/10
+domän/designmodell
+	- domänmodell kan behövas ändras lite
+bedömning
+	- design irrelevant
+	  - typ... kan ha med i acceptance criteria på user stories
+	  - kommer med i betyget
+	  - känn efter prioritet
+	- modell viktigt!!!
+	- commits
+	  - _alla_ måste skriva i modellen
+	  - turas om med commits
+	    - jämnt
+		- omfördela vem som skrivar kod och committar
+använd bibliotek
+	- androidx
+	  - recyclerview
+	- använd bibliotek
+	  - exempel för att spara data
+	  	- historik
+		- statistik
+	- servicepattern!!!
+
+
+## Wrap up
+
+nästa möte fredag 16:00
+ser ok ut... implementera modellen... integrera modellen...
+
