@@ -9,6 +9,8 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+//Modified by Sara
+
 //This class will be our start screen later
 public class MainActivity extends AppCompatActivity {
 
