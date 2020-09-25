@@ -11,9 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivitySubCategoryBinding;
 
-//Class created by Erik and Louise
-//Modified by Carl and Henrik
-//This class represents the view of the choosing of subCategory, ex. Addition.
+/**
+ * Class created by Erik and Louise
+ *
+ * Modified by Carl and Henrik
+ *
+ * This class represents the view of the choosing of subCategory, ex. Addition.
+ */
 public class SubCategoryActivity extends AppCompatActivity implements IRecyclerViewActivity {
 
     private ActivitySubCategoryBinding viewBinding;

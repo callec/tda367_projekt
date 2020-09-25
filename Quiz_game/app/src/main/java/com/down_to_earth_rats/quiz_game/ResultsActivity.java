@@ -11,7 +11,9 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivityResultsBinding;
 import android.view.View;
 import android.widget.Button;
 
-// Carl
+/**
+ * Created by Carl
+ */
 public class ResultsActivity extends AppCompatActivity {
 
     private ActivityResultsBinding viewBinding;

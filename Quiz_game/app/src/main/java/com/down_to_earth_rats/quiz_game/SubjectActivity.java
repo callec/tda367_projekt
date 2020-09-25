@@ -9,8 +9,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivitySubjectBinding;
 
-//Class created by Erik and Louise.
-//This class represents the view of the choosing of Subject, ex. Math.
+/**
+ * Class created by Erik and Louise.
+ *
+ * This class represents the view of the choosing of Subject, ex. Math.
+ */
 public class SubjectActivity extends AppCompatActivity {
 
     private ActivitySubjectBinding viewBinding;

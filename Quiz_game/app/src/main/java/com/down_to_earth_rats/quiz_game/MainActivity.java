@@ -8,6 +8,12 @@ import android.view.View;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
 
 //This class will be our start screen later
+
+/**
+ * Modified by Sara
+ *
+ * This class will be our start screen later
+ */
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding viewBinder;

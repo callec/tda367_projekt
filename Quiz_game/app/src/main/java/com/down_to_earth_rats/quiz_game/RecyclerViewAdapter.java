@@ -7,16 +7,18 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-//Carl, Henrik
+/**
+ * Modified by Carl, Henrik.
+ *
+ * This class handles recyclerView (used to choose subcategory)
+ */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private String[] mDataset;
     // this should probably be an interface so we can use recyclerviewadapter on more occasions
     private static IRecyclerViewActivity parent;
 
-    // Provide a reference to the views for each data item
-    // Complex data items may need more than one view per item, and
-    // you provide access to all the views for a data item in a view holder
+
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         public TextView textView;
@@ -41,32 +43,27 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    // Provide a suitable constructor (depends on the kind of dataset)
     public RecyclerViewAdapter(String[] myDataset, SubCategoryActivity parent) {
         this.parent = parent;
         mDataset = myDataset;
     }
 
-    // Create new views (invoked by the layout manager)
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        // create a new view
+
         View v = (View) LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.framelayout_recyclerview, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
 
-    // Replace the contents of a view (invoked by the layout manager)
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
+
         holder.textView.setText(mDataset[position]);
 
     }
 
-    // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return mDataset.length;
