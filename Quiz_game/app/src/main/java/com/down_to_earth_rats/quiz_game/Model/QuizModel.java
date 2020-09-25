@@ -18,7 +18,7 @@ class QuizModel implements IQuizModel {
 
     private Deque<IQuestion> questionStack = new ArrayDeque<>();
 
-    
+    private List<IModelObserver> observerList = new ArrayList<>();
 
     void insertQuestions(Iterator<IQuestion> questions) {
 
@@ -46,6 +46,37 @@ class QuizModel implements IQuizModel {
 
     @Override
     public IQuestion getQuestion() {
-        return questionStack.pop();
+
+        if(questionStack.isEmpty()){
+            return new FourAltQuestion("","", "", "", "");
+        }
+
+        IQuestion question = questionStack.pop();
+
+        if(questionStack.isEmpty()){
+            for (IModelObserver observer: observerList) {
+                observer.lastQuestion();
+            }
+        }
+
+        return question;
+    }
+
+    @Override
+    public void answerQuestion(boolean alternative) {
+
+    }
+
+    @Override
+    public void registerObserver(IModelObserver observer) {
+        if(!observerList.contains(observer)){
+            observerList.add(observer);
+        }
+
+    }
+
+    @Override
+    public void removeObserver(IModelObserver observer) {
+        observerList.remove(observer);
     }
 }

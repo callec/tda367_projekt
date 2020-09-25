@@ -10,11 +10,14 @@ import java.util.Iterator;
 
 public interface IQuizModel {
 
-    //TODO comment!
-    //void insertQuestions(Iterator<IQuestion> questions);
-
     IQuestion getQuestion();
 
-    
+    void answerQuestion(boolean alternative);
+
+    void registerObserver(IModelObserver observer);
+
+    void removeObserver(IModelObserver observer);
+
+
 
 }

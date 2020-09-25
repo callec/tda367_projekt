@@ -4,11 +4,12 @@ import java.util.Iterator;
 
 public class ModelFactory {
 
+    private ModelFactory(){}
+
     public static IQuizModel createStandardModel(Iterator<IQuestion> questions){
         QuizModel model = new QuizModel();
         model.insertQuestions(questions);
         return model;
     }
-
 
 }
