@@ -168,7 +168,7 @@ public class QuizActivity extends AppCompatActivity {
     public void onBackPressed() {
         modal = new modalFragment(this.getResources().getString(R.string.quit_quiz_modal), this.getResources().getStringArray(R.array.quit_quiz_modal), this);
         modal.show(this.getSupportFragmentManager(), "s");
-        modal.setCancelable(false);
+        //modal.setCancelable(false);
     }
 
 }
