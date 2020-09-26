@@ -6,7 +6,7 @@ import java.util.Iterator;
  * Created by Erik Blomberg, Louise Tranborg
  *
  * This interface is the gateway receive information from the model.
- *
+ * Get questions and answer them, get result and total amount of questions.
  */
 
 public interface IQuizModel {
