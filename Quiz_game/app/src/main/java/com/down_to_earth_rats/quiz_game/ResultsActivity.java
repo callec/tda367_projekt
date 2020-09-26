@@ -19,8 +19,8 @@ public class ResultsActivity extends AppCompatActivity {
     private ActivityResultsBinding viewBinding;
     private Button backButton;
 
-    private int playerScore = 7;
-    private int maxScore = 10;
+    private int playerScore;
+    private int maxScore;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +28,9 @@ public class ResultsActivity extends AppCompatActivity {
 
         viewBinding = ActivityResultsBinding.inflate(getLayoutInflater());
         setContentView(viewBinding.getRoot());
+
+        playerScore = getIntent().getIntExtra("Result", 0);
+        maxScore = getIntent().getIntExtra("PlayerScore", 0);
 
         // perhaps toolbar stuff here but disregarded for now
         // is it really necessary with two exit points?

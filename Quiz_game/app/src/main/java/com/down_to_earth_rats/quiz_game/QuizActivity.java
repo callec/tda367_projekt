@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.down_to_earth_rats.quiz_game.Model.IQuizModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.Timer;
@@ -36,6 +37,7 @@ public class QuizActivity extends AppCompatActivity {
     boolean wasCorrectChoice;
 
     modalFragment modal;
+    private IQuizModel model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,8 @@ public class QuizActivity extends AppCompatActivity {
 
     private void SwitchActivity(){
         Intent intent = new Intent(this, ResultsActivity.class);
+        intent.putExtra("Result", model.getResult());
+        intent.putExtra("TotalQuestions", model.getTotalQuestions());
         startActivity(intent);
     }
 
