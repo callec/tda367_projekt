@@ -12,12 +12,12 @@ import java.util.Iterator;
 public interface IQuizModel {
     /**
      *
-     * @return Returns the next question in the queue
+     * @return Returns the current question
      */
     IQuestion getQuestion();
 
     /**
-     * Answers the questions
+     * Answers the current question
      * @param alternative the statement associated with an alternative
      */
     void answerQuestion(boolean alternative);

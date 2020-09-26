@@ -55,21 +55,20 @@ class QuizModel implements IQuizModel {
             return new FourAltQuestion("","", "", "", "");
         }
 
-        IQuestion question = questionStack.pop();
-
-        if(questionStack.isEmpty()){
-            for (IModelObserver observer: observerList) {
-                observer.lastQuestion();
-            }
-        }
-
-        return question;
+        return questionStack.peek();
     }
 
     @Override
     public void answerQuestion(boolean alternative) {
         if(alternative){
             correctAnswers++;
+            questionStack.pop();
+        }
+
+        if(questionStack.isEmpty()){
+            for (IModelObserver observer: observerList) {
+                observer.quizFinished();
+            }
         }
     }
 

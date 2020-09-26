@@ -53,7 +53,7 @@ public class QuizModelTest {
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
 
-        model.getQuestion();
+        model.answerQuestion(true);
 
         assertTrue(observer.isCondition());
 
@@ -70,8 +70,7 @@ public class QuizModelTest {
 
         IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
-        model.getQuestion();
-
+        model.answerQuestion(true);
         IQuestion question = model.getQuestion();
 
         assertEquals("", question.getQuestionText());
@@ -136,7 +135,7 @@ public class QuizModelTest {
         private boolean condition = false;
 
         @Override
-        public void lastQuestion() {
+        public void quizFinished() {
             condition = true;
         }
 
