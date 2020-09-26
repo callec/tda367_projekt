@@ -9,6 +9,12 @@ import java.util.Iterator;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
+
+/**
+ * Created by Erik Blomberg, Louise Tranborg
+ *
+ */
+
 public class FourAltQuestionTest {
 
     private IQuestion question;

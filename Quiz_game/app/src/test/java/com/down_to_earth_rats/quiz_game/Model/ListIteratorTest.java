@@ -9,6 +9,11 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
+/**
+ * Created by Erik Blomberg
+ *
+ */
+
 public class ListIteratorTest {
 
     private List<String> list;

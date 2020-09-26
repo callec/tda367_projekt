@@ -12,7 +12,7 @@ import java.util.List;
  * The class will accept any type of List.
  *
  * Be aware! Only call next() when hasNext() has returned true
- * @param <T>
+ * @param <T> The type parameter of the List interface
  */
 
 class ListIterator<T> implements Iterator<T> {

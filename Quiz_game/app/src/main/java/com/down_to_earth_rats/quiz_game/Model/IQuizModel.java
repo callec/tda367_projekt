@@ -5,17 +5,34 @@ import java.util.Iterator;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
+ * This interface is the gateway receive information from the model.
  *
  */
 
 public interface IQuizModel {
-
+    /**
+     *
+     * @return Returns the next question in the queue
+     */
     IQuestion getQuestion();
 
+    /**
+     * Answers the questions
+     * @param alternative the statement associated with an alternative
+     */
     void answerQuestion(boolean alternative);
 
+    /**
+     *
+     * @return total amount of questions
+     */
     int getTotalQuestions();
 
+
+    /**
+     *
+     * @return the amount of correct answers
+     */
     int getResult();
 
     void registerObserver(IModelObserver observer);

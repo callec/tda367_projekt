@@ -7,10 +7,17 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
+/**
+ * Created by Erik Blomberg, Louise Tranborg
+ *
+ */
+
 public class ScrambledQuestionTest {
     private IQuestion testQuestion;
     private String questionText = "Hej";
     private ScrambledQuestion scrambledQuestion;
+
+
     @Before
     public void setUp() throws Exception {
      testQuestion = new FourAltQuestion(questionText, "1", "2", "3", "4" );

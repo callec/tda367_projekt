@@ -12,7 +12,6 @@ import static org.junit.Assert.*;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
- *
  */
 
 public class QuizModelTest {

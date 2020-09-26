@@ -16,7 +16,7 @@ class ScrambledQuestion implements IQuestion {
     private List<Tuple<String, Boolean>> alternatives = new ArrayList<>();
 
 
-    public void setBaseQuestion(IQuestion baseQuestion) {
+    void setBaseQuestion(IQuestion baseQuestion) {
 
         if(this.baseQuestion == null){
             this.baseQuestion = baseQuestion;
