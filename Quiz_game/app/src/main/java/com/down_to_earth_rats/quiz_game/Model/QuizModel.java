@@ -62,8 +62,9 @@ class QuizModel implements IQuizModel {
     public void answerQuestion(boolean alternative) {
         if(alternative){
             correctAnswers++;
-            questionStack.pop();
         }
+
+        questionStack.pop();
 
         if(questionStack.isEmpty()){
             for (IModelObserver observer: observerList) {

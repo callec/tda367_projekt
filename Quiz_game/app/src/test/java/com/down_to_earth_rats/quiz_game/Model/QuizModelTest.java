@@ -43,7 +43,7 @@ public class QuizModelTest {
     }
 
     @Test
-    public void testObserverLastQuestion() {
+    public void testObserverQuizFinished() {
         List<IQuestion> questions = new ArrayList<>();
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
@@ -53,13 +53,14 @@ public class QuizModelTest {
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
 
-        model.answerQuestion(true);
+        model.answerQuestion(false);
 
         assertTrue(observer.isCondition());
 
-
-
     }
+
+
+
 
     @Test
     public void testGetQuestionEmptyQuestion() {
