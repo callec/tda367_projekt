@@ -6,4 +6,9 @@
         <item>Starta om</item>
         <item>Avsluta</item>
     </string-array>
+    <string-array
+        name="quit_app_modal">
+        <item>Ja</item>
+        <item>Nej</item>
+    </string-array>
 </resources>
