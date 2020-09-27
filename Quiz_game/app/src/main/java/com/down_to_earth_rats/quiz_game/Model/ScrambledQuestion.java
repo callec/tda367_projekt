@@ -8,6 +8,9 @@ import java.util.List;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
+ * This class implements IQuestion and is responsible for
+ * shuffling around the alternatives within a question.
+ *
  */
 
 class ScrambledQuestion implements IQuestion {
@@ -17,7 +20,6 @@ class ScrambledQuestion implements IQuestion {
 
 
     public void setBaseQuestion(IQuestion baseQuestion) {
-
         if(this.baseQuestion == null){
             this.baseQuestion = baseQuestion;
 
@@ -32,9 +34,7 @@ class ScrambledQuestion implements IQuestion {
     }
 
     private void shuffleAlternatives(){
-
         Collections.shuffle(alternatives);
-
     }
 
     @Override
@@ -44,12 +44,10 @@ class ScrambledQuestion implements IQuestion {
         }else{
             return baseQuestion.getQuestionText();
         }
-
     }
 
     @Override
-    public Iterator<Tuple<String, Boolean>> getAlternatives() {
-
+    public Iterator<Tuple<String, Boolean>> getAlternatives(){
         return new ListIterator<>(alternatives);
     }
 }

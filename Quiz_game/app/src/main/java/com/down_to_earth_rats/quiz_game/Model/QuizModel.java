@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
+ * This class represents a whole quiz, with some questions.
  *
  */
 
