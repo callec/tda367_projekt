@@ -15,13 +15,12 @@ import androidx.recyclerview.widget.RecyclerView;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
     private String[] mDataset;
-    // this should probably be an interface so we can use recyclerviewadapter on more occasions
     private static IRecyclerViewActivity parent;
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
-        public TextView textView;
+        private TextView textView;
         //private TextRowItemBinding t;
 
         public MyViewHolder(View v) {
@@ -32,18 +31,18 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 @Override
                 public void onClick(View v) {
                     // at the moment it doesn't care what category/subject it is, just starts quiz
+                    // how to add viewbinding to fragment?
                     String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
-                    parent.handleClick(s);
+                    parent.onClickRecyclerViewItem(s);
                 }
             });
 
-            // add viewbinding? how??
             textView = (TextView) v.findViewById(R.id.textView);
             //textView = (TextView) t.textView;
         }
     }
 
-    public RecyclerViewAdapter(String[] myDataset, SubCategoryActivity parent) {
+    public RecyclerViewAdapter(String[] myDataset, IRecyclerViewActivity parent) {
         this.parent = parent;
         mDataset = myDataset;
     }
@@ -51,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = (View) LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.framelayout_recyclerview, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -59,9 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-
         holder.textView.setText(mDataset[position]);
-
     }
 
     @Override

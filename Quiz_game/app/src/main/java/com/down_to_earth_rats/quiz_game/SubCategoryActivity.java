@@ -64,20 +64,17 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter (see also next example)
+        // specify an adapter≤
         mAdapter = new RecyclerViewAdapter(subjects, this);
         recyclerView.setAdapter(mAdapter);
     }
 
-    // this function should take subcategory in consideration
     @Override
-    public void handleClick(String s){
+    public void onClickRecyclerViewItem(String s){
         switch(s) {
             case "Addition":
                 Intent intent = new Intent(this, QuizActivity.class);
                 startActivity(intent);
-                break;
-            case "Division":
                 break;
             default:
                 // do nothing, subcategory doesn't exist.
