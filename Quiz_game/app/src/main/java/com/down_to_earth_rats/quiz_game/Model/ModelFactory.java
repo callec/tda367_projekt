@@ -5,6 +5,7 @@ import java.util.Iterator;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
+ * This class is responsible for instantiating a QuizModel-object.
  *
  */
 
