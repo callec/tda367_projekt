@@ -1,7 +1,8 @@
 package com.down_to_earth_rats.quiz_game.Model;
 
+import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
+
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg

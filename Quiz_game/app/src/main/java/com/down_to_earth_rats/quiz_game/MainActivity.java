@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
-import com.down_to_earth_rats.quiz_game.Model.IQuizModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
 
 /**

@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg

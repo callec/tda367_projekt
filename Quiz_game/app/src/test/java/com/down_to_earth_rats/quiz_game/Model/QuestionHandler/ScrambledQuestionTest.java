@@ -1,11 +1,16 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
+
+import com.down_to_earth_rats.quiz_game.Model.FourAltQuestion;
+import com.down_to_earth_rats.quiz_game.Model.IQuestion;
+import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Iterator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg

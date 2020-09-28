@@ -1,6 +1,6 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
-import java.util.Iterator;
+import com.down_to_earth_rats.quiz_game.Model.IQuestion;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg

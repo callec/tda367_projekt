@@ -1,10 +1,15 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
-import org.junit.Before;
+import com.down_to_earth_rats.quiz_game.Model.FourAltQuestion;
+import com.down_to_earth_rats.quiz_game.Model.IQuestion;
+import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IModelObserver;
+import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuizModel;
+import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ModelFactory;
+import com.down_to_earth_rats.quiz_game.Model.Utility.ListIterator;
+
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -169,7 +174,7 @@ public class QuizModelTest {
 
     }
 
-    static class TestModelObserver implements IModelObserver{
+    static class TestModelObserver implements IModelObserver {
 
         private boolean condition = false;
 

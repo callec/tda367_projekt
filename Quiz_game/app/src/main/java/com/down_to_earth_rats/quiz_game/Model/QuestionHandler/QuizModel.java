@@ -1,4 +1,10 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
+
+import com.down_to_earth_rats.quiz_game.Model.FourAltQuestion;
+import com.down_to_earth_rats.quiz_game.Model.IQuestion;
+import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IModelObserver;
+import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuizModel;
+import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ScrambledQuestion;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -14,7 +20,7 @@ import java.util.List;
  *
  */
 
-class QuizModel implements IQuizModel {
+public class QuizModel implements IQuizModel {
 
     private Deque<IQuestion> questionStack = new ArrayDeque<>();
 
@@ -24,7 +30,7 @@ class QuizModel implements IQuizModel {
 
     private int correctAnswers = 0;
 
-    void insertQuestions(Iterator<IQuestion> questions) {
+    public void insertQuestions(Iterator<IQuestion> questions) {
 
         List<IQuestion> shuffleList = new ArrayList<>();
         while(questions.hasNext()){

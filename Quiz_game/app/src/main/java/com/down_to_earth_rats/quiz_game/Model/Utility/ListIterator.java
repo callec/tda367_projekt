@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.Utility;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +15,7 @@ import java.util.List;
  * @param <T> The type parameter of the List interface
  */
 
-class ListIterator<T> implements Iterator<T> {
+public class ListIterator<T> implements Iterator<T> {
 
     private List<T> list = new ArrayList<>();
 

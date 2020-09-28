@@ -1,6 +1,7 @@
 package com.down_to_earth_rats.quiz_game.Model;
 
-import org.junit.Assert;
+import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
+
 import org.junit.Before;
 import org.junit.Test;
 
