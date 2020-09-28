@@ -33,6 +33,15 @@
             android:value="com.down_to_earth_rats.quiz_game.MainActivity"/>
 
         <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
+            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.down_to_earth_rats.quiz_game.MainActivity"/>
+        </activity>
+
+        <activity
             android:name=".SubCategoryActivity"
             android:parentActivityName="com.down_to_earth_rats.quiz_game.SubjectActivity">
             <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
@@ -61,9 +70,7 @@
 
         </activity>
 
-        <activity android:name=".SettingsActivity">
 
-        </activity>
 
     </application>
 

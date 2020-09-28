@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void gotoSettings(View view) {
-        Intent intent = new Intent(this, SubjectActivity.class);
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 
