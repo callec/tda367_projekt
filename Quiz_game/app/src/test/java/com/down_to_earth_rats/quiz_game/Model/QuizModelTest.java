@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 public class QuizModelTest {
 
     @Test
-    public void insertQuestions() {
+    public void testInsertQuestions() {
 
         List<IQuestion> questions = new ArrayList<>();
 
@@ -43,7 +43,7 @@ public class QuizModelTest {
     }
 
     @Test
-    public void testObserverLastQuestion() {
+    public void testObserverQuizFinished() {
         List<IQuestion> questions = new ArrayList<>();
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
@@ -53,11 +53,9 @@ public class QuizModelTest {
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
 
-        model.getQuestion();
+        model.answerQuestion(false);
 
         assertTrue(observer.isCondition());
-
-
 
     }
 
@@ -70,14 +68,55 @@ public class QuizModelTest {
 
         IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
-        model.getQuestion();
-
+        model.answerQuestion(true);
         IQuestion question = model.getQuestion();
 
         assertEquals("", question.getQuestionText());
 
     }
 
+    @Test
+    public void testGetQuestionSame() {
+        List<IQuestion> questions = new ArrayList<>();
+
+        String questionText = "Test Text Text";
+
+        questions.add(new FourAltQuestion(questionText, "First", "Second", "Third", "Fourth"));
+
+        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+
+        IQuestion question1 = model.getQuestion();
+        IQuestion question2 = model.getQuestion();
+
+
+        boolean stringsEqual = question1.getQuestionText().contentEquals(question2.getQuestionText());
+
+        assertTrue(stringsEqual);
+    }
+
+    @Test
+    public void testGetQuestionDifferent() {
+        List<IQuestion> questions = new ArrayList<>();
+
+        String questionText1 = "TestText1";
+        String questionText2 = "TestText2";
+
+
+        questions.add(new FourAltQuestion(questionText1, "First", "Second", "Third", "Fourth"));
+        questions.add(new FourAltQuestion(questionText2, "First", "Second", "Third", "Fourth"));
+
+        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+
+        IQuestion firstQuestion = model.getQuestion();
+
+        model.answerQuestion(false);
+        IQuestion secondQuestion = model.getQuestion();
+
+        boolean stringsEqual = firstQuestion.getQuestionText().contentEquals(secondQuestion.getQuestionText());
+
+
+        assertFalse(stringsEqual);
+    }
 
     @Test
     public void testRemoveObserver(){
@@ -98,7 +137,6 @@ public class QuizModelTest {
 
 
     }
-
 
     @Test
     public void testTotal() {
@@ -136,7 +174,7 @@ public class QuizModelTest {
         private boolean condition = false;
 
         @Override
-        public void lastQuestion() {
+        public void quizFinished() {
             condition = true;
         }
 
