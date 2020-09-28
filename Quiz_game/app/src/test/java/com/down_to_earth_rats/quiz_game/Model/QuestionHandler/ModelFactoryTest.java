@@ -2,8 +2,6 @@ package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
 import com.down_to_earth_rats.quiz_game.Model.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.Model.IQuestion;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuizModel;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.Model.Utility.ListIterator;
 
 import org.junit.Test;
@@ -27,7 +25,7 @@ public class ModelFactoryTest {
         IQuestion testQuestion = new FourAltQuestion("Test Text", "1", "2", "3", "4");
         list.add(testQuestion);
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(list));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(list));
 
         IQuestion returnQuestion = model.getQuestion();
 

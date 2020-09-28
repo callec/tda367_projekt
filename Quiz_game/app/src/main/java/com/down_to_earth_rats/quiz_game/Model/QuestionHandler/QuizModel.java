@@ -17,7 +17,7 @@ import java.util.List;
  *
  */
 
-public class QuizModel implements IQuizModel {
+public class QuizModel implements IQuestionHandler {
 
     private Deque<IQuestion> questionStack = new ArrayDeque<>();
 

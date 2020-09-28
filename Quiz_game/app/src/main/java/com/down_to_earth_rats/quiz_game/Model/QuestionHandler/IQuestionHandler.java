@@ -9,7 +9,7 @@ import com.down_to_earth_rats.quiz_game.Model.IQuestion;
  * Get questions and answer them, get result and total amount of questions.
  */
 
-public interface IQuizModel {
+public interface IQuestionHandler {
     /**
      *
      * @return Returns the current question

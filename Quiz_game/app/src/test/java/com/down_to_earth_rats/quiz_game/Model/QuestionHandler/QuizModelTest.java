@@ -29,7 +29,7 @@ public class QuizModelTest {
             questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
         }
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         IQuestion q = model.getQuestion();
 
@@ -52,7 +52,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
@@ -70,7 +70,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         model.nextQuestion();
         IQuestion question = model.getQuestion();
@@ -87,7 +87,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion(questionText, "First", "Second", "Third", "Fourth"));
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         IQuestion question1 = model.getQuestion();
         IQuestion question2 = model.getQuestion();
@@ -109,7 +109,7 @@ public class QuizModelTest {
         questions.add(new FourAltQuestion(questionText1, "First", "Second", "Third", "Fourth"));
         questions.add(new FourAltQuestion(questionText2, "First", "Second", "Third", "Fourth"));
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         IQuestion firstQuestion = model.getQuestion();
 
@@ -128,7 +128,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);

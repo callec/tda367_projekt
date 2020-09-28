@@ -1,15 +1,20 @@
 package com.down_to_earth_rats.quiz_game;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.down_to_earth_rats.quiz_game.Model.QuizActivityViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
+
+import java.util.List;
 
 
 // Henrik, Sara, Carl, Erik, Louise
@@ -22,21 +27,42 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private ActivityQuizBinding viewBinding;
 
     String correctAnswer;
-
     boolean wasCorrectChoice;
-
     modalFragment modal;
+    QuizActivityViewModel model;
+    private Button alternative1;
+    private Button alternative2;
+    private Button alternative3;
+    private Button alternative4;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        model = new ViewModelProvider(this).get(QuizActivityViewModel.class);
+
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
 
         handleSupportActionBar();
-        update();
+        //update();
 
         setContentView(viewBinding.getRoot());
+
+        alternative1 = viewBinding.answerButton1;
+        alternative2 = viewBinding.answerButton2;
+        alternative3 = viewBinding.answerButton3;
+        alternative4 = viewBinding.answerButton4;
+
+        model.getAlternativeList().observe(this, new Observer<List<String>>() {
+            @Override
+            public void onChanged(List<String> strings) {
+                viewBinding.questionText.setText(strings.get(0));
+                alternative1.setText(strings.get(1));
+                alternative2.setText(strings.get(2));
+                alternative3.setText(strings.get(3));
+                alternative4.setText(strings.get(4));
+            }
+        });
 
     }
 
@@ -52,6 +78,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
 
+    /*
     void update() {
 
         wasCorrectChoice = false;
@@ -66,15 +93,26 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         correctAnswer = "3,27";
     }
 
+     */
+
 
     public void clickAlternative(View view) {
 
+        int id = 1;
         switch (view.getId()) {
             case R.id.answerButton1:
+                id = 1;
+                break;
             case R.id.answerButton2:
+                id = 2;
+                break;
             case R.id.answerButton3:
+                id = 3;
+                break;
             case R.id.answerButton4:
+                id = 4;
 
+                /*
                 Button b = (Button) view;
 
                 // TODO: this case
@@ -93,8 +131,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
                 CountDown();
 
+                 */
+
                 break;
         }
+        guess(model.answerQuestion(id),view);
+        CountDown();
     }
 
     private void switchActivityToResult() {
@@ -111,7 +153,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(5000, 50) {
+        new CountDownTimer(3000, 30) {
 
             @Override
             public void onTick(long l) {
@@ -120,10 +162,15 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             }
 
+
             @Override
             public void onFinish() {
-                switchActivityToResult();
+                //model.changeQuestion();
+                finish();
+                startActivity(getIntent());
             }
+
+
 
         }.start();
     }
