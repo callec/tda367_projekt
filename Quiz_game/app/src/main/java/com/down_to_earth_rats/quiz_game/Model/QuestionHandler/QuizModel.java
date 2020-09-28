@@ -2,9 +2,6 @@ package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
 import com.down_to_earth_rats.quiz_game.Model.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.Model.IQuestion;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IModelObserver;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuizModel;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ScrambledQuestion;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -26,10 +23,6 @@ public class QuizModel implements IQuizModel {
 
     private List<IModelObserver> observerList = new ArrayList<>();
 
-    private int totalQuestions = 0;
-
-    private int correctAnswers = 0;
-
     public void insertQuestions(Iterator<IQuestion> questions) {
 
         List<IQuestion> shuffleList = new ArrayList<>();
@@ -37,7 +30,6 @@ public class QuizModel implements IQuizModel {
             shuffleList.add(shuffleAlternatives(questions.next()));
         }
 
-        totalQuestions = shuffleList.size();
         shuffleQuestions(shuffleList);
 
     }
@@ -66,11 +58,7 @@ public class QuizModel implements IQuizModel {
     }
 
     @Override
-    public void answerQuestion(boolean alternative) {
-        if(alternative){
-            correctAnswers++;
-        }
-
+    public void nextQuestion() {
         questionStack.pop();
 
         if(questionStack.isEmpty()){
@@ -81,21 +69,10 @@ public class QuizModel implements IQuizModel {
     }
 
     @Override
-    public int getTotalQuestions() {
-        return totalQuestions;
-    }
-
-    @Override
-    public int getResult() {
-        return correctAnswers;
-    }
-
-    @Override
     public void registerObserver(IModelObserver observer) {
         if(!observerList.contains(observer)){
             observerList.add(observer);
         }
-
     }
 
     @Override

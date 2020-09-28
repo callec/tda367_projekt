@@ -2,9 +2,6 @@ package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
 import com.down_to_earth_rats.quiz_game.Model.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.Model.IQuestion;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IModelObserver;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuizModel;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.Model.Utility.ListIterator;
 
 import org.junit.Test;
@@ -12,7 +9,9 @@ import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
@@ -58,7 +57,7 @@ public class QuizModelTest {
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
 
-        model.answerQuestion(false);
+        model.nextQuestion();
 
         assertTrue(observer.isCondition());
 
@@ -73,7 +72,7 @@ public class QuizModelTest {
 
         IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
 
-        model.answerQuestion(true);
+        model.nextQuestion();
         IQuestion question = model.getQuestion();
 
         assertEquals("", question.getQuestionText());
@@ -114,7 +113,7 @@ public class QuizModelTest {
 
         IQuestion firstQuestion = model.getQuestion();
 
-        model.answerQuestion(false);
+        model.nextQuestion();
         IQuestion secondQuestion = model.getQuestion();
 
         boolean stringsEqual = firstQuestion.getQuestionText().contentEquals(secondQuestion.getQuestionText());
@@ -138,39 +137,6 @@ public class QuizModelTest {
         model.getQuestion();
 
         assertFalse(observer.isCondition());
-
-
-
-    }
-
-    @Test
-    public void testTotal() {
-        List<IQuestion> questions = new ArrayList<>();
-
-        for (int i = 0; i < 10 ; i++) {
-            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
-        }
-
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
-
-        assertEquals(10, model.getTotalQuestions());
-    }
-
-    @Test
-    public void testResult() {
-
-        List<IQuestion> questions = new ArrayList<>();
-
-        for (int i = 0; i < 10 ; i++) {
-            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
-        }
-
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(questions));
-
-        model.answerQuestion(true);
-        model.answerQuestion(false);
-
-        assertEquals(1, model.getResult());
 
     }
 

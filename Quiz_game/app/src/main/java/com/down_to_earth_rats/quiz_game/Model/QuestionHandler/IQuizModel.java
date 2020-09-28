@@ -18,22 +18,8 @@ public interface IQuizModel {
 
     /**
      * Answers the current question
-     * @param alternative the statement associated with an alternative
      */
-    void answerQuestion(boolean alternative);
-
-    /**
-     *
-     * @return total amount of questions
-     */
-    int getTotalQuestions();
-
-
-    /**
-     *
-     * @return the amount of correct answers
-     */
-    int getResult();
+    void nextQuestion();
 
     void registerObserver(IModelObserver observer);
 
