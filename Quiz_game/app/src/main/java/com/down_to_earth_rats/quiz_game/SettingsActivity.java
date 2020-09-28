@@ -20,7 +20,7 @@ public class SettingsActivity extends AppCompatActivity {
 
 
     Toolbar toolbar = viewBinding.toolbarSettings;
-        toolbar.setTitle(R.string.subject_title);
+    toolbar.setTitle("Home");
     setSupportActionBar(toolbar);
 
     //Gives us the return to previous page /back arrow, in the top toolbar   (<-)
@@ -29,5 +29,6 @@ public class SettingsActivity extends AppCompatActivity {
     if (ab != null) {
         ab.setDisplayHomeAsUpEnabled(true);
     }
+        setContentView(viewBinding.getRoot());
     }
 }
