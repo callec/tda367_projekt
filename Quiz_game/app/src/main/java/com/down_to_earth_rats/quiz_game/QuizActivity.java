@@ -1,25 +1,15 @@
 package com.down_to_earth_rats.quiz_game;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.DialogFragment;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.BlendMode;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 
 // Henrik, Sara, Carl, Erik, Louise
@@ -27,7 +17,7 @@ import java.util.TimerTask;
 // TODO:
 //  - how to handle alternatives from viewmodel
 //  - how to update with new question_textview
-public class QuizActivity extends AppCompatActivity {
+public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler {
 
     private ActivityQuizBinding viewBinding;
 
@@ -62,7 +52,7 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-    void update(){
+    void update() {
 
         wasCorrectChoice = false;
 
@@ -77,9 +67,9 @@ public class QuizActivity extends AppCompatActivity {
     }
 
 
-    public void clickAlternative(View view){
+    public void clickAlternative(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.answerButton1:
             case R.id.answerButton2:
             case R.id.answerButton3:
@@ -95,7 +85,7 @@ public class QuizActivity extends AppCompatActivity {
                     //correctChoice(b);
                     //guess(true, view);
                     b.setBackgroundResource(R.drawable.correct_button);
-                } else{
+                } else {
                     //b.setBackgroundColor(0xFFFF0000);
                     //guess(false, view);
                     b.setBackgroundResource(R.drawable.wrong_button);
@@ -107,16 +97,21 @@ public class QuizActivity extends AppCompatActivity {
         }
     }
 
-    private void SwitchActivity(){
+    private void switchActivityToResult() {
         Intent intent = new Intent(this, ResultsActivity.class);
         startActivity(intent);
     }
 
+    private void switchActivityToMenu() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+
     //Count down to next question
-    private void CountDown(){
+    private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(5000, 50 ){
+        new CountDownTimer(5000, 50) {
 
             @Override
             public void onTick(long l) {
@@ -127,16 +122,15 @@ public class QuizActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                SwitchActivity();
+                switchActivityToResult();
             }
 
         }.start();
     }
 
 
-
     //TODO ADD WHAT SHOULD HAPPEN WHEN CORRECT CHOICE
-    private void correctChoice(Button b){
+    private void correctChoice(Button b) {
         //b.setBackgroundColor(0xFF00FF00);
         b.setBackgroundResource(R.drawable.correct_button);
     }
@@ -144,9 +138,9 @@ public class QuizActivity extends AppCompatActivity {
     private void grayOutButtons() {
         // why not use attributes? might use the buttons again
         Button[] blist = {viewBinding.answerButton1,
-                          viewBinding.answerButton2,
-                          viewBinding.answerButton3,
-                          viewBinding.answerButton4};
+                viewBinding.answerButton2,
+                viewBinding.answerButton3,
+                viewBinding.answerButton4};
         for (Button b : blist) {
             b.setClickable(false);
             b.setBackgroundResource(R.drawable.grey_button);
@@ -171,4 +165,21 @@ public class QuizActivity extends AppCompatActivity {
         //modal.setCancelable(false);
     }
 
+    //Decide what to do depending on what button was pressed (called from modalFragment)
+    @Override
+    public void modalFragmentButtonPressed(int buttonIndex) {
+        switch (buttonIndex) {
+            //"Continue"
+            case 0:
+                break;
+            //"Restart"
+            case 1:
+                //TODO restart quiz
+                break;
+            //"Quit"
+            case 2:
+                //TODO go to result or straight to menu?
+                switchActivityToMenu();
+        }
+    }
 }
