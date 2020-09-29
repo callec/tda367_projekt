@@ -11,9 +11,14 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.down_to_earth_rats.quiz_game.IModalFragmentHandler;
+import com.down_to_earth_rats.quiz_game.MainActivity;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.ResultsActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
+import com.down_to_earth_rats.quiz_game.modalFragment;
 
 import java.util.List;
 

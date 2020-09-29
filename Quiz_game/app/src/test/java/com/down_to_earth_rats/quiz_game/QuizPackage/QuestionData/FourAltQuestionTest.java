@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;

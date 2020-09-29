@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IModelObserver;
@@ -25,7 +26,7 @@ import java.util.List;
  *
  */
 
-public class StandardQuizViewModel extends AndroidViewModel implements IModelObserver, IViewModel{
+public class StandardQuizViewModel extends ViewModel implements IModelObserver, IViewModel{
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;
@@ -36,7 +37,7 @@ public class StandardQuizViewModel extends AndroidViewModel implements IModelObs
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
 
-    public StandardQuizViewModel(@NonNull Application application) {
+    /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
 
         runningState.setValue(true);
@@ -48,6 +49,18 @@ public class StandardQuizViewModel extends AndroidViewModel implements IModelObs
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(currentQuestion);
         totalQuestions = 1;
+    }*/
+
+    public StandardQuizViewModel() {
+        totalQuestions = 10;
+        runningState.setValue(true);
+
+        questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
+        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
+        questionHandler.registerObserver(this);
+
+        currentQuestion = questionHandler.getQuestion();
+        createAlternativeList(currentQuestion);
     }
 
     private void createAlternativeList(IQuestion question){

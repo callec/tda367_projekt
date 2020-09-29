@@ -20,7 +20,14 @@ public class QuestionsFromFile implements IQuestionProvider {
 
     @Override
     public Iterator<IQuestion> getQuestions(String subject, int numberOfQuestions) {
-        return randomAdditionQuestions(numberOfQuestions);
+
+        List<IQuestion> qs = new ArrayList<>();
+        for (int i=0; i<numberOfQuestions; ++i) {
+            qs.add(randomAdditionQuestion());
+        }
+
+        return new ListIterator<>(qs);
+        //return randomAdditionQuestions(numberOfQuestions);
 
         /*List<IQuestion> list = new ArrayList<>();
         for( int i = 0; i < 10; i++) {
@@ -32,6 +39,39 @@ public class QuestionsFromFile implements IQuestionProvider {
          */
     }
 
+    private IQuestion randomAdditionQuestion() {
+        Random r = new Random();
+        int qBound = 40;
+
+        int x = r.nextInt(qBound) + 10;
+        int y = r.nextInt(qBound) + 10;
+        int correct = x+y;
+        int wrong1, wrong2, wrong3;
+        do{
+            //wrong1 = x + y + Math.abs(x-y) + 1;
+            wrong1 = x + y + (r.nextBoolean() ? - r.nextInt(15) : + r.nextInt(15));
+        } while(wrong1 == correct);
+
+        do{
+            //wrong2 = x + y + r.nextInt(10) - 1;
+            wrong2 = x + y + (r.nextBoolean() ? - r.nextInt(15) : + r.nextInt(15));
+        } while(wrong2 == correct || wrong2 == wrong1);
+
+        do{
+            //wrong3 = Math.abs(x + y - r.nextInt(10) + 1);
+            wrong3 = x + y + (r.nextBoolean() ? - r.nextInt(15) : + r.nextInt(15));
+        } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1);
+
+        String q = "Vad är: " + x + " + " + y + " ?";
+        String a1 = "" + correct;
+        String a2 = "" + wrong1;
+        String a3 = "" + wrong2;
+        String a4 = "" + wrong3;
+
+        return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
+    }
+
+    /*
     private Iterator<IQuestion> randomAdditionQuestions(int numberOfQuestions){
         List<IQuestion> list = new ArrayList<>();
         int x;
@@ -61,7 +101,7 @@ public class QuestionsFromFile implements IQuestionProvider {
             list.add(QuestionFactory.getFourAltQuestion("Vad är: " + x + " + " + y + " ?", "" + correct, "" + wrong1, "" + wrong2, "" + wrong3));
         }
         return new ListIterator<>(list);
-    }
+    }*/
 
     @Override
     public Iterator<IQuestion> getQuestions(List<String> listOfSubjects, int numberOfQuestions) {
