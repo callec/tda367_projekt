@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.Model.QuestionData;
 
 import com.down_to_earth_rats.quiz_game.Model.Utility.ListIterator;
 import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;

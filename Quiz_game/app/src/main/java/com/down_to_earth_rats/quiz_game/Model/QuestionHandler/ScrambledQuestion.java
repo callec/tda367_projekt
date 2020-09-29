@@ -1,6 +1,6 @@
 package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
 
-import com.down_to_earth_rats.quiz_game.Model.IQuestion;
+import com.down_to_earth_rats.quiz_game.Model.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.Model.Utility.ListIterator;
 import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
 

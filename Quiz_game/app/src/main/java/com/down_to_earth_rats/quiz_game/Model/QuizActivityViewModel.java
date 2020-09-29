@@ -7,10 +7,12 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import com.down_to_earth_rats.quiz_game.Model.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IModelObserver;
 import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuestionHandler;
 import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ModelFactory;
-import com.down_to_earth_rats.quiz_game.Model.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.Model.QuestionRepository.IQuestionProvider;
+import com.down_to_earth_rats.quiz_game.Model.QuestionRepository.QuestionProviderFactory;
 import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
 
 import java.util.ArrayList;
@@ -24,20 +26,18 @@ public class QuizActivityViewModel extends AndroidViewModel implements IModelObs
     private int correctAnswers;
     private IQuestion currentQuestion;
     private MutableLiveData<List<String>> alternativeList = new MutableLiveData<>();
+    private IQuestionProvider questionProvider;
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
 
     public QuizActivityViewModel(@NonNull Application application) {
         super(application);
 
-        List<IQuestion> list = new ArrayList<>();
-        list.add(new FourAltQuestion("FrågaText", "first", "second", "third", "fourth"));
-        list.add(new FourAltQuestion("FrågaText1", "first1", "second1", "third1", "fourth1"));
-        list.add(new FourAltQuestion("FrågaText2", "first2", "second2", "third2", "fourth2"));
-
         runningState.setValue(true);
 
-        questionHandler = ModelFactory.createStandardModel(new ListIterator<IQuestion>(list));
+        questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
+
+        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", 10));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();

@@ -1,5 +1,7 @@
 package com.down_to_earth_rats.quiz_game.Model;
 
+import com.down_to_earth_rats.quiz_game.Model.QuestionData.FourAltQuestion;
+import com.down_to_earth_rats.quiz_game.Model.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
 
 import org.junit.Before;
