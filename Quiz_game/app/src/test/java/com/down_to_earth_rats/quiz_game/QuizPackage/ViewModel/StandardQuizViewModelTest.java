@@ -14,6 +14,7 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman
+ * Small modification by Erik Blomberg
  */
 public class StandardQuizViewModelTest {
 
@@ -65,10 +66,18 @@ public class StandardQuizViewModelTest {
 
     @Test
     public void testQuizFinished() {
-        boolean prevState = vm.getRunningState().getValue();
-        // i don't particularly like this type casting but since we are testing
-        // StandardQuizViewModel i think it is necessary
-        ((StandardQuizViewModel) vm).quizFinished();
+
+        Boolean prevState = vm.getRunningState().getValue();
+        if(prevState == null){
+            fail();
+        }
+
+
+        for (int i = 0; i < 10; i++) {
+            vm.answerQuestion(1);
+            vm.changeQuestion();
+        }
+
 
         assertNotEquals(prevState, vm.getRunningState().getValue());
     }
