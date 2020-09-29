@@ -12,4 +12,5 @@
     <string name="pictureKiwi_description">loggo, picture of a kiwi bird.</string>
     <string name="quit_quiz_modal">Spel pausat</string>
     <string name="quit_app_modal">Vill du avsluta?</string>
+    <string name="settingsTextTestStyle">Så här kommer din text se ut</string>
 </resources>
