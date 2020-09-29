@@ -11,7 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.Model.QuizActivityViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private boolean wasCorrectChoice;
 
     private modalFragment modal;
-    private QuizActivityViewModel model;
+    private IViewModel model;
 
     private Button alternative1;
     private Button alternative2;
@@ -41,7 +42,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        model = new ViewModelProvider(this).get(QuizActivityViewModel.class);
+        model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
 

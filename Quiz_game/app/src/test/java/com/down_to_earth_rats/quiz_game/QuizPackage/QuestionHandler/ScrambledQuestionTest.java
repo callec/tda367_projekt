@@ -1,8 +1,8 @@
-package com.down_to_earth_rats.quiz_game.Model.QuestionHandler;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
 
-import com.down_to_earth_rats.quiz_game.Model.QuestionData.FourAltQuestion;
-import com.down_to_earth_rats.quiz_game.Model.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import org.junit.Before;
 import org.junit.Test;

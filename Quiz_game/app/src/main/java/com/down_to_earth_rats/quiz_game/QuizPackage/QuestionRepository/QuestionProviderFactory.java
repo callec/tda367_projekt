@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model.QuestionRepository;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository;
 
 /**
  * Created by Carl Bergman, Louise Tranborg

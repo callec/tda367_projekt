@@ -1,6 +1,6 @@
-package com.down_to_earth_rats.quiz_game.Model.QuestionData;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData;
 
-import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.Iterator;
 

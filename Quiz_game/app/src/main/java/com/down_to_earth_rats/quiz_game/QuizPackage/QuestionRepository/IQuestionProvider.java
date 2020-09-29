@@ -1,6 +1,6 @@
-package com.down_to_earth_rats.quiz_game.Model.QuestionRepository;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository;
 
-import com.down_to_earth_rats.quiz_game.Model.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 
 import java.util.Iterator;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import android.app.Application;
 
@@ -7,19 +7,25 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.down_to_earth_rats.quiz_game.Model.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IModelObserver;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.IQuestionHandler;
-import com.down_to_earth_rats.quiz_game.Model.QuestionHandler.ModelFactory;
-import com.down_to_earth_rats.quiz_game.Model.QuestionRepository.IQuestionProvider;
-import com.down_to_earth_rats.quiz_game.Model.QuestionRepository.QuestionProviderFactory;
-import com.down_to_earth_rats.quiz_game.Model.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IModelObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHandler;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class QuizActivityViewModel extends AndroidViewModel implements IModelObserver {
+/**
+ * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
+ * Modified by Carl Bergman, Louise Tranborg
+ *
+ */
+
+public class StandardQuizViewModel extends AndroidViewModel implements IModelObserver, IViewModel{
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;
@@ -30,13 +36,12 @@ public class QuizActivityViewModel extends AndroidViewModel implements IModelObs
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
 
-    public QuizActivityViewModel(@NonNull Application application) {
+    public StandardQuizViewModel(@NonNull Application application) {
         super(application);
 
         runningState.setValue(true);
 
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
-
         questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", 10));
         questionHandler.registerObserver(this);
 
