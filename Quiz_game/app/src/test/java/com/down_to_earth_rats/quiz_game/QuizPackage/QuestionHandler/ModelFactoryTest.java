@@ -1,4 +1,8 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
+
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
 
 import org.junit.Test;
 
@@ -6,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
+
+/**
+ * Created by Erik Blomberg, Louise Tranborg
+ *
+ */
 
 public class ModelFactoryTest {
 
@@ -16,7 +25,7 @@ public class ModelFactoryTest {
         IQuestion testQuestion = new FourAltQuestion("Test Text", "1", "2", "3", "4");
         list.add(testQuestion);
 
-        IQuizModel model = ModelFactory.createStandardModel(new ListIterator<>(list));
+        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(list));
 
         IQuestion returnQuestion = model.getQuestion();
 

@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
@@ -8,6 +8,6 @@ package com.down_to_earth_rats.quiz_game.Model;
 
 public interface IModelObserver {
 
-    void lastQuestion();
+    void quizFinished();
 
 }

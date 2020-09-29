@@ -1,4 +1,7 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData;
+
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,7 +16,7 @@ import java.util.List;
  * Based on the IQuestion interface
  */
 
-class FourAltQuestion implements IQuestion {
+public class FourAltQuestion implements IQuestion {
 
     private String questionText;
 

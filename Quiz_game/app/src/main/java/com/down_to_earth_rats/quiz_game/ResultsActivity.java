@@ -1,11 +1,11 @@
 package com.down_to_earth_rats.quiz_game;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
+
 import com.down_to_earth_rats.quiz_game.databinding.ActivityResultsBinding;
 
 import android.view.View;

@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.QuizPackage.Utility;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -12,10 +12,10 @@ import java.util.List;
  * The class will accept any type of List.
  *
  * Be aware! Only call next() when hasNext() has returned true
- * @param <T>
+ * @param <T> The type parameter of the List interface
  */
 
-class ListIterator<T> implements Iterator<T> {
+public class ListIterator<T> implements Iterator<T> {
 
     private List<T> list = new ArrayList<>();
 
@@ -34,6 +34,4 @@ class ListIterator<T> implements Iterator<T> {
     public T next() {
         return list.get(position);
     }
-
-
 }

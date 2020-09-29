@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Model;
+package com.down_to_earth_rats.quiz_game.QuizPackage.Utility;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -8,6 +8,11 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
+
+/**
+ * Created by Erik Blomberg
+ *
+ */
 
 public class ListIteratorTest {
 
