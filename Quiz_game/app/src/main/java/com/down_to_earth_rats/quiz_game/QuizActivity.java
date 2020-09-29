@@ -26,10 +26,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private ActivityQuizBinding viewBinding;
 
-    String correctAnswer;
-    boolean wasCorrectChoice;
-    modalFragment modal;
-    QuizActivityViewModel model;
+    private String correctAnswer;
+    private boolean wasCorrectChoice;
+
+    private modalFragment modal;
+    private QuizActivityViewModel model;
+
     private Button alternative1;
     private Button alternative2;
     private Button alternative3;
@@ -53,6 +55,15 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         alternative3 = viewBinding.answerButton3;
         alternative4 = viewBinding.answerButton4;
 
+
+        model.getRunningState().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean state) {
+                if (!state) {
+                    switchActivityToResult();
+                }
+            }
+        });
         model.getAlternativeList().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {
@@ -63,7 +74,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 alternative4.setText(strings.get(4));
             }
         });
-
     }
 
     private void handleSupportActionBar() {
@@ -135,7 +145,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
                 break;
         }
-        guess(model.answerQuestion(id),view);
+        guess(model.answerQuestion(id), view);
         CountDown();
     }
 
@@ -165,14 +175,21 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onFinish() {
-                //model.changeQuestion();
-                finish();
-                startActivity(getIntent());
+                disableProgressBar();
+                enableButtons(true);
+                model.changeQuestion();
+                //finish();
+                //startActivity(getIntent());
             }
 
 
 
         }.start();
+    }
+
+    private void disableProgressBar() {
+        viewBinding.progressBar.setVisibility(View.INVISIBLE);
+        viewBinding.progressBar.setProgress(0);
     }
 
 
@@ -182,20 +199,24 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         b.setBackgroundResource(R.drawable.correct_button);
     }
 
-    private void grayOutButtons() {
+    private void enableButtons(boolean enable) {
         // why not use attributes? might use the buttons again
         Button[] blist = {viewBinding.answerButton1,
                 viewBinding.answerButton2,
                 viewBinding.answerButton3,
                 viewBinding.answerButton4};
         for (Button b : blist) {
-            b.setClickable(false);
-            b.setBackgroundResource(R.drawable.grey_button);
+            b.setClickable(enable);
+            if (!enable) {
+                b.setBackgroundResource(R.drawable.grey_button);
+            } else {
+                b.setBackgroundResource(R.drawable.round_button);
+            }
         }
     }
 
     private void guess(boolean guess, View v) {
-        grayOutButtons();
+        enableButtons(false);
         if (guess) {
             v.setBackgroundResource(R.drawable.correct_button);
         } else {

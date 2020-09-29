@@ -25,14 +25,21 @@ public class QuizActivityViewModel extends AndroidViewModel implements IModelObs
     private IQuestion currentQuestion;
     private MutableLiveData<List<String>> alternativeList = new MutableLiveData<>();
 
+    private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
+
     public QuizActivityViewModel(@NonNull Application application) {
         super(application);
+
         List<IQuestion> list = new ArrayList<>();
         list.add(new FourAltQuestion("FrågaText", "first", "second", "third", "fourth"));
         list.add(new FourAltQuestion("FrågaText1", "first1", "second1", "third1", "fourth1"));
         list.add(new FourAltQuestion("FrågaText2", "first2", "second2", "third2", "fourth2"));
+
+        runningState.setValue(true);
+
         questionHandler = ModelFactory.createStandardModel(new ListIterator<IQuestion>(list));
         questionHandler.registerObserver(this);
+
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(currentQuestion);
         totalQuestions = 1;
@@ -61,26 +68,33 @@ public class QuizActivityViewModel extends AndroidViewModel implements IModelObs
     }
 
     public boolean answerQuestion(int alternativeID){
-        Boolean condition = false;
         List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
         Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
+
         while(iterator.hasNext()){
             tupleList.add(iterator.next());
         }
-        condition = tupleList.get(alternativeID-1).getValue2();
+
+        boolean condition = tupleList.get(alternativeID-1).getValue2();
         if(condition){
             correctAnswers++;
         }
+
         return condition;
     }
 
     public void changeQuestion(){
         questionHandler.nextQuestion();
+        currentQuestion = questionHandler.getQuestion();
         createAlternativeList(questionHandler.getQuestion());
+    }
+
+    public MutableLiveData<Boolean> getRunningState() {
+        return runningState;
     }
 
     @Override
     public void quizFinished() {
-
+        runningState.setValue(false);
     }
 }
