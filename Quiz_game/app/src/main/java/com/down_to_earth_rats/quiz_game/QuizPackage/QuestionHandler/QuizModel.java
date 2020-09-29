@@ -79,4 +79,9 @@ public class QuizModel implements IQuestionHandler {
     public void removeObserver(IModelObserver observer) {
         observerList.remove(observer);
     }
+
+    @Override
+    public boolean hasNext() {
+        return (questionStack.size() != 1);
+    }
 }

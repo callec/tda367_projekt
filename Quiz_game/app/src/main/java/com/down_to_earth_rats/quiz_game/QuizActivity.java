@@ -11,15 +11,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.IModalFragmentHandler;
-import com.down_to_earth_rats.quiz_game.MainActivity;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
-import com.down_to_earth_rats.quiz_game.R;
-import com.down_to_earth_rats.quiz_game.ResultsActivity;
-import com.down_to_earth_rats.quiz_game.Model.IQuizModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
-import com.down_to_earth_rats.quiz_game.modalFragment;
 
 import java.util.List;
 
@@ -33,6 +27,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private ActivityQuizBinding viewBinding;
 
+    private String timerText;
     private String correctAnswer;
     private boolean wasCorrectChoice;
 
@@ -62,7 +57,16 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         alternative3 = viewBinding.answerButton3;
         alternative4 = viewBinding.answerButton4;
 
+        timerText = "Nästa fråga om: ";
 
+        model.hasNext().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean next) {
+                if (!next) {
+                    timerText = "Resultat om: ";
+                }
+            }
+        });
         model.getRunningState().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean state) {
@@ -158,7 +162,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void switchActivityToResult() {
         Intent intent = new Intent(this, ResultsActivity.class);
-        intent.putExtra("Result", model.getResult());
+        intent.putExtra("Result", model.getCorrectAnswers());
         intent.putExtra("TotalQuestions", model.getTotalQuestions());
         startActivity(intent);
     }
@@ -176,7 +180,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText("Resultat om: " + ((l / 1000) + 1));
+                viewBinding.questionText.setText(timerText + ((l / 1000) + 1));
                 viewBinding.progressBar.incrementProgressBy(1);
 
             }

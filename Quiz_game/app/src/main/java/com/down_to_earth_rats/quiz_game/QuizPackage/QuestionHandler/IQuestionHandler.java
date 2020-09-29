@@ -25,6 +25,6 @@ public interface IQuestionHandler {
 
     void removeObserver(IModelObserver observer);
 
-
+    boolean hasNext();
 
 }

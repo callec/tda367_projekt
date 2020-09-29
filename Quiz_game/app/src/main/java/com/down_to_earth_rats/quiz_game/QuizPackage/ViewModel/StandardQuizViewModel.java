@@ -36,6 +36,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     private IQuestionProvider questionProvider;
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
+    private MutableLiveData<Boolean> hasNext = new MutableLiveData<>();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -52,8 +53,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     }*/
 
     public StandardQuizViewModel() {
-        totalQuestions = 10;
-        runningState.setValue(true);
+        totalQuestions = 4;
 
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
         questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
@@ -61,6 +61,9 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(currentQuestion);
+
+        hasNext.setValue(questionHandler.hasNext());
+        runningState.setValue(true);
     }
 
     private void createAlternativeList(IQuestion question){
@@ -89,22 +92,23 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
         Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
 
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             tupleList.add(iterator.next());
         }
 
         boolean condition = tupleList.get(alternativeID-1).getValue2();
-        if(condition){
+        if (condition) {
             correctAnswers++;
         }
 
         return condition;
     }
 
-    public void changeQuestion(){
+    public void changeQuestion() {
         questionHandler.nextQuestion();
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(questionHandler.getQuestion());
+        hasNext.setValue(questionHandler.hasNext());
     }
 
     public MutableLiveData<Boolean> getRunningState() {
@@ -114,5 +118,10 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     @Override
     public void quizFinished() {
         runningState.setValue(false);
+    }
+
+    @Override
+    public MutableLiveData<Boolean> hasNext() {
+        return hasNext;
     }
 }

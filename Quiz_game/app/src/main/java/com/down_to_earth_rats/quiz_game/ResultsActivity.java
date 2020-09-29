@@ -9,7 +9,6 @@ import android.os.Bundle;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityResultsBinding;
 
 import android.view.View;
-import android.widget.Button;
 
 /**
  * Created by Carl
@@ -17,7 +16,6 @@ import android.widget.Button;
 public class ResultsActivity extends AppCompatActivity {
 
     private ActivityResultsBinding viewBinding;
-    private Button backButton;
 
     private int playerScore;
     private int maxScore;
@@ -30,10 +28,8 @@ public class ResultsActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         playerScore = getIntent().getIntExtra("Result", 0);
-        maxScore = getIntent().getIntExtra("PlayerScore", 0);
+        maxScore = getIntent().getIntExtra("TotalQuestions", 0);
 
-        // perhaps toolbar stuff here but disregarded for now
-        // is it really necessary with two exit points?
         Toolbar toolbar = viewBinding.resultToolbar;
         toolbar.setTitle("Resultat");
         setSupportActionBar(toolbar);
@@ -55,10 +51,6 @@ public class ResultsActivity extends AppCompatActivity {
                 retryButtonPressed(view);
             }
         });
-        // target compitability 8? need to support android version >23 as minimum though
-        /*viewBinding.retryButton.setOnClickListener((View v) -> {
-            retryButtonPressed(v);
-        });*/
     }
 
     private void setupText() {
