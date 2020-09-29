@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
+
 import android.os.Bundle;
+import android.widget.Switch;
 
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivitySettingsBinding;
@@ -31,4 +33,6 @@ public class SettingsActivity extends AppCompatActivity {
     }
         setContentView(viewBinding.getRoot());
     }
+
+    Switch switch1 = (Switch) findViewById(R.id.switch1);
 }
