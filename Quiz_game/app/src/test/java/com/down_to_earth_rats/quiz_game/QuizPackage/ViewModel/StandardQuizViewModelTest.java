@@ -29,7 +29,7 @@ public class StandardQuizViewModelTest {
 
     @Test
     public void testGetAlternativeList() {
-        assertNotNull(vm.getAlternativeList());
+        assertNotNull(vm.getAlternativeList().getValue());
     }
 
     @Test
@@ -67,7 +67,7 @@ public class StandardQuizViewModelTest {
     public void testQuizFinished() {
         boolean prevState = vm.getRunningState().getValue();
         // i don't particularly like this type casting but since we are testing
-        // StandardQuizModel i think it is necessary
+        // StandardQuizViewModel i think it is necessary
         ((StandardQuizViewModel) vm).quizFinished();
 
         assertNotEquals(prevState, vm.getRunningState().getValue());

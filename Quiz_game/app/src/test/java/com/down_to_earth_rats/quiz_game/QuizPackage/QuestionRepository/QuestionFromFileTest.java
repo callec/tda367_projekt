@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
@@ -46,15 +47,14 @@ public class QuestionFromFileTest {
         IQuestion q = qs.next();
         Iterator<Tuple<String, Boolean>> as = q.getAlternatives();
 
-        as.hasNext();
         Tuple<String, Boolean> a;
         Set<String> alternativeStrings = new HashSet<>();
-        do {
+        while (as.hasNext()) {
             a = as.next();
             alternativeStrings.add(a.getValue1());
-        } while (as.hasNext());
+        }
 
         // if set size is smaller than what was added then there exists duplicates
-        assertTrue(alternativeStrings.size() == 4);
+        assertEquals(4, alternativeStrings.size());
     }
 }
