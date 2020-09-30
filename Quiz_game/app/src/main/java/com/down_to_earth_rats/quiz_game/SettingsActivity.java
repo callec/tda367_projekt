@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 
-
+import android.graphics.Color;
 import android.os.Bundle;
+import android.widget.CompoundButton;
+import android.widget.SimpleAdapter;
 import android.widget.Switch;
 
 
@@ -32,7 +34,24 @@ public class SettingsActivity extends AppCompatActivity {
         ab.setDisplayHomeAsUpEnabled(true);
     }
         setContentView(viewBinding.getRoot());
+
+    //This is the code for the switch, when clicked it changes text.
+    final Switch s = (Switch) findViewById(R.id.switch1);
+    s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        String test = s.getText().toString();
+        @Override
+        public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            if (isChecked){ //Switch on
+                s.setText("Smaller text");
+            }
+            else{  //Switch off
+                s.setText(test);
+            }
+        }
+    });
+
+
     }
 
-    Switch switch1 = (Switch) findViewById(R.id.switch1);
+
 }
