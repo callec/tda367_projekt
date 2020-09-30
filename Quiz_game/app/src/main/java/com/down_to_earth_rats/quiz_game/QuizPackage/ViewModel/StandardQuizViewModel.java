@@ -21,7 +21,7 @@ import java.util.List;
  *
  */
 
-public class StandardQuizViewModel extends ViewModel implements IModelObserver {
+public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implements IModelObserver, IViewModel {
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;

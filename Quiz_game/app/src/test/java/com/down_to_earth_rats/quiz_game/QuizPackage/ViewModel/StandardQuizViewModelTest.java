@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class StandardQuizViewModelTest {
 
-    ViewModel vm;
+    IViewModel vm;
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
