@@ -28,10 +28,10 @@ public class StandardQuizViewModelTest {
         vm = new StandardQuizViewModel();
     }
 
-    @Test
+    /*@Test
     public void testGetAlternativeList() {
         assertNotNull(vm.getAlternativeList().getValue());
-    }
+    }*/
 
     @Test
     public void testGetTotalQuestions() {
@@ -66,19 +66,38 @@ public class StandardQuizViewModelTest {
 
     @Test
     public void testQuizFinished() {
-
+        int totalq = vm.getTotalQuestions();
         Boolean prevState = vm.getRunningState().getValue();
         if(prevState == null){
             fail();
         }
 
-
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < totalq; i++) {
             vm.answerQuestion(1);
             vm.changeQuestion();
         }
 
-
         assertNotEquals(prevState, vm.getRunningState().getValue());
+    }
+
+    @Test
+    public void testGetIsLast() {
+        int totalq = vm.getTotalQuestions();
+        Boolean prevIsLast = vm.getIsLast().getValue();
+        if (prevIsLast == null) {
+            fail();
+        }
+
+        for (int i=0; i<totalq; ++i) {
+            vm.answerQuestion(1);
+            if (i<(totalq-1)) {
+                // this feels like a stupid addition but it emulates how the quiz works as
+                // the vm instantly notifies activity when the last question happens so this
+                // method never gets to run after the last question
+                vm.changeQuestion();
+            }
+        }
+
+        assertNotEquals(prevIsLast, vm.getIsLast().getValue());
     }
 }

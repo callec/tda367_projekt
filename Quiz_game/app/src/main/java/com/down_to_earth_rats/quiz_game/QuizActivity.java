@@ -59,10 +59,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         timerText = "Nästa fråga om: ";
 
-        model.hasNext().observe(this, new Observer<Boolean>() {
+        model.getIsLast().observe(this, new Observer<Boolean>() {
             @Override
-            public void onChanged(Boolean next) {
-                if (!next) {
+            public void onChanged(Boolean isLastQuestion) {
+                if (isLastQuestion) {
                     timerText = "Resultat om: ";
                 }
             }

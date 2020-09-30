@@ -81,7 +81,7 @@ public class QuizModel implements IQuestionHandler {
     }
 
     @Override
-    public boolean hasNext() {
-        return (questionStack.size() != 1);
+    public boolean isLastQuestion() {
+        return (questionStack.size() == 1);
     }
 }

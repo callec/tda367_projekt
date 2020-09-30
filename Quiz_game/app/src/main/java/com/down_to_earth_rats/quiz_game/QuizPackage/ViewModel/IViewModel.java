@@ -18,6 +18,6 @@ public interface IViewModel {
     public LiveData<List<String>> getAlternativeList();
     public int getTotalQuestions();
     public int getCorrectAnswers();
-    MutableLiveData<Boolean> hasNext();
+    MutableLiveData<Boolean> getIsLast();
 
 }

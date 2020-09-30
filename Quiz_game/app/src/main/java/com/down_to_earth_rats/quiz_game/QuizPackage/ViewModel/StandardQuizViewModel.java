@@ -1,9 +1,5 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
-import android.app.Application;
-
-import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -36,7 +32,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     private IQuestionProvider questionProvider;
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
-    private MutableLiveData<Boolean> hasNext = new MutableLiveData<>();
+    private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -62,7 +58,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(currentQuestion);
 
-        hasNext.setValue(questionHandler.hasNext());
+        isLast.setValue(questionHandler.isLastQuestion());
         runningState.setValue(true);
     }
 
@@ -108,7 +104,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         questionHandler.nextQuestion();
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(questionHandler.getQuestion());
-        hasNext.setValue(questionHandler.hasNext());
+        isLast.setValue(questionHandler.isLastQuestion());
     }
 
     public MutableLiveData<Boolean> getRunningState() {
@@ -121,7 +117,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     }
 
     @Override
-    public MutableLiveData<Boolean> hasNext() {
-        return hasNext;
+    public MutableLiveData<Boolean> getIsLast() {
+        return isLast;
     }
 }
