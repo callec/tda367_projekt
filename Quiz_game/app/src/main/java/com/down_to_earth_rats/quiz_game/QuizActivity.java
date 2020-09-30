@@ -11,10 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.ViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,7 +34,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private boolean wasCorrectChoice;
 
     private modalFragment modal;
-    private IViewModel model;
+    private ViewModel model;
 
     private Button alternative1;
     private Button alternative2;
@@ -162,6 +164,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void switchActivityToResult() {
         Intent intent = new Intent(this, ResultsActivity.class);
+        Date date = new Date();
+
+        ResultObject resultObject = new ResultObject(model.getTotalQuestions(), model.getCorrectAnswers(), date);
+
         intent.putExtra("Result", model.getCorrectAnswers());
         intent.putExtra("TotalQuestions", model.getTotalQuestions());
         startActivity(intent);

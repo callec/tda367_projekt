@@ -2,7 +2,6 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IModelObserver;
@@ -22,7 +21,7 @@ import java.util.List;
  *
  */
 
-public class StandardQuizViewModel extends ViewModel implements IModelObserver, IViewModel{
+public class StandardQuizViewModel extends ViewModel implements IModelObserver {
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;

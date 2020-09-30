@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private String[] mDataset;
+    private Subcategory[] mDataset;
     private static IRecyclerViewActivity parent;
 
 
@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(String[] myDataset, IRecyclerViewActivity parent) {
+    public RecyclerViewAdapter(Subcategory[] myDataset, IRecyclerViewActivity parent) {
         this.parent = parent;
         mDataset = myDataset;
     }
@@ -58,7 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        holder.textView.setText(mDataset[position]);
+        holder.textView.setText(mDataset[position].toString());
     }
 
     @Override
