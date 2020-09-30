@@ -1,7 +1,8 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage;
 
+import com.down_to_earth_rats.quiz_game.Subcategory;
+
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  * Created by Louise Tranborg
@@ -10,27 +11,28 @@ import java.util.HashMap;
 
 public class User{
 
-    private HashMap<String, ArrayList<ResultObject>> statistics;
+    private ArrayList<ResultObject> statistics;
     private String username;
     private String password;
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-
-        statistics = new HashMap<>();
-        //statistics.put("Addition",)
-
+        
     }
 
-    public HashMap<String, ArrayList<ResultObject>> getStatistics(){
-        return statistics;
+    public ArrayList<ResultObject> getStatistics(Subcategory subcategory){
+        ArrayList<ResultObject> statisticsInSubcategory = new ArrayList<>();
+        for(ResultObject resultObject: statistics){
+            if(resultObject.getSubcategory() == subcategory){
+                statisticsInSubcategory.add(resultObject);
+            }
+        }
+        return statisticsInSubcategory;
     }
 
-    /*
-    private void addStatistics(Integer date, String result){
-        statistics.put(date, result);
+    private void addResult(ResultObject resultObject){
+        statistics.add(resultObject);
     }
 
-     */
 }
