@@ -10,6 +10,7 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.Subcategory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -51,7 +52,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         totalQuestions = 4;
 
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
+        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions(Subcategory.Addition, totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();

@@ -3,6 +3,7 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.QuestionFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.Subcategory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +20,7 @@ import java.util.Random;
 public class QuestionsFromFile implements IQuestionProvider {
 
     @Override
-    public Iterator<IQuestion> getQuestions(String subject, int numberOfQuestions) {
+    public Iterator<IQuestion> getQuestions(Subcategory subcategory, int numberOfQuestions) {
 
         List<IQuestion> qs = new ArrayList<>();
         for (int i=0; i<numberOfQuestions; ++i) {

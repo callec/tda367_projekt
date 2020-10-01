@@ -2,6 +2,7 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.Subcategory;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +15,6 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Carl Bergman
@@ -41,7 +41,7 @@ public class QuestionFromFileTest {
 
     @Test
     public void testRandomAdditionQuestion() {
-        Iterator<IQuestion> qs = provider.getQuestions("", 1);
+        Iterator<IQuestion> qs = provider.getQuestions(Subcategory.Addition, 1);
 
         qs.hasNext();
         IQuestion q = qs.next();
