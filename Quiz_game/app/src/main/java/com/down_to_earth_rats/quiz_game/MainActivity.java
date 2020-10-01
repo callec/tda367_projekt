@@ -40,6 +40,11 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
         startActivity(intent);
     }
 
+    private void gotoHighscore(View view) {
+        Intent intent = new Intent(this, HighscoreActivity.class);
+        startActivity(intent);
+    }
+
     //Consume back press
     @Override
     public void onBackPressed() {
