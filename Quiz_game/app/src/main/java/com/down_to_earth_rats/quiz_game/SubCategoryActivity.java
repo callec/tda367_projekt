@@ -69,10 +69,10 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
         recyclerView.setAdapter(mAdapter);
     }
 
-    @Override
-    public void onClickRecyclerViewItem(String s){
+    //@Override
+    public void onClickRecyclerViewItem(Subcategory s){
         switch(s) {
-            case "Addition":
+            case Addition:
                 Intent intent = new Intent(this, QuizActivity.class);
                 startActivity(intent);
                 break;

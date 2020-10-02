@@ -32,8 +32,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View v) {
                     // at the moment it doesn't care what category/subject it is, just starts quiz
                     // how to add viewbinding to fragment?
-                    String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
-                    parent.onClickRecyclerViewItem(s);
+                    //String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
+                    parent.onClickRecyclerViewItem(Subcategory.Addition);
                 }
             });
 
