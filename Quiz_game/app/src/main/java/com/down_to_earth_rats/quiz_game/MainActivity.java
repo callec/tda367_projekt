@@ -31,12 +31,23 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
                 gotoPlay(view);
             }
         });
+        viewBinder.button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoHighscore(view);
+            }
+        });
 
 
     }
 
     private void gotoPlay(View view) {
         Intent intent = new Intent(this, SubjectActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoHighscore(View view) {
+        Intent intent = new Intent(this, HighscoreActivity.class);
         startActivity(intent);
     }
 
