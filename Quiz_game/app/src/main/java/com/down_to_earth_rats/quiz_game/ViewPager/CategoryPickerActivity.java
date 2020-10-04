@@ -1,21 +1,35 @@
 package com.down_to_earth_rats.quiz_game.ViewPager;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.widget.TableLayout;
 
 import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
+import com.google.android.material.badge.BadgeDrawable;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.tabs.TabLayoutMediator;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class CategoryPickerActivity extends FragmentActivity {
 
-    private static final int NUM = 3;
+    private int NUM = 3;
 
     private ViewPager2 viewPager2;
 
     private FragmentStateAdapter pagerAdapter;
+
+    private List<Integer> intList = new ArrayList<>();
 
 
 
@@ -23,13 +37,68 @@ public class CategoryPickerActivity extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_category_picker);
 
-        viewPager2 = findViewById(R.id.pager);
+        for (int i = 0; i < 16; i+=3) {
+            intList.add(i);
+        }
+
+
+
+
+        NUM = intList.size();
+        ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
+
+
+        viewPager2 = binding.pager;
         pagerAdapter = new CategoryPickerPagerAdapter(this);
         viewPager2.setAdapter(pagerAdapter);
 
+        TabLayout tabLayout = binding.tabs;
+        TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2,
+                new TabLayoutMediator.TabConfigurationStrategy() {
+                    @Override
+                    public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
+                        tab.setText("OBJECT " + (intList.get(position)));
+                        /*BadgeDrawable badge = tab.getOrCreateBadge();
+                        badge.setNumber(100 *position);*/
+
+                    }
+                }
+        );
+        tabLayoutMediator.attach();
+
+        //tabLayout.removeTabAt();
+
+        setContentView(binding.getRoot());
+
+
+        /*new CountDownTimer(3000, 2000) {
+
+            @Override
+            public void onTick(long l) {
+
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                NUM--;
+                pagerAdapter = test();
+                viewPager2.setAdapter(pagerAdapter);
+                pagerAdapter.notifyDataSetChanged();
+            }
+
+        }.start();*/
+
+
+
+
     }
+
+    /*private CategoryPickerPagerAdapter test(){
+        return new CategoryPickerPagerAdapter(this);
+    }*/
 
     @Override
     public void onBackPressed() {
@@ -49,9 +118,11 @@ public class CategoryPickerActivity extends FragmentActivity {
             super(fa);
         }
 
+
+
         @Override
         public Fragment createFragment(int position) {
-            return new CategoryPickerFragment(position);
+            return new CategoryPickerFragment(intList.get(position));
         }
 
         @Override

@@ -28,6 +28,8 @@ public class CategoryPickerFragment extends Fragment {
         FragmentCategoryPickerBinding binding = FragmentCategoryPickerBinding.inflate(inflater);
         binding.textView4.setText(String.format("%d", num));
 
+
+
         return binding.getRoot();
     }
 }
