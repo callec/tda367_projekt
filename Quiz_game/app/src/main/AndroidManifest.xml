@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.down_to_earth_rats.quiz_game">
 
-    <!--Modified by Everyone  -->
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,17 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ViewPager.CategoryPickerActivity">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
         <!-- TODO Temporary Change, official start screen for project -->
-
-
-
         <activity
             android:name=".SubjectActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.SubjectActivity"/>
-            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.MainActivity"/>
+            android:parentActivityName=".SubjectActivity" /> <!-- The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.down_to_earth_rats.quiz_game.MainActivity" />
         <!--
         <intent-filter>
             <action android:name="android.intent.action.MAIN" />
@@ -30,48 +32,39 @@
         -->
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.down_to_earth_rats.quiz_game.MainActivity"/>
+            android:value="com.down_to_earth_rats.quiz_game.MainActivity" />
 
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
-            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
+            android:parentActivityName=".MainActivity">
+
+            <!-- The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.MainActivity"/>
+                android:value="com.down_to_earth_rats.quiz_game.MainActivity" />
         </activity>
-
         <activity
             android:name=".SubCategoryActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.SubjectActivity">
-            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
+            android:parentActivityName=".SubjectActivity">
+
+            <!-- The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.SubjectActivity"/>
+                android:value="com.down_to_earth_rats.quiz_game.SubjectActivity" />
         </activity>
-
         <activity android:name=".MainActivity">
-            <intent-filter>
+            <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
-
-
-
-        <activity
-            android:name=".ResultsActivity">
+        <activity android:name=".ResultsActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
-        <activity android:name=".QuizActivity">
-
-        </activity>
-
-
-
+        <activity android:name=".QuizActivity" />
     </application>
 
 </manifest>

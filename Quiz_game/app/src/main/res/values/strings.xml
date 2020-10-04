@@ -14,5 +14,6 @@
     <string name="quit_app_modal">Vill du avsluta?</string>
     <string name="settingsTextTestStyle">Så här kommer din text se ut</string>
     <string name="settings_text_switch">Larger text</string>
+    <string name="category_test_text">Hello There!</string>
 
 </resources>
