@@ -38,17 +38,13 @@ public class CategoryPickerActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        for (int i = 0; i < 16; i+=3) {
+        for (int i = 0; i < 25; i+=3) {
             intList.add(i);
         }
 
-
-
-
         NUM = intList.size();
+
         ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
-
-
         viewPager2 = binding.pager;
         pagerAdapter = new CategoryPickerPagerAdapter(this);
         viewPager2.setAdapter(pagerAdapter);
