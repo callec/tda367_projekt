@@ -26,12 +26,9 @@ public class StandardQuizViewModelTest {
     @Before
     public void setup() {
         vm = new StandardQuizViewModel();
+        vm.setTotalQuestions(5);
+        vm.initQuiz();
     }
-
-    /*@Test
-    public void testGetAlternativeList() {
-        assertNotNull(vm.getAlternativeList().getValue());
-    }*/
 
     @Test
     public void testGetTotalQuestions() {
