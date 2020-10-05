@@ -73,11 +73,9 @@ public class CategoryPickerActivity extends FragmentActivity {
     @Override
     public void onBackPressed() {
         if (viewPager2.getCurrentItem() == 0) {
-            // If the user is currently looking at the first step, allow the system to handle the
-            // Back button. This calls finish() on this activity and pops the back stack.
             super.onBackPressed();
         } else {
-            // Otherwise, select the previous step.
+
             viewPager2.setCurrentItem(viewPager2.getCurrentItem() - 1);
         }
     }
@@ -87,8 +85,6 @@ public class CategoryPickerActivity extends FragmentActivity {
         public CategoryPickerPagerAdapter(FragmentActivity fa) {
             super(fa);
         }
-
-
 
         @Override
         public Fragment createFragment(int position) {
