@@ -7,24 +7,18 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.os.CountDownTimer;
-import android.widget.TableLayout;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.CategoryFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
-import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
-import com.google.android.material.badge.BadgeDrawable;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
-public class CategoryPickerActivity extends FragmentActivity {
+public class CategoryPickerActivity extends FragmentActivity implements CategoryListener {
 
     private int NUM = 3;
 
@@ -68,7 +62,9 @@ public class CategoryPickerActivity extends FragmentActivity {
 
     }
 
-
+    public Fragment createFragment(int position){
+        return new CategoryPickerFragment(categoryList.get(position), this);
+    }
 
     @Override
     public void onBackPressed() {
@@ -80,15 +76,22 @@ public class CategoryPickerActivity extends FragmentActivity {
         }
     }
 
+    @Override
+    public void CategoryClicked(String categoryName, String subCategoryName) {
+        System.out.println("CName: " + categoryName + "  SCName: " + subCategoryName);
+
+    }
+
 
     private class CategoryPickerPagerAdapter extends FragmentStateAdapter {
+
         public CategoryPickerPagerAdapter(FragmentActivity fa) {
             super(fa);
         }
 
         @Override
         public Fragment createFragment(int position) {
-            return new CategoryPickerFragment(categoryList.get(position));
+            return CategoryPickerActivity.this.createFragment(position);
         }
 
         @Override

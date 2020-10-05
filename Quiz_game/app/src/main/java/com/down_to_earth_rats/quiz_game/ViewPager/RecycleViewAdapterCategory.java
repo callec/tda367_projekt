@@ -11,11 +11,13 @@ import com.down_to_earth_rats.quiz_game.databinding.SubcategoryCardBinding;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderCategory> implements SubCategoryClickListener {
+public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderCategory> {
 
     private List<String> dataSet;
+    private SubCategoryClickListener listener;
 
-    public RecycleViewAdapterCategory(List<String> strings) {
+    public RecycleViewAdapterCategory(List<String> strings, SubCategoryClickListener listener) {
+        this.listener = listener;
 
         dataSet = new ArrayList<>();
         dataSet.addAll(strings);
@@ -27,7 +29,7 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderC
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         SubcategoryCardBinding binding = SubcategoryCardBinding.inflate(layoutInflater, parent, false);
 
-        return new ViewHolderCategory(binding, this);
+        return new ViewHolderCategory(binding, listener);
     }
 
     @Override
@@ -39,10 +41,5 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderC
     @Override
     public int getItemCount() {
         return dataSet.size();
-    }
-
-    @Override
-    public void subjectClicked(String name) {
-        System.out.println(name);
     }
 }

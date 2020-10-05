@@ -11,29 +11,24 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
-import com.down_to_earth_rats.quiz_game.R;
-import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.down_to_earth_rats.quiz_game.databinding.FragmentCategoryPickerBinding;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class CategoryPickerFragment extends Fragment {
+public class CategoryPickerFragment extends Fragment implements SubCategoryClickListener {
 
     private int num = 0;
 
     private ICategory category;
+    private CategoryListener listener;
 
     private List<String> subCategories = new ArrayList<>();
 
-    public CategoryPickerFragment(int number) {
-        this.num = number;
-
-    }
-
-    public CategoryPickerFragment(ICategory category){
+    public CategoryPickerFragment(ICategory category, CategoryListener listener){
         this.category = category;
+        this.listener = listener;
         Iterator<String> iterator = category.getSubCategories();
         while(iterator.hasNext()){
             subCategories.add(iterator.next());
@@ -54,9 +49,14 @@ public class CategoryPickerFragment extends Fragment {
 
 
 
-        recyclerView.setAdapter(new RecycleViewAdapterCategory(subCategories));
+        recyclerView.setAdapter(new RecycleViewAdapterCategory(subCategories, this));
 
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void subjectClicked(String name) {
+        listener.CategoryClicked(category.getCategoryName(), name);
     }
 }
