@@ -36,7 +36,6 @@ public class CategoryPickerFragment extends Fragment {
 
         }
 
-
         // Inflate the layout for this fragment
         FragmentCategoryPickerBinding binding = FragmentCategoryPickerBinding.inflate(inflater);
         RecyclerView recyclerView = binding.list;
