@@ -7,12 +7,12 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
-public class CategoryHandlerTest {
+public class StandardCategoryHandlerTest {
 
     ICategoryHandler categoryHandler;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         categoryHandler = new StandardCategoryHandler();
     }
 

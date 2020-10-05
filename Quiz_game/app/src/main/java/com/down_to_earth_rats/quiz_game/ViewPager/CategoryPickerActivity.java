@@ -55,46 +55,17 @@ public class CategoryPickerActivity extends FragmentActivity {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
                         tab.setText("OBJECT " + (intList.get(position)));
-                        /*BadgeDrawable badge = tab.getOrCreateBadge();
-                        badge.setNumber(100 *position);*/
 
                     }
                 }
         );
         tabLayoutMediator.attach();
 
-        //tabLayout.removeTabAt();
-
         setContentView(binding.getRoot());
-
-
-        /*new CountDownTimer(3000, 2000) {
-
-            @Override
-            public void onTick(long l) {
-
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                NUM--;
-                pagerAdapter = test();
-                viewPager2.setAdapter(pagerAdapter);
-                pagerAdapter.notifyDataSetChanged();
-            }
-
-        }.start();*/
-
-
-
 
     }
 
-    /*private CategoryPickerPagerAdapter test(){
-        return new CategoryPickerPagerAdapter(this);
-    }*/
+
 
     @Override
     public void onBackPressed() {
@@ -129,3 +100,32 @@ public class CategoryPickerActivity extends FragmentActivity {
 
 
 }
+
+
+
+/*new CountDownTimer(3000, 2000) {
+
+            @Override
+            public void onTick(long l) {
+
+
+            }
+
+            @Override
+            public void onFinish() {
+
+                NUM--;
+                pagerAdapter = test();
+                viewPager2.setAdapter(pagerAdapter);
+                pagerAdapter.notifyDataSetChanged();
+            }
+
+        }.start();*/
+
+
+/*private CategoryPickerPagerAdapter test(){
+        return new CategoryPickerPagerAdapter(this);
+    }*/
+
+
+//tabLayout.removeTabAt();
