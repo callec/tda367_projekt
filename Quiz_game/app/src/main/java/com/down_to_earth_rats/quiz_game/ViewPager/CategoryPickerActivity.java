@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.widget.TableLayout;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.Category.CategoryFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
 import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.google.android.material.badge.BadgeDrawable;
@@ -17,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -29,8 +32,7 @@ public class CategoryPickerActivity extends FragmentActivity {
 
     private FragmentStateAdapter pagerAdapter;
 
-    private List<Integer> intList = new ArrayList<>();
-
+    private List<ICategory> categoryList = new ArrayList<>();
 
 
 
@@ -38,11 +40,12 @@ public class CategoryPickerActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        for (int i = 0; i < 25; i+=3) {
-            intList.add(i);
+        Iterator<ICategory> categoryIterator = CategoryFactory.getStandardHandler().getAllCategories();
+
+        while(categoryIterator.hasNext()){
+            categoryList.add(categoryIterator.next());
         }
 
-        NUM = intList.size();
 
         ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
         viewPager2 = binding.pager;
@@ -54,7 +57,7 @@ public class CategoryPickerActivity extends FragmentActivity {
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
-                        tab.setText("OBJECT " + (intList.get(position)));
+                        tab.setText((categoryList.get(position).getCategoryName()));
 
                     }
                 }
@@ -89,12 +92,12 @@ public class CategoryPickerActivity extends FragmentActivity {
 
         @Override
         public Fragment createFragment(int position) {
-            return new CategoryPickerFragment(intList.get(position));
+            return new CategoryPickerFragment(categoryList.get(position));
         }
 
         @Override
         public int getItemCount() {
-            return NUM;
+            return categoryList.size();
         }
     }
 

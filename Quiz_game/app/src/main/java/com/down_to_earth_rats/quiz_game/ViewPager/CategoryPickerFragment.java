@@ -10,31 +10,40 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
 import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.down_to_earth_rats.quiz_game.databinding.FragmentCategoryPickerBinding;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class CategoryPickerFragment extends Fragment {
 
     private int num = 0;
 
+    private ICategory category;
+
+    private List<String> subCategories = new ArrayList<>();
+
     public CategoryPickerFragment(int number) {
         this.num = number;
 
+    }
+
+    public CategoryPickerFragment(ICategory category){
+        this.category = category;
+        Iterator<String> iterator = category.getSubCategories();
+        while(iterator.hasNext()){
+            subCategories.add(iterator.next());
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            list.add("Test" + num);
-
-        }
 
         // Inflate the layout for this fragment
         FragmentCategoryPickerBinding binding = FragmentCategoryPickerBinding.inflate(inflater);
@@ -44,7 +53,7 @@ public class CategoryPickerFragment extends Fragment {
 
 
 
-        recyclerView.setAdapter(new RecycleViewAdapterCategory(list));
+        recyclerView.setAdapter(new RecycleViewAdapterCategory(subCategories));
 
 
         return binding.getRoot();
