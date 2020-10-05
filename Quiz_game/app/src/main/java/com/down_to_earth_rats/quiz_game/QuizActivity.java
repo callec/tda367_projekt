@@ -19,19 +19,14 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.List;
 
-
-// Henrik, Sara, Carl, Erik, Louise
-
-// TODO:
-//  - how to handle alternatives from viewmodel
-//  - how to update with new question_textview
+/**
+ * Created and edited by Henrik, Sara, Carl, Erik, Louise
+ */
 public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler {
 
     private ActivityQuizBinding viewBinding;
 
-    private String timerText;
-    private String correctAnswer;
-    private boolean wasCorrectChoice;
+    private int timerTextId;
 
     private modalFragment modal;
     private IViewModel model;
@@ -57,26 +52,15 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
 
-        handleSupportActionBar();
-        //update();
-
         setContentView(viewBinding.getRoot());
 
-        alternative1 = viewBinding.answerButton1;
-        alternative2 = viewBinding.answerButton2;
-        alternative3 = viewBinding.answerButton3;
-        alternative4 = viewBinding.answerButton4;
+        setupSupportActionBar();
+        setupOnQuizEnd();
+        setupTimerText();
+        setupButtons();
+    }
 
-        timerText = "Nästa fråga om: ";
-
-        model.getIsLast().observe(this, new Observer<Boolean>() {
-            @Override
-            public void onChanged(Boolean isLastQuestion) {
-                if (isLastQuestion) {
-                    timerText = "Resultat om: ";
-                }
-            }
-        });
+    private void setupOnQuizEnd() {
         model.getRunningState().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean state) {
@@ -85,6 +69,27 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 }
             }
         });
+    }
+
+    private void setupTimerText() {
+        timerTextId = R.string.nextq_in;
+
+        model.getIsLast().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean isLastQuestion) {
+                if (isLastQuestion) {
+                    timerTextId = R.string.result_in;
+                }
+            }
+        });
+    }
+
+    private void setupButtons() {
+        alternative1 = viewBinding.answerButton1;
+        alternative2 = viewBinding.answerButton2;
+        alternative3 = viewBinding.answerButton3;
+        alternative4 = viewBinding.answerButton4;
+
         model.getAlternativeList().observe(this, new Observer<List<String>>() {
             @Override
             public void onChanged(List<String> strings) {
@@ -97,34 +102,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         });
     }
 
-    private void handleSupportActionBar() {
-
+    private void setupSupportActionBar() {
         Toolbar toolbar = viewBinding.toolbarQuiz;
         toolbar.setTitle(R.string.math_subject);
 
         setSupportActionBar(toolbar);
-
-        // TODO: ask the user to make sure he wants to end the quiz and go back
-        //sb.setDisplayHomeAsUpEnabled(true);
     }
-
-
-    /*
-    void update() {
-
-        wasCorrectChoice = false;
-
-        viewBinding.questionText.setText("Hur mycket är 8,00 - 4,73?");
-
-        viewBinding.answerButton1.setText("4,73");
-        viewBinding.answerButton2.setText("4,37");
-        viewBinding.answerButton3.setText("3,37");
-        viewBinding.answerButton4.setText("3,27");
-
-        correctAnswer = "3,27";
-    }
-
-     */
 
 
     public void clickAlternative(View view) {
@@ -142,28 +125,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 break;
             case R.id.answerButton4:
                 id = 4;
-
-                /*
-                Button b = (Button) view;
-
-                // TODO: this case
-                // want to add hint button later, guess() would reduce clutter
-                grayOutButtons();
-                if (b.getText().equals(correctAnswer)) {
-                    //wasCorrectChoice = true;
-                    //correctChoice(b);
-                    //guess(true, view);
-                    b.setBackgroundResource(R.drawable.correct_button);
-                } else{
-                    //b.setBackgroundColor(0xFFFF0000);
-                    //guess(false, view);
-                    b.setBackgroundResource(R.drawable.wrong_button);
-                }
-
-                CountDown();
-
-                 */
-
                 break;
         }
         guess(model.answerQuestion(id), view);
@@ -182,7 +143,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         startActivity(intent);
     }
 
-    //Count down to next question
+    // Count down to next question
     private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
@@ -190,17 +151,15 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText(timerText + ((l / 1000) + 1));
+                viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
                 viewBinding.progressBar.incrementProgressBy(1);
             }
 
             @Override
             public void onFinish() {
                 disableProgressBar();
-                enableButtons(true);
+                enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 model.changeQuestion();
-                //finish();
-                //startActivity(getIntent());
             }
 
         }.start();
@@ -211,19 +170,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         viewBinding.progressBar.setProgress(0);
     }
 
-
-    //TODO ADD WHAT SHOULD HAPPEN WHEN CORRECT CHOICE
-    private void correctChoice(Button b) {
-        //b.setBackgroundColor(0xFF00FF00);
-        b.setBackgroundResource(R.drawable.correct_button);
-    }
-
-    private void enableButtons(boolean enable) {
-        // why not use attributes? might use the buttons again
-        Button[] blist = {viewBinding.answerButton1,
-                viewBinding.answerButton2,
-                viewBinding.answerButton3,
-                viewBinding.answerButton4};
+    private void enableButtons(boolean enable, Button... blist) {
+        if (blist.length < 1) {
+            throw new ArrayIndexOutOfBoundsException("No buttons in method call.");
+        }
         for (Button b : blist) {
             b.setClickable(enable);
             if (!enable) {
@@ -235,7 +185,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void guess(boolean guess, View v) {
-        enableButtons(false);
+        enableButtons(false, alternative1, alternative2, alternative3, alternative4);
         if (guess) {
             v.setBackgroundResource(R.drawable.correct_button);
         } else {
@@ -244,28 +194,27 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         }
     }
 
-    //Consume back press
+    // Consume back press
     @Override
     public void onBackPressed() {
         modal = new modalFragment(this.getResources().getString(R.string.quit_quiz_modal), this.getResources().getStringArray(R.array.quit_quiz_modal), this);
         modal.show(this.getSupportFragmentManager(), "s");
-        //modal.setCancelable(false);
     }
 
-    //Decide what to do depending on what button was pressed (called from modalFragment)
+    // Decide what to do depending on what button was pressed (called from modalFragment)
     @Override
     public void modalFragmentButtonPressed(int buttonIndex) {
         switch (buttonIndex) {
-            //"Continue"
+            // "Continue"
             case 0:
                 break;
-            //"Restart"
+            // "Restart"
             case 1:
-                //TODO restart quiz
+                //TODO this works for quiz of mathematical types where the questions are generated
+                model.initQuiz();
                 break;
-            //"Quit"
+            // "Quit"
             case 2:
-                //TODO go to result or straight to menu?
                 switchActivityToMenu();
         }
     }

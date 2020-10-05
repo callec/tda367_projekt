@@ -16,4 +16,6 @@
     <string name="settings_text_switch">Larger text</string>
     <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_nquestions">%1$d frågor</string>
+    <string name="nextq_in">Nästa fråga om: %1$d</string>
+    <string name="result_in">Resultat om: %1$d</string>
 </resources>

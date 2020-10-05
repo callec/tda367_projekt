@@ -42,24 +42,23 @@ public class QuestionsFromFile implements IQuestionProvider {
     private IQuestion randomAdditionQuestion() {
         Random r = new Random();
         int qBound = 40;
+        int aBound = 10;
 
         int x = r.nextInt(qBound) + 10;
         int y = r.nextInt(qBound) + 10;
         int correct = x+y;
         int wrong1, wrong2, wrong3;
+
         do{
-            //wrong1 = x + y + Math.abs(x-y) + 1;
-            wrong1 = x + y + (r.nextBoolean() ? - r.nextInt(15) : + r.nextInt(15));
+            wrong1 = x + y + (r.nextBoolean() ? - r.nextInt(aBound) : + r.nextInt(aBound));
         } while(wrong1 == correct);
 
         do{
-            //wrong2 = x + y + r.nextInt(10) - 1;
-            wrong2 = x + y + (r.nextBoolean() ? - r.nextInt(15) : + r.nextInt(15));
+            wrong2 = x + y + (r.nextBoolean() ? - r.nextInt(aBound) : + r.nextInt(aBound));
         } while(wrong2 == correct || wrong2 == wrong1);
 
         do{
-            //wrong3 = Math.abs(x + y - r.nextInt(10) + 1);
-            wrong3 = x + y + (r.nextBoolean() ? - r.nextInt(15) : + r.nextInt(15));
+            wrong3 = x + y + (r.nextBoolean() ? - r.nextInt(aBound) : + r.nextInt(aBound));
         } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1);
 
         String q = "Vad är: " + x + " + " + y + " ?";

@@ -34,20 +34,6 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
 
-    /*public StandardQuizViewModel(@NonNull Application application) {
-        super(application);
-
-        runningState.setValue(true);
-
-        questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", 10));
-        questionHandler.registerObserver(this);
-
-        currentQuestion = questionHandler.getQuestion();
-        createAlternativeList(currentQuestion);
-        totalQuestions = 1;
-    }*/
-
     public StandardQuizViewModel() {
 
     }
