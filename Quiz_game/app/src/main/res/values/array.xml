@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="dialog_cont">Fortsätt</string>
+    <string name="dialog_retry">Start om</string>
+    <string name="dialog_quit">Avsluta</string>
+    <string name="dialog_yes">Ja</string>
+    <string name="dialog_no">Nej</string>
+
     <string-array
         name="quit_quiz_modal">
-        <item>Fortsätt</item>
-        <item>Starta om</item>
-        <item>Avsluta</item>
+        <item>@string/dialog_cont</item>
+        <item>@string/dialog_retry</item>
+        <item>@string/dialog_quit</item>
     </string-array>
     <string-array
         name="quit_app_modal">
-        <item>Ja</item>
-        <item>Nej</item>
+        <item>@string/dialog_yes</item>
+        <item>@string/dialog_yes</item>
     </string-array>
 </resources>
