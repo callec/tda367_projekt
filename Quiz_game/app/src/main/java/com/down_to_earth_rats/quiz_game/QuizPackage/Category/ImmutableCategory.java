@@ -7,14 +7,14 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-public class Category implements ICategory {
+class ImmutableCategory implements ICategory {
 
 
     private String name;
 
     private List<String> subCategoriesList = new ArrayList<>();
 
-    public Category(String name, String... subCategories) {
+    public ImmutableCategory(String name, String... subCategories) {
         this.name = name;
         subCategoriesList.addAll(Arrays.asList(subCategories));
     }

@@ -7,7 +7,7 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
-public class CategoryTest {
+public class ImmutableCategoryTest {
 
 
     private ICategory category;
@@ -20,7 +20,7 @@ public class CategoryTest {
 
     @Before
     public void setUp() {
-        category = new Category(name, sub1, sub2, sub3);
+        category = new ImmutableCategory(name, sub1, sub2, sub3);
     }
 
     @Test
