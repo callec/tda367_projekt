@@ -49,8 +49,10 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     }*/
 
     public StandardQuizViewModel() {
-        totalQuestions = 4;
 
+    }
+
+    public void initQuiz() {
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
         questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
         questionHandler.registerObserver(this);
@@ -78,6 +80,10 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
     public int getTotalQuestions() {
         return totalQuestions;
+    }
+
+    public void setTotalQuestions(int totalQuestions) {
+        this.totalQuestions = totalQuestions;
     }
 
     public int getCorrectAnswers() {

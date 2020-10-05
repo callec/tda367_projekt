@@ -1,6 +1,8 @@
 package com.down_to_earth_rats.quiz_game;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -34,6 +36,9 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private modalFragment modal;
     private IViewModel model;
 
+    private Resources res;
+    private SharedPreferences pref;
+
     private Button alternative1;
     private Button alternative2;
     private Button alternative3;
@@ -43,7 +48,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        res = getResources();
+        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
+
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
+        model.setTotalQuestions(pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue)));
+        model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
 
@@ -182,7 +192,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             public void onTick(long l) {
                 viewBinding.questionText.setText(timerText + ((l / 1000) + 1));
                 viewBinding.progressBar.incrementProgressBy(1);
-
             }
 
             @Override

@@ -12,12 +12,14 @@ import java.util.List;
 
 public interface IViewModel {
 
-    public boolean answerQuestion(int alternativeID);
-    public void changeQuestion();
-    public MutableLiveData<Boolean> getRunningState();
-    public LiveData<List<String>> getAlternativeList();
-    public int getTotalQuestions();
-    public int getCorrectAnswers();
+    boolean answerQuestion(int alternativeID);
+    void changeQuestion();
+    MutableLiveData<Boolean> getRunningState();
+    LiveData<List<String>> getAlternativeList();
+    int getTotalQuestions();
+    void setTotalQuestions(int i);
+    int getCorrectAnswers();
+    void initQuiz();
     MutableLiveData<Boolean> getIsLast();
 
 }
