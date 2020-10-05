@@ -43,7 +43,7 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
 
         ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
         viewPager2 = binding.pager;
-        pagerAdapter = new CategoryPickerPagerAdapter(this);
+        pagerAdapter = new CategoryPickerPagerAdapter(this, categoryList, this);
         viewPager2.setAdapter(pagerAdapter);
 
         TabLayout tabLayout = binding.tabs;
@@ -56,15 +56,14 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
                     }
                 }
         );
+
         tabLayoutMediator.attach();
 
         setContentView(binding.getRoot());
 
     }
 
-    public Fragment createFragment(int position){
-        return new CategoryPickerFragment(categoryList.get(position), this);
-    }
+
 
     @Override
     public void onBackPressed() {
@@ -83,22 +82,7 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
     }
 
 
-    private class CategoryPickerPagerAdapter extends FragmentStateAdapter {
 
-        public CategoryPickerPagerAdapter(FragmentActivity fa) {
-            super(fa);
-        }
-
-        @Override
-        public Fragment createFragment(int position) {
-            return CategoryPickerActivity.this.createFragment(position);
-        }
-
-        @Override
-        public int getItemCount() {
-            return categoryList.size();
-        }
-    }
 
 
 }

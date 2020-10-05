@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class CategoryPickerFragment extends Fragment implements SubCategoryClickListener {
+public class CategoryPickerFragment extends Fragment implements CategoryListener {
 
     private int num = 0;
 
@@ -55,8 +55,10 @@ public class CategoryPickerFragment extends Fragment implements SubCategoryClick
         return binding.getRoot();
     }
 
+
+
     @Override
-    public void subjectClicked(String name) {
-        listener.CategoryClicked(category.getCategoryName(), name);
+    public void CategoryClicked(String categoryName, String subCategoryName) {
+        listener.CategoryClicked(category.getCategoryName(), subCategoryName);
     }
 }

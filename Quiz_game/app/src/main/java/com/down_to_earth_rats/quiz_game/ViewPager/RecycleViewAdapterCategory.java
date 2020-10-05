@@ -14,9 +14,9 @@ import java.util.List;
 public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderCategory> {
 
     private List<String> dataSet;
-    private SubCategoryClickListener listener;
+    private CategoryListener listener;
 
-    public RecycleViewAdapterCategory(List<String> strings, SubCategoryClickListener listener) {
+    public RecycleViewAdapterCategory(List<String> strings, CategoryListener listener) {
         this.listener = listener;
 
         dataSet = new ArrayList<>();
