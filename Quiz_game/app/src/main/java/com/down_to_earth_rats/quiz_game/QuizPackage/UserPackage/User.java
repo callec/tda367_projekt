@@ -9,7 +9,8 @@ import java.util.ArrayList;
 
 public class User{
 
-    private ArrayList<ResultObject> statistics;
+    private static User singletonUser = null;
+    private ArrayList<ResultObject> statistics = new ArrayList<>();
     private String username;
     private String password;
 
@@ -17,19 +18,26 @@ public class User{
         this.username = username;
         this.password = password;
 
+
+    }
+
+    public static User getInstance(){
+        if(singletonUser == null){
+            singletonUser = new User("Namn", "123");
+        } return singletonUser;
     }
 
     public ArrayList<ResultObject> getStatistics(String subcategory){
         ArrayList<ResultObject> statisticsInSubcategory = new ArrayList<>();
         for(ResultObject resultObject: statistics){
-            if(resultObject.getSubcategory() == subcategory){
+            if(resultObject.getSubcategory().equals(subcategory)){
                 statisticsInSubcategory.add(resultObject);
             }
         }
         return statisticsInSubcategory;
     }
 
-    private void addResult(ResultObject resultObject){
+    public void addResult(ResultObject resultObject){
         statistics.add(resultObject);
     }
 

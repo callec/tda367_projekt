@@ -11,11 +11,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
-import java.util.Date;
 import java.util.List;
 
 
@@ -39,6 +40,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative2;
     private Button alternative3;
     private Button alternative4;
+
+    User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,12 +166,14 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void switchActivityToResult() {
         Intent intent = new Intent(this, ResultsActivity.class);
-        Date date = new Date();
-
-        //ResultObject resultObject = new ResultObject(model.getTotalQuestions(), model.getCorrectAnswers(), date, Subcategory);
 
         intent.putExtra("Result", model.getCorrectAnswers());
         intent.putExtra("TotalQuestions", model.getTotalQuestions());
+
+        // TODO: Added by Louise to try create statistics, not beautiful with the user!
+        ResultObject resultObject = new ResultObject(model.getTotalQuestions(), model.getCorrectAnswers(), "Addition");
+        user.addResult(resultObject);
+
         startActivity(intent);
     }
 
@@ -189,6 +194,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 viewBinding.progressBar.incrementProgressBy(1);
 
             }
+
+
 
             @Override
             public void onFinish() {

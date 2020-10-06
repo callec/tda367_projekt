@@ -14,7 +14,7 @@ public class ResultObject {
     private Date date;
     private String subcategory;
 
-    public ResultObject(int totalQuestions, int correctAnswers, Date date, String subcategory) {
+    public ResultObject(int totalQuestions, int correctAnswers, String subcategory) {
         this.totalQuestions = totalQuestions;
         this.correctAnswers = correctAnswers;
         this.date = date;
@@ -25,5 +25,8 @@ public class ResultObject {
         return subcategory;
     }
 
+    public int getCorrectAnswers(){
+        return correctAnswers;
+    }
 
 }

@@ -1,13 +1,10 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.os.Bundle;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-
-import android.os.Bundle;
-
-
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivityHighscoreBinding;
 
@@ -21,7 +18,11 @@ public class HighscoreActivity extends AppCompatActivity {
 
 
         Toolbar toolbar = viewBinding.toolbarHighscore;
-        toolbar.setTitle("Home");
+
+        //ResultObject result1 = User.getInstance().getStatistics("Addition").get(0);
+
+
+        toolbar.setTitle("Hem");
         setSupportActionBar(toolbar);
 
         //Gives us the return to previous page /back arrow, in the top toolbar   (<-)

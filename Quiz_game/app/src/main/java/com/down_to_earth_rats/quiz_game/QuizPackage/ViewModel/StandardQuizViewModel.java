@@ -9,6 +9,7 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.ArrayList;
@@ -32,6 +33,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
+
+    User user = User.getInstance();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -112,6 +115,11 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void quizFinished() {
+
+        // TODO: Added by Louise to try create statistics, not beautiful with the user!
+        //ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        //user.addResult(resultObject);
+
         runningState.setValue(false);
     }
 
