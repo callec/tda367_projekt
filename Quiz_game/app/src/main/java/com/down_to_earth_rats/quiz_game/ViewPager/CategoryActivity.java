@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
@@ -17,7 +19,12 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryActivity extends FragmentActivity implements CategoryClickListener, ViewModelObserver {
+/**
+ * Created by Erik Blomberg
+ *
+ */
+//Changed from FragmentActivity, maybe something will go wrong!
+public class CategoryActivity extends AppCompatActivity implements CategoryClickListener, ViewModelObserver {
 
 
     public static String CATEGORY_ID = "category";
@@ -58,6 +65,15 @@ public class CategoryActivity extends FragmentActivity implements CategoryClickL
         );
 
         tabLayoutMediator.attach();
+
+        Toolbar toolbar = binding.toolbarCategory;
+        toolbar.setTitle("Välj ämne");
+        setSupportActionBar(toolbar);
+
+        ActionBar ab = getSupportActionBar();
+        if (ab != null) {
+            ab.setDisplayHomeAsUpEnabled(true);
+        }
 
         setContentView(binding.getRoot());
 

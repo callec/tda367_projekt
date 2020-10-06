@@ -6,6 +6,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.down_to_earth_rats.quiz_game.databinding.SubcategoryCardBinding;
 
+/**
+ * Created by Erik Blomberg
+ *
+ */
+
 public class ViewHolderCategory extends RecyclerView.ViewHolder {
 
     public SubcategoryCardBinding binding;

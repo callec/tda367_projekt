@@ -11,6 +11,11 @@ import com.down_to_earth_rats.quiz_game.databinding.SubcategoryCardBinding;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Erik Blomberg
+ *
+ */
+
 public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderCategory> {
 
     private List<String> dataSet;

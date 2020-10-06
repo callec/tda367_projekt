@@ -10,7 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".ViewPager.CategoryActivity">
+        <activity
+            android:name=".ViewPager.CategoryActivity"
+            android:parentActivityName=".MainActivity">
+
         </activity>
 
         <!-- TODO Temporary Change, official start screen for project -->

@@ -9,6 +9,11 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Created by Erik Blomberg
+ *
+ */
+
 public class CategoryPagerAdapter extends FragmentStateAdapter {
 
     private List<ICategory> dataSet = new ArrayList<>();

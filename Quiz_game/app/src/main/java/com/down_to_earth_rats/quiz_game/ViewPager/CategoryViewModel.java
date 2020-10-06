@@ -1,17 +1,18 @@
 package com.down_to_earth_rats.quiz_game.ViewPager;
 
-import android.os.CountDownTimer;
-
 import androidx.lifecycle.ViewModel;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.CategoryFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategoryHandler;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ImmutableCategory;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+/**
+ * Created by Erik Blomberg
+ *
+ */
 
 public class CategoryViewModel extends ViewModel {
 
@@ -22,8 +23,6 @@ public class CategoryViewModel extends ViewModel {
     public CategoryViewModel() {
 
         getStandardCategories();
-
-
     }
 
     public void registerObserver(ViewModelObserver observer){
