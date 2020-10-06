@@ -38,8 +38,6 @@ public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
     }
 
     public void updatePage(int position){
-        System.out.println(position);
-        System.out.println(fragments.size());
         if(fragments.size() > position){
             fragments.get(position).setNewCategory(dataSet.get(position));
         }
