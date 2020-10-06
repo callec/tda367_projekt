@@ -26,7 +26,7 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private Subcategory[] subcategories;
+    private String[] subcategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
             }
         });*/
 
-        this.subcategories = new Subcategory[]{Subcategory.Addition, Subcategory.Subtraktion, Subcategory.Multiplikation, Subcategory.Division};
+        this.subcategories = new String[]{"Addition", "Subtraktion", "Multiplikation", "Division"};
 
         setContentView(viewBinding.getRoot());
 
