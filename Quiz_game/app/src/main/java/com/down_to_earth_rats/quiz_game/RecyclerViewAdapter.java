@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-    private Subcategory[] mDataset;
+    private String[] mDataset;
     private static IRecyclerViewActivity parent;
 
 
@@ -32,8 +32,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 public void onClick(View v) {
                     // at the moment it doesn't care what category/subject it is, just starts quiz
                     // how to add viewbinding to fragment?
-                    //String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
-                    parent.onClickRecyclerViewItem(Subcategory.Addition);
+                    String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
+                    parent.onClickRecyclerViewItem(s);
                 }
             });
 
@@ -42,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(Subcategory[] myDataset, IRecyclerViewActivity parent) {
+    public RecyclerViewAdapter(String[] myDataset, IRecyclerViewActivity parent) {
         this.parent = parent;
         mDataset = myDataset;
     }

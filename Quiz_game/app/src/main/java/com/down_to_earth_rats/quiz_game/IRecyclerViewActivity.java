@@ -10,5 +10,5 @@ package com.down_to_earth_rats.quiz_game;
  */
 public interface IRecyclerViewActivity {
 
-    void onClickRecyclerViewItem(Subcategory subcategory);
+    void onClickRecyclerViewItem(String subcategory);
 }

@@ -1,7 +1,5 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage;
 
-import com.down_to_earth_rats.quiz_game.Subcategory;
-
 import java.util.Date;
 
 /**
@@ -14,16 +12,16 @@ public class ResultObject {
     private int totalQuestions;
     private int correctAnswers;
     private Date date;
-    private Subcategory subcategory;
+    private String subcategory;
 
-    public ResultObject(int totalQuestions, int correctAnswers, Date date, Subcategory subcategory) {
+    public ResultObject(int totalQuestions, int correctAnswers, Date date, String subcategory) {
         this.totalQuestions = totalQuestions;
         this.correctAnswers = correctAnswers;
         this.date = date;
         this.subcategory = subcategory;
     }
 
-    public Subcategory getSubcategory(){
+    public String getSubcategory(){
         return subcategory;
     }
 

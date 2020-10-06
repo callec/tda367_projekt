@@ -1,7 +1,5 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage;
 
-import com.down_to_earth_rats.quiz_game.Subcategory;
-
 import java.util.ArrayList;
 
 /**
@@ -21,7 +19,7 @@ public class User{
 
     }
 
-    public ArrayList<ResultObject> getStatistics(Subcategory subcategory){
+    public ArrayList<ResultObject> getStatistics(String subcategory){
         ArrayList<ResultObject> statisticsInSubcategory = new ArrayList<>();
         for(ResultObject resultObject: statistics){
             if(resultObject.getSubcategory() == subcategory){
