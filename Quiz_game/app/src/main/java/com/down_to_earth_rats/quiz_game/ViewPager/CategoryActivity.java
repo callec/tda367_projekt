@@ -8,8 +8,8 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.down_to_earth_rats.quiz_game.QuizActivity;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
-import com.down_to_earth_rats.quiz_game.ViewPager.QuickTest.TestActivityForViewPager;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -29,13 +29,13 @@ public class CategoryActivity extends FragmentActivity implements CategoryClickL
 
     private List<ICategory> categoryList = new ArrayList<>();
 
-    TabLayout tabLayout;
-
+    private TabLayout tabLayout;
+    private CategoryViewModel model;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CategoryViewModel model = new ViewModelProvider(this).get(CategoryViewModel.class);
+        model = new ViewModelProvider(this).get(CategoryViewModel.class);
         model.registerObserver(this);
         categoryList = model.getCategories();
 
@@ -66,6 +66,15 @@ public class CategoryActivity extends FragmentActivity implements CategoryClickL
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(model != null){
+            model.removeObserver(this);
+        }
+
+    }
+
+    @Override
     public void onBackPressed() {
         if (viewPager2.getCurrentItem() == 0) {
             super.onBackPressed();
@@ -77,8 +86,7 @@ public class CategoryActivity extends FragmentActivity implements CategoryClickL
 
     @Override
     public void CategoryClicked(String categoryName, String subCategoryName) {
-        System.out.println("CName: " + categoryName + "  SCName: " + subCategoryName);
-        Intent intent = new Intent(this, TestActivityForViewPager.class);
+        Intent intent = new Intent(this, QuizActivity.class);
         intent.putExtra(CATEGORY_ID, categoryName);
         intent.putExtra(SUBCATEGORY_ID, subCategoryName);
 

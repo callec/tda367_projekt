@@ -27,7 +27,11 @@ public class CategoryPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
 
-        fragments.add(position, new SubCategoryListFragment(dataSet.get(position), listener));
+        SubCategoryListFragment fragment = new SubCategoryListFragment();
+        fragment.setNewCategory(dataSet.get(position));
+        fragment.setListener(listener);
+
+        fragments.add(position, fragment);
 
         return fragments.get(position);
     }

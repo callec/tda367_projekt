@@ -26,13 +26,11 @@ public class SubCategoryListFragment extends Fragment implements CategoryClickLi
 
     private RecyclerView recyclerView;
 
-    public SubCategoryListFragment(ICategory category, CategoryClickListener listener){
-        this.category = category;
+    public SubCategoryListFragment(){
+    }
+
+    public void setListener(CategoryClickListener listener){
         this.listener = listener;
-        Iterator<String> iterator = category.getSubCategories();
-        while(iterator.hasNext()){
-            subCategories.add(iterator.next());
-        }
     }
 
     public void setNewCategory(ICategory category){
@@ -49,7 +47,6 @@ public class SubCategoryListFragment extends Fragment implements CategoryClickLi
                 recyclerView.getAdapter().notifyDataSetChanged();
             }
         }
-
     }
 
     @Override

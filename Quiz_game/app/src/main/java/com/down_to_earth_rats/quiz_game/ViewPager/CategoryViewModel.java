@@ -23,20 +23,7 @@ public class CategoryViewModel extends ViewModel {
 
         getStandardCategories();
 
-        new CountDownTimer(3000, 200){
 
-            @Override
-            public void onTick(long l) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                categories.remove(1);
-                //categories.add(new ImmutableCategory("Test", "Hej", "då", "yellow brick road"));
-                notifyObservers(1);
-            }
-        }.start();
     }
 
     public void registerObserver(ViewModelObserver observer){
@@ -67,3 +54,19 @@ public class CategoryViewModel extends ViewModel {
     }
 
 }
+
+
+/* new CountDownTimer(3000, 200){
+
+        @Override
+        public void onTick(long l) {
+
+        }
+
+        @Override
+        public void onFinish() {
+            categories.remove(1);
+            //categories.add(new ImmutableCategory("Test", "Hej", "då", "yellow brick road"));
+            notifyObservers(1);
+        }
+    }.start();*/
