@@ -19,12 +19,12 @@ import java.util.List;
 
 public class CategoryPickerFragment extends Fragment implements CategoryListener {
 
-    private int num = 0;
-
     private ICategory category;
     private CategoryListener listener;
 
     private List<String> subCategories = new ArrayList<>();
+
+    private RecyclerView recyclerView;
 
     public CategoryPickerFragment(ICategory category, CategoryListener listener){
         this.category = category;
@@ -42,12 +42,9 @@ public class CategoryPickerFragment extends Fragment implements CategoryListener
 
         // Inflate the layout for this fragment
         FragmentCategoryPickerBinding binding = FragmentCategoryPickerBinding.inflate(inflater);
-        RecyclerView recyclerView = binding.list;
+         recyclerView = binding.list;
 
-        recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
 
         recyclerView.setAdapter(new RecycleViewAdapterCategory(subCategories, this));
 

@@ -17,7 +17,8 @@ class StandardCategoryHandler implements ICategoryHandler{
         ImmutableCategory category1 = new ImmutableCategory("Matematik", "Addition",
                 "Subtraktion", "Multiplikation", "Division");
         categoryList.add(category1);
-        ImmutableCategory category2 = new ImmutableCategory("Historia", "Årtal", "Kungar");
+        ImmutableCategory category2 = new ImmutableCategory("Historia",
+                "Svergies Historia", "Världshistoria");
         categoryList.add(category2);
         ImmutableCategory category3 = new ImmutableCategory("Svenska", "Grammatik", "Ord");
         categoryList.add(category3);

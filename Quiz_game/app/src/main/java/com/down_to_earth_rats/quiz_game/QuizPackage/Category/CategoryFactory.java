@@ -8,7 +8,6 @@ public abstract class CategoryFactory {
         if(instanceHandler == null){
             instanceHandler = new StandardCategoryHandler();
         }
-
         return instanceHandler;
     }
 

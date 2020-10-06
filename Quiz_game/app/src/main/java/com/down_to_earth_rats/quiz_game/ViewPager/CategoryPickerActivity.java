@@ -3,13 +3,16 @@ package com.down_to_earth_rats.quiz_game.ViewPager;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.CategoryFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ImmutableCategory;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -19,8 +22,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class CategoryPickerActivity extends FragmentActivity implements CategoryListener {
-
-    private int NUM = 3;
 
     private ViewPager2 viewPager2;
 
@@ -34,11 +35,8 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Iterator<ICategory> categoryIterator = CategoryFactory.getStandardHandler().getAllCategories();
-
-        while(categoryIterator.hasNext()){
-            categoryList.add(categoryIterator.next());
-        }
+        CategoryViewModel model = new ViewModelProvider(this).get(CategoryViewModel.class);
+        categoryList = model.getCategories();
 
 
         ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
@@ -46,7 +44,8 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
         pagerAdapter = new CategoryPickerPagerAdapter(this, categoryList, this);
         viewPager2.setAdapter(pagerAdapter);
 
-        TabLayout tabLayout = binding.tabs;
+
+        final TabLayout tabLayout = binding.tabs;
         TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2,
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
@@ -61,7 +60,9 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
 
         setContentView(binding.getRoot());
 
+
     }
+
 
 
 
@@ -80,11 +81,6 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
         System.out.println("CName: " + categoryName + "  SCName: " + subCategoryName);
 
     }
-
-
-
-
-
 }
 
 
@@ -100,10 +96,13 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
             @Override
             public void onFinish() {
 
-                NUM--;
-                pagerAdapter = test();
-                viewPager2.setAdapter(pagerAdapter);
-                pagerAdapter.notifyDataSetChanged();
+                categoryList.remove(2);
+                pagerAdapter.notifyItemRemoved(2);
+                categoryList.add(new ImmutableCategory("Yes", "Coolio", "Awesome"));
+                //setAdapter();
+                //tabLayout.removeTabAt(2);
+                pagerAdapter.notifyItemInserted(2);
+
             }
 
         }.start();*/

@@ -14,10 +14,12 @@ public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
     private List<ICategory> dataSet = new ArrayList<>();
     private CategoryListener listener;
 
+
+
     public CategoryPickerPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, CategoryListener listener) {
         super(fa);
         this.listener = listener;
-        this.dataSet.addAll(dataSet);
+        this.dataSet = dataSet;
     }
 
     @Override
@@ -29,5 +31,7 @@ public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
     public int getItemCount() {
         return dataSet.size();
     }
+    
+
 
 }
