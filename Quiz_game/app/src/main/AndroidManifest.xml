@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".ViewPager.QuickTest.TestActivityForViewPager"></activity>
-        <activity android:name=".ViewPager.CategoryPickerActivity">
+        <activity android:name=".ViewPager.CategoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

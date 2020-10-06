@@ -9,15 +9,15 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
+public class CategoryPagerAdapter extends FragmentStateAdapter {
 
     private List<ICategory> dataSet = new ArrayList<>();
-    private CategoryListener listener;
+    private CategoryClickListener listener;
 
-    private List<CategoryPickerFragment> fragments = new ArrayList<>();
+    private List<SubCategoryListFragment> fragments = new ArrayList<>();
 
 
-    public CategoryPickerPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, CategoryListener listener) {
+    public CategoryPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, CategoryClickListener listener) {
         super(fa);
 
         this.listener = listener;
@@ -27,7 +27,7 @@ public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
     @Override
     public Fragment createFragment(int position) {
 
-        fragments.add(position, new CategoryPickerFragment(dataSet.get(position), listener));
+        fragments.add(position, new SubCategoryListFragment(dataSet.get(position), listener));
 
         return fragments.get(position);
     }
@@ -38,7 +38,7 @@ public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
     }
 
     public void updatePage(int position){
-        if(fragments.size() > position){
+        if(fragments.size() > position && dataSet.size() > position){
             fragments.get(position).setNewCategory(dataSet.get(position));
         }
     }

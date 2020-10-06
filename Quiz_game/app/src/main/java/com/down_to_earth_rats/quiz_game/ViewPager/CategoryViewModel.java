@@ -32,9 +32,9 @@ public class CategoryViewModel extends ViewModel {
 
             @Override
             public void onFinish() {
-                categories.remove(2);
+                categories.remove(1);
                 //categories.add(new ImmutableCategory("Test", "Hej", "då", "yellow brick road"));
-                notifyObservers(2);
+                notifyObservers(1);
             }
         }.start();
     }

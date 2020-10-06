@@ -17,16 +17,16 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class CategoryPickerFragment extends Fragment implements CategoryListener {
+public class SubCategoryListFragment extends Fragment implements CategoryClickListener {
 
     private ICategory category;
-    private CategoryListener listener;
+    private CategoryClickListener listener;
 
     private List<String> subCategories = new ArrayList<>();
 
     private RecyclerView recyclerView;
 
-    public CategoryPickerFragment(ICategory category, CategoryListener listener){
+    public SubCategoryListFragment(ICategory category, CategoryClickListener listener){
         this.category = category;
         this.listener = listener;
         Iterator<String> iterator = category.getSubCategories();
@@ -44,8 +44,10 @@ public class CategoryPickerFragment extends Fragment implements CategoryListener
             subCategories.add(iterator.next());
         }
 
-        if(recyclerView != null){
-            recyclerView.getAdapter().notifyDataSetChanged();
+        if(recyclerView != null ){
+            if(recyclerView.getAdapter() != null){
+                recyclerView.getAdapter().notifyDataSetChanged();
+            }
         }
 
     }

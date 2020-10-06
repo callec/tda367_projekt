@@ -2,18 +2,13 @@ package com.down_to_earth_rats.quiz_game.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
-import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ImmutableCategory;
 import com.down_to_earth_rats.quiz_game.ViewPager.QuickTest.TestActivityForViewPager;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -22,7 +17,7 @@ import com.google.android.material.tabs.TabLayoutMediator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryPickerActivity extends FragmentActivity implements CategoryListener, ViewModelObserver {
+public class CategoryActivity extends FragmentActivity implements CategoryClickListener, ViewModelObserver {
 
 
     public static String CATEGORY_ID = "category";
@@ -30,7 +25,7 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
 
     private ViewPager2 viewPager2;
 
-    private CategoryPickerPagerAdapter pagerAdapter;
+    private CategoryPagerAdapter pagerAdapter;
 
     private List<ICategory> categoryList = new ArrayList<>();
 
@@ -47,7 +42,7 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
 
         ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
         viewPager2 = binding.pager;
-        pagerAdapter = new CategoryPickerPagerAdapter(this, categoryList, this);
+        pagerAdapter = new CategoryPagerAdapter(this, categoryList, this);
         viewPager2.setAdapter(pagerAdapter);
 
 
@@ -66,29 +61,7 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
 
         setContentView(binding.getRoot());
 
-/*new CountDownTimer(3000, 2000) {
 
-            @Override
-            public void onTick(long l) {
-
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                categoryList.remove(2);
-                categoryList.add(new ImmutableCategory("Yes", "Coolio", "Awesome", "Nej"));
-                //setAdapter();
-                //tabLayout.removeTabAt(2);
-                //setNewAdapter(2);
-
-                pagerAdapter.updatePage(2);
-                pagerAdapter.notifyDataSetChanged();
-
-            }
-
-        }.start();*/
 
     }
 
@@ -134,16 +107,17 @@ public class CategoryPickerActivity extends FragmentActivity implements Category
             public void onFinish() {
 
                 categoryList.remove(2);
-                pagerAdapter.notifyItemRemoved(2);
-                categoryList.add(new ImmutableCategory("Yes", "Coolio", "Awesome"));
+                categoryList.add(new ImmutableCategory("Yes", "Coolio", "Awesome", "Nej"));
                 //setAdapter();
                 //tabLayout.removeTabAt(2);
-                pagerAdapter.notifyItemInserted(2);
+                //setNewAdapter(2);
+
+                pagerAdapter.updatePage(2);
+                pagerAdapter.notifyDataSetChanged();
 
             }
 
         }.start();*/
-
 
 /*private CategoryPickerPagerAdapter test(){
         return new CategoryPickerPagerAdapter(this);
