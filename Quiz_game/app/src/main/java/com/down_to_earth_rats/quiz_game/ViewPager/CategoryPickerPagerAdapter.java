@@ -14,24 +14,36 @@ public class CategoryPickerPagerAdapter extends FragmentStateAdapter {
     private List<ICategory> dataSet = new ArrayList<>();
     private CategoryListener listener;
 
+    private List<CategoryPickerFragment> fragments = new ArrayList<>();
 
 
     public CategoryPickerPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, CategoryListener listener) {
         super(fa);
+
         this.listener = listener;
         this.dataSet = dataSet;
     }
 
     @Override
     public Fragment createFragment(int position) {
-        return new CategoryPickerFragment(dataSet.get(position), listener);
+
+        fragments.add(position, new CategoryPickerFragment(dataSet.get(position), listener));
+
+        return fragments.get(position);
     }
 
     @Override
     public int getItemCount() {
         return dataSet.size();
     }
-    
+
+    public void updatePage(int position){
+        System.out.println(position);
+        System.out.println(fragments.size());
+        if(fragments.size() > position){
+            fragments.get(position).setNewCategory(dataSet.get(position));
+        }
+    }
 
 
 }

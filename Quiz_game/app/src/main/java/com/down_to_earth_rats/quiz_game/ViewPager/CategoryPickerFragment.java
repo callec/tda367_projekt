@@ -35,6 +35,21 @@ public class CategoryPickerFragment extends Fragment implements CategoryListener
         }
     }
 
+    public void setNewCategory(ICategory category){
+        this.category = category;
+        subCategories.clear();
+
+        Iterator<String> iterator = category.getSubCategories();
+        while(iterator.hasNext()){
+            subCategories.add(iterator.next());
+        }
+
+        if(recyclerView != null){
+            recyclerView.getAdapter().notifyDataSetChanged();
+        }
+
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

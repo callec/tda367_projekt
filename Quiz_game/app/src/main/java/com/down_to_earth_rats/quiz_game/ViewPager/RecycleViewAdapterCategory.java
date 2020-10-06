@@ -20,7 +20,7 @@ public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderC
         this.listener = listener;
 
         dataSet = new ArrayList<>();
-        dataSet.addAll(strings);
+        dataSet = strings;
     }
 
     @NonNull

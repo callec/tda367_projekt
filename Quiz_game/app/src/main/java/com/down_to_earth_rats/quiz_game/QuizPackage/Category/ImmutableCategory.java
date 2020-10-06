@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
-class ImmutableCategory implements ICategory {
+public class ImmutableCategory implements ICategory {
 
 
     private String name;
