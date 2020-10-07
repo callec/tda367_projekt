@@ -1,9 +1,12 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage;
+package com.down_to_earth_rats.quiz_game.UserPackage;
 
 import java.util.ArrayList;
 
 /**
  * Created by Louise Tranborg
+ * This class represents an simple user.
+ * It contains a username, password and also its statistics.
+ * At the moment Singelton-pattern is used to access the User.
  *
  */
 
@@ -25,6 +28,8 @@ public class User{
         } return singletonUser;
     }
 
+    /**Method used to get a statistics based on subcategory.
+     */
     public ArrayList<ResultObject> getStatistics(String subcategory){
         ArrayList<ResultObject> statisticsInSubcategory = new ArrayList<>();
         for(ResultObject resultObject: statistics){
@@ -35,6 +40,8 @@ public class User{
         return statisticsInSubcategory;
     }
 
+    /**Method used to add a ResultObject in the list of statistics.
+    */
     public void addResult(ResultObject resultObject){
         statistics.add(resultObject);
     }

@@ -9,8 +9,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.ArrayList;

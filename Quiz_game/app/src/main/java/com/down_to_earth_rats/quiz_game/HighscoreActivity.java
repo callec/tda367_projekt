@@ -8,21 +8,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityHighscoreBinding;
-import com.down_to_earth_rats.quiz_game.databinding.ActivitySubCategoryBinding;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by Sara Persson
+ * Modified by Henrik Johansson, Louise Tranborg, Sara Persson
  *
  */
 
@@ -45,9 +42,6 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
 
         Toolbar toolbar = viewBinding.toolbarHighscore;
 
-        //ResultObject result1 = User.getInstance().getStatistics("Addition").get(0);
-        //System.out.println(result1.getDate());
-
         toolbar.setTitle(R.string.highscore_title);
         setSupportActionBar(toolbar);
 
@@ -59,9 +53,28 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
         }
         setContentView(viewBinding.getRoot());
 
-        List<ResultObject> resultList = User.getInstance().getStatistics("Addition");
+        viewStatistics();
+
+        recyclerView = viewBinding.recyclerView;
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+
+        // specify an adapter≤
+        mAdapter = new RecyclerViewAdapter(subcategories, this, R.layout.framelayout_result);
+        recyclerView.setAdapter(mAdapter);
+
+    }
+
+    private void viewStatistics(){
+        List<ResultObject> resultList = User.getInstance().getStatistics("Addition"); //Fetch the statistics from the user.
+
+        if(resultList.isEmpty()){
+            viewBinding.textViewNoStatistics.setText("Ingen historik! Spela ett quiz och kom tillbaka.");
+        }
 
         if (!resultList.isEmpty()){
+            viewBinding.textViewNoStatistics.setText(" ");
             String[] resultArray = new String[resultList.size()];
 
             for (int i = 0; i < resultList.size(); i++){
@@ -73,18 +86,6 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
 
             this.subcategories = resultArray;
         }
-
-
-
-        recyclerView = viewBinding.recyclerView;
-
-        layoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(layoutManager);
-
-        // specify an adapter≤
-        mAdapter = new RecyclerViewAdapter(subcategories, this, R.layout.framelayout_result);
-        recyclerView.setAdapter(mAdapter);
-
     }
 
     private String getSwedishDate(Date date){

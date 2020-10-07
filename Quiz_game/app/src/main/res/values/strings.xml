@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Qiwi-Quiz</string>
     <string name="play_button">Spela!</string>
-    <string name="highscore_button">Highscore</string>
+    <string name="highscore_button">Historik</string>
     <string name="settings_button">Inställningar</string>
     <string name="math_subject">Matematik</string>
     <string name="category_title">Kategori</string>
