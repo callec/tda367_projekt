@@ -65,7 +65,7 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter≤
-        mAdapter = new RecyclerViewAdapter(subcategories, this);
+        mAdapter = new RecyclerViewAdapter(subcategories, this, R.layout.framelayout_recyclerview);
         recyclerView.setAdapter(mAdapter);
     }
 

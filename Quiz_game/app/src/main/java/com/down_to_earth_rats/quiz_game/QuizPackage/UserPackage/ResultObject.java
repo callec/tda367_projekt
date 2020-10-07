@@ -30,6 +30,8 @@ public class ResultObject {
         return correctAnswers;
     }
 
+    public int getTotalQuestions() { return  totalQuestions; }
+
     public Date getDate(){
         return date;
     }
