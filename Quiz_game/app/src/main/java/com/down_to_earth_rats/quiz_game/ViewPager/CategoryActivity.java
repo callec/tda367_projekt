@@ -22,39 +22,43 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
+ * This is the activity used to display all categories and their respective subcategories.
+ * The activity sends to values, the category name and the subcategory name.
  */
 //Changed from FragmentActivity, maybe something will go wrong!
 public class CategoryActivity extends AppCompatActivity implements CategoryClickListener, ViewModelObserver {
 
+    //Use these in combination with Intent.getExtra()
+    public static String CATEGORY_NAME = "category";
+    public static String SUBCATEGORY_NAME = "sub_category";
 
-    public static String CATEGORY_ID = "category";
-    public static String SUBCATEGORY_ID = "sub_category";
+    private CategoryViewModel model;
 
-    private ViewPager2 viewPager2;
-
+    private ViewPager2 viewPager;
     private CategoryPagerAdapter pagerAdapter;
 
     private List<ICategory> categoryList = new ArrayList<>();
 
-    private TabLayout tabLayout;
-    private CategoryViewModel model;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Get categories
         model = new ViewModelProvider(this).get(CategoryViewModel.class);
         model.registerObserver(this);
         categoryList = model.getCategories();
 
-
         ActivityCategoryPickerBinding binding = ActivityCategoryPickerBinding.inflate(getLayoutInflater());
-        viewPager2 = binding.pager;
+
+        //Set PagerAdapter
+        viewPager = binding.pager;
         pagerAdapter = new CategoryPagerAdapter(this, categoryList, this);
-        viewPager2.setAdapter(pagerAdapter);
+        viewPager.setAdapter(pagerAdapter);
 
-
-        tabLayout = binding.tabs;
-        final TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager2,
+        //Configure tabs
+        TabLayout tabLayout = binding.tabs;
+        final TabLayoutMediator tabLayoutMediator = new TabLayoutMediator(tabLayout, viewPager,
                 new TabLayoutMediator.TabConfigurationStrategy() {
                     @Override
                     public void onConfigureTab(@NonNull TabLayout.Tab tab, int position) {
@@ -63,10 +67,17 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
                     }
                 }
         );
-
         tabLayoutMediator.attach();
 
-        Toolbar toolbar = binding.toolbarCategory;
+
+        setUpToolbar(binding.toolbarCategory);
+
+        setContentView(binding.getRoot());
+
+    }
+
+    private void setUpToolbar(Toolbar toolbar){
+
         toolbar.setTitle("Välj ämne");
         setSupportActionBar(toolbar);
 
@@ -74,16 +85,31 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
         }
+    }
 
-        setContentView(binding.getRoot());
+    @Override
+    public void pageUpdated(int position) {
+        //Update subcategories
+        pagerAdapter.updatePage(position);
 
+        //Update tabs
+        pagerAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void CategoryClicked(String categoryName, String subCategoryName) {
+        Intent intent = new Intent(this, QuizActivity.class);
+        intent.putExtra(CATEGORY_NAME, categoryName);
+        intent.putExtra(SUBCATEGORY_NAME, subCategoryName);
+
+        startActivity(intent);
 
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
         if(model != null){
             model.removeObserver(this);
         }
@@ -92,28 +118,11 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
 
     @Override
     public void onBackPressed() {
-        if (viewPager2.getCurrentItem() == 0) {
+        if (viewPager.getCurrentItem() == 0) {
             super.onBackPressed();
         } else {
-
-            viewPager2.setCurrentItem(viewPager2.getCurrentItem() - 1);
+            viewPager.setCurrentItem(viewPager.getCurrentItem() - 1);
         }
-    }
-
-    @Override
-    public void CategoryClicked(String categoryName, String subCategoryName) {
-        Intent intent = new Intent(this, QuizActivity.class);
-        intent.putExtra(CATEGORY_ID, categoryName);
-        intent.putExtra(SUBCATEGORY_ID, subCategoryName);
-
-        startActivity(intent);
-
-    }
-
-    @Override
-    public void pageUpdated(int position) {
-        pagerAdapter.updatePage(position);
-        pagerAdapter.notifyDataSetChanged();
     }
 }
 

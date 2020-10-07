@@ -9,6 +9,7 @@ import com.down_to_earth_rats.quiz_game.databinding.SubcategoryCardBinding;
 /**
  * Created by Erik Blomberg
  *
+ * The layout used in the Recycler View to display one subcategory
  */
 
 public class ViewHolderCategory extends RecyclerView.ViewHolder {
@@ -18,6 +19,8 @@ public class ViewHolderCategory extends RecyclerView.ViewHolder {
     public ViewHolderCategory(final SubcategoryCardBinding binding, final CategoryClickListener listener) {
         super(binding.getRoot());
         this.binding = binding;
+
+        //Configure the button to register clicks
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

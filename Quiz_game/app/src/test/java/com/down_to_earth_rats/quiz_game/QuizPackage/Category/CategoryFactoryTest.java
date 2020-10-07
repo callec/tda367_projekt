@@ -7,9 +7,12 @@ import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
+/**
+ * Created by Erik Blomberg
+ *
+ */
+
 public class CategoryFactoryTest {
-
-
 
     @Test
     public void sameInstance() {

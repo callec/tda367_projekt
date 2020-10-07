@@ -14,6 +14,7 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
+ * Simple adapter for the recycle view displaying the subcategories
  */
 
 public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderCategory> {

@@ -10,10 +10,10 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
+ * Category which can store "unlimited" amount of Subcategories, but cannot change.
  */
 
 public class ImmutableCategory implements ICategory {
-
 
     private String name;
 

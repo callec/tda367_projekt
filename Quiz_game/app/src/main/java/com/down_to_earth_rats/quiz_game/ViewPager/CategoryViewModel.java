@@ -12,6 +12,8 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
+ * Model for displaying available categories to choose from.
+ * Currently, only the standard categories are present.
  */
 
 public class CategoryViewModel extends ViewModel {
@@ -21,23 +23,7 @@ public class CategoryViewModel extends ViewModel {
     private List<ViewModelObserver> observers = new ArrayList<>();
 
     public CategoryViewModel() {
-
         getStandardCategories();
-    }
-
-    public void registerObserver(ViewModelObserver observer){
-        if(!observers.contains(observer)){
-            observers.add(observer);
-        }
-    }
-    public void removeObserver(ViewModelObserver observer){
-        observers.remove(observer);
-    }
-
-    private void notifyObservers(int position){
-        for(ViewModelObserver observer : observers){
-            observer.pageUpdated(position);
-        }
     }
 
     public void getStandardCategories(){
@@ -49,7 +35,22 @@ public class CategoryViewModel extends ViewModel {
 
     public List<ICategory> getCategories(){
         return categories;
+    }
 
+    public void registerObserver(ViewModelObserver observer){
+        if(!observers.contains(observer)){
+            observers.add(observer);
+        }
+    }
+
+    public void removeObserver(ViewModelObserver observer){
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(int position){
+        for(ViewModelObserver observer : observers){
+            observer.pageUpdated(position);
+        }
     }
 
 }

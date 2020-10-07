@@ -19,19 +19,18 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
+ * Fragment displaying a list with subcategories from a specific category
  */
 
 public class SubCategoryListFragment extends Fragment implements CategoryClickListener {
 
-    private ICategory category;
     private CategoryClickListener listener;
 
+    private ICategory category;
     private List<String> subCategories = new ArrayList<>();
 
     private RecyclerView recyclerView;
 
-    public SubCategoryListFragment(){
-    }
 
     public void setListener(CategoryClickListener listener){
         this.listener = listener;
@@ -57,13 +56,11 @@ public class SubCategoryListFragment extends Fragment implements CategoryClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-        // Inflate the layout for this fragment
         FragmentCategoryPickerBinding binding = FragmentCategoryPickerBinding.inflate(inflater);
-         recyclerView = binding.list;
 
+        //Configure recycler view
+        recyclerView = binding.list;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
         recyclerView.setAdapter(new RecycleViewAdapterCategory(subCategories, this));
 
 

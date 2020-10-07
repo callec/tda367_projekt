@@ -12,11 +12,12 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
+ * Used to display a fragment on each page in the ViewPager
  */
 
 public class CategoryPagerAdapter extends FragmentStateAdapter {
 
-    private List<ICategory> dataSet = new ArrayList<>();
+    private List<ICategory> dataSet;
     private CategoryClickListener listener;
 
     private List<SubCategoryListFragment> fragments = new ArrayList<>();
@@ -36,6 +37,7 @@ public class CategoryPagerAdapter extends FragmentStateAdapter {
         fragment.setNewCategory(dataSet.get(position));
         fragment.setListener(listener);
 
+        //Store fragment for later reference
         fragments.add(position, fragment);
 
         return fragments.get(position);
@@ -47,10 +49,9 @@ public class CategoryPagerAdapter extends FragmentStateAdapter {
     }
 
     public void updatePage(int position){
+        //Confirm that the page can be found
         if(fragments.size() > position && dataSet.size() > position){
             fragments.get(position).setNewCategory(dataSet.get(position));
         }
     }
-
-
 }
