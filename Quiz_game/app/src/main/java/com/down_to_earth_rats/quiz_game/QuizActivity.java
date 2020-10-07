@@ -10,15 +10,14 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
-import com.down_to_earth_rats.quiz_game.QuizPackage.gamemode.InfGameMode;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
-import com.down_to_earth_rats.quiz_game.gamemode_fragments.InfGameModeFragment;
+import com.down_to_earth_rats.quiz_game.gamemode.gamemode_fragments.InfGameModeFragment;
 
 import java.util.List;
 
@@ -31,6 +30,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private int timerTextId;
 
+    private FragmentTransaction ft;
+    private InfGameModeFragment gameMode;
     private modalFragment modal;
     private IViewModel model;
 
@@ -65,10 +66,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void setupGameMode() {
-        Fragment fragment = InfGameModeFragment.newInstance();
-        fragment.setArguments(getIntent().getExtras());
-        getSupportFragmentManager().beginTransaction()
-                .add(viewBinding.fragmentContainer.getId(), fragment).commit();
+        gameMode = InfGameModeFragment.newInstance();
+        gameMode.setArguments(getIntent().getExtras());
+        ft = getSupportFragmentManager().beginTransaction();
+        ft.add(viewBinding.fragmentContainer.getId(), gameMode).commit();
     }
 
     private void setupOnQuizEnd() {
@@ -138,8 +139,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 id = 4;
                 break;
         }
-        guess(model.answerQuestion(id), view);
+        boolean response = model.answerQuestion(id);
+        gameMode.answer(response);
+        guess(response, view);
         CountDown();
+        //ft.detach(this).attach(gameMode).commit();
     }
 
     private void switchActivityToResult() {
@@ -196,7 +200,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void guess(boolean guess, View v) {
-
         enableButtons(false, alternative1, alternative2, alternative3, alternative4);
         if (guess) {
             v.setBackgroundResource(R.drawable.correct_button);
