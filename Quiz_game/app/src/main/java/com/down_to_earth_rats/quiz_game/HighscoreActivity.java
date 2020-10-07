@@ -8,6 +8,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivityHighscoreBinding;
 
+/**
+ * Created by Sara Persson
+ *
+ */
+
 public class HighscoreActivity extends AppCompatActivity {
     private ActivityHighscoreBinding viewBinding;
     @Override
@@ -20,7 +25,7 @@ public class HighscoreActivity extends AppCompatActivity {
         Toolbar toolbar = viewBinding.toolbarHighscore;
 
         //ResultObject result1 = User.getInstance().getStatistics("Addition").get(0);
-
+        //System.out.println(result1.getDate());
 
         toolbar.setTitle("Hem");
         setSupportActionBar(toolbar);

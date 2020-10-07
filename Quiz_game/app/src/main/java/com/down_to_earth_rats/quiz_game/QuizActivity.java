@@ -11,7 +11,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.QuizPackage.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
@@ -170,10 +169,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         intent.putExtra("Result", model.getCorrectAnswers());
         intent.putExtra("TotalQuestions", model.getTotalQuestions());
 
-        // TODO: Added by Louise to try create statistics, not beautiful with the user!
-        ResultObject resultObject = new ResultObject(model.getTotalQuestions(), model.getCorrectAnswers(), "Addition");
-        user.addResult(resultObject);
-
         startActivity(intent);
     }
 
@@ -192,7 +187,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             public void onTick(long l) {
                 viewBinding.questionText.setText(timerText + ((l / 1000) + 1));
                 viewBinding.progressBar.incrementProgressBy(1);
-
             }
 
 
