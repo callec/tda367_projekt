@@ -10,12 +10,15 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.gamemode.InfGameMode;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
+import com.down_to_earth_rats.quiz_game.gamemode_fragments.InfGameModeFragment;
 
 import java.util.List;
 
@@ -54,10 +57,18 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         setContentView(viewBinding.getRoot());
 
+        setupGameMode();
         setupSupportActionBar();
         setupOnQuizEnd();
         setupTimerText();
         setupButtons();
+    }
+
+    private void setupGameMode() {
+        Fragment fragment = InfGameModeFragment.newInstance();
+        fragment.setArguments(getIntent().getExtras());
+        getSupportFragmentManager().beginTransaction()
+                .add(viewBinding.fragmentContainer.getId(), fragment).commit();
     }
 
     private void setupOnQuizEnd() {
@@ -185,6 +196,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void guess(boolean guess, View v) {
+
         enableButtons(false, alternative1, alternative2, alternative3, alternative4);
         if (guess) {
             v.setBackgroundResource(R.drawable.correct_button);
