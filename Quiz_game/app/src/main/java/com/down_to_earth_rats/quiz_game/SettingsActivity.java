@@ -48,7 +48,6 @@ public class SettingsActivity extends AppCompatActivity {
         setupHint();
         setupQuestionSeekBar();
 
-        SharedPreferences prefs = getSharedPreferences("pref", MODE_PRIVATE);
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
 
         hintSwitch.setChecked(hintOn_Status);
