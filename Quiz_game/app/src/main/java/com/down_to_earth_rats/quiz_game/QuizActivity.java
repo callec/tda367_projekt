@@ -58,7 +58,14 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         setupOnQuizEnd();
         setupTimerText();
         setupButtons();
+
+
     }
+
+    public void giveHintQuiz(View view) {
+        System.out.println("test1223");
+    }
+
 
     private void setupOnQuizEnd() {
         model.getRunningState().observe(this, new Observer<Boolean>() {

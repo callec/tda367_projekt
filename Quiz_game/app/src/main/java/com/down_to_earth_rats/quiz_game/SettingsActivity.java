@@ -64,8 +64,8 @@ public class SettingsActivity extends AppCompatActivity {
         // This is the code for the switch, when clicked it changes its text.
         final Switch s = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            String hintOn = s.getText().toString();
             String hintOff = s.getText().toString();
+            String hintOn = getString(R.string.hintOn);
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
