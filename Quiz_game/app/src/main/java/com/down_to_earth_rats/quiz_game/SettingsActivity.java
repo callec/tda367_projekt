@@ -1,5 +1,6 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
     private SeekBar questionSeekBar;
     private TextView seekBarTextView;
     private Resources res;
+    private Switch hintSwitch;
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -45,6 +47,13 @@ public class SettingsActivity extends AppCompatActivity {
         setupToolBar();
         setupHint();
         setupQuestionSeekBar();
+
+        SharedPreferences prefs = getSharedPreferences("pref", MODE_PRIVATE);
+        boolean hintOff_Status = pref.getBoolean("StatusOn", false);
+
+        hintSwitch.setChecked(true);
+
+
     }
 
     private void setupToolBar() {
@@ -61,18 +70,24 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setupHint() {
-        // This is the code for the switch, when clicked it changes its text.
-        final Switch s = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            String hintOff = s.getText().toString();
+
+        hintSwitch = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
+
+        hintSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            String hintOff = hintSwitch.getText().toString();
             String hintOn = getString(R.string.hintOn);
+
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { //Switch on
-                    s.setText(hintOn);
+                    hintSwitch.setText(hintOn);
+                    editor.putBoolean("StatusOn", hintSwitch.isChecked());
+                    editor.commit();
                 } else {  //Switch off
-                    s.setText(hintOff);
+                    hintSwitch.setText(hintOff);
+                    editor.putBoolean("StatusOn", hintSwitch.isChecked());
+                    editor.commit();
                 }
             }
         });
