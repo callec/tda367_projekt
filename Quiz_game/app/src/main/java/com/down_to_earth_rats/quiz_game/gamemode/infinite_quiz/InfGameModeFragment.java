@@ -1,9 +1,8 @@
-package com.down_to_earth_rats.quiz_game.gamemode.gamemode_fragments;
+package com.down_to_earth_rats.quiz_game.gamemode.infinite_quiz;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,20 +12,20 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.down_to_earth_rats.quiz_game.databinding.FragmentInfGameModeBinding;
-import com.down_to_earth_rats.quiz_game.gamemode.InfGameMode;
-import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
+import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link InfGameModeFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * Created by Carl Bergman
+ * Represents a GameMode where you answers an infinite amount of questions
+ * and can only guess wrongly three times.
  */
 public class InfGameModeFragment extends Fragment implements IGameModeFragment {
 
     private FragmentInfGameModeBinding viewbinder;
-    private FragmentTransaction ft;
 
     private InfGameMode model;
+    private IGameModeObserver observer = null; // only allow one observer
 
     private ImageView life1;
     private ImageView life2;
@@ -36,7 +35,6 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static InfGameModeFragment newInstance() {
         InfGameModeFragment fragment = new InfGameModeFragment();
         Bundle args = new Bundle();
@@ -47,16 +45,10 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-        }
-        ft = getActivity().getSupportFragmentManager().beginTransaction();
 
         model = new ViewModelProvider(this).get(InfGameMode.class);
-        //model.setLives(this.getArguments().getInt(getString(R.string.gamemode_lives), 3));
+        // possibly allow more than three lives, need to center more hearts in that case
         model.setLives(3);
-
-        viewbinder = FragmentInfGameModeBinding.inflate(getLayoutInflater());
-        setupLives();
     }
 
     private void setupLives() throws ArrayIndexOutOfBoundsException {
@@ -64,22 +56,25 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
         life2 = viewbinder.life2ImageView;
         life3 = viewbinder.life3ImageView;
 
-        model.getLives().observe(this, new Observer<Integer>() {
+        model.getLives().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer n) {
                 switch (n) {
                     case 0:
-                        // kill quiz
+                        life1.setVisibility(View.INVISIBLE);
+                        life2.setVisibility(View.INVISIBLE);
+                        life3.setVisibility(View.INVISIBLE);
+                        notifyObserver();
                         break;
                     case 1:
                         life1.setVisibility(View.VISIBLE);
-                        life2.setVisibility(View.GONE);
-                        life3.setVisibility(View.GONE);
+                        life2.setVisibility(View.INVISIBLE);
+                        life3.setVisibility(View.INVISIBLE);
                         break;
                     case 2:
                         life1.setVisibility(View.VISIBLE);
                         life2.setVisibility(View.VISIBLE);
-                        life3.setVisibility(View.GONE);
+                        life3.setVisibility(View.INVISIBLE);
                         break;
                     case 3:
                         life1.setVisibility(View.VISIBLE);
@@ -89,27 +84,35 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
                     default:
                         throw new ArrayIndexOutOfBoundsException("Maximum three lives, something has gone wrong.");
                 }
-                updateUI();
             }
         });
-    }
-
-    private void updateUI() {
-        // TODO fix this
-        //getActivity().getSupportFragmentManager().beginTransaction().detach(this).commitNowAllowingStateLoss();
-        ft.replace(R.id.fragment_container, this).commit();
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_inf_game_mode, container, false);
+        viewbinder = FragmentInfGameModeBinding.inflate(inflater, container, false);
+        setupLives();
+        return viewbinder.getRoot();
     }
 
     @Override
     public void answer(boolean a) {
         model.answer(a);
+    }
+
+    @Override
+    public void addObserver(IGameModeObserver o) {
+        if (this.observer == null) {
+            this.observer = o;
+        }
+    }
+
+    @Override
+    public void notifyObserver() {
+        if (this.observer != null) {
+            this.observer.gameModeQuizEnd();
+        }
     }
 }

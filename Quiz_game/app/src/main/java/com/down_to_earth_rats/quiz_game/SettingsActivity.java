@@ -35,7 +35,7 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         viewBinding = ActivitySettingsBinding.inflate(getLayoutInflater());
-        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
+        pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
         editor = pref.edit();
 
         res = getResources();
@@ -83,7 +83,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         final int minimumvalue = res.getInteger(R.integer.totalq_minvalue);
 
-        int firstValue = pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue));
+        int firstValue = pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
         questionSeekBar.setProgress(firstValue);
         seekBarTextView.setText(getString(R.string.settings_nquestions, firstValue));
 

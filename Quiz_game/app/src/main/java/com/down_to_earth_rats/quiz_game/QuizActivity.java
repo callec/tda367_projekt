@@ -10,28 +10,30 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.FragmentTransaction;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
-import com.down_to_earth_rats.quiz_game.gamemode.gamemode_fragments.InfGameModeFragment;
+import com.down_to_earth_rats.quiz_game.gamemode.GameModeFactory;
+import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
+import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
 
 import java.util.List;
 
 /**
  * Created and edited by Henrik, Sara, Carl, Erik, Louise
  */
-public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler {
+public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler, IGameModeObserver {
 
     private ActivityQuizBinding viewBinding;
 
     private int timerTextId;
 
-    private FragmentTransaction ft;
-    private InfGameModeFragment gameMode;
+    private IGameModeFragment gameMode;
+    private boolean gameModeEnd;
     private modalFragment modal;
     private IViewModel model;
 
@@ -48,10 +50,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         super.onCreate(savedInstanceState);
 
         res = getResources();
-        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
+        pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
-        model.setTotalQuestions(pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue)));
+        model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
@@ -66,10 +68,22 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void setupGameMode() {
-        gameMode = InfGameModeFragment.newInstance();
-        gameMode.setArguments(getIntent().getExtras());
-        ft = getSupportFragmentManager().beginTransaction();
-        ft.add(viewBinding.fragmentContainer.getId(), gameMode).commit();
+        gameModeEnd = false;
+        gameMode = loadGameMode();
+        gameMode.addObserver(this);
+        getSupportFragmentManager().beginTransaction()
+                .add(viewBinding.fragmentContainer.getId(), (Fragment) gameMode).commit();
+    }
+
+    private IGameModeFragment loadGameMode() {
+        // i would really like to use an enum here, but as we use SharedPreferences we would
+        // have to convert string to enum anyways so we reduce that step by using this
+        String selected = pref.getString("GameMode", "standard");
+        if (selected.equals(getString(R.string.gamemode_infinity))) {
+            return GameModeFactory.createInfinityQuiz();
+        } else {
+            return GameModeFactory.createStandardQuiz();
+        }
     }
 
     private void setupOnQuizEnd() {
@@ -172,6 +186,9 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onFinish() {
+                if (gameModeEnd) {
+                    switchActivityToResult();
+                }
                 disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 model.changeQuestion();
@@ -232,5 +249,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             case 2:
                 switchActivityToMenu();
         }
+    }
+
+    @Override
+    public void gameModeQuizEnd() {
+        model.gameModeForceEnd();
+        gameModeEnd = true;
+        CountDown();
     }
 }

@@ -1,8 +1,11 @@
-package com.down_to_earth_rats.quiz_game.gamemode;
+package com.down_to_earth_rats.quiz_game.gamemode.infinite_quiz;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+/**
+ * Created by Carl Bergman
+ */
 public class InfGameMode extends ViewModel {
 
     private MutableLiveData<Integer> lives = new MutableLiveData<>();
@@ -21,7 +24,6 @@ public class InfGameMode extends ViewModel {
     }
 
     public void answer(boolean correct) {
-        System.out.println("AAAAAAAAAAA");
         if (!correct) {
             lives.setValue(lives.getValue() - 1);
         } else {
