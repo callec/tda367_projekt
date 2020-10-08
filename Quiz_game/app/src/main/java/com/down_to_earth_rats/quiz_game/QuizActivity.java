@@ -39,6 +39,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative3;
     private Button alternative4;
 
+    public Button hintButton;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,12 +60,27 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         setupOnQuizEnd();
         setupTimerText();
         setupButtons();
-
+        checkHintStatus(findViewById(android.R.id.content).getRootView());
 
     }
 
+    public void checkHintStatus(View view){
+        boolean bool = true;
+        if (bool) {
+            System.out.println("test1223");
+            viewBinding.hintButton.setVisibility(view.INVISIBLE);
+        }
+    }
+
     public void giveHintQuiz(View view) {
+        boolean bool = true;
+        if (bool) {
         System.out.println("test1223");
+        System.out.println(""+view);
+        viewBinding.hintButton.setVisibility(view.INVISIBLE);
+        }
+
+
     }
 
 
