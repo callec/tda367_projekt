@@ -68,7 +68,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     public void checkHintStatus(View view){
 
-        SharedPreferences prefs = getSharedPreferences("pref", MODE_PRIVATE);
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
 
         viewBinding.hintButton.setVisibility(hintOn_Status ? view.VISIBLE : view.INVISIBLE);
