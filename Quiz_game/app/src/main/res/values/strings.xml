@@ -13,7 +13,8 @@
     <string name="quit_quiz_modal">Spel pausat</string>
     <string name="quit_app_modal">Vill du avsluta?</string>
     <string name="settingsTextTestStyle">Så här kommer din text se ut</string>
-    <string name="settings_text_switch">Larger text</string>
+    <string name="hintOff">"hint" av</string>
+    <string name="hintOn">"hint" på</string>
     <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_nquestions">%1$d frågor</string>
     <string name="nextq_in">Nästa fråga om: %1$d</string>

@@ -43,7 +43,7 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         setupToolBar();
-        setupFontSize();
+        setupHint();
         setupQuestionSeekBar();
     }
 
@@ -60,18 +60,19 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void setupFontSize() {
-        // This is the code for the switch, when clicked it changes text.
+    private void setupHint() {
+        // This is the code for the switch, when clicked it changes its text.
         final Switch s = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
         s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            String test = s.getText().toString();
+            String hintOn = s.getText().toString();
+            String hintOff = s.getText().toString();
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { //Switch on
-                    s.setText("Smaller text");
+                    s.setText(hintOn);
                 } else {  //Switch off
-                    s.setText(test);
+                    s.setText(hintOff);
                 }
             }
         });
