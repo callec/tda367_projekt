@@ -81,9 +81,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         boolean wrongAnswer = true;
         Button alternative = alternative1;
         if (wrongAnswer) {
-            alternative.setTextColor(0x11555555);
+            //alternative.setTextColor(0x11555555);
             alternative.setBackgroundResource(R.drawable.grey_button);
             alternative.setEnabled(false);
+            alternative.setText("X");
         }
     }
 
