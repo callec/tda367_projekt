@@ -68,6 +68,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     public void checkHintStatus(View view){
         boolean hintOff_Status = false;
+
         if (hintOff_Status) {
             viewBinding.hintButton.setVisibility(view.INVISIBLE);
         }
@@ -77,15 +78,18 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     public void giveHintQuiz(View view) {
-        //If alternative x is a wrong answer.
+        int hintAmounts = 0;
         boolean wrongAnswer = true;
         Button alternative = alternative1;
+
         if (wrongAnswer) {
             //alternative.setTextColor(0x11555555);
             alternative.setBackgroundResource(R.drawable.grey_button);
             alternative.setEnabled(false);
             alternative.setText("X");
+            hintAmounts++;
         }
+
     }
 
 
@@ -175,20 +179,23 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     // Count down to next question
     private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
-
+        viewBinding.hintButton.setVisibility(View.INVISIBLE);
         new CountDownTimer(3000, 30) {
 
             @Override
             public void onTick(long l) {
                 viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
                 viewBinding.progressBar.incrementProgressBy(1);
+
             }
 
             @Override
             public void onFinish() {
+                viewBinding.hintButton.setVisibility(View.VISIBLE);
                 disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 model.changeQuestion();
+
             }
 
         }.start();
@@ -209,6 +216,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 b.setBackgroundResource(R.drawable.grey_button);
             } else {
                 b.setBackgroundResource(R.drawable.round_button);
+                b.setEnabled(true);
             }
         }
     }
