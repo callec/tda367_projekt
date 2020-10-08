@@ -13,10 +13,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -65,22 +67,24 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     public void checkHintStatus(View view){
-        boolean bool = true;
-        if (bool) {
-            System.out.println("test1223");
+        boolean hintOff_Status = false;
+        if (hintOff_Status) {
             viewBinding.hintButton.setVisibility(view.INVISIBLE);
+        }
+        else  {
+            viewBinding.hintButton.setVisibility(view.VISIBLE);
         }
     }
 
     public void giveHintQuiz(View view) {
-        boolean bool = true;
-        if (bool) {
-        System.out.println("test1223");
-        System.out.println(""+view);
-        viewBinding.hintButton.setVisibility(view.INVISIBLE);
+        //If alternative x is a wrong answer.
+        boolean wrongAnswer = true;
+        Button alternative = alternative1;
+        if (wrongAnswer) {
+            alternative.setTextColor(0x11555555);
+            alternative.setBackgroundResource(R.drawable.grey_button);
+            alternative.setEnabled(false);
         }
-
-
     }
 
 
