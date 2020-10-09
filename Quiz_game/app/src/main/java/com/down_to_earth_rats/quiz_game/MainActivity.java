@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
 
 /**
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void gotoPlay(View view) {
-        Intent intent = new Intent(this, SubjectActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
         startActivity(intent);
     }
 
