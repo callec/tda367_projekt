@@ -52,7 +52,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         res = getResources();
         pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
-        String selectedGameMode = pref.getString("GameMode", getString(R.string.gamemode_standard));
+        String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         if (selectedGameMode.equals(getString(R.string.gamemode_standard))) {

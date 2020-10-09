@@ -3,8 +3,12 @@ package com.down_to_earth_rats.quiz_game;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
+import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private ActivitySettingsBinding viewBinding;
 
+    private Spinner gameModeSpinner;
     private SeekBar questionSeekBar;
     private TextView seekBarTextView;
     private Resources res;
@@ -45,6 +50,35 @@ public class SettingsActivity extends AppCompatActivity {
         setupToolBar();
         setupFontSize();
         setupQuestionSeekBar();
+        setupGameModeSpinner();
+    }
+
+    private void setupGameModeSpinner() {
+        gameModeSpinner = viewBinding.GameModeSpinner;
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.gamemodes, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        gameModeSpinner.setAdapter(adapter);
+        gameModeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedGameMode = parent.getItemAtPosition(position).toString();
+                editor.putString(getString(R.string.gamemode_which), selectedGameMode);
+                // possibly refactor this to it's on method so we it depends more on each GameMode
+                if (!selectedGameMode.equals(getString(R.string.gamemode_standard))) {
+                    questionSeekBar.setVisibility(View.GONE);
+                    seekBarTextView.setVisibility(View.GONE);
+                } else {
+                    questionSeekBar.setVisibility(View.VISIBLE);
+                    seekBarTextView.setVisibility(View.VISIBLE);
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                editor.putString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
+            }
+        });
     }
 
     private void setupToolBar() {

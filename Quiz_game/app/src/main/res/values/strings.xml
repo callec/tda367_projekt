@@ -20,7 +20,10 @@
     <string name="nextq_in">Nästa fråga om: %1$d</string>
     <string name="result_in">Resultat om: %1$d</string>
 
+    <!-- Values/keys below here, keys.xml didn't work -->
+
     <!-- GameModes -->
+    <string name="gamemode_which">GameMode</string>
     <string name="gamemode_infinity">infinity</string>
     <string name="gamemode_infinity_lives">nLives</string>
     <string name="gamemode_standard">standard</string>
