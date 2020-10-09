@@ -13,57 +13,21 @@
         <activity
             android:name=".ViewPager.CategoryActivity"
             android:parentActivityName=".MainActivity">
-
         </activity>
 
-        <!-- TODO Temporary Change, official start screen for project -->
+
         <activity
-            android:name=".SubjectActivity"
-            android:parentActivityName=".SubjectActivity" /> <!-- The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.down_to_earth_rats.quiz_game.MainActivity" />
-        <!--
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-        -->
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.down_to_earth_rats.quiz_game.MainActivity" />
+            android:name=".HighscoreActivity"
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
+        </activity>
+
 
         <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".MainActivity">
-
-            <!-- The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity -->
-
-            android:name=".HighscoreActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
-            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.MainActivity"/>
         </activity>
 
-        <activity
-            android:name=".SubCategoryActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.SubjectActivity">
-            <!--The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity-->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.MainActivity" />
-        </activity>
-        <activity
-            android:name=".SubCategoryActivity"
-            android:parentActivityName=".SubjectActivity">
 
-            <!-- The following row and the first two below "meta-data" is for the Actionbar in SubCategoryActivity -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.down_to_earth_rats.quiz_game.SubjectActivity" />
-        </activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,12 +35,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ResultsActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+
+
+        <activity
+            android:name=".ResultsActivity"
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
         </activity>
+
+
         <activity android:name=".QuizActivity" />
+
+
     </application>
 
 </manifest>
