@@ -45,8 +45,6 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
                     gotoHighscore(view);
             }
         });
-
-
     }
 
     private void gotoPlay(View view) {
