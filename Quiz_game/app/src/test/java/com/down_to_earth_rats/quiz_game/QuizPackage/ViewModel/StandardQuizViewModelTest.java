@@ -2,9 +2,6 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
-
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;

@@ -36,6 +36,13 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
             @Override
             public void onClick(View view) {
                 gotoSettings(view);
+              }
+            });
+
+            viewBinder.button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoHighscore(view);
             }
         });
 
@@ -49,6 +56,11 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void gotoSettings(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoHighscore(View view) {
+        Intent intent = new Intent(this, HighscoreActivity.class);
         startActivity(intent);
     }
 

@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
@@ -38,6 +39,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative2;
     private Button alternative3;
     private Button alternative4;
+
+    User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,8 +136,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void switchActivityToResult() {
         Intent intent = new Intent(this, ResultsActivity.class);
+
         intent.putExtra("Result", model.getCorrectAnswers());
         intent.putExtra("TotalQuestions", model.getTotalQuestions());
+
         startActivity(intent);
     }
 
@@ -154,6 +159,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
                 viewBinding.progressBar.incrementProgressBy(1);
             }
+
+
 
             @Override
             public void onFinish() {

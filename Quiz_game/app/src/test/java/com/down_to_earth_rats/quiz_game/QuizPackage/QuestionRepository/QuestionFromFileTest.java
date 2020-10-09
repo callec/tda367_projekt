@@ -14,7 +14,6 @@ import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Carl Bergman
@@ -41,7 +40,7 @@ public class QuestionFromFileTest {
 
     @Test
     public void testRandomAdditionQuestion() {
-        Iterator<IQuestion> qs = provider.getQuestions("", 1);
+        Iterator<IQuestion> qs = provider.getQuestions("Addition", 1);
 
         qs.hasNext();
         IQuestion q = qs.next();
