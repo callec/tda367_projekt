@@ -22,8 +22,4 @@
     <string name="category_test_text">Hello There!</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="exit">Avsluta</string>
-    <string name="log_in">Logga in</string>
-    <string name="username">Användarnamn</string>
-    <string name="password">Lösenord</string>
 </resources>
