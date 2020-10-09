@@ -72,7 +72,7 @@
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"Hej
+        android:layout_marginTop="16dp"
         android:text="@string/exit"
         app:layout_constraintEnd_toEndOf="@+id/materialButton"
         app:layout_constraintStart_toStartOf="@+id/materialButton"
