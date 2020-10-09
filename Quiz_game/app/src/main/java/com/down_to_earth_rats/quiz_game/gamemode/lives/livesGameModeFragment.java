@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.gamemode.infinite_quiz;
+package com.down_to_earth_rats.quiz_game.gamemode.lives;
 
 import android.os.Bundle;
 
@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
-import com.down_to_earth_rats.quiz_game.databinding.FragmentInfGameModeBinding;
+import com.down_to_earth_rats.quiz_game.databinding.FragmentLivesGameModeBinding;
 import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
 
@@ -20,21 +20,21 @@ import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
  * Represents a GameMode where you answers an large amount of questions
  * and can only guess wrongly three times.
  */
-public class InfGameModeFragment extends Fragment implements IGameModeFragment {
+public class livesGameModeFragment extends Fragment implements IGameModeFragment {
 
-    private FragmentInfGameModeBinding viewbinder;
+    private FragmentLivesGameModeBinding viewbinder;
 
-    private InfGameMode model;
+    private livesGameMode model;
     private IGameModeObserver observer = null; // only allow one observer
 
     private ImageView life1, life2, life3;
 
-    public InfGameModeFragment() {
+    public livesGameModeFragment() {
         // Required empty public constructor
     }
 
-    public static InfGameModeFragment newInstance() {
-        InfGameModeFragment fragment = new InfGameModeFragment();
+    public static livesGameModeFragment newInstance() {
+        livesGameModeFragment fragment = new livesGameModeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -44,7 +44,7 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        model = new ViewModelProvider(this).get(InfGameMode.class);
+        model = new ViewModelProvider(this).get(livesGameMode.class);
         // possibly allow more than three lives, need to center more hearts in that case
         model.setLives(3);
     }
@@ -90,7 +90,7 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        viewbinder = FragmentInfGameModeBinding.inflate(inflater, container, false);
+        viewbinder = FragmentLivesGameModeBinding.inflate(inflater, container, false);
         setupLives();
         return viewbinder.getRoot();
     }

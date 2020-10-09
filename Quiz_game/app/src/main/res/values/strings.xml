@@ -24,7 +24,7 @@
 
     <!-- GameModes -->
     <string name="gamemode_which">GameMode</string>
-    <string name="gamemode_infinity">infinity</string>
+    <string name="gamemode_infinity">Max tre fel</string>
     <string name="gamemode_infinity_lives">nLives</string>
-    <string name="gamemode_standard">standard</string>
+    <string name="gamemode_standard">Standard</string>
 </resources>

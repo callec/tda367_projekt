@@ -1,6 +1,6 @@
 package com.down_to_earth_rats.quiz_game.gamemode;
 
-import com.down_to_earth_rats.quiz_game.gamemode.infinite_quiz.InfGameModeFragment;
+import com.down_to_earth_rats.quiz_game.gamemode.lives.livesGameModeFragment;
 import com.down_to_earth_rats.quiz_game.gamemode.standard.StandardGameModeFragment;
 
 /**
@@ -10,7 +10,7 @@ public class GameModeFactory {
     public GameModeFactory() {}
 
     public static IGameModeFragment createInfinityQuiz() {
-        return InfGameModeFragment.newInstance();
+        return livesGameModeFragment.newInstance();
     }
 
     public static IGameModeFragment createStandardQuiz() {
