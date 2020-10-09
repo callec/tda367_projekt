@@ -17,7 +17,7 @@ import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
 
 /**
  * Created by Carl Bergman
- * Represents a GameMode where you answers an infinite amount of questions
+ * Represents a GameMode where you answers an large amount of questions
  * and can only guess wrongly three times.
  */
 public class InfGameModeFragment extends Fragment implements IGameModeFragment {
@@ -27,9 +27,7 @@ public class InfGameModeFragment extends Fragment implements IGameModeFragment {
     private InfGameMode model;
     private IGameModeObserver observer = null; // only allow one observer
 
-    private ImageView life1;
-    private ImageView life2;
-    private ImageView life3;
+    private ImageView life1, life2, life3;
 
     public InfGameModeFragment() {
         // Required empty public constructor

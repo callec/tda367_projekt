@@ -22,6 +22,7 @@ import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
 
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created and edited by Henrik, Sara, Carl, Erik, Louise
@@ -51,34 +52,40 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         res = getResources();
         pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
+        String selectedGameMode = pref.getString("GameMode", getString(R.string.gamemode_standard));
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
-        model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
+        if (selectedGameMode.equals(getString(R.string.gamemode_standard))) {
+            model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
+        } else {
+            // for now set 10 to 50 questions
+            Random r = new Random();
+            model.setTotalQuestions(r.nextInt(40)+10);
+        }
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
 
         setContentView(viewBinding.getRoot());
 
-        setupGameMode();
+        setupGameMode(selectedGameMode);
         setupSupportActionBar();
         setupOnQuizEnd();
         setupTimerText();
         setupButtons();
     }
 
-    private void setupGameMode() {
+    private void setupGameMode(String selected) {
         gameModeEnd = false;
-        gameMode = loadGameMode();
+        gameMode = loadGameMode(selected);
         gameMode.addObserver(this);
         getSupportFragmentManager().beginTransaction()
                 .add(viewBinding.fragmentContainer.getId(), (Fragment) gameMode).commit();
     }
 
-    private IGameModeFragment loadGameMode() {
+    private IGameModeFragment loadGameMode(String selected) {
         // i would really like to use an enum here, but as we use SharedPreferences we would
         // have to convert string to enum anyways so we reduce that step by using this
-        String selected = pref.getString("GameMode", "standard");
         if (selected.equals(getString(R.string.gamemode_infinity))) {
             return GameModeFactory.createInfinityQuiz();
         } else {
