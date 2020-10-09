@@ -12,23 +12,27 @@
 
         <activity
             android:name=".ViewPager.CategoryActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
         </activity>
 
 
         <activity
             android:name=".HighscoreActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
 
 
         <activity
             android:name=".SettingsActivity"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait">
         </activity>
 
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -39,11 +43,15 @@
 
         <activity
             android:name=".ResultsActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity">
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity"
+            android:screenOrientation="portrait">
         </activity>
 
 
-        <activity android:name=".QuizActivity" />
+        <activity
+            android:name=".QuizActivity"
+            android:screenOrientation="portrait">
+        </activity>
 
 
     </application>
