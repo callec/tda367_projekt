@@ -55,13 +55,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
-        if (selectedGameMode.equals(getString(R.string.gamemode_standard))) {
-            model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
-        } else {
-            // for now set 10 to 50 questions
-            Random r = new Random();
-            model.setTotalQuestions(r.nextInt(40)+10);
-        }
+        model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());

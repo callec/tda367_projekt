@@ -18,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivitySettingsBinding;
 
+import java.util.Random;
+
 
 /**
  * Created by Sara Persson
@@ -68,7 +70,10 @@ public class SettingsActivity extends AppCompatActivity {
                 if (!selectedGameMode.equals(getString(R.string.gamemode_standard))) {
                     questionSeekBar.setVisibility(View.GONE);
                     seekBarTextView.setVisibility(View.GONE);
+                    Random r = new Random();
+                    editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
                 } else {
+                    editor.putInt(getString(R.string.settings_totalq), 10);
                     questionSeekBar.setVisibility(View.VISIBLE);
                     seekBarTextView.setVisibility(View.VISIBLE);
                 }

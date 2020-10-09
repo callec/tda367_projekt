@@ -14,14 +14,14 @@
     <string name="quit_app_modal">Vill du avsluta?</string>
     <string name="settingsTextTestStyle">Så här kommer din text se ut</string>
     <string name="settings_text_switch">Larger text</string>
-    <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_nquestions">%1$d frågor</string>
-    <string name="settings_totalq">TotalQuestions</string>
     <string name="nextq_in">Nästa fråga om: %1$d</string>
     <string name="result_in">Resultat om: %1$d</string>
 
     <!-- Values/keys below here, keys.xml didn't work -->
 
+    <string name="preferences_name">SystemPreferencesFile</string>
+    <string name="settings_totalq">TotalQuestions</string>
     <!-- GameModes -->
     <string name="gamemode_which">GameMode</string>
     <string name="gamemode_infinity">Max tre fel</string>
