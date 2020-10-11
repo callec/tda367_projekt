@@ -106,9 +106,12 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     }
 
     public int getHintIndex() {
+
         int amountOfQuestions = 4;
         Random randomGenerator = new Random();
         int random = randomGenerator.nextInt(amountOfQuestions);
+
+
 
         while (this.checkIfCorrect(random+1)) {
             random = randomGenerator.nextInt(amountOfQuestions);
@@ -116,14 +119,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
         return random;
 
-      /*  for (int i = 0; i<amountOfQuestions; i++){
-            int n = i+1;
-            if (!this.checkIfCorrect(n)){
-                return i;
-            }
-        }
-        return 3; //error
-*/
+
     }
 
     public void changeQuestion() {

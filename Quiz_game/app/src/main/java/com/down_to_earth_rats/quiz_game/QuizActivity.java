@@ -37,6 +37,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private Resources res;
     private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     private Button alternative1;
     private Button alternative2;
@@ -45,12 +46,16 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     public Button hintButton;
 
+    private int hintTries = 2;   //how many times you may use hints
+    private int hints = hintTries;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         res = getResources();
         pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
+        editor = pref.edit();
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue)));
@@ -66,6 +71,9 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         setupButtons();
         checkHintStatus(findViewById(android.R.id.content).getRootView());
 
+        editor.putBoolean("hintsUsed", false);
+        editor.commit();
+
     }
 
     private void checkHintStatus(View view){
@@ -76,26 +84,30 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     public void giveHintQuiz(View view) {
-        int hintAmounts = 0;
+
+        editor.putBoolean("hintsUsed", true);
+        editor.commit();
+
+        hints--;
+
         int hintIndex = model.getHintIndex();
-        boolean wrongAnswer = true;
-        List<Button> buttons = new ArrayList<Button>();
+
+        List<Button> buttons = new ArrayList<>();
         buttons.add(alternative1);
         buttons.add(alternative2);
         buttons.add(alternative3);
         buttons.add(alternative4);
 
-        Button alternative = buttons.get(hintIndex);;
+        Button alternative = buttons.get(hintIndex);
 
+        //alternative.setTextColor(0x11555555);
+        alternative.setBackgroundResource(R.drawable.grey_button);
+        alternative.setEnabled(false);
+        alternative.setText("X");
 
-        if (wrongAnswer) {
-            //alternative.setTextColor(0x11555555);
-            alternative.setBackgroundResource(R.drawable.grey_button);
-            alternative.setEnabled(false);
-            alternative.setText("X");
-            hintAmounts++;
+        if (hints < 1) {
+            viewBinding.hintButton.setClickable(false);
         }
-
     }
 
 
@@ -198,9 +210,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             @Override
             public void onFinish() {
                 viewBinding.hintButton.setVisibility(View.VISIBLE);
+                viewBinding.hintButton.setClickable(true);
                 disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 model.changeQuestion();
+                hints = hintTries;
 
             }
 
