@@ -2,14 +2,14 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
-
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+/**
+ * Created by Carl Bergman
+ */
 public class LivesGameModeTest {
 
     private LivesGameMode gm;
