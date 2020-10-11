@@ -111,8 +111,6 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         Random randomGenerator = new Random();
         int random = randomGenerator.nextInt(amountOfQuestions);
 
-
-
         while (this.checkIfCorrect(random+1)) {
             random = randomGenerator.nextInt(amountOfQuestions);
         }

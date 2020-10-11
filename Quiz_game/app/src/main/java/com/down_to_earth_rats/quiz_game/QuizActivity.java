@@ -20,6 +20,7 @@ import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -88,15 +89,9 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         editor.putBoolean("hintsUsed", true);
         editor.commit();
 
-        hints--;
-
         int hintIndex = model.getHintIndex();
 
-        List<Button> buttons = new ArrayList<>();
-        buttons.add(alternative1);
-        buttons.add(alternative2);
-        buttons.add(alternative3);
-        buttons.add(alternative4);
+        List<Button> buttons = Arrays.asList(new Button[] {alternative1, alternative2, alternative3, alternative4});
 
         Button alternative = buttons.get(hintIndex);
 
@@ -105,6 +100,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         alternative.setEnabled(false);
         alternative.setText("X");
 
+        hints--;
         if (hints < 1) {
             viewBinding.hintButton.setClickable(false);
         }
