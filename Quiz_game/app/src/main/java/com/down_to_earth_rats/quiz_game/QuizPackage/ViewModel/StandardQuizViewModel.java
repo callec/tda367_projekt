@@ -76,7 +76,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         return correctAnswers;
     }
 
-    public boolean answerQuestion(int alternativeID){
+    public boolean answerQuestion(int alternativeID) {
         List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
         Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
 
@@ -90,6 +90,38 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         }
 
         return condition;
+    }
+
+    public boolean checkIfCorrect(int alternativeID) {
+        List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
+        Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
+
+        while (iterator.hasNext()) {
+            tupleList.add(iterator.next());
+        }
+
+        boolean condition = tupleList.get(alternativeID-1).getValue2();
+        return condition;
+    }
+
+    public int getHintIndex() {
+        int amountOfQuestions = 4;
+        //int i = -1;
+        //for (int i = 0; i<amountOfQuestions; i++){
+        if (!this.checkIfCorrect(1)){
+            return 0;
+            }
+        else if (!this.checkIfCorrect(2)){
+            return 1;
+        }
+        else if (!this.checkIfCorrect(3)){
+            return 2;
+        }
+        else if (!this.checkIfCorrect(4)){
+            return 3;
+        }
+        //}
+        return 3;
     }
 
     public void changeQuestion() {

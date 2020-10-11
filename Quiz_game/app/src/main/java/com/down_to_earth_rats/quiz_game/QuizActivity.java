@@ -18,6 +18,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -66,18 +68,25 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     }
 
-    public void checkHintStatus(View view){
+    private void checkHintStatus(View view){
 
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
-
         viewBinding.hintButton.setVisibility(hintOn_Status ? view.VISIBLE : view.INVISIBLE);
 
     }
 
     public void giveHintQuiz(View view) {
         int hintAmounts = 0;
+        int hintIndex = model.getHintIndex();
         boolean wrongAnswer = true;
-        Button alternative = alternative1;
+        List<Button> buttons = new ArrayList<Button>();
+        buttons.add(alternative1);
+        buttons.add(alternative2);
+        buttons.add(alternative3);
+        buttons.add(alternative4);
+
+        Button alternative = buttons.get(hintIndex);;
+
 
         if (wrongAnswer) {
             //alternative.setTextColor(0x11555555);
