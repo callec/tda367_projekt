@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.gamemode.standard;
+package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Standard;
 
 import android.os.Bundle;
 
@@ -9,8 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.down_to_earth_rats.quiz_game.databinding.FragmentStandardGameModeBinding;
-import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
-import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 
 /**
  * Created by Carl Bergman

@@ -17,12 +17,11 @@ import androidx.lifecycle.ViewModelProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
-import com.down_to_earth_rats.quiz_game.gamemode.GameModeFactory;
-import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
-import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 
 import java.util.List;
-import java.util.Random;
 
 /**
  * Created and edited by Henrik, Sara, Carl, Erik, Louise
@@ -81,7 +80,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         // i would really like to use an enum here, but as we use SharedPreferences we would
         // have to convert string to enum anyways so we reduce that step by using this
         if (selected.equals(getString(R.string.gamemode_infinity))) {
-            return GameModeFactory.createInfinityQuiz();
+            return GameModeFactory.createLivesQuiz();
         } else {
             return GameModeFactory.createStandardQuiz();
         }

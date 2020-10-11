@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.gamemode.lives;
+package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -6,12 +6,12 @@ import androidx.lifecycle.ViewModel;
 /**
  * Created by Carl Bergman
  */
-public class livesGameMode extends ViewModel {
+public class LivesGameMode extends ViewModel {
 
     private MutableLiveData<Integer> lives = new MutableLiveData<>();
     private int nCorrect = 0;
 
-    public livesGameMode() {
+    public LivesGameMode() {
         lives.setValue(3);
     }
 

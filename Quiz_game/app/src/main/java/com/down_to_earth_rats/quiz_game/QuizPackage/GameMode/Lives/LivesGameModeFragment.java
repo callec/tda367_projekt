@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.gamemode.lives;
+package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives;
 
 import android.os.Bundle;
 
@@ -12,29 +12,29 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.down_to_earth_rats.quiz_game.databinding.FragmentLivesGameModeBinding;
-import com.down_to_earth_rats.quiz_game.gamemode.IGameModeFragment;
-import com.down_to_earth_rats.quiz_game.gamemode.IGameModeObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 
 /**
  * Created by Carl Bergman
  * Represents a GameMode where you answers an large amount of questions
  * and can only guess wrongly three times.
  */
-public class livesGameModeFragment extends Fragment implements IGameModeFragment {
+public class LivesGameModeFragment extends Fragment implements IGameModeFragment {
 
     private FragmentLivesGameModeBinding viewbinder;
 
-    private livesGameMode model;
+    private LivesGameMode model;
     private IGameModeObserver observer = null; // only allow one observer
 
     private ImageView life1, life2, life3;
 
-    public livesGameModeFragment() {
+    public LivesGameModeFragment() {
         // Required empty public constructor
     }
 
-    public static livesGameModeFragment newInstance() {
-        livesGameModeFragment fragment = new livesGameModeFragment();
+    public static LivesGameModeFragment newInstance() {
+        LivesGameModeFragment fragment = new LivesGameModeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -44,9 +44,9 @@ public class livesGameModeFragment extends Fragment implements IGameModeFragment
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        model = new ViewModelProvider(this).get(livesGameMode.class);
+        model = new ViewModelProvider(this).get(LivesGameMode.class);
         // possibly allow more than three lives, need to center more hearts in that case
-        model.setLives(3);
+        //model.setLives(3);
     }
 
     private void setupLives() throws ArrayIndexOutOfBoundsException {

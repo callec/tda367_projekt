@@ -2,9 +2,6 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
-
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Rule;
@@ -96,5 +93,16 @@ public class StandardQuizViewModelTest {
         }
 
         assertNotEquals(prevIsLast, vm.getIsLast().getValue());
+    }
+
+    @Test
+    public void gameModeForceEndTest() {
+        Boolean previousvalue = vm.getIsLast().getValue();
+        if (previousvalue == null) {
+            fail();
+        }
+
+        vm.gameModeForceEnd();
+        assertNotEquals(previousvalue, vm.getIsLast().getValue());
     }
 }
