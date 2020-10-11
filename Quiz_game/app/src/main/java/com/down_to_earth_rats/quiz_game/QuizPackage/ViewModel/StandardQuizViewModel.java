@@ -15,6 +15,7 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
@@ -106,22 +107,23 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
     public int getHintIndex() {
         int amountOfQuestions = 4;
-        //int i = -1;
-        //for (int i = 0; i<amountOfQuestions; i++){
-        if (!this.checkIfCorrect(1)){
-            return 0;
+        Random randomGenerator = new Random();
+        int random = randomGenerator.nextInt(amountOfQuestions);
+
+        while (this.checkIfCorrect(random+1)) {
+            random = randomGenerator.nextInt(amountOfQuestions);
+        }
+
+        return random;
+
+      /*  for (int i = 0; i<amountOfQuestions; i++){
+            int n = i+1;
+            if (!this.checkIfCorrect(n)){
+                return i;
             }
-        else if (!this.checkIfCorrect(2)){
-            return 1;
         }
-        else if (!this.checkIfCorrect(3)){
-            return 2;
-        }
-        else if (!this.checkIfCorrect(4)){
-            return 3;
-        }
-        //}
-        return 3;
+        return 3; //error
+*/
     }
 
     public void changeQuestion() {
