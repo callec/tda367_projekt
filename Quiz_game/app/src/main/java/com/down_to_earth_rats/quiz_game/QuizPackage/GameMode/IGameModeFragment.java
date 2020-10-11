@@ -7,4 +7,6 @@ public interface IGameModeFragment {
     void answer(boolean a);
     void addObserver(IGameModeObserver o);
     void notifyObserver();
+    // too low language level, 7 required
+    //static IGameModeFragment newInstance();
 }

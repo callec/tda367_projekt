@@ -33,7 +33,7 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         // Required empty public constructor
     }
 
-    public static LivesGameModeFragment newInstance() {
+    public static IGameModeFragment newInstance() {
         LivesGameModeFragment fragment = new LivesGameModeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);

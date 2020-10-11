@@ -24,7 +24,7 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         // Required empty public constructor
     }
 
-    public static StandardGameModeFragment newInstance() {
+    public static IGameModeFragment newInstance() {
         StandardGameModeFragment fragment = new StandardGameModeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);

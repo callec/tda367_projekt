@@ -186,10 +186,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onFinish() {
+                disableProgressBar();
                 if (gameModeEnd) {
                     switchActivityToResult();
                 }
-                disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 model.changeQuestion();
             }
@@ -255,6 +255,5 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     public void gameModeQuizEnd() {
         model.gameModeForceEnd();
         gameModeEnd = true;
-        CountDown();
     }
 }

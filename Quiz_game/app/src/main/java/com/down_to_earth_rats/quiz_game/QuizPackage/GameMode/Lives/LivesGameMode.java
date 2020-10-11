@@ -15,9 +15,10 @@ public class LivesGameMode extends ViewModel {
         lives.setValue(3);
     }
 
+    /* for the moment this method is unused, saving in case we want to enable setting lives later
     public void setLives(int data) {
         this.lives.setValue(data);
-    }
+    }*/
 
     public MutableLiveData<Integer> getLives() {
         return lives;

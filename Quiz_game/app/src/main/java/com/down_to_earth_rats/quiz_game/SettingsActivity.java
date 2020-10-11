@@ -60,12 +60,14 @@ public class SettingsActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.gamemodes, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
         gameModeSpinner.setAdapter(adapter);
         gameModeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedGameMode = parent.getItemAtPosition(position).toString();
                 editor.putString(getString(R.string.gamemode_which), selectedGameMode);
+                editor.putInt(getString(R.string.gamemode_spinner_selected), position);
                 // possibly refactor this to its own method so we it depends more on each GameMode
                 if (!selectedGameMode.equals(getString(R.string.gamemode_standard))) {
                     questionSeekBar.setVisibility(View.GONE);
@@ -73,7 +75,8 @@ public class SettingsActivity extends AppCompatActivity {
                     Random r = new Random();
                     editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
                 } else {
-                    editor.putInt(getString(R.string.settings_totalq), 10);
+                    editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
+                    questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
                     questionSeekBar.setVisibility(View.VISIBLE);
                     seekBarTextView.setVisibility(View.VISIBLE);
                 }
@@ -84,6 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
             }
         });
+        gameModeSpinner.setSelection(pref.getInt(getString(R.string.gamemode_spinner_selected), 0));
     }
 
     private void setupToolBar() {

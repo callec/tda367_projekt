@@ -47,7 +47,7 @@ public class LivesGameModeTest {
         assertEquals(startLives, gm.getLives().getValue());
     }
 
-    @Test // for 100 % coverage
+    /*@Test // for 100 % coverage
     public void testSetLives() {
         Integer startLives = gm.getLives().getValue();
         if (startLives == null) {
@@ -56,5 +56,5 @@ public class LivesGameModeTest {
 
         gm.setLives(500);
         assertNotEquals(startLives, gm.getLives().getValue());
-    }
+    }*/
 }
