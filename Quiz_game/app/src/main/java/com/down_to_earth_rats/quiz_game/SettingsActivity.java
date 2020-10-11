@@ -66,7 +66,7 @@ public class SettingsActivity extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedGameMode = parent.getItemAtPosition(position).toString();
                 editor.putString(getString(R.string.gamemode_which), selectedGameMode);
-                // possibly refactor this to it's on method so we it depends more on each GameMode
+                // possibly refactor this to its own method so we it depends more on each GameMode
                 if (!selectedGameMode.equals(getString(R.string.gamemode_standard))) {
                     questionSeekBar.setVisibility(View.GONE);
                     seekBarTextView.setVisibility(View.GONE);
