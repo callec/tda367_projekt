@@ -8,6 +8,6 @@ public interface IGameModeFragment {
     void addObserver(IGameModeObserver o);
     void notifyObserver();
     void onNewQuestion();
-    // too low language level, 7 required
+    // no static functions in interface with out language level, remember to implement it
     //static IGameModeFragment newInstance();
 }
