@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
 
 /**
@@ -31,12 +32,35 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
                 gotoPlay(view);
             }
         });
+        viewBinder.button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gotoSettings(view);
+              }
+            });
+
+            viewBinder.button2.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    gotoHighscore(view);
+            }
+        });
 
 
     }
 
     private void gotoPlay(View view) {
-        Intent intent = new Intent(this, SubjectActivity.class);
+        Intent intent = new Intent(this, CategoryActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoSettings(View view) {
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
+
+    private void gotoHighscore(View view) {
+        Intent intent = new Intent(this, HighscoreActivity.class);
         startActivity(intent);
     }
 

@@ -17,4 +17,8 @@
         <item>@string/dialog_yes</item>
         <item>@string/dialog_yes</item>
     </string-array>
+    <string-array name="gamemodes">
+        <item>@string/gamemode_standard</item>
+        <item>@string/gamemode_infinity</item>
+    </string-array>
 </resources>

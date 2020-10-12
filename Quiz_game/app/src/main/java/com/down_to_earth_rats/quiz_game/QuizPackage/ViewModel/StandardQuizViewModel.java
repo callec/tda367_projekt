@@ -2,7 +2,6 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IModelObserver;
@@ -10,6 +9,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
+import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.ArrayList;
@@ -22,10 +23,11 @@ import java.util.List;
  *
  */
 
-public class StandardQuizViewModel extends ViewModel implements IModelObserver, IViewModel{
+public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implements IModelObserver, IViewModel {
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;
+    private int totalAnswers;
     private int correctAnswers;
     private IQuestion currentQuestion;
     private MutableLiveData<List<String>> alternativeList = new MutableLiveData<>();
@@ -33,6 +35,8 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
+
+    User user = User.getInstance();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -49,8 +53,10 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
     }*/
 
     public StandardQuizViewModel() {
-        totalQuestions = 4;
 
+    }
+
+    public void initQuiz() {
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
         questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
         questionHandler.registerObserver(this);
@@ -80,6 +86,10 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
         return totalQuestions;
     }
 
+    public void setTotalQuestions(int totalQuestions) {
+        this.totalQuestions = totalQuestions;
+    }
+
     public int getCorrectAnswers() {
         return correctAnswers;
     }
@@ -97,6 +107,7 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
             correctAnswers++;
         }
 
+        ++totalAnswers;
         return condition;
     }
 
@@ -113,11 +124,24 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
     @Override
     public void quizFinished() {
+
+        // TODO: Added by Louise to try create statistics, not beautiful with the user!
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        user.addResult(resultObject);
+
         runningState.setValue(false);
     }
 
     @Override
     public MutableLiveData<Boolean> getIsLast() {
         return isLast;
+    }
+
+    @Override
+    public void gameModeForceEnd() {
+        totalQuestions = totalAnswers;
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        user.addResult(resultObject);
+        isLast.setValue(true);
     }
 }

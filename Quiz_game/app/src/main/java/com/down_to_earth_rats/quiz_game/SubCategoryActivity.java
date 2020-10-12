@@ -26,7 +26,7 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    private String[] subjects;
+    private String[] subcategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
             }
         });*/
 
-        this.subjects = new String[]{"Addition", "Division", "Multiplikation", "Subtraktion"};
+        this.subcategories = new String[]{"Addition", "Subtraktion", "Multiplikation", "Division"};
 
         setContentView(viewBinding.getRoot());
 
@@ -65,11 +65,11 @@ public class SubCategoryActivity extends AppCompatActivity implements IRecyclerV
         recyclerView.setLayoutManager(layoutManager);
 
         // specify an adapter≤
-        mAdapter = new RecyclerViewAdapter(subjects, this);
+        mAdapter = new RecyclerViewAdapter(subcategories, this, R.layout.framelayout_recyclerview);
         recyclerView.setAdapter(mAdapter);
     }
 
-    @Override
+    //@Override
     public void onClickRecyclerViewItem(String s){
         switch(s) {
             case "Addition":

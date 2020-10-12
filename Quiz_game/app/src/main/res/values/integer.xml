@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="totalq_defaultvalue">10</integer>
+    <integer name="totalq_minvalue">5</integer>
+</resources>
