@@ -194,12 +194,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             @Override
             public void onFinish() {
                 disableProgressBar();
-                if (gameModeEnd) {
-                    switchActivityToResult();
-                }
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 gameMode.onNewQuestion();
                 model.changeQuestion();
+                if (gameModeEnd) {
+                    switchActivityToResult();
+                }
             }
 
         }.start();

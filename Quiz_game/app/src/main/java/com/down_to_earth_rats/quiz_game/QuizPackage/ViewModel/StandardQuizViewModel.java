@@ -140,6 +140,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     @Override
     public void gameModeForceEnd() {
         totalQuestions = totalAnswers;
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        user.addResult(resultObject);
         isLast.setValue(true);
     }
 }
