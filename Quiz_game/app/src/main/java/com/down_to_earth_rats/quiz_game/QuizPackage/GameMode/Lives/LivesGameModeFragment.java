@@ -15,6 +15,9 @@ import com.down_to_earth_rats.quiz_game.databinding.FragmentLivesGameModeBinding
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Carl Bergman
  * Represents a GameMode where you answers an large amount of questions
@@ -25,7 +28,7 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
     private FragmentLivesGameModeBinding viewbinder;
 
     private LivesGameMode model;
-    private IGameModeObserver observer = null; // only allow one observer
+    private List<IGameModeObserver> observers = new ArrayList<>();
 
     private ImageView life1, life2, life3;
 
@@ -102,15 +105,16 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
 
     @Override
     public void addObserver(IGameModeObserver o) {
-        if (this.observer == null) {
-            this.observer = o;
-        }
+        this.observers.add(o);
     }
 
     @Override
     public void notifyObserver() {
-        if (this.observer != null) {
-            this.observer.gameModeQuizEnd();
+        if (!this.observers.isEmpty()) {
+            for (IGameModeObserver o : this.observers) {
+                o.gameModeQuizEnd();
+            }
+
         }
     }
 }
