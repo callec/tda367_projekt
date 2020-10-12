@@ -94,4 +94,15 @@ public class StandardQuizViewModelTest {
 
         assertNotEquals(prevIsLast, vm.getIsLast().getValue());
     }
+
+    @Test
+    public void gameModeForceEndTest() {
+        Boolean previousvalue = vm.getIsLast().getValue();
+        if (previousvalue == null) {
+            fail();
+        }
+
+        vm.gameModeForceEnd();
+        assertNotEquals(previousvalue, vm.getIsLast().getValue());
+    }
 }

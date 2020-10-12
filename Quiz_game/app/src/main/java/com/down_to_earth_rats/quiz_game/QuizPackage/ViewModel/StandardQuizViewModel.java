@@ -27,6 +27,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;
+    private int totalAnswers;
     private int correctAnswers;
     private IQuestion currentQuestion;
     private MutableLiveData<List<String>> alternativeList = new MutableLiveData<>();
@@ -106,6 +107,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
             correctAnswers++;
         }
 
+        ++totalAnswers;
         return condition;
     }
 
@@ -133,5 +135,11 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     @Override
     public MutableLiveData<Boolean> getIsLast() {
         return isLast;
+    }
+
+    @Override
+    public void gameModeForceEnd() {
+        totalQuestions = totalAnswers;
+        isLast.setValue(true);
     }
 }

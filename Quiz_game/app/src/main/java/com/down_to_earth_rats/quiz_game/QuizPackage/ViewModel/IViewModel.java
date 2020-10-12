@@ -22,5 +22,5 @@ public interface IViewModel {
     int getCorrectAnswers();
     void initQuiz();
     MutableLiveData<Boolean> getIsLast();
-
+    void gameModeForceEnd();
 }
