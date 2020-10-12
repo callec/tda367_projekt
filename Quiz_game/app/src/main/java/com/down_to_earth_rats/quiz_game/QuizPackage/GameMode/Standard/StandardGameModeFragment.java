@@ -58,4 +58,9 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
     public void notifyObserver() {
         // do nothing
     }
+
+    @Override
+    public void onNewQuestion() {
+        // do nothing
+    }
 }

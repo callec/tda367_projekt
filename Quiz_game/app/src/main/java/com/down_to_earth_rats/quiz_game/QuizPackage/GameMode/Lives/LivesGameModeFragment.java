@@ -117,4 +117,9 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
 
         }
     }
+
+    @Override
+    public void onNewQuestion() {
+        // do nothing
+    }
 }

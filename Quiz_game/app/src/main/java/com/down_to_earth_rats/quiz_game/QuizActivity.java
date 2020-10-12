@@ -191,6 +191,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                     switchActivityToResult();
                 }
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
+                gameMode.onNewQuestion();
                 model.changeQuestion();
             }
 
