@@ -19,7 +19,7 @@ import java.util.Random;
 
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
- * Modified by Carl Bergman, Louise Tranborg
+ * Modified by Carl Bergman, Louise Tranborg, Sara Persson
  *
  */
 
@@ -109,14 +109,13 @@ public class StandardQuizViewModel extends ViewModel implements IModelObserver, 
 
         int amountOfQuestions = 4;
         Random randomGenerator = new Random();
-        int random = randomGenerator.nextInt(amountOfQuestions);
+        int randomQuestionNr = randomGenerator.nextInt(amountOfQuestions);
 
-        while (this.checkIfCorrect(random+1)) {
-            random = randomGenerator.nextInt(amountOfQuestions);
+        while (this.checkIfCorrect(randomQuestionNr+1)) {
+            randomQuestionNr = randomGenerator.nextInt(amountOfQuestions);
         }
 
-        return random;
-
+        return randomQuestionNr;
 
     }
 

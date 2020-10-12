@@ -77,7 +77,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     }
 
-    private void checkHintStatus(View view){
+    private void checkHintStatus(View view) {
 
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
         viewBinding.hintButton.setVisibility(hintOn_Status ? view.VISIBLE : view.INVISIBLE);
@@ -90,15 +90,16 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         editor.commit();
 
         int hintIndex = model.getHintIndex();
-
         List<Button> buttons = Arrays.asList(new Button[] {alternative1, alternative2, alternative3, alternative4});
-
         Button alternative = buttons.get(hintIndex);
 
-        //alternative.setTextColor(0x11555555);
+        while (!alternative.isEnabled()) {
+            hintIndex = model.getHintIndex();
+            alternative = buttons.get(hintIndex);
+        }
+
         alternative.setBackgroundResource(R.drawable.grey_button);
         alternative.setEnabled(false);
-        alternative.setText("X");
 
         hints--;
         if (hints < 1) {

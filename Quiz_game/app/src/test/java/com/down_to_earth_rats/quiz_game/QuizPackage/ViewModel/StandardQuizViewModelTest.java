@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman
- * Small modification by Erik Blomberg
+ * Small modification by Erik Blomberg, Sara Persson
  */
 public class StandardQuizViewModelTest {
 
@@ -28,6 +28,25 @@ public class StandardQuizViewModelTest {
         vm = new StandardQuizViewModel();
         vm.setTotalQuestions(5);
         vm.initQuiz();
+    }
+
+    @Test
+    public void testCheckIfCorrect() {
+        int amountOfQuestions = 4;
+        for (int n = 1; n<amountOfQuestions; n++) { //there is only one true answer or no true answer.
+        assertFalse(vm.checkIfCorrect(n)&&vm.checkIfCorrect(n+1));
+        }                                           //there is a true answer.
+        assertTrue(vm.checkIfCorrect(1)||vm.checkIfCorrect(2)
+                           ||vm.checkIfCorrect(3)||vm.checkIfCorrect(4));
+
+
+
+    }
+
+    @Test
+    public void TestGetHintIndex() {
+        int amountOfQuestions = 4;
+        //assertFalse(vm.getHintIndex());
     }
 
     @Test

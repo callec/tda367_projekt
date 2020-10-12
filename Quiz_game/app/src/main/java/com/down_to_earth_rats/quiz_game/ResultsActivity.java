@@ -14,6 +14,7 @@ import android.view.View;
 
 /**
  * Created by Carl
+ * Modified by Sara,
  */
 public class ResultsActivity extends AppCompatActivity {
 
