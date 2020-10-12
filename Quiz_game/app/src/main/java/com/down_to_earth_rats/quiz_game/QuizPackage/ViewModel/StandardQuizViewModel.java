@@ -9,9 +9,9 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.User;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -37,6 +37,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
 
     User user = User.getInstance();
+    private String subcategory;
+
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -58,7 +60,10 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     public void initQuiz() {
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
+
+
+
+        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Division", totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();

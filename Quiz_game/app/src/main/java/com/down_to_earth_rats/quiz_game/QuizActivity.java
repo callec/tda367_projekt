@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
-import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.List;
 
@@ -58,6 +58,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
+
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());

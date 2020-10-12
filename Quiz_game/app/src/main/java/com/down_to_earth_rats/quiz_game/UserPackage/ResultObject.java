@@ -8,7 +8,7 @@ import java.util.Date;
  * It has an result from the quiz, ex. 7/10 correctanswers/totalQuestions.
  * It also contains a date from when the Quiz was played.
  * The resultObject is connected with the subcategory of the played Quiz.
- *
+ * TODO: Add category, gamemode and hints (on/off) to a resultobject. This makes it possible to sort the objects based on them.
  */
 
 public class ResultObject {

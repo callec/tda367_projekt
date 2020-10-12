@@ -28,7 +28,7 @@ public class User{
         } return singletonUser;
     }
 
-    /**Method used to get a statistics based on subcategory.
+    /**Method used to get statistics based on subcategory.
      */
     public ArrayList<ResultObject> getStatistics(String subcategory){
         ArrayList<ResultObject> statisticsInSubcategory = new ArrayList<>();
