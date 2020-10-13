@@ -12,8 +12,7 @@ public class UserSingleton {
     static public User getUser() /*throws NullPointerException */{
 
         if (instance == null){
-
-            instance = new User("notLoggedIn", "fake");
+            instance = new User("Guest", "123");
             //TODO?
             /*throw new NullPointerException();*/
         }

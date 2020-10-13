@@ -50,7 +50,7 @@ public class UserTest {
     @Test
     public void testAddResultGetStatistics(){
         user.addResult(testresultObject);
-        List<ResultObject> testlist = user.getStatistics("Addition"); //TODO
+        List<ResultObject> testlist = user.getStatistics(); //TODO
         assertFalse(testlist.isEmpty());
     }
 
@@ -58,7 +58,7 @@ public class UserTest {
     public void testResultObjectGetDate(){
         user.addResult(testresultObject);
 
-        List<ResultObject> testlist = user.getStatistics("Addition");
+        List<ResultObject> testlist = user.getStatistics();
         assertEquals(0, testlist.get(0).getDate().compareTo(testresultObject.getDate()));
     }
 

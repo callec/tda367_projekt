@@ -16,7 +16,7 @@ public class UserSingletonTest extends TestCase {
 
     public void testGetUserException() {
 
-        assertNotNull(UserSingleton.getUser());
+        assertTrue(UserSingleton.getUser().checkCredentials("Guest", "123"));
 
     }
 
