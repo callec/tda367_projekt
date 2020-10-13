@@ -63,7 +63,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         super.onCreate(savedInstanceState);
 
         res = getResources();
-        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);  ///////***
+        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
         editor = pref.edit();
 
         pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);

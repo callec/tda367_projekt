@@ -1,6 +1,9 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.lifecycle.LiveData;
+
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionsFromFile;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -23,6 +26,7 @@ public class StandardQuizViewModelTest {
     @Before
     public void setup() {
         vm = new StandardQuizViewModel();
+        QuestionsFromFile.testSeed = 42;
         vm.setTotalQuestions(5);
         vm.initQuiz();
     }
@@ -53,10 +57,12 @@ public class StandardQuizViewModelTest {
         while (!vm.answerQuestion(c)) {
             ++c;
             if (c > 4) {
-                vm.changeQuestion();
+
                 c = 1;
             }
         }
+        LiveData<List<String>> list = vm.getAlternativeList();
+        //int firstResult = vm.getCorrectAnswers();
         assertNotEquals(firstResult, vm.getCorrectAnswers());
     }
 

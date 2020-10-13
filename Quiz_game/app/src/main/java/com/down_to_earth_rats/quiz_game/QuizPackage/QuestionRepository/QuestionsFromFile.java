@@ -39,8 +39,18 @@ public class QuestionsFromFile implements IQuestionProvider {
          */
     }
 
+    //Used for testing purposes, to 'yield deterministic results'.
+    public static long testSeed = -1;
+
     private IQuestion randomAdditionQuestion() {
-        Random r = new Random();
+        Random r;
+        if (testSeed <= 0) {
+            r = new Random();
+        }
+        else {
+            r = new Random(testSeed);
+        }
+
         int qBound = 40;
         int aBound = 10;
 

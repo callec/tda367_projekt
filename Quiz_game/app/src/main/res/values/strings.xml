@@ -24,14 +24,11 @@
     <string name="hintsUsed">Used hints</string>
 
     <string name="settings_text_switch">Larger text</string>
-    <string name="settings_nquestions">%1$d frågor</string>
-    <string name="nextq_in">Nästa fråga om: %1$d</string>
-    <string name="result_in">Resultat om: %1$d</string>
+
     <string name="category_test_text">Hello There!</string>
 
     <!-- Values/keys below here, keys.xml didn't work -->
 
-    <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_totalq">TotalQuestions</string>
     <!-- GameModes -->
     <string name="gamemode_which">GameMode</string>

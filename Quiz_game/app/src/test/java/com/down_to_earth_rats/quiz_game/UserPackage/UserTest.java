@@ -14,7 +14,7 @@ public class UserTest {
 
     @Before
     public void setUp(){
-        testresultObject = new ResultObject(4,2,"Addition");
+        testresultObject = new ResultObject(4,2,"Addition", true);
     }
 
     @Test

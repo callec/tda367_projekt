@@ -17,11 +17,13 @@ public class ResultObject {
     private int correctAnswers;
     private Date date;
     private String subcategory;
+    private boolean usedHint;
 
-    public ResultObject(int totalQuestions, int correctAnswers, String subcategory) {
+    public ResultObject(int totalQuestions, int correctAnswers, String subcategory, boolean usedHint) {
         this.totalQuestions = totalQuestions;
         this.correctAnswers = correctAnswers;
         this.subcategory = subcategory;
+        this.usedHint = usedHint;
 
         date = new Date();
     }
@@ -38,6 +40,10 @@ public class ResultObject {
 
     public Date getDate(){
         return date;
+    }
+
+    public boolean usedHint(){
+        return usedHint;
     }
 
 }

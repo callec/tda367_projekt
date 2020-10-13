@@ -1,5 +1,9 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -9,6 +13,7 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
+import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
@@ -36,6 +41,9 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
+
+    //private Resources res;
+    //private SharedPreferences pref;
 
     User user = User.getInstance();
 
@@ -149,11 +157,15 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         return runningState;
     }
 
+    void hintHasBeenEnabled() {
+
+    }
+
     @Override
     public void quizFinished() {
-
+        boolean hintsUsed = true;
         // TODO: Added by Louise to try create statistics, not beautiful with the user!
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition", hintsUsed);
         user.addResult(resultObject);
 
         runningState.setValue(false);
@@ -166,8 +178,9 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void gameModeForceEnd() {
+        boolean hintsUsed = true;
         totalQuestions = totalAnswers;
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition", hintsUsed);
         user.addResult(resultObject);
         isLast.setValue(true);
     }
