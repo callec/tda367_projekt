@@ -3,7 +3,12 @@ package com.down_to_earth_rats.quiz_game.UserPackage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConcreteLoginService implements ILoginService {
+/**
+ * Created by Louise Tranborg, Erik Blomberg, Henrik Johansson
+ *
+ */
+
+class ConcreteLoginService implements ILoginService {
 
 
     //User user = new User("Lisa", "12345");

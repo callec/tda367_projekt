@@ -2,6 +2,11 @@ package com.down_to_earth_rats.quiz_game.UserPackage;
 
 import junit.framework.TestCase;
 
+/**
+ * Created by Louise Tranborg, Erik Blomberg, Henrik Johansson
+ *
+ */
+
 public class LoginServiceTest extends TestCase {
 
     String fakeUsername = "dasdasd";
@@ -14,7 +19,8 @@ public class LoginServiceTest extends TestCase {
 
     @Override
     public void setUp() throws Exception {
-        loginService = new ConcreteLoginService();
+        loginService = LoginServiceFactory.getStandardService();
+
     }
 
     public void testIncorrectLoginUser() {

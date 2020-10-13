@@ -4,6 +4,8 @@ import java.util.Date;
 
 /**
  * Created by Louise Tranborg
+ * Modified by Louise Tranborg, Erik Blomberg, Henrik Johansson
+ *
  * This class represents a resultObject, which is created after every finished quiz.
  * It has an result from the quiz, ex. 7/10 correctanswers/totalQuestions.
  * It also contains a date from when the Quiz was played.

@@ -5,9 +5,11 @@ import java.util.List;
 
 /**
  * Created by Louise Tranborg
+ * Modified by Louise Tranborg, Erik Blomberg, Henrik Johansson
+ *
  * This class represents an simple user.
  * It contains a username, password and also its statistics.
- * At the moment Singelton-pattern is used to access the User.
+ *
  *
  */
 
@@ -31,7 +33,7 @@ public class User{
 
     /**Method used to get a statistics based on subcategory.
      */
-    public List<ResultObject> getStatistics(String subcategory){
+    public List<ResultObject> getStatistics(String subcategory){  //TODO Return all statistics, not based on subcategory anymore
         List<ResultObject> statisticsInSubcategory = new ArrayList<>();
         for(ResultObject resultObject: statistics){
             if(resultObject.getSubcategory().equals(subcategory)){
@@ -48,7 +50,6 @@ public class User{
     }
 
     boolean checkCredentials(String username, String password){
-
         return this.username.equals(username) && this.password.equals(password);
     }
 

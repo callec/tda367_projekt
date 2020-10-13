@@ -9,6 +9,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+/**
+ * Created by Louise Tranborg, Erik Blomberg, Henrik Johansson
+ *
+ */
+
 public class UserTest {
 
     ResultObject testresultObject;
