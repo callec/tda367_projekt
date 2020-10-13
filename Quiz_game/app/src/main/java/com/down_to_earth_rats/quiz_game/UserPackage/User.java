@@ -13,7 +13,7 @@ import java.util.List;
  *
  */
 
-public class User implements IUser{
+class User implements IUser{
 
     private ArrayList<ResultObject> statistics = new ArrayList<>();
     private String username;
