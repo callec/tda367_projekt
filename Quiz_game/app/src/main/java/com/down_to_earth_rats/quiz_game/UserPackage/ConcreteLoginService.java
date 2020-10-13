@@ -6,22 +6,36 @@ import java.util.List;
 public class ConcreteLoginService implements ILoginService {
 
 
-    User user = new User("Lisa", "12345");
+    //User user = new User("Lisa", "12345");
 
     List<User> userList = new ArrayList<>();
 
     @Override
     public boolean registerUser(String username, String password) {
-        return false;
+
+        for (User user : userList) {
+            if (user.getUsername().equals(username)) {
+                return false; //username already taken
+            }
+        }
+
+        userList.add(new User(username, password));
+
+        return true;
     }
 
     @Override
     public boolean loginUser(String username, String password) {
 
-        boolean condition = user.checkCredentials(username, password);
+        boolean condition = false;
 
-        //TODO
-        UserSingleton.setUser(user);
+        for (User user : userList) {
+            if (user.checkCredentials(username, password)){
+                condition = true;
+                UserSingleton.setUser(user);
+                break;
+            }
+        }
 
         return condition;
     }

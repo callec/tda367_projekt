@@ -7,8 +7,8 @@ public class LoginServiceTest extends TestCase {
     String fakeUsername = "dasdasd";
     String fakePassword = "hejhallå123";
 
-    String correctUsername = "Lisa";
-    String correctPassword = "12345";
+    String username = "Lisa";
+    String password = "12345";
 
     ILoginService loginService;
 
@@ -22,7 +22,7 @@ public class LoginServiceTest extends TestCase {
         assertFalse(loginService.loginUser(fakeUsername, fakePassword));
     }
 
-    public void testCorrectLoginUser() {
+    /*public void testCorrectLoginUser() {
 
         assertTrue(loginService.loginUser(correctUsername, correctPassword));
     }
@@ -32,6 +32,36 @@ public class LoginServiceTest extends TestCase {
         loginService.loginUser(correctUsername, correctPassword);
 
         assertTrue(UserSingleton.getUser().checkCredentials(correctUsername, correctPassword));
+    }*/
+
+
+    public void testRegisterUser(){
+
+        assertTrue(loginService.registerUser("test", "lösen"));
 
     }
+
+    public void testRegisterSameUsername(){
+
+        String username = "användarnamn";
+
+        loginService.registerUser(username, "lösen");
+
+        assertFalse(loginService.registerUser(username, "123"));
+
+    }
+
+    public void testRegisterAndLogin(){
+
+        loginService.registerUser(username, password);
+
+        loginService.loginUser(username, password);
+
+        assertTrue(UserSingleton.getUser().checkCredentials(username, password));
+
+    }
+
+
+
+
 }
