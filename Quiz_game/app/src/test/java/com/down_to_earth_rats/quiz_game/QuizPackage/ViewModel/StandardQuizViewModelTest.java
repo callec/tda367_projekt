@@ -40,13 +40,27 @@ public class StandardQuizViewModelTest {
                            ||vm.checkIfCorrect(3)||vm.checkIfCorrect(4));
 
 
-
     }
 
     @Test
     public void TestGetHintIndex() {
         int amountOfQuestions = 4;
         //assertFalse(vm.getHintIndex());
+
+        //testAnswerQuestions()
+        int firstResult = vm.getCorrectAnswers();
+
+        // since the alternatives are always shuffled we run through them to make sure we get
+        // at least one correct answer.
+        int c = 1;
+        while (!vm.answerQuestion(c)) {
+            ++c;
+            if (c > 4) {
+                vm.changeQuestion();
+                c = 1;
+            }
+        }
+        assertNotEquals(firstResult, vm.getCorrectAnswers());
     }
 
     @Test
