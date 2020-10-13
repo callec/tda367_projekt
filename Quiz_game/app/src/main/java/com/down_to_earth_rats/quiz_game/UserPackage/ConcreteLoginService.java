@@ -11,9 +11,13 @@ import java.util.List;
 class ConcreteLoginService implements ILoginService {
 
 
-    //User user = new User("Lisa", "12345");
+    User user = new User("Lisa", "12345");
 
     List<User> userList = new ArrayList<>();
+
+    public ConcreteLoginService() {
+        userList.add(user);
+    }
 
     @Override
     public boolean registerUser(String username, String password) {
