@@ -85,7 +85,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         if (selected.equals(getString(R.string.gamemode_infinity))) {
             return GameModeFactory.createLivesQuiz();
         } else {
-            return GameModeFactory.createStandardQuiz();
+            Bundle args = new Bundle();
+            args.putInt("TotalQuestions", pref.getInt(getString(R.string.settings_totalq), 10));
+            Fragment gameMode = (Fragment) GameModeFactory.createStandardQuiz();
+            gameMode.setArguments(args);
+            return (IGameModeFragment) gameMode;
         }
     }
 

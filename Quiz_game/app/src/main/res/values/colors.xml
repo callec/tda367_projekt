@@ -8,4 +8,5 @@
     <color name="colorCorrect">#8db600</color>
     <color name="colorWrong">#fe6f5e</color>
     <color name="colorGrey">#ecf1f1</color>
+    <color name="colorDarkGrey">#a9a9a9</color>
 </resources>
