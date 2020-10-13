@@ -1,0 +1,23 @@
+package com.down_to_earth_rats.quiz_game.UserPackage;
+
+public class UserSingleton {
+
+    static private User instance = null;
+
+    static public User getUser() /*throws NullPointerException */{
+
+        if (instance == null){
+
+            instance = new User("notLoggedIn", "fake");
+            //TODO?
+            /*throw new NullPointerException();*/
+        }
+
+        return instance;
+    }
+
+    static void setUser(User user){
+        instance = user;
+    }
+
+}

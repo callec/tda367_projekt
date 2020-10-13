@@ -35,7 +35,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
 
-    User user = User.getInstance();
+    //User user = User.getInstance();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -125,7 +125,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
         // TODO: Added by Louise to try create statistics, not beautiful with the user!
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
-        user.addResult(resultObject);
+        //user.addResult(resultObject);
 
         runningState.setValue(false);
     }

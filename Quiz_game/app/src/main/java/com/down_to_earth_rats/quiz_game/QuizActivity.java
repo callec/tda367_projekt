@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative3;
     private Button alternative4;
 
-    User user = User.getInstance();
+    //User user = User.getInstance(); //TODO
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

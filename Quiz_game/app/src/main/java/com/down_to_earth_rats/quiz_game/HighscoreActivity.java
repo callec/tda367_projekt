@@ -53,7 +53,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
         }
         setContentView(viewBinding.getRoot());
 
-        viewStatistics();
+        //viewStatistics(); //TODO uncomment
 
         recyclerView = viewBinding.recyclerView;
 
@@ -67,7 +67,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
     }
 
     private void viewStatistics(){
-        List<ResultObject> resultList = User.getInstance().getStatistics("Addition"); //Fetch the statistics from the user.
+        /*List<ResultObject> resultList = User.getInstance().getStatistics("Addition"); //Fetch the statistics from the user.
 
         if(resultList.isEmpty()){
             viewBinding.textViewNoStatistics.setText("Ingen historik! Spela ett quiz och kom tillbaka.");
@@ -85,7 +85,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
             Collections.reverse(Arrays.asList(resultArray));
 
             this.subcategories = resultArray;
-        }
+        }*/
     }
 
     private String getSwedishDate(Date date){

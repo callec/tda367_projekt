@@ -10,15 +10,28 @@ public class LoginServiceTest extends TestCase {
     String correctUsername = "Lisa";
     String correctPassword = "12345";
 
+    ILoginService loginService;
+
+    @Override
+    public void setUp() throws Exception {
+        loginService = new ConcreteLoginService();
+    }
+
     public void testIncorrectLoginUser() {
-        ConcreteLoginService loginService = new ConcreteLoginService();
 
         assertFalse(loginService.loginUser(fakeUsername, fakePassword));
     }
 
     public void testCorrectLoginUser() {
-        ConcreteLoginService loginService = new ConcreteLoginService();
 
         assertTrue(loginService.loginUser(correctUsername, correctPassword));
+    }
+
+    public void testIfUserSingletonIsSetToCorrectUserAfterLogin(){
+
+        loginService.loginUser(correctUsername, correctPassword);
+
+        assertTrue(UserSingleton.getUser().checkCredentials(correctUsername, correctPassword));
+
     }
 }

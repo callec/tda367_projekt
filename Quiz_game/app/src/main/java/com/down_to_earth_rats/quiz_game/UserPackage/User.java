@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 public class User{
 
-    private static User singletonUser = null;
+    /*private static User singletonUser = null;*/
     private ArrayList<ResultObject> statistics = new ArrayList<>();
     private String username;
     private String password;
@@ -22,11 +22,11 @@ public class User{
         this.password = password;
     }
 
-    public static User getInstance(){
+    /*public static User getInstance(){
         if(singletonUser == null){
             singletonUser = new User("Namn", "123");
         } return singletonUser;
-    }
+    }*/
 
     /**Method used to get a statistics based on subcategory.
      */
