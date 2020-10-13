@@ -3,11 +3,13 @@ package com.down_to_earth_rats.quiz_game;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -54,7 +56,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         res = getResources();
         pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
-        String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
@@ -64,16 +65,18 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         setContentView(viewBinding.getRoot());
 
-        setupGameMode(selectedGameMode);
+        setupGameMode();
         setupSupportActionBar();
         setupOnQuizEnd();
         setupTimerText();
         setupButtons();
     }
 
-    private void setupGameMode(String selected) {
+    private void setupGameMode() {
+        //String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
+        String selectedGameMode = getString(R.string.gamemode_time);
         gameModeEnd = false;
-        gameMode = loadGameMode(selected);
+        gameMode = loadGameMode(selectedGameMode);
         gameMode.addObserver(this);
         getSupportFragmentManager().beginTransaction()
                 .add(viewBinding.fragmentContainer.getId(), (Fragment) gameMode).commit();
@@ -84,12 +87,18 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         // have to convert string to enum anyways so we reduce that step by using this
         if (selected.equals(getString(R.string.gamemode_infinity))) {
             return GameModeFactory.createLivesQuiz();
+        } else if (selected.equals(getString(R.string.gamemode_time))) {
+            Bundle args = new Bundle();
+            args.putLong(getString(R.string.gamemode_time_value), pref.getLong(getString(R.string.gamemode_time_value), 30));
+            IGameModeFragment gameMode = GameModeFactory.createTimeQuiz();
+            ((Fragment) gameMode).setArguments(args);
+            return gameMode;
         } else {
             Bundle args = new Bundle();
-            args.putInt("TotalQuestions", pref.getInt(getString(R.string.settings_totalq), 10));
-            Fragment gameMode = (Fragment) GameModeFactory.createStandardQuiz();
-            gameMode.setArguments(args);
-            return (IGameModeFragment) gameMode;
+            args.putInt(getString(R.string.settings_totalq), pref.getInt(getString(R.string.settings_totalq), 10));
+            IGameModeFragment gameMode = GameModeFactory.createStandardQuiz();
+            ((Fragment) gameMode).setArguments(args);
+            return gameMode;
         }
     }
 
@@ -182,7 +191,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     // Count down to next question
-    private void CountDown() {
+    private synchronized void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
         new CountDownTimer(3000, 30) {
@@ -267,5 +276,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     public void gameModeQuizEnd() {
         model.gameModeForceEnd();
         gameModeEnd = true;
+        //enableButtons(false, alternative1, alternative2, alternative3, alternative4);
+        //CountDown();
     }
 }

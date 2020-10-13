@@ -14,11 +14,11 @@ public class StandardGameMode extends ViewModel {
         currentq.setValue(0);
     }
 
-    public MutableLiveData<Integer> getCurrentq() {
+    protected MutableLiveData<Integer> getCurrentq() {
         return currentq;
     }
 
-    public void answer() {
+    protected void answer() {
         currentq.setValue(currentq.getValue() + 1);
     }
 }

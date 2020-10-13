@@ -60,7 +60,7 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         nqTextView = viewbinder.nqTextView;
 
         assert this.getArguments() != null;
-        final Integer totalq = this.getArguments().getInt("TotalQuestions", 10);
+        final Integer totalq = this.getArguments().getInt(getActivity().getString(R.string.settings_totalq), 10);
 
         model.getCurrentq().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override

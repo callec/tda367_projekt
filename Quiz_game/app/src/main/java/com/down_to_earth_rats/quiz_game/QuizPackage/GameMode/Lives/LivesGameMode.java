@@ -20,11 +20,11 @@ public class LivesGameMode extends ViewModel {
         this.lives.setValue(data);
     }*/
 
-    public MutableLiveData<Integer> getLives() {
+    protected MutableLiveData<Integer> getLives() {
         return lives;
     }
 
-    public void answer(boolean correct) {
+    protected void answer(boolean correct) {
         if (!correct) {
             lives.setValue(lives.getValue() - 1);
             nCorrect = 0; // need 5 correct in a row
