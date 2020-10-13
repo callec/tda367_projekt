@@ -11,9 +11,9 @@ import java.util.List;
 class ConcreteLoginService implements ILoginService {
 
 
-    User user = new User("Lisa", "12345");
+    IUser user = new User("Lisa", "12345");
 
-    List<User> userList = new ArrayList<>();
+    List<IUser> userList = new ArrayList<>();
 
     public ConcreteLoginService() {
         userList.add(user);
@@ -23,7 +23,7 @@ class ConcreteLoginService implements ILoginService {
     @Override
     public boolean registerUser(String username, String password) {
 
-        for (User user : userList) {
+        for (IUser user : userList) {
             if (user.getUsername().equals(username)) {
                 return false; //username already taken
             }
@@ -39,7 +39,7 @@ class ConcreteLoginService implements ILoginService {
 
         boolean condition = false;
 
-        for (User user : userList) {
+        for (IUser user : userList) {
             if (user.checkCredentials(username, password)){
                 condition = true;
                 UserSingleton.setUser(user);

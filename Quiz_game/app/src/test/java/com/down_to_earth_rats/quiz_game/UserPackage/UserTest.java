@@ -18,7 +18,7 @@ public class UserTest {
 
     ResultObject testresultObject;
 
-    User user;
+    IUser user;
 
     String username = "asd";
     String password = "oooooo";

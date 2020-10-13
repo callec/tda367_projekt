@@ -7,9 +7,9 @@ package com.down_to_earth_rats.quiz_game.UserPackage;
 
 public class UserSingleton {
 
-    static private User instance = null;
+    static private IUser instance = null;
 
-    static public User getUser() /*throws NullPointerException */{
+    static public IUser getUser() /*throws NullPointerException */{
 
         if (instance == null){
             instance = new User("Guest", "123");
@@ -20,7 +20,7 @@ public class UserSingleton {
         return instance;
     }
 
-    static void setUser(User user){
+    static void setUser(IUser user){
         instance = user;
     }
 
