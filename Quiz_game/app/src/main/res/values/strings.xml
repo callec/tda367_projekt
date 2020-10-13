@@ -31,4 +31,6 @@
     <string name="gamemode_standard">Standard</string>
     <string name="gamemode_spinner_selected">GameModeSpinnerValue</string>
     <string name="gamemode_standard_which_q">Fråga %1$d av %2$d</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
