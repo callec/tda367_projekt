@@ -17,6 +17,7 @@ class ConcreteLoginService implements ILoginService {
 
     public ConcreteLoginService() {
         userList.add(user);
+        user.addResult(new ResultObject(5, 2, "Addition"));
     }
 
     @Override

@@ -13,7 +13,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
@@ -39,8 +38,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative2;
     private Button alternative3;
     private Button alternative4;
-
-    //User user = User.getInstance(); //TODO
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,12 +149,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(3000, 30) {
+        new CountDownTimer(1000, 10) {
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
-                viewBinding.progressBar.incrementProgressBy(1);
+                //viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
+                viewBinding.progressBar.incrementProgressBy(2);
             }
 
 

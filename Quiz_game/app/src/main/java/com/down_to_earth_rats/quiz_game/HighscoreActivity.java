@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityHighscoreBinding;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * Created by Sara Persson
- * Modified by Henrik Johansson, Louise Tranborg, Sara Persson
+ * Modified by Henrik Johansson, Louise Tranborg, Sara Persson, Erik Blomberg
  *
  */
 
@@ -53,7 +53,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
         }
         setContentView(viewBinding.getRoot());
 
-        //viewStatistics(); //TODO uncomment
+        viewStatistics();
 
         recyclerView = viewBinding.recyclerView;
 
@@ -66,8 +66,8 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
 
     }
 
-    private void viewStatistics(){ //TODO
-        /*List<ResultObject> resultList = User.getInstance().getStatistics("Addition"); //Fetch the statistics from the user.
+    private void viewStatistics(){
+        List<ResultObject> resultList = UserSingleton.getUser().getStatistics("Addition"); //Fetch the statistics from the user.
 
         if(resultList.isEmpty()){
             viewBinding.textViewNoStatistics.setText("Ingen historik! Spela ett quiz och kom tillbaka.");
@@ -85,7 +85,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
             Collections.reverse(Arrays.asList(resultArray));
 
             this.subcategories = resultArray;
-        }*/
+        }
     }
 
     private String getSwedishDate(Date date){

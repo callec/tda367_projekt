@@ -9,9 +9,9 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
-import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +19,7 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
- * Modified by Carl Bergman, Louise Tranborg
+ * Modified by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
  *
  */
 
@@ -34,8 +34,6 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
-
-    //User user = User.getInstance();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -122,10 +120,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void quizFinished() {
-
-        // TODO: Added by Louise to try create statistics, not beautiful with the user!
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
-        //user.addResult(resultObject); //TODO
+        UserSingleton.getUser().addResult(resultObject);
 
         runningState.setValue(false);
     }

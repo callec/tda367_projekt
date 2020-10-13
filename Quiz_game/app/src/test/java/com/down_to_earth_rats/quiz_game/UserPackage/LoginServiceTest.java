@@ -28,19 +28,6 @@ public class LoginServiceTest extends TestCase {
         assertFalse(loginService.loginUser(fakeUsername, fakePassword));
     }
 
-    /*public void testCorrectLoginUser() {
-
-        assertTrue(loginService.loginUser(correctUsername, correctPassword));
-    }
-
-    public void testIfUserSingletonIsSetToCorrectUserAfterLogin(){
-
-        loginService.loginUser(correctUsername, correctPassword);
-
-        assertTrue(UserSingleton.getUser().checkCredentials(correctUsername, correctPassword));
-    }*/
-
-
     public void testRegisterUser(){
 
         assertTrue(loginService.registerUser("test", "lösen"));
