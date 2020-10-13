@@ -125,7 +125,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
         // TODO: Added by Louise to try create statistics, not beautiful with the user!
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
-        //user.addResult(resultObject);
+        //user.addResult(resultObject); //TODO
 
         runningState.setValue(false);
     }

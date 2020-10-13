@@ -66,7 +66,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
 
     }
 
-    private void viewStatistics(){
+    private void viewStatistics(){ //TODO
         /*List<ResultObject> resultList = User.getInstance().getStatistics("Addition"); //Fetch the statistics from the user.
 
         if(resultList.isEmpty()){

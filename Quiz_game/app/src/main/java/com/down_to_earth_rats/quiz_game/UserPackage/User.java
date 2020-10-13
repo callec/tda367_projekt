@@ -1,6 +1,7 @@
 package com.down_to_earth_rats.quiz_game.UserPackage;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Louise Tranborg
@@ -30,8 +31,8 @@ public class User{
 
     /**Method used to get a statistics based on subcategory.
      */
-    public ArrayList<ResultObject> getStatistics(String subcategory){
-        ArrayList<ResultObject> statisticsInSubcategory = new ArrayList<>();
+    public List<ResultObject> getStatistics(String subcategory){
+        List<ResultObject> statisticsInSubcategory = new ArrayList<>();
         for(ResultObject resultObject: statistics){
             if(resultObject.getSubcategory().equals(subcategory)){
                 statisticsInSubcategory.add(resultObject);
