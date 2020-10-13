@@ -1,8 +1,5 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Standard;
 
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -65,6 +62,9 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         model.getCurrentq().observe(getViewLifecycleOwner(), new Observer<Integer>() {
             @Override
             public void onChanged(Integer integer) {
+                if (integer.equals(totalq)) {
+                    return;
+                }
                 String s = getActivity().getString(R.string.gamemode_standard_which_q, integer+1, totalq);
                 nqTextView.setText(s);
             }
@@ -73,7 +73,7 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
 
     @Override
     public void answer(boolean a) {
-        model.answer();
+        // do nothing
     }
 
     @Override
@@ -88,6 +88,6 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
 
     @Override
     public void onNewQuestion() {
-        // do nothing
+        model.nextQuestion();
     }
 }

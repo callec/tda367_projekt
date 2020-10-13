@@ -25,7 +25,7 @@ public class StandardGameModeTest {
     @Test
     public void testAnswer() {
         Integer prev = gm.getCurrentq().getValue();
-        gm.answer();
+        gm.nextQuestion();
         assertNotEquals(prev, gm.getCurrentq().getValue());
     }
 }
