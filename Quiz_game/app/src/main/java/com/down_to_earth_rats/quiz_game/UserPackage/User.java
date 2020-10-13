@@ -46,4 +46,9 @@ public class User{
         statistics.add(resultObject);
     }
 
+    boolean checkCredentials(String username, String password){
+
+        return this.username.equals(username) && this.password.equals(password);
+    }
+
 }
