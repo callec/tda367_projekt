@@ -19,7 +19,7 @@ import java.util.Random;
 public class QuestionsFromFile implements IQuestionProvider {
 
     @Override
-    public Iterator<IQuestion> getQuestions(String subject, int numberOfQuestions) {
+    public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions) {
 
         List<IQuestion> qs = new ArrayList<>();
         for (int i=0; i<numberOfQuestions; ++i) {

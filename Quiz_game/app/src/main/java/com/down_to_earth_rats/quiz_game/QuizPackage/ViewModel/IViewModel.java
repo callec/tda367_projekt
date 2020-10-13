@@ -3,12 +3,13 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 /**
  * Created by Carl Bergman, Louise Tranborg
- *
+ * <p>
  * This interface defines the behaviour of ViewModel.
  */
-import java.util.List;
 
 public interface IViewModel {
 
@@ -23,5 +24,7 @@ public interface IViewModel {
     MutableLiveData<Boolean> getIsLast();
     int getHintIndex();
     boolean checkIfCorrect(int alternativeID);
+
+    void gameModeForceEnd();
 
 }

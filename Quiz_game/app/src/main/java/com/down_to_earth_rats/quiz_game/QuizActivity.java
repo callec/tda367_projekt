@@ -10,13 +10,18 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -27,12 +32,14 @@ import java.util.List;
 /**
  * Created and edited by Henrik, Sara, Carl, Erik, Louise
  */
-public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler {
+public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler, IGameModeObserver {
 
     private ActivityQuizBinding viewBinding;
 
     private int timerTextId;
 
+    private IGameModeFragment gameMode;
+    private boolean gameModeEnd;
     private modalFragment modal;
     private IViewModel model;
 
@@ -49,23 +56,28 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private int hintTries = 2;   //how many times you may use hints
     private int hints = hintTries;
+    User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         res = getResources();
-        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
+        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);  ///////***
         editor = pref.edit();
 
+        pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
+        String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
+
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
-        model.setTotalQuestions(pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue)));
+        model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
 
         setContentView(viewBinding.getRoot());
 
+        setupGameMode(selectedGameMode);
         setupSupportActionBar();
         setupOnQuizEnd();
         setupTimerText();
@@ -104,6 +116,24 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         hints--;
         if (hints < 1) {
             viewBinding.hintButton.setClickable(false);
+        }
+    }
+
+    private void setupGameMode(String selected) {
+        gameModeEnd = false;
+        gameMode = loadGameMode(selected);
+        gameMode.addObserver(this);
+        getSupportFragmentManager().beginTransaction()
+                .add(viewBinding.fragmentContainer.getId(), (Fragment) gameMode).commit();
+    }
+
+    private IGameModeFragment loadGameMode(String selected) {
+        // i would really like to use an enum here, but as we use SharedPreferences we would
+        // have to convert string to enum anyways so we reduce that step by using this
+        if (selected.equals(getString(R.string.gamemode_infinity))) {
+            return GameModeFactory.createLivesQuiz();
+        } else {
+            return GameModeFactory.createStandardQuiz();
         }
     }
 
@@ -175,14 +205,19 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 id = 4;
                 break;
         }
-        guess(model.answerQuestion(id), view);
+        boolean response = model.answerQuestion(id);
+        gameMode.answer(response);
+        guess(response, view);
         CountDown();
+        //ft.detach(this).attach(gameMode).commit();
     }
 
     private void switchActivityToResult() {
         Intent intent = new Intent(this, ResultsActivity.class);
+
         intent.putExtra("Result", model.getCorrectAnswers());
         intent.putExtra("TotalQuestions", model.getTotalQuestions());
+
         startActivity(intent);
     }
 
@@ -204,14 +239,21 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             }
 
+
+
             @Override
             public void onFinish() {
                 viewBinding.hintButton.setVisibility(View.VISIBLE);
                 viewBinding.hintButton.setClickable(true);
                 disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
+                gameMode.onNewQuestion();
                 model.changeQuestion();
                 hints = hintTries;
+
+                if (gameModeEnd) {
+                    switchActivityToResult();
+                }
 
             }
 
@@ -271,5 +313,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             case 2:
                 switchActivityToMenu();
         }
+    }
+
+    @Override
+    public void gameModeQuizEnd() {
+        model.gameModeForceEnd();
+        gameModeEnd = true;
     }
 }

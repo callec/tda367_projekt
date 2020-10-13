@@ -1,10 +1,12 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -17,6 +19,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private String[] mDataset;
     private static IRecyclerViewActivity parent;
 
+    private int layout;
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
@@ -42,16 +45,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(String[] myDataset, IRecyclerViewActivity parent) {
+    public RecyclerViewAdapter(String[] myDataset, IRecyclerViewActivity parent, int layout) {
         this.parent = parent;
         mDataset = myDataset;
+        this.layout = layout;
     }
 
     @Override
     public RecyclerViewAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.framelayout_recyclerview, parent, false);
+                .inflate(layout, parent, false);
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
     }
