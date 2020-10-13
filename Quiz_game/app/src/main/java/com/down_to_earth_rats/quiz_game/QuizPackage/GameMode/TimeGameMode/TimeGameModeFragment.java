@@ -3,7 +3,6 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.TimeGameMode;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.MutableLiveData;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -57,8 +56,8 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     private void setupProgressBar() {
         quizTimer = viewbinder.quizTimerProgressBar;
-
-        new CountDownTimer(getArguments().getInt(getString(R.string.gamemode_time_value), 30) * 1000, 300) {
+        int seconds = getArguments().getInt(getString(R.string.gamemode_time_value), 30);
+        new CountDownTimer(seconds * 1000, seconds * 10) {
 
             @Override
             public void onTick(long millisUntilFinished) {

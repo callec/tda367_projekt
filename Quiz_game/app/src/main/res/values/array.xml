@@ -19,7 +19,7 @@
     </string-array>
     <string-array name="gamemodes">
         <item>@string/gamemode_standard</item>
-        <item>@string/gamemode_infinity</item>
+        <item>@string/gamemode_lives</item>
         <item>@string/gamemode_time</item>
     </string-array>
 </resources>

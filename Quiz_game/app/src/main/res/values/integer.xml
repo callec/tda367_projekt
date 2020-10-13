@@ -2,4 +2,6 @@
 <resources>
     <integer name="totalq_defaultvalue">10</integer>
     <integer name="totalq_minvalue">5</integer>
+    <integer name="time_defaultvalue">30</integer>
+    <integer name="time_minvalue">3</integer>
 </resources>

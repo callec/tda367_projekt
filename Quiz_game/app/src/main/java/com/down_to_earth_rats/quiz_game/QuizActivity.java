@@ -3,13 +3,11 @@ package com.down_to_earth_rats.quiz_game;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
@@ -73,8 +71,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void setupGameMode() {
-        //String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
-        String selectedGameMode = getString(R.string.gamemode_time);
+        String selectedGameMode = pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
         gameModeEnd = false;
         gameMode = loadGameMode(selectedGameMode);
         gameMode.addObserver(this);
@@ -85,11 +82,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private IGameModeFragment loadGameMode(String selected) {
         // i would really like to use an enum here, but as we use SharedPreferences we would
         // have to convert string to enum anyways so we reduce that step by using this
-        if (selected.equals(getString(R.string.gamemode_infinity))) {
+        if (selected.equals(getString(R.string.gamemode_lives))) {
             return GameModeFactory.createLivesQuiz();
         } else if (selected.equals(getString(R.string.gamemode_time))) {
             Bundle args = new Bundle();
-            args.putLong(getString(R.string.gamemode_time_value), pref.getLong(getString(R.string.gamemode_time_value), 30));
+            args.putInt(getString(R.string.gamemode_time_value), pref.getInt(getString(R.string.gamemode_time_value), 30));
             IGameModeFragment gameMode = GameModeFactory.createTimeQuiz();
             ((Fragment) gameMode).setArguments(args);
             return gameMode;
@@ -276,7 +273,5 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     public void gameModeQuizEnd() {
         model.gameModeForceEnd();
         gameModeEnd = true;
-        //enableButtons(false, alternative1, alternative2, alternative3, alternative4);
-        //CountDown();
     }
 }
