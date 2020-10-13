@@ -188,7 +188,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     // Count down to next question
-    private synchronized void CountDown() {
+    private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
         new CountDownTimer(3000, 30) {
