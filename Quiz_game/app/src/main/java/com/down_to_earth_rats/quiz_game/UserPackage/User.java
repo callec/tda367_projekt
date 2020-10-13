@@ -33,14 +33,8 @@ public class User{
 
     /**Method used to get a statistics based on subcategory.
      */
-    public List<ResultObject> getStatistics(String subcategory){  //TODO Return all statistics, not based on subcategory anymore
-        List<ResultObject> statisticsInSubcategory = new ArrayList<>();
-        for(ResultObject resultObject: statistics){
-            if(resultObject.getSubcategory().equals(subcategory)){
-                statisticsInSubcategory.add(resultObject);
-            }
-        }
-        return statisticsInSubcategory;
+    public List<ResultObject> getStatistics(){  //TODO Return all statistics, not based on subcategory anymore
+        return new ArrayList<>(statistics);
     }
 
     /**Method used to add a ResultObject in the list of statistics.

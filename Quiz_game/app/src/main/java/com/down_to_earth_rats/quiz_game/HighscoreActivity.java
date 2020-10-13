@@ -67,7 +67,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
     }
 
     private void viewStatistics(){
-        List<ResultObject> resultList = UserSingleton.getUser().getStatistics("Addition"); //Fetch the statistics from the user.
+        List<ResultObject> resultList = UserSingleton.getUser().getStatistics(); //Fetch the statistics from the user.
 
         if(resultList.isEmpty()){
             viewBinding.textViewNoStatistics.setText("Ingen historik! Spela ett quiz och kom tillbaka.");
