@@ -87,7 +87,13 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
             }
         });
-        gameModeSpinner.setSelection(pref.getInt(getString(R.string.gamemode_spinner_selected), 0));
+        int index = pref.getInt(getString(R.string.gamemode_spinner_selected), 0);
+        if (index > (res.getStringArray(R.array.gamemodes).length) - 1) {
+            // required check for very rare bug that only appears when testing,
+            // SharedPreferences can save an index that is larger than the actual array.
+            index = 0;
+        }
+        gameModeSpinner.setSelection(index);
     }
 
     private void setupToolBar() {
