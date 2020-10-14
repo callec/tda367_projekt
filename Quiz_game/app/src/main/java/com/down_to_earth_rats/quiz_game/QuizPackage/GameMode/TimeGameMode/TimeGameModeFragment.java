@@ -32,6 +32,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     private ProgressBar timerProgressBar;
     private CountDownTimer timer;
+    private long maxTimeLeft;
     private long timeLeft;
     private long countDownInterval;
     private boolean quizRunning;
@@ -78,7 +79,8 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
         timerProgressBar = viewbinder.quizTimerProgressBar;
         int seconds = getArguments().getInt(getString(R.string.gamemode_time_value), 30);
         countDownInterval = seconds * 10;
-        timerStart(seconds * 1000);
+        maxTimeLeft = seconds * 1000;
+        timerStart(maxTimeLeft);
 
     }
 
@@ -96,6 +98,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
             @Override
             public void onFinish() {
+                quizRunning = false;
                 notifyObserver();
             }
         };
@@ -111,7 +114,18 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     public void answer(boolean correct) {
         timer.cancel();
         timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
-        //timeLeft += 2000;
+        /*
+        if (correct) {
+            timeLeft += maxTimeLeft * 0.1;
+            timerProgressBar.setProgress(timerProgressBar.getProgress() - 10);
+            if (timeLeft > maxTimeLeft) {
+                timeLeft = maxTimeLeft;
+                timerProgressBar.setProgress(0);
+            }
+        } else {
+            timeLeft -= maxTimeLeft * 0.1;
+            timerProgressBar.setProgress(timerProgressBar.getProgress() + 10);
+        }*/
     }
 
     /**
@@ -128,7 +142,6 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
      */
     @Override
     public void notifyObserver() {
-        quizRunning = false;
         timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
         for (IGameModeObserver o : observers) {
             o.gameModeQuizEnd();
@@ -137,7 +150,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     /**
      * {@inheritDoc}
-     * Starts the timer and mages progressbar appear active.
+     * Starts the timer and makes progressbar appear active.
      */
     @Override
     public void onNewQuestion() {
