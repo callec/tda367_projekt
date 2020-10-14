@@ -22,6 +22,7 @@ import java.util.List;
  * Created by Carl Bergman
  * Represents a GameMode where you answer an large amount of questions
  * and can only guess wrongly three times.
+ * It is a fragment with three ImageViews that represent the lives/tries.
  */
 public class LivesGameModeFragment extends Fragment implements IGameModeFragment {
 

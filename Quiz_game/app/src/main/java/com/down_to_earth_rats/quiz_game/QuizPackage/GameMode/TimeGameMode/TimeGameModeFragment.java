@@ -24,7 +24,7 @@ import java.util.List;
  * Created by Carl Bergman
  * This class represents a GameMode where the User has x amount of seconds to answer as many questions
  * as the User is able to.
- * It holds a fragment with a progressbar that displays the time left to answer questions.
+ * It is a fragment with a progressbar that displays the time left to answer questions.
  */
 public class TimeGameModeFragment extends Fragment implements IGameModeFragment {
 
