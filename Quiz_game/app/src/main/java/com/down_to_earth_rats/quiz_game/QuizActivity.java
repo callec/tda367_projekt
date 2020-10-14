@@ -49,8 +49,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue)));
-        model.setCategoryAndSubCategory(getIntent().getStringExtra(CategoryActivity.CATEGORY_NAME),
-                getIntent().getStringExtra(CategoryActivity.SUBCATEGORY_NAME));
+        model.setCategoryAndSubCategory(pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik"),
+                pref.getString(CategoryActivity.SUBCATEGORY_NAME, "Addition"));
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());

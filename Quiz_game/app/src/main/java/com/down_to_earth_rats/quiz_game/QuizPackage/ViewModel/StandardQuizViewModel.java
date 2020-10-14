@@ -1,5 +1,7 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
+import android.content.SharedPreferences;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -58,6 +60,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     public void initQuiz() {
         runningState.setValue(true);
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
+
         questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions(subCategory, totalQuestions));
         questionHandler.registerObserver(this);
 
