@@ -87,13 +87,7 @@ public class SettingsActivity extends AppCompatActivity {
                 editor.putString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard));
             }
         });
-        try {
-            gameModeSpinner.setSelection(pref.getInt(getString(R.string.gamemode_spinner_selected), 0));
-        } catch (ArrayIndexOutOfBoundsException e) {
-            // in very rare cases you might test some version with more GameModes implemented,
-            // if one of the newer is selected the app will crash.
-            gameModeSpinner.setSelection(0);
-        }
+        gameModeSpinner.setSelection(pref.getInt(getString(R.string.gamemode_spinner_selected), 0));
     }
 
     private void setupToolBar() {
