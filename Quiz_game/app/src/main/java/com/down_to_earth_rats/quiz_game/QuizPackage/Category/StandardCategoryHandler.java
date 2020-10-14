@@ -25,11 +25,11 @@ class StandardCategoryHandler implements ICategoryHandler{
         ImmutableCategory category2 = new ImmutableCategory("Historia",
                 "Svergies Historia", "Världshistoria");
 
-        ImmutableCategory category3 = new ImmutableCategory("Svenska", "Grammatik", "Ord");
+        //ImmutableCategory category3 = new ImmutableCategory("Svenska", "Grammatik", "Ord");
 
         categoryList.add(category1);
         categoryList.add(category2);
-        categoryList.add(category3);
+        //categoryList.add(category3);
     }
 
     @Override

@@ -13,7 +13,6 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestion
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
@@ -150,8 +149,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     @Override
     public void gameModeForceEnd() {
         totalQuestions = totalAnswers;
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
-        user.addResult(resultObject);
+        quizFinished();
         isLast.setValue(true);
     }
 }

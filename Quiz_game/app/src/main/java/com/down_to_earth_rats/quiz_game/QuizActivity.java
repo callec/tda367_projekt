@@ -1,5 +1,6 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -19,7 +20,6 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
@@ -57,8 +57,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
+
         model.setCategoryAndSubCategory(pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik"),
-                pref.getString(CategoryActivity.SUBCATEGORY_NAME, "Addition"));
+                pref.getString(CategoryActivity.SUBCATEGORY_NAME, "Subtraktion"));
+
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
