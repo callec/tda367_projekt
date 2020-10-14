@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 /**
  * Created by Carl Bergman
+ * Holds and handles data for StandardGameModeFragment to display.
  */
 public class StandardGameMode extends ViewModel {
 

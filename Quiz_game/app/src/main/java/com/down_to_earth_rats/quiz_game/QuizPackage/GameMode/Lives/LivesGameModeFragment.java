@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman
- * Represents a GameMode where you answers an large amount of questions
+ * Represents a GameMode where you answer an large amount of questions
  * and can only guess wrongly three times.
  */
 public class LivesGameModeFragment extends Fragment implements IGameModeFragment {
@@ -36,6 +36,9 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         // Required empty public constructor
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public static IGameModeFragment newInstance() {
         LivesGameModeFragment fragment = new LivesGameModeFragment();
         Bundle args = new Bundle();
@@ -43,6 +46,9 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         return fragment;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +95,9 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -98,16 +107,25 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         return viewbinder.getRoot();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void answer(boolean a) {
         model.answer(a);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addObserver(IGameModeObserver o) {
         this.observers.add(o);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void notifyObserver() {
         for (IGameModeObserver o : this.observers) {
@@ -115,6 +133,9 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onNewQuestion() {
         // do nothing

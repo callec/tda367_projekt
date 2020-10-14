@@ -21,7 +21,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 
 /**
  * Created by Carl Bergman
- * All standard functionality is in QuizPackage so this does nothing
+ * This class represents the standard GameMode. Most functionality is in QuizActivity and the model
+ * but this keeps track of answered questions and how many is left.
  */
 public class StandardGameModeFragment extends Fragment implements IGameModeFragment {
 
@@ -34,6 +35,9 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         // Required empty public constructor
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public static IGameModeFragment newInstance() {
         StandardGameModeFragment fragment = new StandardGameModeFragment();
         Bundle args = new Bundle();
@@ -41,12 +45,18 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         return fragment;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = new ViewModelProvider(this).get(StandardGameMode.class);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,21 +81,33 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void answer(boolean a) {
         model.answer();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addObserver(IGameModeObserver o) {
         // do nothing
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void notifyObserver() {
         // do nothing
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onNewQuestion() {
         // do nothing

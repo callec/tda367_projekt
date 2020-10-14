@@ -84,22 +84,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private IGameModeFragment loadGameMode(String selected) {
         // i would really like to use an enum here, but as we use SharedPreferences we would
         // have to convert string to enum anyways so we reduce that step by using this
-        // move this to factory
-        if (selected.equals(getString(R.string.gamemode_lives))) {
-            return GameModeFactory.createLivesQuiz();
-        } else if (selected.equals(getString(R.string.gamemode_time))) {
-            Bundle args = new Bundle();
-            args.putInt(getString(R.string.gamemode_time_value), pref.getInt(getString(R.string.gamemode_time_value), 30));
-            IGameModeFragment gameMode = GameModeFactory.createTimeQuiz();
-            ((Fragment) gameMode).setArguments(args);
-            return gameMode;
-        } else {
-            Bundle args = new Bundle();
-            args.putInt(getString(R.string.settings_totalq), pref.getInt(getString(R.string.settings_totalq), 10));
-            IGameModeFragment gameMode = GameModeFactory.createStandardQuiz();
-            ((Fragment) gameMode).setArguments(args);
-            return gameMode;
-        }
+        Bundle args = new Bundle();
+        args.putInt(getString(R.string.gamemode_time_value), pref.getInt(getString(R.string.gamemode_time_value), 30));
+        args.putInt(getString(R.string.settings_totalq), pref.getInt(getString(R.string.settings_totalq), 10));
+        gameMode = GameModeFactory.getGameMode(selected);
+        ((Fragment) gameMode).setArguments(args);
+        return gameMode;
     }
 
     private void setupOnQuizEnd() {

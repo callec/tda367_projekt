@@ -22,6 +22,9 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman
+ * This class represents a GameMode where the User has x amount of seconds to answer as many questions
+ * as the User is able to.
+ * It holds a fragment with a progressbar that displays the time left to answer questions.
  */
 public class TimeGameModeFragment extends Fragment implements IGameModeFragment {
 
@@ -39,18 +42,28 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
         // Required empty public constructor
     }
 
-    public static TimeGameModeFragment newInstance() {
+    /**
+     * {@inheritDoc}
+     * @return IGameModeFragment an instance of the class TimeGameModeFragment
+     */
+    public static IGameModeFragment newInstance() {
         TimeGameModeFragment fragment = new TimeGameModeFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -90,6 +103,10 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
         timer.start();
     }
 
+    /**
+     * {@inheritDoc}
+     * Stops the timer and makes progressbar appear inactive.
+     */
     @Override
     public void answer(boolean correct) {
         timer.cancel();
@@ -97,11 +114,18 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
         //timeLeft += 2000;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addObserver(IGameModeObserver o) {
         this.observers.add(o);
     }
 
+    /**
+     * {@inheritDoc}
+     * Makes the progressbar appear active.
+     */
     @Override
     public void notifyObserver() {
         quizRunning = false;
@@ -111,9 +135,14 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
         }
     }
 
+    /**
+     * {@inheritDoc}
+     * Starts the timer and mages progressbar appear active.
+     */
     @Override
     public void onNewQuestion() {
         if (!quizRunning) {
+            // need this check to prevent recursive calls after the quiz is completed
             return;
         }
         timerStart(timeLeft);

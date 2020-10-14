@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 /**
  * Created by Carl Bergman
+ * Holds and handles data for LivesGameModeFragment to display.
  */
 public class LivesGameMode extends ViewModel {
 
