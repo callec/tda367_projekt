@@ -71,23 +71,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedGameMode = parent.getItemAtPosition(position).toString();
-                editor.putString(getString(R.string.gamemode_which), selectedGameMode);
                 editor.putInt(getString(R.string.gamemode_spinner_selected), position);
-                // possibly refactor this to its own method so we it depends more on each GameMode
-
-                hideSeekbar(questionSeekBar, seekBarTextView, true);
-                hideSeekbar(timeSeekBar, timeSeekBarValue, true);
-                Random r = new Random();
-                if (selectedGameMode.equals(getString(R.string.gamemode_lives))) {
-                    editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
-                } else if (selectedGameMode.equals(getString(R.string.gamemode_time))) {
-                    hideSeekbar(timeSeekBar, timeSeekBarValue, false);
-                    editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
-                } else {
-                    editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
-                    questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
-                    hideSeekbar(questionSeekBar, seekBarTextView, false);
-                }
+                saveGameMode(selectedGameMode);
             }
 
             @Override
@@ -96,6 +81,25 @@ public class SettingsActivity extends AppCompatActivity {
             }
         });
         gameModeSpinner.setSelection(pref.getInt(getString(R.string.gamemode_spinner_selected), 0));
+    }
+    
+    private void saveGameMode(String selectedGameMode) {
+        editor.putString(getString(R.string.gamemode_which), selectedGameMode);
+
+        hideSeekbar(questionSeekBar, seekBarTextView, true);
+        hideSeekbar(timeSeekBar, timeSeekBarValue, true);
+        Random r = new Random();
+
+        if (selectedGameMode.equals(getString(R.string.gamemode_lives))) {
+            editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
+        } else if (selectedGameMode.equals(getString(R.string.gamemode_time))) {
+            hideSeekbar(timeSeekBar, timeSeekBarValue, false);
+            editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
+        } else {
+            editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
+            questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
+            hideSeekbar(questionSeekBar, seekBarTextView, false);
+        }
     }
 
     private void hideSeekbar(SeekBar sb, TextView tv, boolean b) {

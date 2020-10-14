@@ -82,6 +82,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private IGameModeFragment loadGameMode(String selected) {
         // i would really like to use an enum here, but as we use SharedPreferences we would
         // have to convert string to enum anyways so we reduce that step by using this
+        // move this to factory
         if (selected.equals(getString(R.string.gamemode_lives))) {
             return GameModeFactory.createLivesQuiz();
         } else if (selected.equals(getString(R.string.gamemode_time))) {
@@ -203,10 +204,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onFinish() {
-                disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
                 gameMode.onNewQuestion();
                 model.changeQuestion();
+                disableProgressBar();
                 if (gameModeEnd) {
                     switchActivityToResult();
                 }
