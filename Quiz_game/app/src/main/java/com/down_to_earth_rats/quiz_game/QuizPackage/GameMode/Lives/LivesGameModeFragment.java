@@ -110,11 +110,8 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
 
     @Override
     public void notifyObserver() {
-        if (!this.observers.isEmpty()) {
-            for (IGameModeObserver o : this.observers) {
-                o.gameModeQuizEnd();
-            }
-
+        for (IGameModeObserver o : this.observers) {
+            o.gameModeQuizEnd();
         }
     }
 

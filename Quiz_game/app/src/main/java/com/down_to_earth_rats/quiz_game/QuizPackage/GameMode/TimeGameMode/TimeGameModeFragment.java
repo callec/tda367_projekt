@@ -31,6 +31,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     private CountDownTimer timer;
     private long timeLeft;
     private long countDownInterval;
+    private boolean quizRunning;
 
     private List<IGameModeObserver> observers = new ArrayList<>();
 
@@ -55,6 +56,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewbinder = FragmentTimeGameModeBinding.inflate(inflater, container, false);
+        quizRunning = true;
         setupProgressBar();
         return viewbinder.getRoot();
     }
@@ -102,6 +104,8 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     @Override
     public void notifyObserver() {
+        quizRunning = false;
+        timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
         for (IGameModeObserver o : observers) {
             o.gameModeQuizEnd();
         }
@@ -109,6 +113,9 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     @Override
     public void onNewQuestion() {
+        if (!quizRunning) {
+            return;
+        }
         timerStart(timeLeft);
         timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorAccent)));
     }

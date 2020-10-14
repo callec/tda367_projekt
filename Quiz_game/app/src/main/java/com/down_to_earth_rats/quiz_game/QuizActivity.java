@@ -32,6 +32,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private ActivityQuizBinding viewBinding;
 
     private int timerTextId;
+    private long msUntilNextQ;
 
     private IGameModeFragment gameMode;
     private boolean gameModeEnd;
@@ -45,6 +46,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative2;
     private Button alternative3;
     private Button alternative4;
+    private CountDownTimer timeUntilNextQ;
 
     User user = User.getInstance();
 
@@ -112,6 +114,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void setupTimerText() {
+        msUntilNextQ = 3000;
         timerTextId = R.string.nextq_in;
 
         model.getIsLast().observe(this, new Observer<Boolean>() {
@@ -170,7 +173,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         boolean response = model.answerQuestion(id);
         gameMode.answer(response);
         guess(response, view);
-        CountDown();
+        countDown();
         //ft.detach(this).attach(gameMode).commit();
     }
 
@@ -189,10 +192,14 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     // Count down to next question
-    private void CountDown() {
+    private void countDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(3000, 30) {
+        if (gameModeEnd) { // really really don't like this check but it is necessary for all
+                           // gamemodes to function correctly
+            timeUntilNextQ.cancel();
+        }
+        timeUntilNextQ = new CountDownTimer(msUntilNextQ, msUntilNextQ / 100) {
 
             @Override
             public void onTick(long l) {
@@ -213,7 +220,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 }
             }
 
-        }.start();
+        };
+        timeUntilNextQ.start();
     }
 
     private void disableProgressBar() {
@@ -274,5 +282,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     public void gameModeQuizEnd() {
         model.gameModeForceEnd();
         gameModeEnd = true;
+        timeUntilNextQ.cancel();
+        disableProgressBar();
+        countDown();
     }
 }
