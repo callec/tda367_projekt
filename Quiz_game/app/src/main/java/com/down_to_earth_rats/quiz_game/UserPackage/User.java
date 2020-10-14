@@ -1,5 +1,8 @@
 package com.down_to_earth_rats.quiz_game.UserPackage;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ImmutableCategory;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,5 +49,10 @@ class User implements IUser{
     @Override
     public String getUsername() {
         return username;
+    }
+
+    @Override
+    public ICategory getUserCategory() {
+        return new ImmutableCategory(username, "Matteprov");
     }
 }
