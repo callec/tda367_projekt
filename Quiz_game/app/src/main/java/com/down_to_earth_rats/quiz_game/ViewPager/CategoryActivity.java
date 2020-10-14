@@ -1,6 +1,8 @@
 package com.down_to_earth_rats.quiz_game.ViewPager;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +14,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.down_to_earth_rats.quiz_game.QuizActivity;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
@@ -98,9 +101,15 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
 
     @Override
     public void CategoryClicked(String categoryName, String subCategoryName) {
+
+        SharedPreferences pref = this.getSharedPreferences(String.valueOf(
+                R.string.preferences_name), Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString(CATEGORY_NAME, categoryName);
+        editor.putString(SUBCATEGORY_NAME, subCategoryName);
+        editor.apply();
+
         Intent intent = new Intent(this, QuizActivity.class);
-        intent.putExtra(CATEGORY_NAME, categoryName);
-        intent.putExtra(SUBCATEGORY_NAME, subCategoryName);
 
         startActivity(intent);
 

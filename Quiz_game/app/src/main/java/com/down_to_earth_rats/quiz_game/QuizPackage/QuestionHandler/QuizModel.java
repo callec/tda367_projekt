@@ -51,7 +51,9 @@ public class QuizModel implements IQuestionHandler {
     public IQuestion getQuestion() {
 
         if(questionStack.isEmpty()){
+            quizIsFinished();
             return new FourAltQuestion("","", "", "", "");
+
         }
 
         return questionStack.peek();
@@ -60,12 +62,12 @@ public class QuizModel implements IQuestionHandler {
     @Override
     public void nextQuestion() {
         questionStack.pop();
-
-        if(questionStack.isEmpty()){
-            for (IModelObserver observer: observerList) {
-                observer.quizFinished();
-            }
+        if(questionStack.isEmpty()) {
+            quizIsFinished();
         }
+
+
+
     }
 
     @Override
@@ -84,4 +86,11 @@ public class QuizModel implements IQuestionHandler {
     public boolean isLastQuestion() {
         return (questionStack.size() == 1);
     }
+
+    private void quizIsFinished(){
+        for (IModelObserver observer: observerList) {
+            observer.quizFinished();
+        }
+    }
 }
+

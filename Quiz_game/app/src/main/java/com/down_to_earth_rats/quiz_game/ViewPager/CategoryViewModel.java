@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.CategoryFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -24,6 +25,8 @@ public class CategoryViewModel extends ViewModel {
 
     public CategoryViewModel() {
         getStandardCategories();
+        categories.add(UserSingleton.getUser().getUserCategory());
+
     }
 
     public void getStandardCategories(){

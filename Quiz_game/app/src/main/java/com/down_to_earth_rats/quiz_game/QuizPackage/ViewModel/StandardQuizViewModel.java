@@ -1,5 +1,7 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
+import android.content.SharedPreferences;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -12,6 +14,7 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionP
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -19,7 +22,7 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
- * Modified by Carl Bergman, Louise Tranborg
+ * Modified by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
  *
  */
 
@@ -30,15 +33,13 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     private int totalAnswers;
     private int correctAnswers;
     private IQuestion currentQuestion;
+    private String category = "";
+    private String subCategory = "";
     private MutableLiveData<List<String>> alternativeList = new MutableLiveData<>();
     private IQuestionProvider questionProvider;
 
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
-
-    User user = User.getInstance();
-    private String subcategory;
-
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -59,18 +60,17 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     }
 
     public void initQuiz() {
+        runningState.setValue(true);
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
 
-
-
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Division", totalQuestions));
+        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions(subCategory, totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(currentQuestion);
 
         isLast.setValue(questionHandler.isLastQuestion());
-        runningState.setValue(true);
+
     }
 
     private void createAlternativeList(IQuestion question){
@@ -97,6 +97,12 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     public int getCorrectAnswers() {
         return correctAnswers;
+    }
+
+    @Override
+    public void setCategoryAndSubCategory(String category, String subCategory) {
+        this.category = category;
+        this.subCategory = subCategory;
     }
 
     public boolean answerQuestion(int alternativeID){
@@ -129,10 +135,9 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void quizFinished() {
-
-        // TODO: Added by Louise to try create statistics, not beautiful with the user!
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
-        user.addResult(resultObject);
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory,
+                "Standard", false); //TODO hint and gamemode
+        UserSingleton.getUser().addResult(resultObject);
 
         runningState.setValue(false);
     }

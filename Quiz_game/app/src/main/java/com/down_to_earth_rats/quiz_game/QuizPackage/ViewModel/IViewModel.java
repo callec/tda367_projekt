@@ -20,6 +20,7 @@ public interface IViewModel {
     int getTotalQuestions();
     void setTotalQuestions(int i);
     int getCorrectAnswers();
+    void setCategoryAndSubCategory(String category, String subCategory);
     void initQuiz();
     MutableLiveData<Boolean> getIsLast();
     void gameModeForceEnd();

@@ -20,6 +20,7 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
 import com.down_to_earth_rats.quiz_game.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.List;
@@ -46,8 +47,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative3;
     private Button alternative4;
 
-    User user = User.getInstance();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +57,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
-
+        model.setCategoryAndSubCategory(pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik"),
+                pref.getString(CategoryActivity.SUBCATEGORY_NAME, "Addition"));
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
@@ -182,12 +182,12 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private void CountDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        new CountDownTimer(3000, 30) {
+        new CountDownTimer(1000, 10) {
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
-                viewBinding.progressBar.incrementProgressBy(1);
+                //viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
+                viewBinding.progressBar.incrementProgressBy(2);
             }
 
 

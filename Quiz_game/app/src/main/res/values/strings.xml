@@ -30,4 +30,8 @@
     <string name="gamemode_infinity_lives">nLives</string>
     <string name="gamemode_standard">Standard</string>
     <string name="gamemode_spinner_selected">GameModeSpinnerValue</string>
+    <string name="exit">Avsluta</string>
+    <string name="log_in">Logga in</string>
+    <string name="username">Användarnamn</string>
+    <string name="password">Lösenord</string>
 </resources>
