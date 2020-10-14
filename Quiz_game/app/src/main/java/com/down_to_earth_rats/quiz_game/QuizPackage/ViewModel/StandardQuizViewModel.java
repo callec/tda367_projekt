@@ -29,6 +29,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     private int totalQuestions;
     private int correctAnswers;
     private IQuestion currentQuestion;
+    private String category = "";
+    private String subCategory = "";
     private MutableLiveData<List<String>> alternativeList = new MutableLiveData<>();
     private IQuestionProvider questionProvider;
 
@@ -54,15 +56,16 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     }
 
     public void initQuiz() {
+        runningState.setValue(true);
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", totalQuestions));
+        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions(subCategory, totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();
         createAlternativeList(currentQuestion);
 
         isLast.setValue(questionHandler.isLastQuestion());
-        runningState.setValue(true);
+
     }
 
     private void createAlternativeList(IQuestion question){
@@ -89,6 +92,12 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     public int getCorrectAnswers() {
         return correctAnswers;
+    }
+
+    @Override
+    public void setCategoryAndSubCategory(String category, String subCategory) {
+        this.category = category;
+        this.subCategory = subCategory;
     }
 
     public boolean answerQuestion(int alternativeID){
@@ -120,7 +129,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void quizFinished() {
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition");
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory,
+                "Standard", false); //TODO hint and gamemode
         UserSingleton.getUser().addResult(resultObject);
 
         runningState.setValue(false);

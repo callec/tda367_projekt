@@ -21,9 +21,12 @@ public class QuestionsFromFile implements IQuestionProvider {
     @Override
     public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions) {
 
+
         List<IQuestion> qs = new ArrayList<>();
         for (int i=0; i<numberOfQuestions; ++i) {
-            qs.add(randomAdditionQuestion());
+            if(subcategory.equals("Addition")){
+                qs.add(randomAdditionQuestion());
+            }
         }
 
         return new ListIterator<>(qs);

@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.List;
@@ -48,6 +49,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt("TotalQuestions", res.getInteger(R.integer.totalq_defaultvalue)));
+        model.setCategoryAndSubCategory(getIntent().getStringExtra(CategoryActivity.CATEGORY_NAME),
+                getIntent().getStringExtra(CategoryActivity.SUBCATEGORY_NAME));
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
