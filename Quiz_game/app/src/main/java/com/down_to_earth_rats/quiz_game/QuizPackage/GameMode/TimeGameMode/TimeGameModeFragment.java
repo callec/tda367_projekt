@@ -1,7 +1,9 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.TimeGameMode;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.os.CountDownTimer;
@@ -25,7 +27,10 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     private FragmentTimeGameModeBinding viewbinder;
 
-    private ProgressBar quizTimer;
+    private ProgressBar timerProgressBar;
+    private CountDownTimer timer;
+    private long timeLeft;
+    private long countDownInterval;
 
     private List<IGameModeObserver> observers = new ArrayList<>();
 
@@ -55,28 +60,39 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     }
 
     private void setupProgressBar() {
-        quizTimer = viewbinder.quizTimerProgressBar;
+        timerProgressBar = viewbinder.quizTimerProgressBar;
         int seconds = getArguments().getInt(getString(R.string.gamemode_time_value), 30);
-        new CountDownTimer(seconds * 1000, seconds * 10) {
+        countDownInterval = seconds * 10;
+        timerStart(seconds * 1000);
+
+    }
+
+    private void timerStart(long time) {
+        timer = new CountDownTimer(time, countDownInterval) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                quizTimer.incrementProgressBy(1);
-                if (millisUntilFinished < 3000) { // TODO: put in settings time between questions
+                timerProgressBar.incrementProgressBy(1);
+                timeLeft = millisUntilFinished;
+                /*if (millisUntilFinished < 3000) { // TODO: put in settings time between questions
                     notifyObserver();
-                }
+                }*/
             }
 
             @Override
             public void onFinish() {
                 notifyObserver();
             }
-        }.start();
+        };
+
+        timer.start();
     }
 
     @Override
     public void answer(boolean correct) {
-        // do nothing, can't add time to a CountDownTimer
+        timer.cancel();
+        timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
+        //timeLeft += 2000;
     }
 
     @Override
@@ -93,6 +109,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
     @Override
     public void onNewQuestion() {
-        // do nothing, can't pause or stop a CountDownTimer
+        timerStart(timeLeft);
+        timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorAccent)));
     }
 }
