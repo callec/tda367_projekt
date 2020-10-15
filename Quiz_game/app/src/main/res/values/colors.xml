@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#7CB342</color>
     <color name="colorPrimaryDark">#33691E</color>
-    <color name="colorAccent">#B2FF59</color>
+    <color name="colorAccent">#76FF03</color>
     <color name="answerButton">#ffffff</color>
     <color name="quizBg">#f3f8fb</color>
     <color name="colorCorrect">#8db600</color>
