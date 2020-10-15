@@ -1,0 +1,70 @@
+# Meeting Agenda
+
+Group: 14
+Date: 20201002
+Chair: Oliver Karmetun
+Participants: Carl, Erik, Henrik, Louise, Sara
+
+
+## Objectives (5 min) 
+
+Diskutera frågor
+Oliver genomgång
+
+
+## Reports (15 min) from previous meeting
+
+Vi har arbetat med flera user stories
+Vi har skrivit SDD, RAD, och arbetat på de olika modellerna
+
+
+## Discussion items (35 min)
+
+user
+	- hur implementera?
+veckans sprint
+sdd & rad
+user stories
+tid kvar
+kod
+tester
+
+
+## Outcomes and assignments (5 min)
+
+user
+	- singleton?
+	- kanske ok? inte helt klart
+	- user endast som id?
+veckans sprint
+	- modellen integrerad
+	- service när man hämtar frågor
+	- designmodellen ser bra ut
+model implementation
+	- viewmodel otydligt namn, kan tros hantera GUI
+	- skall vara extensible
+sdd
+	- designmodell
+	  - behöver eventuellt inte gå in så djupt som vi har gjort
+	  - är dock bra
+	- ser bra ut än
+	- punkt 2
+	  - hur allt hänger samman, lite basic - oliver
+user stories
+	- en kvar från veckans sprint
+	- skriv mer
+	- välj de som utvecklar modell
+tid kvar
+	- kontrollera så att vi blir klara med hur mycket vi vill
+programmering
+	- principles etc högprioriterat
+tester
+	- modell absolut viktigast
+	- gärna en del tester med espresso också
+
+
+## Wrap up
+
+nästa möte fredag 16:00
+
+

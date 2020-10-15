@@ -1,0 +1,58 @@
+# Meeting Agenda
+
+Group: 14
+Date: 20201002
+Chair: Oliver Karmetun
+Participants: Carl, Erik, Henrik, Louise, Sara
+
+
+## Objectives (5 min) 
+
+Diskutera frågor
+Oliver genomgång
+
+
+## Reports (15 min) from previous meeting
+
+Vi har arbetat med flera user stories
+
+
+## Discussion items (35 min)
+
+services/databas
+protokoll
+rad & sdd
+peer review
+user
+git
+presentation
+
+
+## Outcomes and assignments (5 min)
+
+services
+	- ge möjlighet till att implementera databaser
+	- skriv att man kan implementera databaserna till factories
+protokoll
+	- pusha
+rad & sdd
+	- inget denna vecka
+	- skriva nästa vecka
+	- vilka paket? mikro eller makro
+	  - ha med hela designmodell i appendix
+	  - visa alla paket i texten, hänvisa till simplifierad paketvy
+peer review
+	- inte fått
+user
+	- singleton
+git
+	- gitkraken tips
+presentation
+	- response nästa fredag
+
+
+## Wrap up
+
+nästa möte fredag 16:00
+
+

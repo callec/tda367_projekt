@@ -1,0 +1,60 @@
+# Meeting Agenda
+
+Group: 14
+Date: 20201015
+Chair: Oliver Karmetun
+Participants: Carl, Erik, Henrik, Louise, Sara
+
+
+## Objectives (5 min) 
+
+Diskutera frågor
+Oliver genomgång
+
+
+## Reports (15 min) from previous meeting
+
+Vi har arbetat med flera user stories
+
+
+## Discussion items (35 min)
+
+kod
+services
+presentation
+rad & sdd
+readme
+
+
+## Outcomes and assignments (5 min)
+
+kod
+	- klar-ish
+	  - kommentera/kolla igenom
+	  - anpassa efter peer review
+	  - lite på en user story kvar
+	- lagom storlek
+services
+	- körs inte när appen startas
+	- statistik tas från den inloggade usern
+	- gör en metod för att spara data
+	  - den ska skicka data som skall sparas
+	  	- behöver inte göra något med datan
+	  - och ladda data
+presentation
+	- demo
+	- sdd -> presentation
+	- problem och lösningar
+	- speciella oop grejer med projektet
+	- saker vi ville göra men inte hann med
+rad & sdd
+	- skriv ordentligt för bättre betyg
+readme
+	- skriv på github hur man emulerar och använder applikationen
+
+
+## Wrap up
+
+sista mötet!!!
+
+
