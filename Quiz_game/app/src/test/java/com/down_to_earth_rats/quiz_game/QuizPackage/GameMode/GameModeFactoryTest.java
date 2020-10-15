@@ -13,13 +13,13 @@ public class GameModeFactoryTest {
 
     @Test
     public void testCreateStandardQuiz() {
-        IGameModeFragment gamemode = GameModeFactory.createStandardQuiz();
+        IGameModeFragment gamemode = GameModeFactory.getGameMode("Standard");
         assertTrue(gamemode instanceof StandardGameModeFragment);
     }
 
     @Test
     public void testCreateLivesQuiz() {
-        IGameModeFragment gamemode = GameModeFactory.createLivesQuiz();
+        IGameModeFragment gamemode = GameModeFactory.getGameMode("Max tre fel");
         assertTrue(gamemode instanceof LivesGameModeFragment);
     }
 }

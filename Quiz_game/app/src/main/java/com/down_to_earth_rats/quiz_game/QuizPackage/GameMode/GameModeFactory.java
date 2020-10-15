@@ -2,17 +2,28 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives.LivesGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Standard.StandardGameModeFragment;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.TimeGameMode.TimeGameModeFragment;
 
 /**
  * Created by Carl Bergman
+ * Return instances of each specific GameMode.
  */
 public class GameModeFactory {
 
-    public static IGameModeFragment createLivesQuiz() {
-        return LivesGameModeFragment.newInstance();
-    }
-
-    public static IGameModeFragment createStandardQuiz() {
-        return StandardGameModeFragment.newInstance();
+    /**
+     * Return selected GameMode.
+     * @param gameMode string name of the selected GameMode
+     * @return instance of IGameModeFragment
+     */
+    public static IGameModeFragment getGameMode(String gameMode) {
+        switch (gameMode) {
+            // TODO: replace strings with enum
+            case "Tidspress":
+                return TimeGameModeFragment.newInstance();
+            case "Max tre fel":
+                return LivesGameModeFragment.newInstance();
+            default:
+                return StandardGameModeFragment.newInstance();
+        }
     }
 }

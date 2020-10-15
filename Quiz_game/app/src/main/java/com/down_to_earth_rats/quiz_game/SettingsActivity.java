@@ -18,6 +18,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.down_to_earth_rats.quiz_game.databinding.ActivitySettingsBinding;
 
+import org.w3c.dom.Text;
+
 import java.util.Random;
 
 
@@ -32,6 +34,8 @@ public class SettingsActivity extends AppCompatActivity {
     private Spinner gameModeSpinner;
     private SeekBar questionSeekBar;
     private TextView seekBarTextView;
+    private SeekBar timeSeekBar;
+    private TextView timeSeekBarValue;
     private Resources res;
 
     private SharedPreferences pref;
@@ -52,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity {
         setupToolBar();
         setupFontSize();
         setupQuestionSeekBar();
+        setupTimeSeekBar();
         setupGameModeSpinner();
     }
 
@@ -66,20 +71,8 @@ public class SettingsActivity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedGameMode = parent.getItemAtPosition(position).toString();
-                editor.putString(getString(R.string.gamemode_which), selectedGameMode);
                 editor.putInt(getString(R.string.gamemode_spinner_selected), position);
-                // possibly refactor this to its own method so we it depends more on each GameMode
-                if (!selectedGameMode.equals(getString(R.string.gamemode_standard))) {
-                    questionSeekBar.setVisibility(View.GONE);
-                    seekBarTextView.setVisibility(View.GONE);
-                    Random r = new Random();
-                    editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
-                } else {
-                    editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
-                    questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
-                    questionSeekBar.setVisibility(View.VISIBLE);
-                    seekBarTextView.setVisibility(View.VISIBLE);
-                }
+                saveGameMode(selectedGameMode);
             }
 
             @Override
@@ -94,6 +87,35 @@ public class SettingsActivity extends AppCompatActivity {
             index = 0;
         }
         gameModeSpinner.setSelection(index);
+    }
+    
+    private void saveGameMode(String selectedGameMode) {
+        editor.putString(getString(R.string.gamemode_which), selectedGameMode);
+
+        hideSeekbar(questionSeekBar, seekBarTextView, true);
+        hideSeekbar(timeSeekBar, timeSeekBarValue, true);
+        Random r = new Random();
+
+        if (selectedGameMode.equals(getString(R.string.gamemode_lives))) {
+            editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
+        } else if (selectedGameMode.equals(getString(R.string.gamemode_time))) {
+            hideSeekbar(timeSeekBar, timeSeekBarValue, false);
+            editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
+        } else {
+            editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
+            questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
+            hideSeekbar(questionSeekBar, seekBarTextView, false);
+        }
+    }
+
+    private void hideSeekbar(SeekBar sb, TextView tv, boolean b) {
+        if (!b) {
+            sb.setVisibility(View.VISIBLE);
+            tv.setVisibility(View.VISIBLE);
+        } else {
+            sb.setVisibility(View.GONE);
+            tv.setVisibility(View.GONE);
+        }
     }
 
     private void setupToolBar() {
@@ -153,7 +175,38 @@ public class SettingsActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                editor.putInt("TotalQuestions", seekBar.getProgress());
+                editor.putInt(getString(R.string.settings_totalq), seekBar.getProgress());
+            }
+        });
+    }
+
+    private void setupTimeSeekBar() {
+        timeSeekBar = viewBinding.timeSeekBar;
+        timeSeekBarValue = viewBinding.timeSeekBarValue;
+
+        final int minimumvalue = res.getInteger(R.integer.time_minvalue);
+
+        int firstValue = pref.getInt(getString(R.string.gamemode_time_value), res.getInteger(R.integer.time_defaultvalue));
+        timeSeekBar.setProgress(firstValue);
+        timeSeekBarValue.setText(getString(R.string.settings_ntime, firstValue));
+
+        timeSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if (progress < minimumvalue) {
+                    seekBar.setProgress(minimumvalue);
+                }
+                timeSeekBarValue.setText(getString(R.string.settings_ntime, progress));
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                // do nothing
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                editor.putInt(getString(R.string.gamemode_time_value), seekBar.getProgress());
             }
         });
     }

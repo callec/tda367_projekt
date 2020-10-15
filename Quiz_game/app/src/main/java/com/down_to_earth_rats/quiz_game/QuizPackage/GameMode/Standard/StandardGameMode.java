@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel;
 
 /**
  * Created by Carl Bergman
+ * Holds and handles data for StandardGameModeFragment to display.
  */
 public class StandardGameMode extends ViewModel {
 
@@ -14,7 +15,7 @@ public class StandardGameMode extends ViewModel {
         currentq.setValue(0);
     }
 
-    public MutableLiveData<Integer> getCurrentq() {
+    protected MutableLiveData<Integer> getCurrentq() {
         return currentq;
     }
 
