@@ -56,6 +56,21 @@ public class StandardQuizViewModelTest {
     }
 
     @Test
+    public void TestGetHintsUsed () {
+        //TODO
+    }
+
+    @Test
+    public void TestSetHintsUsed () {
+        //TODO
+    }
+
+    @Test
+    public void TesthintsUsedResults () {
+        //TODO
+    }
+
+    @Test
     public void testGetTotalQuestions() {
         assertNotEquals(0, vm.getTotalQuestions());
     }
