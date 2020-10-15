@@ -73,12 +73,12 @@
         android:layout_marginStart="115dp"
         android:layout_marginEnd="115dp"
         android:contentDescription="@string/pictureKiwi_description"
-        android:src="@drawable/kiwi"
+        android:src="@mipmap/kiwi_foreground"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
-        app:srcCompat="@drawable/kiwi"
+        app:srcCompat="@mipmap/kiwi_foreground"
         tools:src="@tools:sample/avatars" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

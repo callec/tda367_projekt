@@ -55,8 +55,6 @@ public class StandardQuizViewModelTest {
 
     }
 
-
-
     @Test
     public void testGetTotalQuestions() {
         assertNotEquals(0, vm.getTotalQuestions());

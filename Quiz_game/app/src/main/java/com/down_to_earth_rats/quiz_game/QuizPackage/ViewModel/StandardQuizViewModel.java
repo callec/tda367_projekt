@@ -159,10 +159,6 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         return runningState;
     }
 
-    void hintHasBeenEnabled() {
-
-    }
-
     public void hintsUsedResults() {
         hintsUsed = true;
     }
