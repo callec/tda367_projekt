@@ -26,7 +26,6 @@ public class StandardQuizViewModelTest {
     @Before
     public void setup() {
         vm = new StandardQuizViewModel();
-        QuestionsFromFile.testSeed = 42;
         vm.setTotalQuestions(5);
         vm.initQuiz();
     }
@@ -40,31 +39,23 @@ public class StandardQuizViewModelTest {
         assertTrue(vm.checkIfCorrect(1)||vm.checkIfCorrect(2)
                            ||vm.checkIfCorrect(3)||vm.checkIfCorrect(4));
 
-
     }
 
     @Test
     public void TestGetHintIndex() {
-        int amountOfQuestions = 4;
-        //assertFalse(vm.getHintIndex());
+        //int amountOfQuestions = 4;
+        vm.setTotalQuestions(100000);
+        vm.initQuiz();
 
-        //testAnswerQuestions()
-        int firstResult = vm.getCorrectAnswers();
-
-        // since the alternatives are always shuffled we run through them to make sure we get
-        // at least one correct answer.
-        int c = 1;
-        while (!vm.answerQuestion(c)) {
-            ++c;
-            if (c > 4) {
-
-                c = 1;
-            }
+        for (int i = 0; i < 100000; i++) {
+            vm.answerQuestion(vm.getHintIndex()+1);
+            vm.changeQuestion();
         }
-        LiveData<List<String>> list = vm.getAlternativeList();
-        //int firstResult = vm.getCorrectAnswers();
-        assertNotEquals(firstResult, vm.getCorrectAnswers());
+        assert vm.getCorrectAnswers() == 0;
+
     }
+
+
 
     @Test
     public void testGetTotalQuestions() {

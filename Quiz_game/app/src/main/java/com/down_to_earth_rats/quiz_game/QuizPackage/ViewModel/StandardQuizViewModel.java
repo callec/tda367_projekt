@@ -42,6 +42,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
 
+    boolean hintsUsed = false;
+
     //private Resources res;
     //private SharedPreferences pref;
 
@@ -161,9 +163,12 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     }
 
+    public void hintsUsedResults() {
+        hintsUsed = true;
+    }
+
     @Override
     public void quizFinished() {
-        boolean hintsUsed = true;
         // TODO: Added by Louise to try create statistics, not beautiful with the user!
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition", hintsUsed);
         user.addResult(resultObject);

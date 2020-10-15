@@ -24,6 +24,7 @@ public interface IViewModel {
     MutableLiveData<Boolean> getIsLast();
     int getHintIndex();
     boolean checkIfCorrect(int alternativeID);
+    void hintsUsedResults();
 
     void gameModeForceEnd();
 

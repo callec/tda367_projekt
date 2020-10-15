@@ -53,6 +53,7 @@ public class ResultsActivity extends AppCompatActivity {
     private void checkHintUsed(View view){
         boolean hintsUsed = pref.getBoolean("hintsUsed", false);
         viewBinding.HintsUsed.setVisibility(hintsUsed ? view.VISIBLE : view.INVISIBLE);
+
     }
 
     private void setupButtons() {

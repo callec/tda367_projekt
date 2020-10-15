@@ -100,6 +100,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         editor.putBoolean("hintsUsed", true);
         editor.commit();
+        model.hintsUsedResults();
 
         int hintIndex = model.getHintIndex();
         List<Button> buttons = Arrays.asList(new Button[] {alternative1, alternative2, alternative3, alternative4});
