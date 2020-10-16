@@ -1,6 +1,9 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.lifecycle.LiveData;
+
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionsFromFile;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -11,7 +14,7 @@ import static org.junit.Assert.fail;
 
 /**
  * Created by Carl Bergman
- * Small modification by Erik Blomberg
+ * Small modification by Erik Blomberg, Sara Persson
  */
 public class StandardQuizViewModelTest {
 
@@ -25,6 +28,52 @@ public class StandardQuizViewModelTest {
         vm = new StandardQuizViewModel();
         vm.setTotalQuestions(5);
         vm.initQuiz();
+    }
+
+    @Test
+    public void testCheckIfCorrect() {
+        int amountOfQuestions = 4;
+        for (int n = 1; n<amountOfQuestions; n++) { //there is only one true answer or no true answer.
+        assertFalse(vm.checkIfCorrect(n)&&vm.checkIfCorrect(n+1));
+        }                                           //there is a true answer.
+        assertTrue(vm.checkIfCorrect(1)||vm.checkIfCorrect(2)
+                           ||vm.checkIfCorrect(3)||vm.checkIfCorrect(4));
+
+    }
+
+    @Test
+    public void TestGetHintIndex() {
+        //int amountOfQuestions = 4;
+        vm.setTotalQuestions(100000);
+        vm.initQuiz();
+
+        for (int i = 0; i < 100000; i++) {
+            vm.answerQuestion(vm.getHintIndex()+1);
+            vm.changeQuestion();
+        }
+        assert vm.getCorrectAnswers() == 0;
+
+    }
+
+    @Test
+    public void TestGetHintsUsed () {
+        assert vm.GetHintsUsed() == false;
+        vm.hintsUsedResults();
+        assert vm.GetHintsUsed() == true;
+    }
+
+    @Test
+    public void TestSetHintsUsed () {
+        assert vm.GetHintsUsed() == false;
+        vm.SetHintsUsed(true);
+        assert vm.GetHintsUsed() == true;
+    }
+
+    @Test
+    public void TesthintsUsedResults () {
+        assertFalse(vm.GetHintsUsed());
+        vm.hintsUsedResults();
+        assertTrue(vm.GetHintsUsed());
     }
 
     @Test
