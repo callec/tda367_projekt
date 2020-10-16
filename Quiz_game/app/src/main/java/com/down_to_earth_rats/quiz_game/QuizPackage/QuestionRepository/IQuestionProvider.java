@@ -13,6 +13,7 @@ import java.util.List;
 
 public interface IQuestionProvider {
 
-    public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions);
-    public Iterator<IQuestion> getQuestions(List<String> listOfSubjects, int numberOfQuestions);
+    //TODO add second String for category
+    Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions);
+    Iterator<IQuestion> getQuestions(List<String> listOfSubjects, int numberOfQuestions);
 }
