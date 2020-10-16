@@ -97,6 +97,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         return gameMode;
     }
 
+    // TODO ?? tror att denna orsakar dubbla resultscreens
     private void setupOnQuizEnd() {
         model.getRunningState().observe(this, new Observer<Boolean>() {
             @Override
@@ -109,7 +110,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void setupTimerText() {
-        msUntilNextQ = 3000;
+        msUntilNextQ = 1500;
         timerTextId = R.string.nextq_in;
 
         model.getIsLast().observe(this, new Observer<Boolean>() {
@@ -199,7 +200,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             @Override
             public void onTick(long l) {
                 //viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
-                viewBinding.progressBar.incrementProgressBy(2);
+                viewBinding.progressBar.incrementProgressBy(1);
             }
 
 
@@ -211,7 +212,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 model.changeQuestion();
                 disableProgressBar();
                 if (gameModeEnd) {
-                    switchActivityToResult();
+                    switchActivityToResult(); //TODO gör tillsammans med setupOnQuizEnd så att det skapas två resultAvtivities.
                 }
             }
 
