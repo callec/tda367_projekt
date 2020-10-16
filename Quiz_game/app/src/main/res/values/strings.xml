@@ -1,11 +1,10 @@
 <resources>
     <string name="app_name">Qiwi-Quiz</string>
     <string name="play_button">Spela!</string>
-    <string name="highscore_button">Highscore</string>
     <string name="settings_button">Inställningar</string>
     <string name="math_subject">Matematik</string>
     <string name="category_title">Kategori</string>
-    <string name="highscore_title">Statistik</string>
+    <string name="statistics_title">Statistik</string>
     <string name="subject_title">Ämne</string>
     <string name="next_question">Nästa fråga:</string>
     <string name="back_button">Hem</string>
@@ -35,4 +34,16 @@
     <string name="gamemode_spinner_selected">GameModeSpinnerValue</string>
     <string name="gamemode_time">Tidspress</string>
     <string name="gamemode_time_value">TimeGameModeValue</string>
+
+    <!--Login-->
+    <string name="exit">Avsluta</string>
+    <string name="log_in">Logga in</string>
+    <string name="username">Användarnamn</string>
+    <string name="password">Lösenord</string>
+
+    <!--Sub-categories-->
+    <string name="sub_addition">Addition</string>
+    <string name="sub_subtraktion">Subtraktion</string>
+    <string name="sub_multiplikation">Multiplikation</string>
+    <string name="sub_division">Division</string>
 </resources>

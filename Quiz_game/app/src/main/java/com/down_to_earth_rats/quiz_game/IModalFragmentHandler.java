@@ -14,6 +14,6 @@ public interface IModalFragmentHandler {
      * Method that will be called from modalFragment when a button in the modal is pressed
      * @param buttonIndex index of the button - corresponds to string index in list that is used to set alternatives
      */
-    public void modalFragmentButtonPressed(int buttonIndex);
+    void modalFragmentButtonPressed(int buttonIndex);
 
 }

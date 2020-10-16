@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
-import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
+import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
 import java.util.List;
 
@@ -48,7 +48,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative4;
     private CountDownTimer timeUntilNextQ;
 
-    User user = User.getInstance();
+    private String currentCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +59,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
+
+        currentCategory = pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik");
+        model.setCategoryAndSubCategory(currentCategory,
+                pref.getString(CategoryActivity.SUBCATEGORY_NAME, "Subtraktion"));
+
         model.initQuiz();
 
         viewBinding = ActivityQuizBinding.inflate(getLayoutInflater());
@@ -137,7 +142,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void setupSupportActionBar() {
         Toolbar toolbar = viewBinding.toolbarQuiz;
-        toolbar.setTitle(R.string.math_subject);
+        toolbar.setTitle(currentCategory);
 
         setSupportActionBar(toolbar);
     }
@@ -193,8 +198,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onTick(long l) {
-                viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
-                viewBinding.progressBar.incrementProgressBy(1);
+                //viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
+                viewBinding.progressBar.incrementProgressBy(2);
             }
 
 
@@ -272,7 +277,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     @Override
-    public void gameModeQuizEnd() {
+    public void gameModeQuizEnd(){
         model.gameModeForceEnd();
         gameModeEnd = true;
         if (timeUntilNextQ != null) {

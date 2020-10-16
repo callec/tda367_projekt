@@ -12,6 +12,6 @@ public class QuestionProviderFactory {
     }
 
     public static IQuestionProvider getStandardQuestionProvider(){
-        return new QuestionsFromFile();
+        return new ConcreteQuestionProvider();
     }
 }

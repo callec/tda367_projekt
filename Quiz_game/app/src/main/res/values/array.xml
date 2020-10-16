@@ -15,7 +15,7 @@
     <string-array
         name="quit_app_modal">
         <item>@string/dialog_yes</item>
-        <item>@string/dialog_yes</item>
+        <item>@string/dialog_no</item>
     </string-array>
     <string-array name="gamemodes">
         <item>@string/gamemode_standard</item>
