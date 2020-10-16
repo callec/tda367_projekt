@@ -10,15 +10,24 @@ import java.util.List;
 import java.util.Random;
 
 /**
- * Created by Carl Bergman, Louise Tranborg
+ * Created by Carl Bergman, Louise Tranborg.
+ * Modified by Henrik Johansson and Louise Tranborg.
  *
- * This class is responsible for supplying questions. Will later read questions from a file,
- * From a database.
+ * This class is responsible for supplying questions.
+ * At this moment just methods and hardcoded data.
+ * But later on this will be a path to access questions from a database/file.
  *
  */
 
 public class ConcreteQuestionProvider implements IQuestionProvider {
 
+    /**
+     * Method used to access a list of question based on subcategory and number of questions wanted
+     *
+     * @param subcategory questions from this subcategory is wanted.
+     * @param numberOfQuestions how many questions you want to get.
+     * @return a list of questons from the wanted subcategory
+     */
     @Override
     public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions) {
         List<IQuestion> qs = new ArrayList<>();
@@ -84,7 +93,6 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         }
         return questions;
     }
-
 
     private IQuestion randomAdditionQuestion() {
         Random r = new Random();
@@ -211,7 +219,15 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
     }
 
-    @Override //Can later be implemented to access questions from several subcategories.
+    /**
+     * This method is not viable at the moment.
+     * Can be implemented to access hybride-quizzes.
+     *
+     * @param listOfSubjects a list of all the subcategories you want questions from.
+     * @param numberOfQuestions how many questions you want to get.
+     * @return a list of questons.
+     */
+    @Override
     public Iterator<IQuestion> getQuestions(List<String> listOfSubjects, int numberOfQuestions) {
         return null;
     }

@@ -45,6 +45,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private Button alternative2;
     private Button alternative3;
     private Button alternative4;
+    private String currentCategory;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
 
-        model.setCategoryAndSubCategory(pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik"),
+        currentCategory = pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik");
+        model.setCategoryAndSubCategory(currentCategory,
                 pref.getString(CategoryActivity.SUBCATEGORY_NAME, "Subtraktion"));
 
         model.initQuiz();
@@ -135,7 +137,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private void setupSupportActionBar() {
         Toolbar toolbar = viewBinding.toolbarQuiz;
-        toolbar.setTitle(R.string.math_subject);
+        toolbar.setTitle(currentCategory);
 
         setSupportActionBar(toolbar);
     }
