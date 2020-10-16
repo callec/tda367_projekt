@@ -14,10 +14,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.UserPackage.IUser;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
 import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
@@ -63,7 +63,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private int hintTries = 2;   //how many times you may use hints
     private int hints = hintTries;
-    User user = User.getInstance();
+    IUser user = UserSingleton.getUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -243,14 +243,13 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private void countDown() {
         msUntilNextQ = 1500;
         viewBinding.progressBar.setVisibility(View.VISIBLE);
+        viewBinding.hintButton.setVisibility(View.INVISIBLE);
 
         if (gameModeEnd && timeUntilNextQ != null) { // really really don't like this check but it is necessary for all
                            // gamemodes to function correctly
             timeUntilNextQ.cancel();
         }
         timeUntilNextQ = new CountDownTimer(msUntilNextQ, msUntilNextQ / 100) {
-        viewBinding.hintButton.setVisibility(View.INVISIBLE);
-        new CountDownTimer(3000, 30) {
 
             @Override
             public void onTick(long l) {

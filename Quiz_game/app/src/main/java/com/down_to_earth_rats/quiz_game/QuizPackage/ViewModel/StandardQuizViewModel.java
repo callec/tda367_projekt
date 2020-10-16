@@ -14,8 +14,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
 import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.UserPackage.IUser;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
@@ -52,7 +52,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     //private Resources res;
     //private SharedPreferences pref;
 
-    User user = User.getInstance();
+    IUser user = UserSingleton.getUser();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
