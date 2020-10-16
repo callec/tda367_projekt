@@ -185,7 +185,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private void countDown() {
         viewBinding.progressBar.setVisibility(View.VISIBLE);
 
-        if (gameModeEnd) { // really really don't like this check but it is necessary for all
+        if (gameModeEnd && timeUntilNextQ != null) { // really really don't like this check but it is necessary for all
                            // gamemodes to function correctly
             timeUntilNextQ.cancel();
         }
@@ -272,7 +272,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     public void gameModeQuizEnd() {
         model.gameModeForceEnd();
         gameModeEnd = true;
-        timeUntilNextQ.cancel();
+        if (timeUntilNextQ != null) {
+            timeUntilNextQ.cancel();
+        }
+        enableButtons(false, alternative1, alternative2, alternative3, alternative4);
         disableProgressBar();
         countDown();
     }

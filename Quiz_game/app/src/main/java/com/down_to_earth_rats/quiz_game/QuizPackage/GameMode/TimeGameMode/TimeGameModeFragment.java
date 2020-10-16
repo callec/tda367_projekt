@@ -99,6 +99,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
             @Override
             public void onFinish() {
                 quizRunning = false;
+                timerProgressBar.setProgress(100);
                 notifyObserver();
             }
         };
