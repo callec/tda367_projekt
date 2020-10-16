@@ -18,12 +18,12 @@ class StandardCategoryHandler implements ICategoryHandler{
 
     private List<ICategory> categoryList = new ArrayList<>();
 
-    public StandardCategoryHandler() {
+    public StandardCategoryHandler() {  //TODO byta till strings från R.strings ?
         ImmutableCategory category1 = new ImmutableCategory("Matematik", "Addition",
                 "Subtraktion", "Multiplikation", "Division");
 
         ImmutableCategory category2 = new ImmutableCategory("Historia",
-                "Svergies Historia", "Världshistoria");
+                "Sveriges Historia", "Världshistoria");
 
         //ImmutableCategory category3 = new ImmutableCategory("Svenska", "Grammatik", "Ord");
 

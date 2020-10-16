@@ -36,9 +36,9 @@
     <string name="username">Användarnamn</string>
     <string name="password">Lösenord</string>
 
-    <!--Sub-categories              Kanske inte ska finnas TODO
+    <!--Sub-categories-->
     <string name="sub_addition">Addition</string>
     <string name="sub_subtraktion">Subtraktion</string>
     <string name="sub_multiplikation">Multiplikation</string>
-    <string name="sub_division">Division</string>-->
+    <string name="sub_division">Division</string>
 </resources>
