@@ -57,17 +57,23 @@ public class StandardQuizViewModelTest {
 
     @Test
     public void TestGetHintsUsed () {
-        //TODO
+        assert vm.GetHintsUsed() == false;
+        vm.hintsUsedResults();
+        assert vm.GetHintsUsed() == true;
     }
 
     @Test
     public void TestSetHintsUsed () {
-        //TODO
+        assert vm.GetHintsUsed() == false;
+        vm.SetHintsUsed(true);
+        assert vm.GetHintsUsed() == true;
     }
 
     @Test
     public void TesthintsUsedResults () {
-        //TODO
+        assertFalse(vm.GetHintsUsed());
+        vm.hintsUsedResults();
+        assertTrue(vm.GetHintsUsed());
     }
 
     @Test

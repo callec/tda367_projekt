@@ -25,6 +25,8 @@ public interface IViewModel {
     int getHintIndex();
     boolean checkIfCorrect(int alternativeID);
     void hintsUsedResults();
+    boolean GetHintsUsed();
+    void SetHintsUsed(boolean bool);
 
     void gameModeForceEnd();
 
