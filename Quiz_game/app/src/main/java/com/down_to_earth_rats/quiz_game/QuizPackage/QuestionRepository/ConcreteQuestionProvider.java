@@ -12,17 +12,24 @@ import java.util.Random;
 /**
  * Created by Carl Bergman, Louise Tranborg
  *
- * This class is responsible for reading questions from a file.
+ * This class is responsible for supplying questions. Will later read questions from a file,
+ * From a database.
  *
  */
 
-public class QuestionsFromFile implements IQuestionProvider {
+public class ConcreteQuestionProvider implements IQuestionProvider {
 
     @Override
     public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions) {
-
-
         List<IQuestion> qs = new ArrayList<>();
+
+        if(subcategory.equals("Sveriges Historia")){
+            qs = swedishHistoryQuestions(numberOfQuestions);
+        }
+        if(subcategory.equals("Europas Historia")){
+            qs = europeHistoryQuestions(numberOfQuestions);
+        }
+
         for (int i=0; i<numberOfQuestions; ++i) {
 
             switch (subcategory){
@@ -38,43 +45,46 @@ public class QuestionsFromFile implements IQuestionProvider {
                 case "Division":
                     qs.add(randomDivisionQuestion());
                     break;
-
-                case "Sveriges Historia":
-                    System.out.println("SVERIGES HISTORIA");
-                    break;
-                case "Världshistoria":
-                    System.out.println("VÄRLDSHISTORIA");
-                    break;
+                case "Matteprov":
+                    qs.add(matteProvQuestion());
 
             }
-
-            /*if(subcategory.equals("Addition")){
-                qs.add(randomAdditionQuestion());
-            }
-            if(subcategory.equals("Subtraktion")){
-                qs.add(randomSubtractionQuestion());
-            }
-            if(subcategory.equals("Multiplikation")){
-                qs.add(randomMultiplicationQuestion());
-            }
-            if(subcategory.equals("Division")){
-                qs.add(randomDivisionQuestion());
-            }*/
-
         }
 
         return new ListIterator<>(qs);
-        //return randomAdditionQuestions(numberOfQuestions);
-
-        /*List<IQuestion> list = new ArrayList<>();
-        for( int i = 0; i < 10; i++) {
-            list.add(QuestionFactory.getFourAltQuestion("fråga" + i, "1" + i, "2" + i, "3" + i, "4" + i));
-        }
-        Iterator<IQuestion> questions = new ListIterator<IQuestion>(list);
-        return questions;
-
-         */
     }
+
+    private IQuestion matteProvQuestion(){
+        Random random = new Random();
+        int value = random.nextInt(4);
+        switch (value){
+            case 0:
+                return randomAdditionQuestion();
+            case 1:
+                return randomSubtractionQuestion();
+            case 2:
+                return randomMultiplicationQuestion();
+            case 3:
+                return randomDivisionQuestion();
+        } return randomAdditionQuestion();
+    }
+
+    private List<IQuestion> swedishHistoryQuestions(int numberOfQuestions){
+        List<IQuestion> questions = new ArrayList<>();
+        for(int i = 0; i<numberOfQuestions; i++){
+            questions.add(QuestionFactory.getFourAltQuestion("Vilket år sköts Olof Palme?", "1986","1987", "1985","2005"));
+        }
+        return questions;
+    }
+
+    private List<IQuestion> europeHistoryQuestions(int numberOfQuestions){
+        List<IQuestion> questions = new ArrayList<>();
+        for(int i = 0; i<numberOfQuestions; i++){
+            questions.add(QuestionFactory.getFourAltQuestion("Vilket år upphörde Berlinmuren?", "1989","1987", "1990","2005"));
+        }
+        return questions;
+    }
+
 
     private IQuestion randomAdditionQuestion() {
         Random r = new Random();
@@ -201,39 +211,7 @@ public class QuestionsFromFile implements IQuestionProvider {
         return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
     }
 
-    /*
-    private Iterator<IQuestion> randomAdditionQuestions(int numberOfQuestions){
-        List<IQuestion> list = new ArrayList<>();
-        int x;
-        int y;
-        int correct;
-        int wrong1;
-        int wrong2;
-        int wrong3;
-        Random r = new Random();
-        for(int i = 0; i < numberOfQuestions; i++){
-            x = r.nextInt(30) + 10;
-            y = r.nextInt(30) + 10;
-            correct = x + y;
-
-            do{
-                wrong1 = x + y + Math.abs(x-y) + 1;
-            } while(wrong1 == correct);
-
-            do{
-                wrong2 = x + y + r.nextInt(10) - 1;
-            } while(wrong2 == correct || wrong2 == wrong1);
-
-            do{
-                wrong3 = Math.abs(x + y - r.nextInt(10) + 1);
-            } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1);
-
-            list.add(QuestionFactory.getFourAltQuestion("Vad är: " + x + " + " + y + " ?", "" + correct, "" + wrong1, "" + wrong2, "" + wrong3));
-        }
-        return new ListIterator<>(list);
-    }*/
-
-    @Override
+    @Override //Can later be implemented to access questions from several subcategories.
     public Iterator<IQuestion> getQuestions(List<String> listOfSubjects, int numberOfQuestions) {
         return null;
     }

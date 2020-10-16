@@ -53,6 +53,11 @@ class User implements IUser{
 
     @Override
     public ICategory getUserCategory() {
-        return new ImmutableCategory(username, "Matteprov");
+        if(username.equals("Lisa")){ //Temporary solution.
+            return new ImmutableCategory(username, "Matteprov");
+        } else{
+            return new ImmutableCategory(username);
+        }
+
     }
 }

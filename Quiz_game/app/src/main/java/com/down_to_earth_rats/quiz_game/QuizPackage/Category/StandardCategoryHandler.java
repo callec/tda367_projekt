@@ -23,7 +23,7 @@ class StandardCategoryHandler implements ICategoryHandler{
                 "Subtraktion", "Multiplikation", "Division");
 
         ImmutableCategory category2 = new ImmutableCategory("Historia",
-                "Sveriges Historia", "Världshistoria");
+                "Sveriges Historia", "Europas Historia");
 
         //ImmutableCategory category3 = new ImmutableCategory("Svenska", "Grammatik", "Ord");
 
