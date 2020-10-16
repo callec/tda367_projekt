@@ -244,7 +244,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onFinish() {
-                viewBinding.hintButton.setVisibility(View.VISIBLE);
+                checkHintStatus(findViewById(android.R.id.content).getRootView());
                 viewBinding.hintButton.setClickable(true);
                 disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
