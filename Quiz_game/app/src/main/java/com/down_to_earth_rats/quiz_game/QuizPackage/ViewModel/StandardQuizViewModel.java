@@ -186,7 +186,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     @Override
     public void quizFinished() {
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory,
-                "Standard", false); //TODO hint and gamemode
+                "Standard", GetHintsUsed()); //TODO hint and gamemode
         UserSingleton.getUser().addResult(resultObject);
 
 
@@ -200,7 +200,6 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void gameModeForceEnd() {
-        boolean hintsUsed = true;
         totalQuestions = totalAnswers;
         quizFinished();
         isLast.setValue(true);
