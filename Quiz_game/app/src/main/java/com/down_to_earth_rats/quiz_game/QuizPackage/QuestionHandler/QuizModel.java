@@ -62,12 +62,12 @@ public class QuizModel implements IQuestionHandler {
     @Override
     public void nextQuestion() {
         questionStack.pop();
+        /*
         if(questionStack.isEmpty()) {
             quizIsFinished();
         }
 
-
-
+         */
     }
 
     @Override

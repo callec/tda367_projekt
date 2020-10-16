@@ -23,7 +23,7 @@ import java.util.List;
  *
  */
 
-public class HighscoreActivity extends AppCompatActivity implements IRecyclerViewActivity{
+public class StatisticsActivity extends AppCompatActivity implements IRecyclerViewActivity{
 
     private ActivityHighscoreBinding viewBinding;
 
@@ -42,7 +42,7 @@ public class HighscoreActivity extends AppCompatActivity implements IRecyclerVie
 
         Toolbar toolbar = viewBinding.toolbarHighscore;
 
-        toolbar.setTitle(R.string.highscore_title);
+        toolbar.setTitle(R.string.statistics_title);
         setSupportActionBar(toolbar);
 
         //Gives us the return to previous page /back arrow, in the top toolbar   (<-)

@@ -1,6 +1,5 @@
 package com.down_to_earth_rats.quiz_game;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -263,7 +262,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     @Override
-    public void gameModeQuizEnd() {
+    public void gameModeQuizEnd(){
         model.gameModeForceEnd();
         gameModeEnd = true;
     }

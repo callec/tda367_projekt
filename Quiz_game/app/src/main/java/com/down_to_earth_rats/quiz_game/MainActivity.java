@@ -1,9 +1,10 @@
 package com.down_to_earth_rats.quiz_game;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityMainBinding;
@@ -58,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private void gotoHighscore(View view) {
-        Intent intent = new Intent(this, HighscoreActivity.class);
+        Intent intent = new Intent(this, StatisticsActivity.class);
         startActivity(intent);
     }
 

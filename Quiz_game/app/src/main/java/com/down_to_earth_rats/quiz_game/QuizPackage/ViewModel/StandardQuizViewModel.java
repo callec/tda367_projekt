@@ -1,7 +1,5 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
-import android.content.SharedPreferences;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -124,7 +122,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     public void changeQuestion() {
         questionHandler.nextQuestion();
         currentQuestion = questionHandler.getQuestion();
-        createAlternativeList(questionHandler.getQuestion());
+        createAlternativeList(currentQuestion);
         isLast.setValue(questionHandler.isLastQuestion());
     }
 
@@ -138,6 +136,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
                 "Standard", false); //TODO hint and gamemode
         UserSingleton.getUser().addResult(resultObject);
 
+
         runningState.setValue(false);
     }
 
@@ -147,7 +146,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     }
 
     @Override
-    public void gameModeForceEnd() {
+    public void gameModeForceEnd(){
         totalQuestions = totalAnswers;
         quizFinished();
         isLast.setValue(true);
