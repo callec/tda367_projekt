@@ -1,5 +1,6 @@
 package com.down_to_earth_rats.quiz_game;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -37,6 +38,7 @@ public class SettingsActivity extends AppCompatActivity {
     private SeekBar timeSeekBar;
     private TextView timeSeekBarValue;
     private Resources res;
+    private Switch hintSwitch;
 
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
@@ -54,9 +56,14 @@ public class SettingsActivity extends AppCompatActivity {
         setContentView(viewBinding.getRoot());
 
         setupToolBar();
-        setupFontSize();
+        setupHint();
         setupQuestionSeekBar();
         setupTimeSeekBar();
+
+        boolean hintOn_Status = pref.getBoolean("StatusOn", false);
+        hintSwitch.setChecked(hintOn_Status);
+
+
         setupGameModeSpinner();
     }
 
@@ -88,7 +95,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
         gameModeSpinner.setSelection(index);
     }
-    
+
     private void saveGameMode(String selectedGameMode) {
         editor.putString(getString(R.string.gamemode_which), selectedGameMode);
 
@@ -131,18 +138,25 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void setupFontSize() {
-        // This is the code for the switch, when clicked it changes text.
-        final Switch s = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
-        s.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            String test = s.getText().toString();
+    private void setupHint() {
+
+        hintSwitch = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
+
+        hintSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            String hintOff = hintSwitch.getText().toString();
+            String hintOn = getString(R.string.hintOn);
+
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) { //Switch on
-                    s.setText("Smaller text");
+                    hintSwitch.setText(hintOn);
+                    editor.putBoolean("StatusOn", hintSwitch.isChecked());
+                    editor.commit();
                 } else {  //Switch off
-                    s.setText(test);
+                    hintSwitch.setText(hintOff);
+                    editor.putBoolean("StatusOn", hintSwitch.isChecked());
+                    editor.commit();
                 }
             }
         });

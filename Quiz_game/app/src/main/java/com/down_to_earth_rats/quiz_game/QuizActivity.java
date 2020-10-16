@@ -14,6 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
+import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
@@ -22,6 +27,10 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewMo
 import com.down_to_earth_rats.quiz_game.ViewPager.CategoryActivity;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -41,6 +50,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private Resources res;
     private SharedPreferences pref;
+    private SharedPreferences.Editor editor;
 
     private Button alternative1;
     private Button alternative2;
@@ -49,12 +59,20 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private CountDownTimer timeUntilNextQ;
 
     private String currentCategory;
+    public Button hintButton;
+
+    private int hintTries = 2;   //how many times you may use hints
+    private int hints = hintTries;
+    User user = User.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         res = getResources();
+        pref = this.getSharedPreferences(String.valueOf(R.string.preferences_name), MODE_PRIVATE);
+        editor = pref.edit();
+
         pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
 
         model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
@@ -75,6 +93,42 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         setupOnQuizEnd();
         //setupTimerText();
         setupButtons();
+        checkHintStatus(findViewById(android.R.id.content).getRootView());
+
+        editor.putBoolean("hintsUsed", false);
+        editor.commit();
+
+    }
+
+    private void checkHintStatus(View view) {
+
+        boolean hintOn_Status = pref.getBoolean("StatusOn", false);
+        viewBinding.hintButton.setVisibility(hintOn_Status ? view.VISIBLE : view.INVISIBLE);
+
+    }
+
+    public void giveHintQuiz(View view) {
+
+        editor.putBoolean("hintsUsed", true);
+        editor.commit();
+        model.hintsUsedResults();
+
+        int hintIndex = model.getHintIndex();
+        List<Button> buttons = Arrays.asList(new Button[] {alternative1, alternative2, alternative3, alternative4});
+        Button alternative = buttons.get(hintIndex);
+
+        while (!alternative.isEnabled()) {
+            hintIndex = model.getHintIndex();
+            alternative = buttons.get(hintIndex);
+        }
+
+        alternative.setBackgroundResource(R.drawable.grey_button);
+        alternative.setEnabled(false);
+
+        hints--;
+        if (hints < 1) {
+            viewBinding.hintButton.setClickable(false);
+        }
     }
 
     private void setupGameMode() {
@@ -189,17 +243,20 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private void countDown() {
         msUntilNextQ = 1500;
         viewBinding.progressBar.setVisibility(View.VISIBLE);
-
         if (gameModeEnd && timeUntilNextQ != null) { // really really don't like this check but it is necessary for all
                            // gamemodes to function correctly
             timeUntilNextQ.cancel();
         }
         timeUntilNextQ = new CountDownTimer(msUntilNextQ, msUntilNextQ / 100) {
 
+        viewBinding.hintButton.setVisibility(View.INVISIBLE);
+        new CountDownTimer(3000, 30) {
+
             @Override
             public void onTick(long l) {
                 //viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
                 viewBinding.progressBar.incrementProgressBy(1);
+
             }
 
 
@@ -210,9 +267,19 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 gameMode.onNewQuestion();
                 model.changeQuestion();
                 disableProgressBar();
+
+                checkHintStatus(findViewById(android.R.id.content).getRootView());
+                viewBinding.hintButton.setClickable(true);
+                disableProgressBar();
+                enableButtons(true, alternative1, alternative2, alternative3, alternative4);
+                gameMode.onNewQuestion();
+                model.changeQuestion();
+                hints = hintTries;
+
                 if (gameModeEnd) {
                     model.gameModeForceEnd();
                 }
+
             }
 
         };
@@ -234,6 +301,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 b.setBackgroundResource(R.drawable.grey_button);
             } else {
                 b.setBackgroundResource(R.drawable.round_button);
+                b.setEnabled(true);
             }
         }
     }

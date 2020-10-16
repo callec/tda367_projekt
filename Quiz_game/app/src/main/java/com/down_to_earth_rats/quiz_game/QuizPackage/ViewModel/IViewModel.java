@@ -23,6 +23,12 @@ public interface IViewModel {
     void setCategoryAndSubCategory(String category, String subCategory);
     void initQuiz();
     MutableLiveData<Boolean> getIsLast();
+    int getHintIndex();
+    boolean checkIfCorrect(int alternativeID);
+    void hintsUsedResults();
+    boolean GetHintsUsed();
+    void SetHintsUsed(boolean bool);
+
     void gameModeForceEnd();
 
 
