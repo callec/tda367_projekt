@@ -102,6 +102,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
     @Override
     public void CategoryClicked(String categoryName, String subCategoryName) {
 
+        //Save current category and sub category via shared preferences
         SharedPreferences pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         editor.putString(CATEGORY_NAME, categoryName);

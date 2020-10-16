@@ -24,7 +24,31 @@ public class QuestionsFromFile implements IQuestionProvider {
 
         List<IQuestion> qs = new ArrayList<>();
         for (int i=0; i<numberOfQuestions; ++i) {
-            if(subcategory.equals("Addition")){
+
+            switch (subcategory){
+                case "Addition":
+                    qs.add(randomAdditionQuestion());
+                    break;
+                case "Subtraktion":
+                    qs.add(randomSubtractionQuestion());
+                    break;
+                case "Multiplikation":
+                    qs.add(randomMultiplicationQuestion());
+                    break;
+                case "Division":
+                    qs.add(randomDivisionQuestion());
+                    break;
+
+                case "Sveriges Historia":
+                    System.out.println("SVERIGES HISTORIA");
+                    break;
+                case "Världshistoria":
+                    System.out.println("VÄRLDSHISTORIA");
+                    break;
+
+            }
+
+            /*if(subcategory.equals("Addition")){
                 qs.add(randomAdditionQuestion());
             }
             if(subcategory.equals("Subtraktion")){
@@ -35,7 +59,7 @@ public class QuestionsFromFile implements IQuestionProvider {
             }
             if(subcategory.equals("Division")){
                 qs.add(randomDivisionQuestion());
-            }
+            }*/
 
         }
 
