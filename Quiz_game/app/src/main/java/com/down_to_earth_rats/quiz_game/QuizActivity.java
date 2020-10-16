@@ -246,6 +246,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     // Consume back press
     @Override
     public void onBackPressed() {
+        gameMode.pause();
         modal = new modalFragment(this.getResources().getString(R.string.quit_quiz_modal), this.getResources().getStringArray(R.array.quit_quiz_modal), this);
         modal.show(this.getSupportFragmentManager(), "s");
     }
@@ -256,11 +257,13 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         switch (buttonIndex) {
             // "Continue"
             case 0:
+                gameMode.resume();
                 break;
             // "Restart"
             case 1:
                 //TODO this works for quiz of mathematical types where the questions are generated
                 model.initQuiz();
+                gameMode.reset();
                 break;
             // "Quit"
             case 2:

@@ -141,4 +141,28 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
     public void onNewQuestion() {
         // do nothing
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void reset() {
+        model.reset();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pause() {
+        // do nothing
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resume() {
+        // do nothing
+    }
 }

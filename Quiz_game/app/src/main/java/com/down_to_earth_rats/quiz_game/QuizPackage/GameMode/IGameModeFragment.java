@@ -28,4 +28,19 @@ public interface IGameModeFragment {
     void onNewQuestion();
     // no static functions in interface with out language level, remember to implement it
     //static IGameModeFragment newInstance();
+
+    /**
+     * Resets the GameMode to as it was in the beginning.
+     */
+    void reset();
+
+    /**
+     * For GameModes which are time dependent, this method pauses.
+     */
+    void pause();
+
+    /**
+     * For GameModes which are time dependent, this method resumes.
+     */
+    void resume();
 }

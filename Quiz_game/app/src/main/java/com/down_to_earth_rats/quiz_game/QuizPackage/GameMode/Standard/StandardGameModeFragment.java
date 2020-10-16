@@ -112,4 +112,28 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
     public void onNewQuestion() {
         model.nextQuestion();
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void reset() {
+        model.reset();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pause() {
+        // do nothing
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resume() {
+        // do nothing
+    }
 }

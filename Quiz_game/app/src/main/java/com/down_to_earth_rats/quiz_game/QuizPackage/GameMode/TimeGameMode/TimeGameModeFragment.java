@@ -114,7 +114,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     @Override
     public void answer(boolean correct) {
         timer.cancel();
-        timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
+        enableProgressBar(false);
         /*
         if (correct) {
             timeLeft += maxTimeLeft * 0.1;
@@ -143,7 +143,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
      */
     @Override
     public void notifyObserver() {
-        timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
+        enableProgressBar(false);
         for (IGameModeObserver o : observers) {
             o.gameModeQuizEnd();
         }
@@ -160,6 +160,47 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
             return;
         }
         timerStart(timeLeft);
-        timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorAccent)));
+        enableProgressBar(true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void reset() {
+        if (timeLeft == 0 || !quizRunning) {
+            return;
+        }
+        timerProgressBar.setProgress(0);
+        timer.cancel();
+        timerStart(maxTimeLeft);
+        enableProgressBar(true);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pause() {
+        timer.cancel();
+        enableProgressBar(false);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void resume() {
+        timerStart(timeLeft);
+        enableProgressBar(true);
+    }
+
+    private void enableProgressBar(boolean b) {
+        if (b) {
+            timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorAccent)));
+        } else {
+
+            timerProgressBar.setProgressTintList(ColorStateList.valueOf(ContextCompat.getColor(getContext(), R.color.colorDarkGrey)));
+        }
     }
 }

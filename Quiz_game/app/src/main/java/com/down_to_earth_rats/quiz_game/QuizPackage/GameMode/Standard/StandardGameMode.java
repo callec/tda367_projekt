@@ -19,7 +19,11 @@ public class StandardGameMode extends ViewModel {
         return currentq;
     }
 
-    public void nextQuestion() {
+    protected void nextQuestion() {
         currentq.setValue(currentq.getValue() + 1);
+    }
+
+    protected void reset() {
+        currentq.setValue(0);
     }
 }
