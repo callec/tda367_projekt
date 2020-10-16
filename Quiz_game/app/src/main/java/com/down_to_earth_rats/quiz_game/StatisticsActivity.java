@@ -79,13 +79,21 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
 
             for (int i = 0; i < resultList.size(); i++){
 
-                resultArray[i] = ("" + resultList.get(i).getCorrectAnswers() + "/" + resultList.get(i).getTotalQuestions() + " - " + getSwedishDate(resultList.get(i).getDate()));
+                resultArray[i] = ("" + resultList.get(i).getCorrectAnswers() + "/" + resultList.get(i).getTotalQuestions() + " - " + getSwedishDate(resultList.get(i).getDate()) + hintsUsedSymbol(resultList.get(i).usedHint()));
             }
 
             Collections.reverse(Arrays.asList(resultArray));
 
             this.subcategories = resultArray;
         }
+    }
+
+    private String hintsUsedSymbol(boolean hintsUsed) {
+        String hintSymbol = ("");
+        if (hintsUsed) {
+            hintSymbol = (" *");
+        }
+        return hintSymbol;
     }
 
     private String getSwedishDate(Date date){

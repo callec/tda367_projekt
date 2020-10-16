@@ -1,5 +1,9 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -9,6 +13,9 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
+import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
+import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
@@ -16,10 +23,12 @@ import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
  * Modified by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
+ * Modified by Carl Bergman, Louise Tranborg, Sara Persson
  *
  */
 
@@ -38,6 +47,13 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     private MutableLiveData<Boolean> runningState = new MutableLiveData<>();
     private MutableLiveData<Boolean> isLast = new MutableLiveData<>();
 
+    private boolean hintsUsed = false;
+
+    //private Resources res;
+    //private SharedPreferences pref;
+
+    User user = User.getInstance();
+
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
 
@@ -51,6 +67,14 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         createAlternativeList(currentQuestion);
         totalQuestions = 1;
     }*/
+
+    public boolean GetHintsUsed() {
+        return hintsUsed;
+    }
+
+    public void SetHintsUsed(boolean bool) {
+        hintsUsed = bool;
+    }
 
     public StandardQuizViewModel() {
 
@@ -102,7 +126,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         this.subCategory = subCategory;
     }
 
-    public boolean answerQuestion(int alternativeID){
+    public boolean answerQuestion(int alternativeID) {
         List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
         Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
 
@@ -119,6 +143,32 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         return condition;
     }
 
+    public boolean checkIfCorrect(int alternativeID) {
+        List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
+        Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
+
+        while (iterator.hasNext()) {
+            tupleList.add(iterator.next());
+        }
+
+        boolean condition = tupleList.get(alternativeID-1).getValue2();
+        return condition;
+    }
+
+    public int getHintIndex() {
+
+        int amountOfQuestions = 4;
+        Random randomGenerator = new Random();
+        int randomQuestionNr = randomGenerator.nextInt(amountOfQuestions);
+
+        while (this.checkIfCorrect(randomQuestionNr+1)) {
+            randomQuestionNr = randomGenerator.nextInt(amountOfQuestions);
+        }
+
+        return randomQuestionNr;
+
+    }
+
     public void changeQuestion() {
         questionHandler.nextQuestion();
         currentQuestion = questionHandler.getQuestion();
@@ -128,6 +178,10 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     public MutableLiveData<Boolean> getRunningState() {
         return runningState;
+    }
+
+    public void hintsUsedResults() {
+        SetHintsUsed(true);
     }
 
     @Override
@@ -146,7 +200,8 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     }
 
     @Override
-    public void gameModeForceEnd(){
+    public void gameModeForceEnd() {
+        boolean hintsUsed = true;
         totalQuestions = totalAnswers;
         quizFinished();
         isLast.setValue(true);

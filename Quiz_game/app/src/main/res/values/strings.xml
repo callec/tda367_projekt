@@ -12,18 +12,24 @@
     <string name="pictureKiwi_description">loggo, picture of a kiwi bird.</string>
     <string name="quit_quiz_modal">Spel pausat</string>
     <string name="quit_app_modal">Vill du avsluta?</string>
-    <string name="settingsTextTestStyle">Så här kommer din text se ut</string>
-    <string name="settings_text_switch">Larger text</string>
+    <string name="settingsTextTestStyle">Dina inställningar</string>
+    <string name="hintOff">"hint" av</string>
+    <string name="hintOn">"hint" på</string>
+    <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_nquestions">%1$d frågor</string>
     <string name="nextq_in">Nästa fråga om: %1$d</string>
     <string name="result_in">Resultat om: %1$d</string>
+    <string name="hint_button_string">Hint</string>
+    <string name="hintsUsed">Used hints</string>
+
+    <string name="settings_text_switch">Larger text</string>
+
     <string name="category_test_text">Hello There!</string>
     <string name="gamemode_standard_which_q">Fråga %1$d av %2$d</string>
     <string name="settings_ntime">%1$d sekunder</string>
 
     <!-- Values/keys below here, keys.xml didn't work -->
 
-    <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_totalq">TotalQuestions</string>
     <string name="settings_time">TimeValue</string>
     <!-- GameModes -->

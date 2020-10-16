@@ -60,4 +60,8 @@ public class ResultObject {
         return date;
     }
 
+    public boolean usedHint(){
+        return hintUsed;
+    }
+
 }
