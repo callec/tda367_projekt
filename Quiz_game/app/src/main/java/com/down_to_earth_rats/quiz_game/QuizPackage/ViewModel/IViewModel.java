@@ -30,6 +30,4 @@ public interface IViewModel {
     void SetHintsUsed(boolean bool);
 
     void gameModeForceEnd();
-
-
 }

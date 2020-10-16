@@ -59,11 +59,6 @@ public class SettingsActivity extends AppCompatActivity {
         setupHint();
         setupQuestionSeekBar();
         setupTimeSeekBar();
-
-        boolean hintOn_Status = pref.getBoolean("StatusOn", false);
-        hintSwitch.setChecked(hintOn_Status);
-
-
         setupGameModeSpinner();
     }
 
@@ -139,13 +134,21 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setupHint() {
-
         hintSwitch = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
 
-        hintSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            String hintOff = hintSwitch.getText().toString();
-            String hintOn = getString(R.string.hintOn);
+        final String hintOff = "hint av";    //hintSwitch.getText().toString()
+        final String hintOn = "hint på";
 
+        boolean hintOn_Status = pref.getBoolean("StatusOn", false);
+        hintSwitch.setChecked(hintOn_Status);
+        if (hintOn_Status) {
+            hintSwitch.setText(hintOn);
+        }
+        else {
+            hintSwitch.setText(hintOff);
+        }
+
+        hintSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {

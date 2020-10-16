@@ -23,7 +23,6 @@
         </activity>
 
 
-
         <activity
             android:name=".StatisticsActivity"
             android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity"
@@ -46,6 +45,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
+
+
         <activity
             android:name=".ResultsActivity"
             android:parentActivityName="com.down_to_earth_rats.quiz_game.MainActivity"

@@ -21,16 +21,15 @@ public class ResultObject {
     private String category;
     private String subcategory;
     private String gameMode;
-    private boolean usedHint;
+    private boolean hintUsed;
 
-    public ResultObject(int totalQuestions, int correctAnswers, String category, String subcategory, String gameMode, boolean usedHint ) {
-
+    public ResultObject(int totalQuestions, int correctAnswers, String category, String subcategory, String gameMode, boolean hintUsed ) {
         this.totalQuestions = totalQuestions;
         this.correctAnswers = correctAnswers;
         this.category = category;
         this.subcategory = subcategory;
         this.gameMode = gameMode;
-        this.usedHint = usedHint;
+        this.hintUsed = hintUsed;
 
         date = new Date();
     }
@@ -62,7 +61,7 @@ public class ResultObject {
     }
 
     public boolean usedHint(){
-        return usedHint;
+        return hintUsed;
     }
 
 }

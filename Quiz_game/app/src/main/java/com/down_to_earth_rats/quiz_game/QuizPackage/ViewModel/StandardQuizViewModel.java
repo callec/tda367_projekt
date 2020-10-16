@@ -14,8 +14,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
 import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.UserPackage.IUser;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.UserPackage.User;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
@@ -27,7 +27,7 @@ import java.util.Random;
 
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
- * Modified by Carl Bergman, Louise Tranborg, Sara Persson, Erik Blomberg, Henrik Johansson
+ * Modified by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson, Sara Persson
  *
  */
 
@@ -51,7 +51,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     //private Resources res;
     //private SharedPreferences pref;
 
-    User user = User.getInstance();
+    IUser user = UserSingleton.getUser();
 
     /*public StandardQuizViewModel(@NonNull Application application) {
         super(application);
@@ -125,7 +125,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         this.subCategory = subCategory;
     }
 
-    public boolean answerQuestion(int alternativeID){
+    public boolean answerQuestion(int alternativeID) {
         List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
         Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
 
@@ -185,10 +185,10 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     @Override
     public void quizFinished() {
-        // TODO: Added by Louise to try create statistics, not beautiful with the user!
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory, "Standard", GetHintsUsed());
-        UserSingleton.getUser().addResult(resultObject); //TODO gamemode
-        user.addResult(resultObject);
+        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory,
+                "Standard", false); //TODO hint and gamemode
+        UserSingleton.getUser().addResult(resultObject);
+
 
         runningState.setValue(false);
     }
@@ -202,8 +202,6 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     public void gameModeForceEnd() {
         boolean hintsUsed = true;
         totalQuestions = totalAnswers;
-        ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, "Addition", hintsUsed);
-        user.addResult(resultObject);
         quizFinished();
         isLast.setValue(true);
     }
