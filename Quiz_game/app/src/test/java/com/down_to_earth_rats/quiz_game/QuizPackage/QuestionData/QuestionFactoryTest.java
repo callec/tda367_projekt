@@ -11,7 +11,7 @@ public class QuestionFactoryTest {
     @Test
     public void testGetFourAltQuestion() {
         // testing methods in FourAltQuestion are done in FourAltQuestionText
-        IQuestion factoryValue = QuestionFactory.getFourAltQuestion("", "", "", "", "");
+        IQuestion factoryValue = QuestionFactory.createStandardFourAltQuestion("", "", "", "", "");
         assertTrue(factoryValue instanceof FourAltQuestion);
     }
 

@@ -10,13 +10,12 @@ import java.util.List;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
- *
  * This class represents a simple 4 alternative question.
  * 1 correct answer and 3 false.
  * Based on the IQuestion interface
  */
 
-public class FourAltQuestion implements IQuestion {
+class FourAltQuestion implements IQuestion {
 
     private String questionText;
 

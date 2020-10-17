@@ -4,6 +4,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -13,17 +15,16 @@ import java.util.List;
  * Created by Erik Blomberg, Louise Tranborg
  * Modified by Erik Blomberg
  *
- * This class implements IQuestion and is responsible for
- * shuffling around the alternatives within a question.
- *
+ * This class is responsible to wrap another IQuestion and shuffle its alternatives.
+ * Implements IQuestion
  */
 
 class ScrambledQuestion implements IQuestion {
 
-    private IQuestion baseQuestion;
+    private final IQuestion baseQuestion;
     private final List<Tuple<String, Boolean>> alternatives = new ArrayList<>();
 
-    public ScrambledQuestion(IQuestion baseQuestion) {
+    public ScrambledQuestion(@NotNull IQuestion baseQuestion) {
         this.baseQuestion = baseQuestion;
 
         Iterator<Tuple<String, Boolean>> iterator = baseQuestion.getAlternatives();

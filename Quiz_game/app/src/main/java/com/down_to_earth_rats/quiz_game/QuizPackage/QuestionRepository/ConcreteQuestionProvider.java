@@ -81,7 +81,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
     private List<IQuestion> swedishHistoryQuestions(int numberOfQuestions){
         List<IQuestion> questions = new ArrayList<>();
         for(int i = 0; i<numberOfQuestions; i++){
-            questions.add(QuestionFactory.getFourAltQuestion("Vilket år sköts Olof Palme?", "1986","1987", "1985","2005"));
+            questions.add(QuestionFactory.createStandardFourAltQuestion("Vilket år sköts Olof Palme?", "1986","1987", "1985","2005"));
         }
         return questions;
     }
@@ -89,7 +89,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
     private List<IQuestion> europeHistoryQuestions(int numberOfQuestions){
         List<IQuestion> questions = new ArrayList<>();
         for(int i = 0; i<numberOfQuestions; i++){
-            questions.add(QuestionFactory.getFourAltQuestion("Vilket år upphörde Berlinmuren?", "1989","1987", "1990","2005"));
+            questions.add(QuestionFactory.createStandardFourAltQuestion("Vilket år upphörde Berlinmuren?", "1989","1987", "1990","2005"));
         }
         return questions;
     }
@@ -122,7 +122,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         String a3 = "" + wrong2;
         String a4 = "" + wrong3;
 
-        return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
+        return QuestionFactory.createStandardFourAltQuestion(q, a1, a2, a3, a4);
     }
 
     private IQuestion randomSubtractionQuestion(){
@@ -153,7 +153,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         String a3 = "" + wrong2;
         String a4 = "" + wrong3;
 
-        return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
+        return QuestionFactory.createStandardFourAltQuestion(q, a1, a2, a3, a4);
     }
 
     private IQuestion randomMultiplicationQuestion() {
@@ -183,7 +183,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         String a3 = "" + wrong2;
         String a4 = "" + wrong3;
 
-        return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
+        return QuestionFactory.createStandardFourAltQuestion(q, a1, a2, a3, a4);
     }
 
     private IQuestion randomDivisionQuestion() {
@@ -216,7 +216,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         String a3 = "" + wrong2;
         String a4 = "" + wrong3;
 
-        return QuestionFactory.getFourAltQuestion(q, a1, a2, a3, a4);
+        return QuestionFactory.createStandardFourAltQuestion(q, a1, a2, a3, a4);
     }
 
     /**

@@ -7,7 +7,8 @@ import java.util.Iterator;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
- * This class is responsible for instantiating a QuizModel-object.
+ * This class is responsible for instantiating a IQuestionHandler objects,
+ * loading them with questions.
  *
  */
 

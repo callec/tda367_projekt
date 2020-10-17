@@ -1,7 +1,7 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.QuestionFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
 
 import org.junit.Before;
@@ -26,8 +26,8 @@ public class ScrambledQuestionTest {
 
     @Before
     public void setUp() {
-     testQuestion = new FourAltQuestion(questionText, "1", "2", "3", "4" );
-     scrambledQuestion =  new ScrambledQuestion(testQuestion);
+        testQuestion = QuestionFactory.createStandardFourAltQuestion(questionText, "1", "2", "3", "4" );
+        scrambledQuestion =  new ScrambledQuestion(testQuestion);
 
     }
 

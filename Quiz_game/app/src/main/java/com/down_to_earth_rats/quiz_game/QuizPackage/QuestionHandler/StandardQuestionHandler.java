@@ -1,7 +1,7 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.QuestionFactory;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
@@ -14,11 +14,13 @@ import java.util.NoSuchElementException;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  *
- * This class represents a whole quiz, with some questions.
+ * This class is responsible for storing an randomizing question/alternatives
+ * When no more questions are available all observers will be notified.
+ * Implements IQuestionHandler
  *
  */
 
-public class StandardQuestionHandler implements IQuestionHandler {
+class StandardQuestionHandler implements IQuestionHandler {
 
     private final Deque<IQuestion> questions = new ArrayDeque<>();
 
@@ -45,7 +47,7 @@ public class StandardQuestionHandler implements IQuestionHandler {
 
         if(questions.isEmpty()){
             quizIsFinished();
-            return new FourAltQuestion("","", "", "", "");
+            return QuestionFactory.createStandardFourAltQuestion("","", "", "", "");
 
         }
 

@@ -1,7 +1,7 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.QuestionFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
 
 import org.junit.Test;
@@ -26,7 +26,7 @@ public class StandardQuestionHandlerTest {
         List<IQuestion> questions = new ArrayList<>();
 
         for (int i = 0; i < 10 ; i++) {
-            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
+            questions.add(QuestionFactory.createStandardFourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
         }
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
@@ -53,7 +53,7 @@ public class StandardQuestionHandlerTest {
 
         List<IQuestion> questions = new ArrayList<>();
 
-        questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
+        questions.add(QuestionFactory.createStandardFourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
@@ -70,7 +70,7 @@ public class StandardQuestionHandlerTest {
 
         String questionText = "Test Text Text";
 
-        questions.add(new FourAltQuestion(questionText, "First", "Second", "Third", "Fourth"));
+        questions.add(QuestionFactory.createStandardFourAltQuestion(questionText, "First", "Second", "Third", "Fourth"));
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
@@ -91,8 +91,8 @@ public class StandardQuestionHandlerTest {
         String questionText2 = "TestText2";
 
 
-        questions.add(new FourAltQuestion(questionText1, "First", "Second", "Third", "Fourth"));
-        questions.add(new FourAltQuestion(questionText2, "First", "Second", "Third", "Fourth"));
+        questions.add(QuestionFactory.createStandardFourAltQuestion(questionText1, "First", "Second", "Third", "Fourth"));
+        questions.add(QuestionFactory.createStandardFourAltQuestion(questionText2, "First", "Second", "Third", "Fourth"));
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
@@ -111,7 +111,7 @@ public class StandardQuestionHandlerTest {
     public void testObserverQuizFinished() {
         List<IQuestion> questions = new ArrayList<>();
 
-        questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
+        questions.add(QuestionFactory.createStandardFourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
@@ -130,7 +130,7 @@ public class StandardQuestionHandlerTest {
     public void testRemoveObserver(){
         List<IQuestion> questions = new ArrayList<>();
 
-        questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
+        questions.add(QuestionFactory.createStandardFourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
@@ -161,7 +161,7 @@ public class StandardQuestionHandlerTest {
         List<IQuestion> questions = new ArrayList<>();
 
         for (int i = 0; i < 2 ; i++) {
-            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
+            questions.add(QuestionFactory.createStandardFourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
         }
         IQuestionHandler handler = QuestionHandlerFactory.createStandardHandler(questions.iterator());
         handler.nextQuestion();
