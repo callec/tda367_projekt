@@ -21,9 +21,9 @@ public interface IQuestionHandler {
      */
     void nextQuestion();
 
-    void registerObserver(IModelObserver observer);
+    void registerObserver(IQuestionHandlerObserver observer);
 
-    void removeObserver(IModelObserver observer);
+    void removeObserver(IQuestionHandlerObserver observer);
 
     boolean isLastQuestion();
 

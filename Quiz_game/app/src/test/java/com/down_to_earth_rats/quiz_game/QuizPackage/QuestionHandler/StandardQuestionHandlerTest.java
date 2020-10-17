@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
- *
+ * Modified by Erik Blomberg
  */
 
 public class StandardQuestionHandlerTest {
@@ -46,22 +46,7 @@ public class StandardQuestionHandlerTest {
 
     }
 
-    @Test
-    public void testObserverQuizFinished() {
-        List<IQuestion> questions = new ArrayList<>();
-
-        questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
-
-        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
-
-        TestModelObserver observer = new TestModelObserver();
-        model.registerObserver(observer);
-
-        model.nextQuestion();
-
-        //assertTrue(observer.isCondition());
-
-    }
+    
 
     @Test
     public void testGetQuestionEmptyQuestion() {
@@ -123,6 +108,25 @@ public class StandardQuestionHandlerTest {
     }
 
     @Test
+    public void testObserverQuizFinished() {
+        List<IQuestion> questions = new ArrayList<>();
+
+        questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
+
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
+
+        MockHandlerObserver observer = new MockHandlerObserver();
+        model.registerObserver(observer);
+
+        for (int i = 0; i < 2; i++) {
+            model.nextQuestion();
+        }
+
+        assertTrue(observer.isCondition());
+
+    }
+    
+    @Test
     public void testRemoveObserver(){
         List<IQuestion> questions = new ArrayList<>();
 
@@ -130,7 +134,7 @@ public class StandardQuestionHandlerTest {
 
         IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
-        TestModelObserver observer = new TestModelObserver();
+        MockHandlerObserver observer = new MockHandlerObserver();
         model.registerObserver(observer);
         model.removeObserver(observer);
 
@@ -146,7 +150,7 @@ public class StandardQuestionHandlerTest {
         List<IQuestion> questions = new ArrayList<>();
 
         IQuestionHandler handler = QuestionHandlerFactory.createStandardHandler(questions.iterator());
-        TestModelObserver observer = new TestModelObserver();
+        MockHandlerObserver observer = new MockHandlerObserver();
         handler.registerObserver(observer);
         handler.nextQuestion();
         assertTrue(observer.isCondition());
@@ -164,18 +168,6 @@ public class StandardQuestionHandlerTest {
         assertTrue(handler.isLastQuestion());
     }
 
-    static class TestModelObserver implements IModelObserver {
-
-        private boolean condition = false;
-
-        @Override
-        public void quizFinished() {
-            condition = true;
-        }
-
-        public boolean isCondition() {
-            return condition;
-        }
-    }
+    
 
 }

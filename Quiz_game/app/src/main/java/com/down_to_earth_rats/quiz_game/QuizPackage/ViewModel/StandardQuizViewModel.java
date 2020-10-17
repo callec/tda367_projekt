@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IModelObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHandlerObserver;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHandler;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.QuestionHandlerFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
@@ -25,7 +25,7 @@ import java.util.Random;
  *
  */
 
-public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implements IModelObserver, IViewModel {
+public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implements IQuestionHandlerObserver, IViewModel {
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;

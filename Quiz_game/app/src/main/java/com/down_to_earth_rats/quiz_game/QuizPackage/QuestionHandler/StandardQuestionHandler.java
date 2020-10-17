@@ -22,7 +22,7 @@ public class StandardQuestionHandler implements IQuestionHandler {
 
     private final Deque<IQuestion> questions = new ArrayDeque<>();
 
-    private final List<IModelObserver> observers = new ArrayList<>();
+    private final List<IQuestionHandlerObserver> observers = new ArrayList<>();
 
     public StandardQuestionHandler(Iterator<IQuestion> questions) {
         List<IQuestion> shuffleList = new ArrayList<>();
@@ -64,14 +64,14 @@ public class StandardQuestionHandler implements IQuestionHandler {
     }
 
     @Override
-    public void registerObserver(IModelObserver observer) {
+    public void registerObserver(IQuestionHandlerObserver observer) {
         if(!observers.contains(observer)){
             observers.add(observer);
         }
     }
 
     @Override
-    public void removeObserver(IModelObserver observer) {
+    public void removeObserver(IQuestionHandlerObserver observer) {
         observers.remove(observer);
     }
 
@@ -81,7 +81,7 @@ public class StandardQuestionHandler implements IQuestionHandler {
     }
 
     private void quizIsFinished(){
-        for (IModelObserver observer: observers) {
+        for (IQuestionHandlerObserver observer: observers) {
             observer.quizFinished();
         }
     }
