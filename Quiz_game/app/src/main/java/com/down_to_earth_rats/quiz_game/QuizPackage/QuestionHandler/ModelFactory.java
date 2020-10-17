@@ -16,9 +16,8 @@ public class ModelFactory {
     private ModelFactory(){}
 
     public static IQuestionHandler createStandardModel(Iterator<IQuestion> questions){
-        QuizModel model = new QuizModel();
-        model.insertQuestions(questions);
-        return model;
+        return new QuizModel(questions);
+
     }
 
 }

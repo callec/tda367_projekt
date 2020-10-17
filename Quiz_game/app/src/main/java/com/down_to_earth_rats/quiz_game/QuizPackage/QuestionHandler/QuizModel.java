@@ -9,6 +9,7 @@ import java.util.Collections;
 import java.util.Deque;
 import java.util.Iterator;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
@@ -19,68 +20,68 @@ import java.util.List;
 
 public class QuizModel implements IQuestionHandler {
 
-    private Deque<IQuestion> questionStack = new ArrayDeque<>();
+    private final Deque<IQuestion> questions = new ArrayDeque<>();
 
-    private List<IModelObserver> observerList = new ArrayList<>();
+    private final List<IModelObserver> observers = new ArrayList<>();
 
-    public void insertQuestions(Iterator<IQuestion> questions) {
-
+    public QuizModel(Iterator<IQuestion> questions) {
         List<IQuestion> shuffleList = new ArrayList<>();
+
+        //Shuffle alternatives for each question
         while(questions.hasNext()){
             shuffleList.add(new ScrambledQuestion(questions.next()));
         }
 
         shuffleQuestions(shuffleList);
-
     }
 
     private void shuffleQuestions(List<IQuestion> list){
         Collections.shuffle(list);
-        questionStack.addAll(list);
+        questions.addAll(list);
     }
 
     @Override
     public IQuestion getQuestion() {
 
-        if(questionStack.isEmpty()){
+        if(questions.isEmpty()){
             quizIsFinished();
             return new FourAltQuestion("","", "", "", "");
 
         }
 
-        return questionStack.peek();
+        return questions.peek();
     }
 
     @Override
     public void nextQuestion() {
-        questionStack.pop();
-        /*
-        if(questionStack.isEmpty()) {
+
+        try{
+            questions.pop();
+        }catch (NoSuchElementException e){
             quizIsFinished();
         }
 
-         */
     }
 
     @Override
     public void registerObserver(IModelObserver observer) {
-        if(!observerList.contains(observer)){
-            observerList.add(observer);
+        if(!observers.contains(observer)){
+            observers.add(observer);
         }
     }
 
     @Override
     public void removeObserver(IModelObserver observer) {
-        observerList.remove(observer);
+        observers.remove(observer);
     }
 
     @Override
     public boolean isLastQuestion() {
-        return (questionStack.size() == 1);
+        return (questions.size() == 1);
     }
 
     private void quizIsFinished(){
-        for (IModelObserver observer: observerList) {
+        for (IModelObserver observer: observers) {
             observer.quizFinished();
         }
     }

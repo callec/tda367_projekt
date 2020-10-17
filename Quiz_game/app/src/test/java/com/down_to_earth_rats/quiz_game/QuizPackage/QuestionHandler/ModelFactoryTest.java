@@ -13,7 +13,7 @@ import static org.junit.Assert.*;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
- *
+ * Modified by Erik Blomberg
  */
 
 public class ModelFactoryTest {
@@ -25,7 +25,7 @@ public class ModelFactoryTest {
         IQuestion testQuestion = new FourAltQuestion("Test Text", "1", "2", "3", "4");
         list.add(testQuestion);
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(list));
+        IQuestionHandler model = ModelFactory.createStandardModel(list.iterator());
 
         IQuestion returnQuestion = model.getQuestion();
 

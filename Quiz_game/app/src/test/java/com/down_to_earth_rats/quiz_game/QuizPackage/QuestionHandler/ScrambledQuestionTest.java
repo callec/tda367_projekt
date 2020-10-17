@@ -14,6 +14,7 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
+ * Modified by Erik Blomberg
  *
  */
 
@@ -35,25 +36,6 @@ public class ScrambledQuestionTest {
         assertEquals(scrambledQuestion.getQuestionText(), questionText);
     }
 
-    /*@Test
-    public void failedBindingText() {
-        String response = scrambledQuestion.getQuestionText();
-        assertEquals("", response);
-    }*/
-
-    /*@Test
-    public void failedBindingIterator() {
-        int counter = 0;
-        Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
-
-        while(iterator.hasNext()){
-            counter++;
-        }
-
-        assertEquals(0, counter);
-
-    }*/
-
     @Test
     public void numberOfAlternatives() {
         Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
@@ -68,7 +50,7 @@ public class ScrambledQuestionTest {
     }
 
     @Test
-    public void checkCorrectAlternative() {
+    public void checkIfCorrectAlternativeExists() {
         boolean correctAltFound = false;
         Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
 
