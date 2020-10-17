@@ -26,23 +26,22 @@ public class ScrambledQuestionTest {
     @Before
     public void setUp() throws Exception {
      testQuestion = new FourAltQuestion(questionText, "1", "2", "3", "4" );
-     scrambledQuestion =  new ScrambledQuestion();
+     scrambledQuestion =  new ScrambledQuestion(testQuestion);
 
     }
 
     @Test
     public void testBinding() {
-        scrambledQuestion.setBaseQuestion(testQuestion);
         assertEquals(scrambledQuestion.getQuestionText(), questionText);
     }
 
-    @Test
+    /*@Test
     public void failedBindingText() {
         String response = scrambledQuestion.getQuestionText();
         assertEquals("", response);
-    }
+    }*/
 
-    @Test
+    /*@Test
     public void failedBindingIterator() {
         int counter = 0;
         Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
@@ -53,11 +52,10 @@ public class ScrambledQuestionTest {
 
         assertEquals(0, counter);
 
-    }
+    }*/
 
     @Test
     public void numberOfAlternatives() {
-        scrambledQuestion.setBaseQuestion(testQuestion);
         Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
 
         int counter = 0;
@@ -71,7 +69,6 @@ public class ScrambledQuestionTest {
 
     @Test
     public void checkCorrectAlternative() {
-        scrambledQuestion.setBaseQuestion(testQuestion);
         boolean correctAltFound = false;
         Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
 
@@ -85,13 +82,5 @@ public class ScrambledQuestionTest {
     }
 
 
-   /* @Test
-    public void yes() {
 
-        Iterator<Tuple<String, Boolean>> iterator = scrambledQuestion.getAlternatives();
-
-        while(iterator.hasNext()){
-            System.out.println(iterator.next().getValue1());
-        }
-    }*/
 }

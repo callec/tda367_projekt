@@ -27,18 +27,10 @@ public class QuizModel implements IQuestionHandler {
 
         List<IQuestion> shuffleList = new ArrayList<>();
         while(questions.hasNext()){
-            shuffleList.add(shuffleAlternatives(questions.next()));
+            shuffleList.add(new ScrambledQuestion(questions.next()));
         }
 
         shuffleQuestions(shuffleList);
-
-    }
-
-    private IQuestion shuffleAlternatives(IQuestion question){
-        ScrambledQuestion scrambledQuestion = new ScrambledQuestion();
-        scrambledQuestion.setBaseQuestion(question);
-
-        return scrambledQuestion;
 
     }
 

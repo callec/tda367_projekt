@@ -1,15 +1,14 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-import androidx.lifecycle.LiveData;
-
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionsFromFile;
 
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /**
