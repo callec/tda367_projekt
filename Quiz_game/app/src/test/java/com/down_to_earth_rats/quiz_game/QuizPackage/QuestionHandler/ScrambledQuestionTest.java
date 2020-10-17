@@ -25,7 +25,7 @@ public class ScrambledQuestionTest {
 
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
      testQuestion = new FourAltQuestion(questionText, "1", "2", "3", "4" );
      scrambledQuestion =  new ScrambledQuestion(testQuestion);
 

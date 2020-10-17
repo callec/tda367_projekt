@@ -11,12 +11,12 @@ import java.util.Iterator;
  *
  */
 
-public class ModelFactory {
+public class QuestionHandlerFactory {
 
-    private ModelFactory(){}
+    private QuestionHandlerFactory(){}
 
-    public static IQuestionHandler createStandardModel(Iterator<IQuestion> questions){
-        return new QuizModel(questions);
+    public static IQuestionHandler createStandardHandler(Iterator<IQuestion> questions){
+        return new StandardQuestionHandler(questions);
 
     }
 

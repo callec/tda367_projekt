@@ -1,23 +1,17 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Resources;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IModelObserver;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHandler;
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.ModelFactory;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.QuestionHandlerFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
-import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.UserPackage.IUser;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
-import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
@@ -83,7 +77,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         runningState.setValue(true);
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
 
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions(subCategory, totalQuestions));
+        questionHandler = QuestionHandlerFactory.createStandardHandler(questionProvider.getQuestions(subCategory, totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();

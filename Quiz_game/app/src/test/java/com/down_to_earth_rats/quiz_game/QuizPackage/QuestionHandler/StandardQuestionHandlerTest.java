@@ -18,7 +18,7 @@ import static org.junit.Assert.assertTrue;
  *
  */
 
-public class QuizModelTest {
+public class StandardQuestionHandlerTest {
 
     @Test
     public void testInsertQuestions() {
@@ -29,7 +29,7 @@ public class QuizModelTest {
             questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
         }
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
         IQuestion q = model.getQuestion();
 
@@ -52,7 +52,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
@@ -70,7 +70,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
         model.nextQuestion();
         IQuestion question = model.getQuestion();
@@ -87,7 +87,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion(questionText, "First", "Second", "Third", "Fourth"));
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
         IQuestion question1 = model.getQuestion();
         IQuestion question2 = model.getQuestion();
@@ -109,7 +109,7 @@ public class QuizModelTest {
         questions.add(new FourAltQuestion(questionText1, "First", "Second", "Third", "Fourth"));
         questions.add(new FourAltQuestion(questionText2, "First", "Second", "Third", "Fourth"));
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
         IQuestion firstQuestion = model.getQuestion();
 
@@ -128,7 +128,7 @@ public class QuizModelTest {
 
         questions.add(new FourAltQuestion("Text", "First", "Second", "Third", "Fourth"));
 
-        IQuestionHandler model = ModelFactory.createStandardModel(new ListIterator<>(questions));
+        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(new ListIterator<>(questions));
 
         TestModelObserver observer = new TestModelObserver();
         model.registerObserver(observer);
@@ -138,6 +138,30 @@ public class QuizModelTest {
 
         assertFalse(observer.isCondition());
 
+    }
+
+    @Test
+    public void testQuestionStackEmpty() {
+
+        List<IQuestion> questions = new ArrayList<>();
+
+        IQuestionHandler handler = QuestionHandlerFactory.createStandardHandler(questions.iterator());
+        TestModelObserver observer = new TestModelObserver();
+        handler.registerObserver(observer);
+        handler.nextQuestion();
+        assertTrue(observer.isCondition());
+    }
+
+    @Test
+    public void testIsLastQuestion() {
+        List<IQuestion> questions = new ArrayList<>();
+
+        for (int i = 0; i < 2 ; i++) {
+            questions.add(new FourAltQuestion("Text " + i, "First", "Second", "Third", "Fourth"));
+        }
+        IQuestionHandler handler = QuestionHandlerFactory.createStandardHandler(questions.iterator());
+        handler.nextQuestion();
+        assertTrue(handler.isLastQuestion());
     }
 
     static class TestModelObserver implements IModelObserver {

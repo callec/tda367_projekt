@@ -18,13 +18,13 @@ import java.util.NoSuchElementException;
  *
  */
 
-public class QuizModel implements IQuestionHandler {
+public class StandardQuestionHandler implements IQuestionHandler {
 
     private final Deque<IQuestion> questions = new ArrayDeque<>();
 
     private final List<IModelObserver> observers = new ArrayList<>();
 
-    public QuizModel(Iterator<IQuestion> questions) {
+    public StandardQuestionHandler(Iterator<IQuestion> questions) {
         List<IQuestion> shuffleList = new ArrayList<>();
 
         //Shuffle alternatives for each question
