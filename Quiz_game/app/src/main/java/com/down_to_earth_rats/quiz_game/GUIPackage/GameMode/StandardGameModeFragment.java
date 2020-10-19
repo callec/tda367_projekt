@@ -43,18 +43,12 @@ public class StandardGameModeFragment extends Fragment implements IGameModeFragm
         return fragment;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         model = new ViewModelProvider(this).get(StandardGameMode.class);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

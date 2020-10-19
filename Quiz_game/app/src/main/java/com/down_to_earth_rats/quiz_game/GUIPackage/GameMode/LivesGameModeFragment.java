@@ -48,9 +48,6 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         return fragment;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,9 +94,6 @@ public class LivesGameModeFragment extends Fragment implements IGameModeFragment
         });
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

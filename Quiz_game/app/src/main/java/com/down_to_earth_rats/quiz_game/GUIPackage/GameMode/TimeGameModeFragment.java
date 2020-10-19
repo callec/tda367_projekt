@@ -54,21 +54,14 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
         return fragment;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }
 
-    /**
-     * {@inheritDoc}
-     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         viewbinder = FragmentTimeGameModeBinding.inflate(inflater, container, false);
         quizRunning = true;
         setupProgressBar();
@@ -91,9 +84,6 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
             public void onTick(long millisUntilFinished) {
                 timerProgressBar.incrementProgressBy(1);
                 timeLeft = millisUntilFinished;
-                /*if (millisUntilFinished < 3000) { // TODO: put in settings time between questions
-                    notifyObserver();
-                }*/
             }
 
             @Override
@@ -115,18 +105,6 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     public void answer(boolean correct) {
         timer.cancel();
         enableProgressBar(false);
-        /*
-        if (correct) {
-            timeLeft += maxTimeLeft * 0.1;
-            timerProgressBar.setProgress(timerProgressBar.getProgress() - 10);
-            if (timeLeft > maxTimeLeft) {
-                timeLeft = maxTimeLeft;
-                timerProgressBar.setProgress(0);
-            }
-        } else {
-            timeLeft -= maxTimeLeft * 0.1;
-            timerProgressBar.setProgress(timerProgressBar.getProgress() + 10);
-        }*/
     }
 
     /**
