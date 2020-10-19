@@ -29,7 +29,7 @@ public class CategoryViewModel extends ViewModel {
 
     }
 
-    public void getStandardCategories(){
+    private void getStandardCategories(){
         Iterator<ICategory> iterator = CategoryFactory.getStandardHandler().getAllCategories();
         while(iterator.hasNext()){
             categories.add(iterator.next());
@@ -57,19 +57,3 @@ public class CategoryViewModel extends ViewModel {
     }
 
 }
-
-
-/* new CountDownTimer(3000, 200){
-
-        @Override
-        public void onTick(long l) {
-
-        }
-
-        @Override
-        public void onFinish() {
-            categories.remove(1);
-            //categories.add(new ImmutableCategory("Test", "Hej", "då", "yellow brick road"));
-            notifyObservers(1);
-        }
-    }.start();*/
