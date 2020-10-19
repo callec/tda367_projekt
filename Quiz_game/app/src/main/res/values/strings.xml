@@ -9,12 +9,12 @@
     <string name="next_question">Nästa fråga:</string>
     <string name="back_button">Hem</string>
     <string name="retry_button">Försök igen?</string>
-    <string name="pictureKiwi_description">loggo, picture of a kiwi bird.</string>
+    <string name="pictureKiwi_description">Logo, picture of a kiwi bird.</string>
     <string name="quit_quiz_modal">Spel pausat</string>
     <string name="quit_app_modal">Vill du avsluta?</string>
     <string name="settingsTextTestStyle">Dina inställningar</string>
-    <string name="hintOff">"hint" av</string>
-    <string name="hintOn">"hint" på</string>
+    <string name="hintOff">"Hint" av</string>
+    <string name="hintOn">"Hint" på</string>
     <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_nquestions">%1$d frågor</string>
     <string name="nextq_in">Nästa fråga om: %1$d</string>
@@ -46,6 +46,11 @@
     <string name="log_in">Logga in</string>
     <string name="username">Användarnamn</string>
     <string name="password">Lösenord</string>
+
+    <!--Categories-->
+    <string name="cat_Maths">Matematik</string>
+    <string name="cat_History">Historia</string>
+    <string name="cat_User">User</string>
 
     <!--Sub-categories-->
     <string name="sub_addition">Addition</string>

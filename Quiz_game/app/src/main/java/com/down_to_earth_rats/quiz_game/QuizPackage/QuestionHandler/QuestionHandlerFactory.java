@@ -12,12 +12,10 @@ import java.util.Iterator;
  *
  */
 
-public class QuestionHandlerFactory {
+public abstract class QuestionHandlerFactory {
 
-    private QuestionHandlerFactory(){}
-
-    public static IQuestionHandler createStandardHandler(Iterator<IQuestion> questions){
-        return new StandardQuestionHandler(questions);
+    public static IQuestionHandler createRandomizingHandler(Iterator<IQuestion> questions){
+        return new RandomizingQuestionHandler(questions);
 
     }
 

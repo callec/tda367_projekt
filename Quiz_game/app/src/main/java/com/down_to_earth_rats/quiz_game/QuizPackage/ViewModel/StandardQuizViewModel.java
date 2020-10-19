@@ -9,9 +9,8 @@ import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.IQuestionHan
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler.QuestionHandlerFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository.QuestionProviderFactory;
-import com.down_to_earth_rats.quiz_game.UserPackage.IUser;
 import com.down_to_earth_rats.quiz_game.UserPackage.ResultObject;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.Utility.Tuple;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
@@ -42,42 +41,20 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     private boolean hintsUsed = false;
 
-    //private Resources res;
-    //private SharedPreferences pref;
 
-    IUser user = UserSingleton.getUser();
-
-    /*public StandardQuizViewModel(@NonNull Application application) {
-        super(application);
-
-        runningState.setValue(true);
-
-        questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
-        questionHandler = ModelFactory.createStandardModel(questionProvider.getQuestions("Addition", 10));
-        questionHandler.registerObserver(this);
-
-        currentQuestion = questionHandler.getQuestion();
-        createAlternativeList(currentQuestion);
-        totalQuestions = 1;
-    }*/
-
-    public boolean GetHintsUsed() {
+    public boolean getHintsUsed() {
         return hintsUsed;
     }
 
-    public void SetHintsUsed(boolean bool) {
+    public void setHintsUsed(boolean bool) {
         hintsUsed = bool;
-    }
-
-    public StandardQuizViewModel() {
-
     }
 
     public void initQuiz() {
         runningState.setValue(true);
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
 
-        questionHandler = QuestionHandlerFactory.createStandardHandler(questionProvider.getQuestions(subCategory, totalQuestions));
+        questionHandler = QuestionHandlerFactory.createRandomizingHandler(questionProvider.getQuestions(category, subCategory, totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();
@@ -174,13 +151,13 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
     }
 
     public void hintsUsedResults() {
-        SetHintsUsed(true);
+        setHintsUsed(true);
     }
 
     @Override
     public void quizFinished() {
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory,
-                "Standard", GetHintsUsed()); //TODO hint and gamemode
+                "Standard", getHintsUsed()); //TODO hint and gamemode
         UserSingleton.getUser().addResult(resultObject);
 
 

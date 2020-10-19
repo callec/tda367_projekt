@@ -15,15 +15,15 @@ public class StandardGameMode extends ViewModel {
         currentq.setValue(0);
     }
 
-    protected MutableLiveData<Integer> getCurrentq() {
+    public MutableLiveData<Integer> getCurrentq() {
         return currentq;
     }
 
-    protected void nextQuestion() {
+    public void nextQuestion() {
         currentq.setValue(currentq.getValue() + 1);
     }
 
-    protected void reset() {
+    public void reset() {
         currentq.setValue(0);
     }
 }

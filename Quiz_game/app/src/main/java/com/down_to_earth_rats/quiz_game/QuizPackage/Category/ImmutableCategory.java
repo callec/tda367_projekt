@@ -1,6 +1,6 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.Category;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.Utility.ListIterator;
 
 import java.util.ArrayList;
 import java.util.Arrays;

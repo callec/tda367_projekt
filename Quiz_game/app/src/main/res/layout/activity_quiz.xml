@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/quizBg"
-    tools:context=".QuizActivity">
+    tools:context=".GUIPackage.Activities.QuizActivity">
 
     <!-- TODO: layout of buttons, best would be to dynamically change them
                in consideration of screen ratio. Is this possible? -->

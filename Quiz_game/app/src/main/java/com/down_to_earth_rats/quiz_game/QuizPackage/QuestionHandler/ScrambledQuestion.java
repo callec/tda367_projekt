@@ -1,8 +1,8 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionHandler;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.Utility.Tuple;
 
 import org.jetbrains.annotations.NotNull;
 
