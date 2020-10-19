@@ -3,8 +3,13 @@ package com.down_to_earth_rats.quiz_game.GUIPackage.GameMode;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.os.CountDownTimer;
 import android.view.LayoutInflater;
@@ -14,6 +19,7 @@ import android.widget.ProgressBar;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeObserver;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.time.TimeGameMode;
 import com.down_to_earth_rats.quiz_game.databinding.FragmentTimeGameModeBinding;
 import com.down_to_earth_rats.quiz_game.R;
 
@@ -29,19 +35,13 @@ import java.util.List;
 public class TimeGameModeFragment extends Fragment implements IGameModeFragment {
 
     private FragmentTimeGameModeBinding viewbinder;
+    private TimeGameMode model;
 
     private ProgressBar timerProgressBar;
     private CountDownTimer timer;
-    private long maxTimeLeft;
-    private long timeLeft;
-    private long countDownInterval;
-    private boolean quizRunning;
+    private boolean runningState;
 
     private List<IGameModeObserver> observers = new ArrayList<>();
-
-    public TimeGameModeFragment() {
-        // Required empty public constructor
-    }
 
     /**
      * {@inheritDoc}
@@ -60,6 +60,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        model = new ViewModelProvider(this).get(TimeGameMode.class);
     }
 
     /**
@@ -70,35 +71,40 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         viewbinder = FragmentTimeGameModeBinding.inflate(inflater, container, false);
-        quizRunning = true;
+
+        setupRunningState();
         setupProgressBar();
         return viewbinder.getRoot();
+    }
+
+    private void setupRunningState() {
+        model.getQuizRunning().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean quizRunning) {
+                runningState = quizRunning;
+            }
+        });
     }
 
     private void setupProgressBar() {
         timerProgressBar = viewbinder.quizTimerProgressBar;
         int seconds = getArguments().getInt(getString(R.string.gamemode_time_value), 30);
-        countDownInterval = seconds * 10;
-        maxTimeLeft = seconds * 1000;
-        timerStart(maxTimeLeft);
-
+        model.init(seconds);
+        timerStart(model.getMaxTime());
     }
 
     private void timerStart(long time) {
-        timer = new CountDownTimer(time, countDownInterval) {
+        timer = new CountDownTimer(time, model.getCountDownInterval()) {
 
             @Override
             public void onTick(long millisUntilFinished) {
                 timerProgressBar.incrementProgressBy(1);
-                timeLeft = millisUntilFinished;
-                /*if (millisUntilFinished < 3000) { // TODO: put in settings time between questions
-                    notifyObserver();
-                }*/
+                model.setTimeLeft(millisUntilFinished);
             }
 
             @Override
             public void onFinish() {
-                quizRunning = false;
+                //quizRunning = false;
                 timerProgressBar.setProgress(100);
                 notifyObserver();
             }
@@ -115,18 +121,6 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     public void answer(boolean correct) {
         timer.cancel();
         enableProgressBar(false);
-        /*
-        if (correct) {
-            timeLeft += maxTimeLeft * 0.1;
-            timerProgressBar.setProgress(timerProgressBar.getProgress() - 10);
-            if (timeLeft > maxTimeLeft) {
-                timeLeft = maxTimeLeft;
-                timerProgressBar.setProgress(0);
-            }
-        } else {
-            timeLeft -= maxTimeLeft * 0.1;
-            timerProgressBar.setProgress(timerProgressBar.getProgress() + 10);
-        }*/
     }
 
     /**
@@ -155,11 +149,11 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
      */
     @Override
     public void onNewQuestion() {
-        if (!quizRunning) {
+        if (!runningState) {
             // need this check to prevent recursive calls after the quiz is completed
             return;
         }
-        timerStart(timeLeft);
+        timerStart(model.getTimeLeft());
         enableProgressBar(true);
     }
 
@@ -168,12 +162,12 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
      */
     @Override
     public void reset() {
-        if (timeLeft == 0 || !quizRunning) {
+        if (model.getTimeLeft() < 1 || !runningState) {
             return;
         }
         timerProgressBar.setProgress(0);
         timer.cancel();
-        timerStart(maxTimeLeft);
+        timerStart(model.getMaxTime());
         enableProgressBar(true);
     }
 
@@ -191,7 +185,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
      */
     @Override
     public void resume() {
-        timerStart(timeLeft);
+        timerStart(model.getTimeLeft());
         enableProgressBar(true);
     }
 
