@@ -55,11 +55,9 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private CountDownTimer timeUntilNextQ;
 
     private String currentCategory;
-    public Button hintButton;
 
     private int hintTries = 2;   //how many times you may use hints
     private int hints = hintTries;
-    IUser user = UserSingleton.getUser();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,7 +85,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         setupGameMode();
         setupSupportActionBar();
         setupOnQuizEnd();
-        //setupTimerText();
         setupButtons();
         checkHintStatus(findViewById(android.R.id.content).getRootView());
 

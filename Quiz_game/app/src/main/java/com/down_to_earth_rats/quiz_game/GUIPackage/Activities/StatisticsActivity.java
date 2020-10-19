@@ -147,7 +147,7 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
             case "Fri": return "fre";
             case "Sat": return "lör";
             case "Sun": return "sön";
-            default: return "blame Henrik";
+            default: return "day";
         }
     }
 
@@ -166,24 +166,8 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
             case "Oct": return "10";
             case "Nov": return "11";
             case "Dec": return "12";
-            default: return "blame Henrik";
+            default: return "month";
         }
-
-        /*switch (month){
-            case "Jan": return "januari";
-            case "Feb": return "februari";
-            case "Mar": return "mars";
-            case "Apr": return "april";
-            case "May": return "maj";
-            case "Jun": return "juni";
-            case "Jul": return "juli";
-            case "Aug": return "augusti";
-            case "Sep": return "september";
-            case "Oct": return "october";
-            case "Nov": return "november";
-            case "Dec": return "december";
-            default: return "blame Henrik";
-        }*/
     }
 
 
