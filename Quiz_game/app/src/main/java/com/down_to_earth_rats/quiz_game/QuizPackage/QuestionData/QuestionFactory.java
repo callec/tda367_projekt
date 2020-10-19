@@ -7,17 +7,11 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData;
  * This class is responsible for instantiating IQuestion-objects.
  */
 
-public class QuestionFactory {
-
-    private QuestionFactory() {}
+public abstract class QuestionFactory {
 
     /**
      * Create a standard 1 correct 3 wrong alternative question.
-     * @param text
-     * @param correctAlt
-     * @param secondAlt
-     * @param thirdAlt
-     * @param fourthAlt
+     * @param text The question itself
      * @return A new question matching the parameters
      */
     public static IQuestion createStandardFourAltQuestion(String text,

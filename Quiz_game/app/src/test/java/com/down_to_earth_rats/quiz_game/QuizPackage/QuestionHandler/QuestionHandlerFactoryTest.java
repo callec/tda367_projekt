@@ -24,7 +24,7 @@ public class QuestionHandlerFactoryTest {
         IQuestion testQuestion = QuestionFactory.createStandardFourAltQuestion("Test Text", "1", "2", "3", "4");
         list.add(testQuestion);
 
-        IQuestionHandler model = QuestionHandlerFactory.createStandardHandler(list.iterator());
+        IQuestionHandler model = QuestionHandlerFactory.createRandomizingHandler(list.iterator());
 
         IQuestion returnQuestion = model.getQuestion();
 

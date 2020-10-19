@@ -1,7 +1,7 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives.LivesGameModeFragment;
-import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Standard.StandardGameModeFragment;
+import com.down_to_earth_rats.quiz_game.GUIPackage.GameMode.LivesGameModeFragment;
+import com.down_to_earth_rats.quiz_game.GUIPackage.GameMode.StandardGameModeFragment;
 
 import org.junit.Test;
 import static org.junit.Assert.assertTrue;

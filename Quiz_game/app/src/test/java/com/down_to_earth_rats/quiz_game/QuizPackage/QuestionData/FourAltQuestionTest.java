@@ -1,8 +1,6 @@
 package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.FourAltQuestion;
-import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.Tuple;
+import com.down_to_earth_rats.quiz_game.Utility.Tuple;
 
 import org.junit.Before;
 import org.junit.Test;

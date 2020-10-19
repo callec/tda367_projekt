@@ -2,7 +2,7 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository;
 
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.IQuestion;
 import com.down_to_earth_rats.quiz_game.QuizPackage.QuestionData.QuestionFactory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.Utility.ListIterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;

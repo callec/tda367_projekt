@@ -16,15 +16,15 @@ public class LivesGameMode extends ViewModel {
         lives.setValue(3);
     }
 
-    protected void reset() {
+    public void reset() {
         lives.setValue(3);
     }
 
-    protected MutableLiveData<Integer> getLives() {
+    public MutableLiveData<Integer> getLives() {
         return lives;
     }
 
-    protected void answer(boolean correct) {
+    public void answer(boolean correct) {
         if (!correct) {
             lives.setValue(lives.getValue() - 1);
             nCorrect = 0; // need 5 correct in a row
