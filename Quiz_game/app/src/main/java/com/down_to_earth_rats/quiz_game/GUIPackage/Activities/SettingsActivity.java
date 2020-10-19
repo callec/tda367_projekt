@@ -136,8 +136,8 @@ public class SettingsActivity extends AppCompatActivity {
     private void setupHint() {
         hintSwitch = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
 
-        final String hintOff = "hint av";    //hintSwitch.getText().toString()
-        final String hintOn = "hint på";
+        final String hintOff = getString(R.string.hintOff);    //hintSwitch.getText().toString()
+        final String hintOn = getString(R.string.hintOn);
 
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
         hintSwitch.setChecked(hintOn_Status);

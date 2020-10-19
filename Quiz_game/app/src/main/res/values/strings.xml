@@ -13,14 +13,14 @@
     <string name="quit_quiz_modal">Spel pausat</string>
     <string name="quit_app_modal">Vill du avsluta?</string>
     <string name="settingsTextTestStyle">Dina inställningar</string>
-    <string name="hintOff">"Hint" av</string>
-    <string name="hintOn">"Hint" på</string>
+    <string name="hintOff">Hint av</string>
+    <string name="hintOn">Hint på</string>
     <string name="preferences_name">SystemPreferencesFile</string>
     <string name="settings_nquestions">%1$d frågor</string>
     <string name="nextq_in">Nästa fråga om: %1$d</string>
     <string name="result_in">Resultat om: %1$d</string>
     <string name="hint_button_string">Hint</string>
-    <string name="hintsUsed">Used hints</string>
+    <string name="hintsUsed">Använt hints</string>
 
     <string name="settings_text_switch">Larger text</string>
 
