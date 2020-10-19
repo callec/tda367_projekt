@@ -61,40 +61,6 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
 
         return new ListIterator<>(qs);
     }
-    /*@Override
-    public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions) {
-        List<IQuestion> qs = new ArrayList<>();
-
-        if(subcategory.equals("Sveriges Historia")){
-            qs = swedishHistoryQuestions(numberOfQuestions);
-        }
-        if(subcategory.equals("Europas Historia")){
-            qs = europeHistoryQuestions(numberOfQuestions);
-        }
-
-        for (int i=0; i<numberOfQuestions; ++i) {
-
-            switch (subcategory){
-                case "Addition":
-                    qs.add(randomAdditionQuestion());
-                    break;
-                case "Subtraktion":
-                    qs.add(randomSubtractionQuestion());
-                    break;
-                case "Multiplikation":
-                    qs.add(randomMultiplicationQuestion());
-                    break;
-                case "Division":
-                    qs.add(randomDivisionQuestion());
-                    break;
-                case "Matteprov":
-                    qs.add(matteProvQuestion());
-
-            }
-        }
-
-        return new ListIterator<>(qs);
-    }*/
 
     private IQuestion matteProvQuestion(){
         Random random = new Random();
@@ -193,6 +159,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         Random r = new Random();
         int bound = 10;
 
+        // only positive numbers generated to negative alternatives can't happen
         int x = r.nextInt(bound);
         int y = r.nextInt(bound);
         int correct = x*y;
@@ -200,15 +167,15 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
 
         do{
             wrong1 = x * y + (r.nextBoolean() ? - r.nextInt(bound) : + r.nextInt(bound));
-        } while(wrong1 == correct);
+        } while(wrong1 == correct || wrong1 < 0);
 
         do{
             wrong2 = x * y + (r.nextBoolean() ? - r.nextInt(bound) : + r.nextInt(bound));
-        } while(wrong2 == correct || wrong2 == wrong1);
+        } while(wrong2 == correct || wrong2 == wrong1 || wrong2 < 0);
 
         do{
             wrong3 = x * y + (r.nextBoolean() ? - r.nextInt(bound) : + r.nextInt(bound));
-        } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1);
+        } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1 || wrong3 < 0);
 
         String q = "Vad är: " + x + " x " + y + " ?";
         String a1 = "" + correct;
@@ -223,6 +190,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         Random r = new Random();
         int aBound = 10;
 
+        // only positive numbers generated to negative alternatives can't happen
         int correct = r.nextInt(10);
         int lower;
         do {
@@ -233,15 +201,15 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
 
         do{
             wrong1 = correct + (r.nextBoolean() ? - r.nextInt(aBound) : + r.nextInt(aBound));
-        } while(wrong1 == correct);
+        } while(wrong1 == correct || wrong1 < 0);
 
         do{
             wrong2 = correct + (r.nextBoolean() ? - r.nextInt(aBound) : + r.nextInt(aBound));
-        } while(wrong2 == correct || wrong2 == wrong1);
+        } while(wrong2 == correct || wrong2 == wrong1 || wrong2 < 0);
 
         do{
             wrong3 = correct + (r.nextBoolean() ? - r.nextInt(aBound) : + r.nextInt(aBound));
-        } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1);
+        } while(wrong3 == correct || wrong3 == wrong2 || wrong3 == wrong1 || wrong3 < 0);
 
         String q = "Vad är: " + upper + " / " + lower + " ?";
         String a1 = "" + correct;
