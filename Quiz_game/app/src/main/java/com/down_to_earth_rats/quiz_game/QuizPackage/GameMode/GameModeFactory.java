@@ -8,7 +8,7 @@ import com.down_to_earth_rats.quiz_game.GUIPackage.GameMode.TimeGameModeFragment
  * Created by Carl Bergman
  * Return instances of each specific GameMode.
  */
-public class GameModeFactory {
+public abstract class GameModeFactory {
 
     /**
      * Return selected GameMode.
