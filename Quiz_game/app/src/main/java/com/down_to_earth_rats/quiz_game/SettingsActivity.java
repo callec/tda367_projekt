@@ -104,8 +104,10 @@ public class SettingsActivity extends AppCompatActivity {
             hideSeekbar(timeSeekBar, timeSeekBarValue, false);
             editor.putInt(getString(R.string.settings_totalq), r.nextInt(40) + 10);
         } else {
-            editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
-            questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
+            if (!pref.getString(getString(R.string.gamemode_which), getString(R.string.gamemode_standard)).equals(getString(R.string.gamemode_standard))) {
+                editor.putInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue));
+                questionSeekBar.setProgress(res.getInteger(R.integer.totalq_defaultvalue));
+            }
             hideSeekbar(questionSeekBar, seekBarTextView, false);
         }
     }
