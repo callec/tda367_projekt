@@ -28,4 +28,21 @@ public class StandardGameModeTest {
         gm.nextQuestion();
         assertNotEquals(prev, gm.getCurrentq().getValue());
     }
+
+    @Test
+    public void testRest() {
+        Integer prev = gm.getCurrentq().getValue();
+        if (prev == null) {
+            fail();
+        }
+
+        gm.nextQuestion();
+        Integer newq = gm.getCurrentq().getValue();
+        if (prev.equals(newq)) {
+            fail();
+        }
+
+        gm.reset();
+        assertNotEquals(newq, gm.getCurrentq().getValue());
+    }
 }

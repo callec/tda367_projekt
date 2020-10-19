@@ -41,20 +41,26 @@ public class LivesGameModeTest {
         }
 
         gm.answer(false);
-        for (int i=0; i<=5; ++i) {
+        for (int i=0; i<7; ++i) {
             gm.answer(true);
         }
         assertEquals(startLives, gm.getLives().getValue());
     }
 
-    /*@Test // for 100 % coverage
-    public void testSetLives() {
+    @Test
+    public void testRest() {
         Integer startLives = gm.getLives().getValue();
         if (startLives == null) {
             fail();
         }
 
-        gm.setLives(500);
-        assertNotEquals(startLives, gm.getLives().getValue());
-    }*/
+        gm.answer(false);
+        Integer newLives = gm.getLives().getValue();
+        if (newLives.equals(startLives)) {
+            fail();
+        }
+
+        gm.reset();
+        assertNotEquals(newLives, gm.getLives().getValue());
+    }
 }
