@@ -1,8 +1,5 @@
 package com.down_to_earth_rats.quiz_game.GUIPackage.Modal;
 
-
-//Carl, Henrik
-
 /**
  * Created by Carl and Henrik
  *
@@ -10,5 +7,9 @@ package com.down_to_earth_rats.quiz_game.GUIPackage.Modal;
  */
 public interface IRecyclerViewActivity {
 
-    void onClickRecyclerViewItem(String subcategory);
+    /**
+     * Handles click on each specific FrameLayout in a RecyclerView.
+     * @param selectedItem string of what is selected from the RecyclerView
+     */
+    void onClickRecyclerViewItem(String selectedItem);
 }

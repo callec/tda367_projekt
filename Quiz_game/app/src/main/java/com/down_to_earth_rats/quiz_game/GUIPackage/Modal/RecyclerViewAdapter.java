@@ -21,30 +21,39 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     private int layout;
 
+    /**
+     * Inner class of RecyclerViewAdapter which represents each unit in the recyclerView.
+     * In this case it is a FrameLayout with a TextView.
+     */
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         private TextView textView;
-        //private TextRowItemBinding t;
 
+        /**
+         * Sole constructor, creates a FrameLayout with a TextView.
+         * @param v parent View
+         */
         public MyViewHolder(View v) {
             super(v);
-            //t = TextRowItemBinding.inflate(parent.getLayoutInflater());
 
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // at the moment it doesn't care what category/subject it is, just starts quiz
-                    // how to add viewbinding to fragment?
                     String s = ((TextView) v.findViewById(R.id.textView)).getText().toString();
                     parent.onClickRecyclerViewItem(s);
                 }
             });
 
-            textView = (TextView) v.findViewById(R.id.textView);
-            //textView = (TextView) t.textView;
+            textView = v.findViewById(R.id.textView);
         }
     }
 
+    /**
+     * Sole constructor, used within the Activities that use a RecyclerView.
+     * @param myDataset string array that holds the text on the RecyclerView items
+     * @param parent IRecyclerViewActivity object that handles clicks
+     * @param layout int describes how many items
+     */
     public RecyclerViewAdapter(String[] myDataset, IRecyclerViewActivity parent, int layout) {
         this.parent = parent;
         mDataset = myDataset;

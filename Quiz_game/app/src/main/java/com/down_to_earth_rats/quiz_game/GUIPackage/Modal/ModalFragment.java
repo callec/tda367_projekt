@@ -8,8 +8,6 @@ import android.os.Bundle;
 
 import androidx.fragment.app.DialogFragment;
 
-import com.down_to_earth_rats.quiz_game.GUIPackage.Modal.IModalFragmentHandler;
-
 /**
  * Created by Henrik, Carl
  * Modified by Henrik
@@ -21,6 +19,12 @@ public class ModalFragment extends DialogFragment {
     private String[] buttons;
     private IModalFragmentHandler handler;
 
+    /**
+     * Sole constructor, is used within the Activities that use a DialogFragment.
+     * @param title string title of the DialogFragment
+     * @param buttons array of string, the text on the buttons
+     * @param handler IModalFragmentHandler, handles the clicks
+     */
     public ModalFragment(String title, String[] buttons, IModalFragmentHandler handler) {
         this.title = title;
         this.buttons = buttons;
@@ -33,16 +37,9 @@ public class ModalFragment extends DialogFragment {
         builder.setTitle(title)
                 .setItems(buttons, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        // The 'which' argument contains the index position
-                        // of the selected item
-
-                        //Let (most often) caller decide how to handle button presses
                         handler.modalFragmentButtonPressed(which);
-
                     }
                 });
         return builder.create();
     }
-
-
 }
