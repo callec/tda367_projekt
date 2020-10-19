@@ -8,6 +8,6 @@ package com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker;
 
 public interface CategoryClickListener {
 
-    void CategoryClicked(String categoryName, String subCategoryName);
+    void categoryClicked(String categoryName, String subCategoryName);
 
 }

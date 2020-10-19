@@ -70,7 +70,7 @@ public class SubCategoryListFragment extends Fragment implements CategoryClickLi
 
 
     @Override
-    public void CategoryClicked(String categoryName, String subCategoryName) {
-        listener.CategoryClicked(category.getCategoryName(), subCategoryName);
+    public void categoryClicked(String categoryName, String subCategoryName) {
+        listener.categoryClicked(category.getCategoryName(), subCategoryName);
     }
 }

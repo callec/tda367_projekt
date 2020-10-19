@@ -24,7 +24,7 @@ public class ViewHolderCategory extends RecyclerView.ViewHolder {
         binding.getRoot().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                listener.CategoryClicked("",String.valueOf(binding.categoryName.getText()) );
+                listener.categoryClicked("",String.valueOf(binding.categoryName.getText()) );
             }
         });
     }

@@ -47,6 +47,11 @@
     <string name="username">Användarnamn</string>
     <string name="password">Lösenord</string>
 
+    <!--Categories-->
+    <string name="cat_Maths">Matematik</string>
+    <string name="cat_History">Historia</string>
+    <string name="cat_User">User</string>
+
     <!--Sub-categories-->
     <string name="sub_addition">Addition</string>
     <string name="sub_subtraktion">Subtraktion</string>

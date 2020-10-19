@@ -31,16 +31,17 @@ public class QuestionFromFileTest {
     public void testGetQuestions() {
         // TODO: this class isn't implemented in QuestionFromFile
         //  - to test: that questions are of the subjects specified
-        List<String> subjects = new ArrayList<>();
-        subjects.add("addition");
-        subjects.add("subtraktion");
+        String category = "Matematik";
+        List<String> subcategories = new ArrayList<>();
+        subcategories.add("Addition");
+        subcategories.add("Subtraktion");
 
-        assertNull(provider.getQuestions(subjects, 5));
+        assertNull(provider.getQuestions(category, subcategories, 5));
     }
 
     @Test
     public void testRandomAdditionQuestion() {
-        Iterator<IQuestion> qs = provider.getQuestions("Addition", 1);
+        Iterator<IQuestion> qs = provider.getQuestions("Matematik","Addition", 1);
 
         qs.hasNext();
         IQuestion q = qs.next();

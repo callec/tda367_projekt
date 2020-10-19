@@ -29,6 +29,39 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
      * @return a list of questons from the wanted subcategory
      */
     @Override
+    public Iterator<IQuestion> getQuestions(String category, String subcategory, int numberOfQuestions) {
+        List<IQuestion> qs = new ArrayList<>();
+
+        if(subcategory.equals("Sveriges Historia")){
+            qs = swedishHistoryQuestions(numberOfQuestions);
+        }
+        if(subcategory.equals("Europas Historia")){
+            qs = europeHistoryQuestions(numberOfQuestions);
+        }
+
+        for (int i=0; i<numberOfQuestions; ++i) {
+
+            switch (subcategory){
+                case "Addition":
+                    qs.add(randomAdditionQuestion());
+                    break;
+                case "Subtraktion":
+                    qs.add(randomSubtractionQuestion());
+                    break;
+                case "Multiplikation":
+                    qs.add(randomMultiplicationQuestion());
+                    break;
+                case "Division":
+                    qs.add(randomDivisionQuestion());
+                    break;
+                case "Matteprov":
+                    qs.add(matteProvQuestion());
+            }
+        }
+
+        return new ListIterator<>(qs);
+    }
+    /*@Override
     public Iterator<IQuestion> getQuestions(String subcategory, int numberOfQuestions) {
         List<IQuestion> qs = new ArrayList<>();
 
@@ -61,7 +94,7 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
         }
 
         return new ListIterator<>(qs);
-    }
+    }*/
 
     private IQuestion matteProvQuestion(){
         Random random = new Random();
@@ -223,12 +256,13 @@ public class ConcreteQuestionProvider implements IQuestionProvider {
      * This method is not viable at the moment.
      * Can be implemented to access hybride-quizzes.
      *
-     * @param listOfSubjects a list of all the subcategories you want questions from.
+     * @param listOfSubcategory a list of all the subcategories you want questions from.
      * @param numberOfQuestions how many questions you want to get.
      * @return a list of questons.
      */
     @Override
-    public Iterator<IQuestion> getQuestions(List<String> listOfSubjects, int numberOfQuestions) {
+    public Iterator<IQuestion> getQuestions(String category, List<String> listOfSubcategory, int numberOfQuestions) {
         return null;
     }
+
 }

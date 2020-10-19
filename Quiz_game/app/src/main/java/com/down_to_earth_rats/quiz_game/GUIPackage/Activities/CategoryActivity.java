@@ -102,7 +102,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
     }
 
     @Override
-    public void CategoryClicked(String categoryName, String subCategoryName) {
+    public void categoryClicked(String categoryName, String subCategoryName) {
 
         //Save current category and sub category via shared preferences
         SharedPreferences pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
@@ -136,36 +136,3 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
         }
     }
 }
-
-
-
-/*new CountDownTimer(3000, 2000) {
-
-            @Override
-            public void onTick(long l) {
-
-
-            }
-
-            @Override
-            public void onFinish() {
-
-                categoryList.remove(2);
-                categoryList.add(new ImmutableCategory("Yes", "Coolio", "Awesome", "Nej"));
-                //setAdapter();
-                //tabLayout.removeTabAt(2);
-                //setNewAdapter(2);
-
-                pagerAdapter.updatePage(2);
-                pagerAdapter.notifyDataSetChanged();
-
-            }
-
-        }.start();*/
-
-/*private CategoryPickerPagerAdapter test(){
-        return new CategoryPickerPagerAdapter(this);
-    }*/
-
-
-//tabLayout.removeTabAt();

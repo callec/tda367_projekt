@@ -54,7 +54,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
         runningState.setValue(true);
         questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
 
-        questionHandler = QuestionHandlerFactory.createRandomizingHandler(questionProvider.getQuestions(subCategory, totalQuestions));
+        questionHandler = QuestionHandlerFactory.createRandomizingHandler(questionProvider.getQuestions(category, subCategory, totalQuestions));
         questionHandler.registerObserver(this);
 
         currentQuestion = questionHandler.getQuestion();
