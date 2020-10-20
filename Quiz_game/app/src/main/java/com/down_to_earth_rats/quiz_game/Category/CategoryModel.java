@@ -1,8 +1,8 @@
-package com.down_to_earth_rats.quiz_game.Category;
+package com.down_to_earth_rats.quiz_game.category;
 
 import androidx.lifecycle.ViewModel;
 
-import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
+import com.down_to_earth_rats.quiz_game.user.UserSingleton;
 
 import java.util.ArrayList;
 import java.util.Iterator;

@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Utility;
+package com.down_to_earth_rats.quiz_game.utility;
 
 import java.util.ArrayList;
 import java.util.Iterator;

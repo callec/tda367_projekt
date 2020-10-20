@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/kiwi_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GUIPackage.Activities.LoginActivity">
+        <activity android:name=".gui.activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -17,27 +17,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".GUIPackage.Activities.CategoryActivity"
-            android:parentActivityName=".GUIPackage.Activities.MainActivity"
+            android:name=".gui.activities.CategoryActivity"
+            android:parentActivityName=".gui.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
 
 
         <activity
-            android:name=".GUIPackage.Activities.StatisticsActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.GUIPackage.Activities.MainActivity"
+            android:name=".gui.activities.StatisticsActivity"
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.gui.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
 
 
         <activity
-            android:name=".GUIPackage.Activities.SettingsActivity"
-            android:parentActivityName=".GUIPackage.Activities.MainActivity"
+            android:name=".gui.activities.SettingsActivity"
+            android:parentActivityName=".gui.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
 
 
-        <activity android:name=".GUIPackage.Activities.MainActivity"
+        <activity android:name=".gui.activities.MainActivity"
             android:screenOrientation="portrait">
             <!--<intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,14 +48,14 @@
 
 
         <activity
-            android:name=".GUIPackage.Activities.ResultsActivity"
-            android:parentActivityName="com.down_to_earth_rats.quiz_game.GUIPackage.Activities.MainActivity"
+            android:name=".gui.activities.ResultsActivity"
+            android:parentActivityName="com.down_to_earth_rats.quiz_game.gui.activities.MainActivity"
             android:screenOrientation="portrait">
         </activity>
 
 
         <activity
-            android:name=".GUIPackage.Activities.QuizActivity"
+            android:name=".gui.activities.QuizActivity"
             android:screenOrientation="portrait">
         </activity>
 

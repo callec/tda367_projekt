@@ -1,6 +1,6 @@
-package com.down_to_earth_rats.quiz_game.Utility;
+package com.down_to_earth_rats.quiz_game.utility;
 
-import com.down_to_earth_rats.quiz_game.Utility.ListIterator;
+import com.down_to_earth_rats.quiz_game.utility.ListIterator;
 
 import org.junit.Before;
 import org.junit.Test;

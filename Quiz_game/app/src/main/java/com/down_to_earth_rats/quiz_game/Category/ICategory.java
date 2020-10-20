@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.Category;
+package com.down_to_earth_rats.quiz_game.category;
 
 import java.util.Iterator;
 
