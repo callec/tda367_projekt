@@ -9,6 +9,8 @@ public class UserSingleton {
 
     static private IUser instance = null;
 
+    private UserSingleton() { }
+
     static public IUser getUser() /*throws NullPointerException */{
 
         if (instance == null){

@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker;
+package com.down_to_earth_rats.quiz_game.Category;
 
 /**
  * Created by Erik Blomberg
@@ -6,7 +6,7 @@ package com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker;
  * Interface used to by the ViewModel to tell observers that the data set has changed
  */
 
-public interface ViewModelObserver {
+public interface IModelObserver {
 
     /**
      *

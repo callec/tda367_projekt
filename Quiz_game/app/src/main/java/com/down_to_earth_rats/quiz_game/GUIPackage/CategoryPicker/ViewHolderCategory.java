@@ -16,7 +16,7 @@ public class ViewHolderCategory extends RecyclerView.ViewHolder {
 
     public SubcategoryCardBinding binding;
 
-    public ViewHolderCategory(final SubcategoryCardBinding binding, final CategoryClickListener listener) {
+    public ViewHolderCategory(final SubcategoryCardBinding binding, final ICategoryClickListener listener) {
         super(binding.getRoot());
         this.binding = binding;
 

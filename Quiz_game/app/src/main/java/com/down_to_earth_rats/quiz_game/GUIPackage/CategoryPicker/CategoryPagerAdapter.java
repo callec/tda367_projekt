@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.Category.ICategory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,12 +18,12 @@ import java.util.List;
 public class CategoryPagerAdapter extends FragmentStateAdapter {
 
     private List<ICategory> dataSet;
-    private CategoryClickListener listener;
+    private ICategoryClickListener listener;
 
     private List<SubCategoryListFragment> fragments = new ArrayList<>();
 
 
-    public CategoryPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, CategoryClickListener listener) {
+    public CategoryPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, ICategoryClickListener listener) {
         super(fa);
 
         this.listener = listener;

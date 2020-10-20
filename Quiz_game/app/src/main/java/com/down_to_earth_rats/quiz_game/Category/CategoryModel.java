@@ -1,9 +1,7 @@
-package com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker;
+package com.down_to_earth_rats.quiz_game.Category;
 
 import androidx.lifecycle.ViewModel;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.CategoryFactory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
 import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
 
 import java.util.ArrayList;
@@ -17,13 +15,13 @@ import java.util.List;
  * Currently, only the standard categories are present.
  */
 
-public class CategoryViewModel extends ViewModel {
+public class CategoryModel extends ViewModel {
 
     private List<ICategory> categories = new ArrayList<>();
 
-    private List<ViewModelObserver> observers = new ArrayList<>();
+    private List<IModelObserver> observers = new ArrayList<>();
 
-    public CategoryViewModel() {
+    public CategoryModel() {
         getStandardCategories();
         categories.add(UserSingleton.getUser().getUserCategory());
 
@@ -40,18 +38,18 @@ public class CategoryViewModel extends ViewModel {
         return categories;
     }
 
-    public void registerObserver(ViewModelObserver observer){
+    public void registerObserver(IModelObserver observer){
         if(!observers.contains(observer)){
             observers.add(observer);
         }
     }
 
-    public void removeObserver(ViewModelObserver observer){
+    public void removeObserver(IModelObserver observer){
         observers.remove(observer);
     }
 
     private void notifyObservers(int position){
-        for(ViewModelObserver observer : observers){
+        for(IModelObserver observer : observers){
             observer.pageUpdated(position);
         }
     }

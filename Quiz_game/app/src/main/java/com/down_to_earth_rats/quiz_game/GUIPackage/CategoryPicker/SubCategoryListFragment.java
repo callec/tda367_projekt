@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.Category.ICategory;
 import com.down_to_earth_rats.quiz_game.databinding.FragmentCategoryPickerBinding;
 
 import java.util.ArrayList;
@@ -22,9 +22,9 @@ import java.util.List;
  * Fragment displaying a list with subcategories from a specific category
  */
 
-public class SubCategoryListFragment extends Fragment implements CategoryClickListener {
+public class SubCategoryListFragment extends Fragment implements ICategoryClickListener {
 
-    private CategoryClickListener listener;
+    private ICategoryClickListener listener;
 
     private ICategory category;
     private List<String> subCategories = new ArrayList<>();
@@ -32,7 +32,7 @@ public class SubCategoryListFragment extends Fragment implements CategoryClickLi
     private RecyclerView recyclerView;
 
 
-    public void setListener(CategoryClickListener listener){
+    public void setListener(ICategoryClickListener listener){
         this.listener = listener;
     }
 

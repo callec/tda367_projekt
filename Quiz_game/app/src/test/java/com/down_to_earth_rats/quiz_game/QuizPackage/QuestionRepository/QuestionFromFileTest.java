@@ -24,7 +24,7 @@ public class QuestionFromFileTest {
 
     @Before
     public void setup() {
-        this.provider = QuestionProviderFactory.getStandardQuestionProvider();
+        this.provider = QuestionProviderFactory.getQuestionProvider();
     }
 
     @Test

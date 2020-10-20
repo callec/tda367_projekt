@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.Category;
+package com.down_to_earth_rats.quiz_game.Category;
 
 import com.down_to_earth_rats.quiz_game.Utility.ListIterator;
 
@@ -14,11 +14,11 @@ import java.util.List;
  * Right now the categories are entered manually
  */
 
-class StandardCategoryHandler implements ICategoryHandler{
+class SimpleCategoryHandler implements ICategoryHandler{
 
     private List<ICategory> categoryList = new ArrayList<>();
 
-    public StandardCategoryHandler() {  //TODO byta till strings från R.strings ?
+    public SimpleCategoryHandler() {  //TODO byta till strings från R.strings ?
         ImmutableCategory category1 = new ImmutableCategory("Matematik", "Addition",
                 "Subtraktion", "Multiplikation", "Division");
 

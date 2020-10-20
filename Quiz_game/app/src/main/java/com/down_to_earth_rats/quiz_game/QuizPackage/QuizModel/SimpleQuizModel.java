@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuizModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -24,7 +24,7 @@ import java.util.Random;
  *
  */
 
-public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implements IQuestionHandlerObserver, IViewModel {
+public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQuestionHandlerObserver, IQuizModel {
 
     private IQuestionHandler questionHandler;
     private int totalQuestions;
@@ -52,7 +52,7 @@ public class StandardQuizViewModel extends androidx.lifecycle.ViewModel implemen
 
     public void initQuiz() {
         runningState.setValue(true);
-        questionProvider = QuestionProviderFactory.getStandardQuestionProvider();
+        questionProvider = QuestionProviderFactory.getQuestionProvider();
 
         questionHandler = QuestionHandlerFactory.createRandomizingHandler(questionProvider.getQuestions(category, subCategory, totalQuestions));
         questionHandler.registerObserver(this);

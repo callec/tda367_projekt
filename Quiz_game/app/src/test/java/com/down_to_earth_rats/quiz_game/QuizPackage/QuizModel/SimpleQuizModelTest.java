@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuizModel;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
@@ -15,16 +15,16 @@ import static org.junit.Assert.fail;
  * Created by Carl Bergman
  * Small modification by Erik Blomberg, Sara Persson
  */
-public class StandardQuizViewModelTest {
+public class SimpleQuizModelTest {
 
-    IViewModel vm;
+    IQuizModel vm;
 
     @Rule
     public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
 
     @Before
     public void setup() {
-        vm = new StandardQuizViewModel();
+        vm = new SimpleQuizModel();
         vm.setTotalQuestions(5);
         vm.initQuiz();
     }

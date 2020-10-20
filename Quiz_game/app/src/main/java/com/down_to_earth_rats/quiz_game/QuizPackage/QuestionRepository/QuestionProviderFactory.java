@@ -8,7 +8,7 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.QuestionRepository;
 
 public abstract class QuestionProviderFactory {
 
-    public static IQuestionProvider getStandardQuestionProvider(){
-        return new ConcreteQuestionProvider();
+    public static IQuestionProvider getQuestionProvider(){
+        return new SimpleQuestionProvider();
     }
 }

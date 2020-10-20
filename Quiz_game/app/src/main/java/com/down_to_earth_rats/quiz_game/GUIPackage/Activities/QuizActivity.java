@@ -17,10 +17,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.down_to_earth_rats.quiz_game.GUIPackage.Modal.IModalFragmentHandler;
 import com.down_to_earth_rats.quiz_game.GUIPackage.Modal.ModalFragment;
 import com.down_to_earth_rats.quiz_game.R;
-import com.down_to_earth_rats.quiz_game.UserPackage.IUser;
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.IViewModel;
-import com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel.StandardQuizViewModel;
-import com.down_to_earth_rats.quiz_game.UserPackage.UserSingleton;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuizModel.IQuizModel;
+import com.down_to_earth_rats.quiz_game.QuizPackage.QuizModel.SimpleQuizModel;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.GameModeFactory;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;
@@ -42,7 +40,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     private IGameModeFragment gameMode;
     private boolean gameModeEnd;
     private ModalFragment modal;
-    private IViewModel model;
+    private IQuizModel model;
 
     private Resources res;
     private SharedPreferences pref;
@@ -69,7 +67,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
         pref = this.getSharedPreferences(getString(R.string.preferences_name), MODE_PRIVATE);
 
-        model = new ViewModelProvider(this).get(StandardQuizViewModel.class);
+        model = new ViewModelProvider(this).get(SimpleQuizModel.class);
         model.setTotalQuestions(pref.getInt(getString(R.string.settings_totalq), res.getInteger(R.integer.totalq_defaultvalue)));
 
         currentCategory = pref.getString(CategoryActivity.CATEGORY_NAME, "Matematik");

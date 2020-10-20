@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives;
+package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;

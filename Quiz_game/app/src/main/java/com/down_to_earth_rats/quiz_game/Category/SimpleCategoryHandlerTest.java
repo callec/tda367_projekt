@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.Category;
+package com.down_to_earth_rats.quiz_game.Category;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,13 +12,13 @@ import static org.junit.Assert.*;
  *
  */
 
-public class StandardCategoryHandlerTest {
+public class SimpleCategoryHandlerTest {
 
     ICategoryHandler categoryHandler;
 
     @Before
     public void setUp() {
-        categoryHandler = new StandardCategoryHandler();
+        categoryHandler = new SimpleCategoryHandler();
     }
 
 

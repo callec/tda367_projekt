@@ -6,7 +6,7 @@ package com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker;
  * Used to listen for when a Category has been selected
  */
 
-public interface CategoryClickListener {
+public interface ICategoryClickListener {
 
     void categoryClicked(String categoryName, String subCategoryName);
 

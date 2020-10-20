@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.ViewModel;
+package com.down_to_earth_rats.quiz_game.QuizPackage.QuizModel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -11,7 +11,7 @@ import java.util.List;
  * This interface defines the behaviour of ViewModel.
  */
 
-public interface IViewModel {
+public interface IQuizModel {
 
     boolean answerQuestion(int alternativeID);
     void changeQuestion();

@@ -19,7 +19,7 @@ import java.util.Random;
  *
  */
 
-public class ConcreteQuestionProvider implements IQuestionProvider {
+public class SimpleQuestionProvider implements IQuestionProvider {
 
 
     @Override

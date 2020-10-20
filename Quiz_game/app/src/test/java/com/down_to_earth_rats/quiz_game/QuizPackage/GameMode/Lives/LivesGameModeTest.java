@@ -2,6 +2,8 @@ package com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Lives;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.LivesGameMode;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;

@@ -12,7 +12,7 @@ public class QuestionProviderFactoryTest {
     @Test
     public void testGetStandardQuestionProvider() {
         // testing methods in QuestionsFromFile are done in QuestionsFromFileTest
-        IQuestionProvider factoryValue = QuestionProviderFactory.getStandardQuestionProvider();
-        assertTrue(factoryValue instanceof ConcreteQuestionProvider);
+        IQuestionProvider factoryValue = QuestionProviderFactory.getQuestionProvider();
+        assertTrue(factoryValue instanceof SimpleQuestionProvider);
     }
 }

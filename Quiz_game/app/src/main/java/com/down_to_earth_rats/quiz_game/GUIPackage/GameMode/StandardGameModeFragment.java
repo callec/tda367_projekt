@@ -11,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.Standard.StandardGameMode;
+import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.StandardGameMode;
 import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.FragmentStandardGameModeBinding;
 import com.down_to_earth_rats.quiz_game.QuizPackage.GameMode.IGameModeFragment;

@@ -8,14 +8,14 @@ import java.util.List;
  *
  */
 
-class ConcreteLoginService implements ILoginService {
+class SimpleLoginService implements ILoginService {
 
 
     IUser user = new User("Lisa", "12345");
 
     List<IUser> userList = new ArrayList<>();
 
-    public ConcreteLoginService() {
+    public SimpleLoginService() {
         userList.add(user);
         user.addResult(new ResultObject(5, 2, "Matematik",
                 "Addition", "Standard", false));

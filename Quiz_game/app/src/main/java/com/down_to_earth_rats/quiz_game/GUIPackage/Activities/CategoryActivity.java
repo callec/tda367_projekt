@@ -11,11 +11,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker.CategoryClickListener;
+import com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker.ICategoryClickListener;
 import com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker.CategoryPagerAdapter;
-import com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker.CategoryViewModel;
-import com.down_to_earth_rats.quiz_game.GUIPackage.CategoryPicker.ViewModelObserver;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.Category.CategoryModel;
+import com.down_to_earth_rats.quiz_game.Category.IModelObserver;
+import com.down_to_earth_rats.quiz_game.Category.ICategory;
 import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
 import com.google.android.material.tabs.TabLayout;
@@ -31,13 +31,13 @@ import java.util.List;
  * The activity sends to values, the category name and the subcategory name.
  */
 //Changed from FragmentActivity, maybe something will go wrong!
-public class CategoryActivity extends AppCompatActivity implements CategoryClickListener, ViewModelObserver {
+public class CategoryActivity extends AppCompatActivity implements ICategoryClickListener, IModelObserver {
 
     //Use these in combination with Intent.getExtra()
     public static String CATEGORY_NAME = "category";
     public static String SUBCATEGORY_NAME = "sub_category";
 
-    private CategoryViewModel model;
+    private CategoryModel model;
 
     private ViewPager2 viewPager;
     private CategoryPagerAdapter pagerAdapter;
@@ -50,7 +50,7 @@ public class CategoryActivity extends AppCompatActivity implements CategoryClick
         super.onCreate(savedInstanceState);
 
         //Get categories
-        model = new ViewModelProvider(this).get(CategoryViewModel.class);
+        model = new ViewModelProvider(this).get(CategoryModel.class);
         model.registerObserver(this);
         categoryList = model.getCategories();
 

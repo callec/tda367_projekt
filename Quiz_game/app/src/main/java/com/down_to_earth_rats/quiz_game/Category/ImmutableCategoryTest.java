@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.QuizPackage.Category;
+package com.down_to_earth_rats.quiz_game.Category;
 
 import org.junit.Before;
 import org.junit.Test;

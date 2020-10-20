@@ -1,7 +1,7 @@
 package com.down_to_earth_rats.quiz_game.UserPackage;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ImmutableCategory;
+import com.down_to_earth_rats.quiz_game.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.Category.ImmutableCategory;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.down_to_earth_rats.quiz_game.UserPackage;
 
-import com.down_to_earth_rats.quiz_game.QuizPackage.Category.ICategory;
+import com.down_to_earth_rats.quiz_game.Category.ICategory;
 
 import java.util.List;
 
