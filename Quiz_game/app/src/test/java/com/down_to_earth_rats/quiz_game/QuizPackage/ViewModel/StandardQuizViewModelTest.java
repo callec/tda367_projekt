@@ -6,6 +6,8 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotEquals;
 import static org.junit.Assert.assertTrue;
@@ -26,6 +28,7 @@ public class StandardQuizViewModelTest {
     public void setup() {
         vm = new StandardQuizViewModel();
         vm.setTotalQuestions(5);
+        vm.setCategoryAndSubCategory("", "Addition");
         vm.initQuiz();
     }
 
@@ -80,8 +83,6 @@ public class StandardQuizViewModelTest {
         assertNotEquals(0, vm.getTotalQuestions());
     }
 
-
-    /* TODO this test fails atm, whyy? Fix pls!
     @Test
     public void testChangeQuestion() {
         List<String> alts = vm.getAlternativeList().getValue();
@@ -89,8 +90,6 @@ public class StandardQuizViewModelTest {
 
         assertNotEquals(alts, vm.getAlternativeList().getValue());
     }
-
-     */
 
     @Test
     public void testAnswerQuestions() {
