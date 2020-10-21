@@ -41,7 +41,6 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
 
     private boolean hintsUsed = false;
 
-
     public boolean getHintsUsed() {
         return hintsUsed;
     }
@@ -151,7 +150,7 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
     }
 
     public void hintsUsedResults() {
-        setHintsUsed(true);
+        hintsUsed = true;
     }
 
     @Override

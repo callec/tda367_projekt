@@ -68,10 +68,15 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
     }
 
     private void setupRunningState() {
+        runningState = true;
+
         model.getQuizRunning().observe(getViewLifecycleOwner(), new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean quizRunning) {
-                runningState = quizRunning;
+                if (!quizRunning) {
+                    notifyObserver();
+                    runningState = quizRunning;
+                }
             }
         });
     }
@@ -94,9 +99,8 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
 
             @Override
             public void onFinish() {
-                //quizRunning = false;
                 timerProgressBar.setProgress(100);
-                notifyObserver();
+                model.setTimeLeft(0);
             }
         };
 
@@ -139,7 +143,7 @@ public class TimeGameModeFragment extends Fragment implements IGameModeFragment 
      */
     @Override
     public void onNewQuestion() {
-        if (!runningState) {
+        if (model.getTimeLeft() < 1 || !runningState) {
             // need this check to prevent recursive calls after the quiz is completed
             return;
         }

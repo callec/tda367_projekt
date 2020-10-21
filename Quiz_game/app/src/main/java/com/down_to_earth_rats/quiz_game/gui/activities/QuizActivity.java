@@ -29,6 +29,8 @@ import java.util.List;
 
 /**
  * Created and edited by Henrik, Sara, Carl, Erik, Louise
+ * This activity represents displaying the quiz, it has one question and four alternatives.
+ * It also has a game mode fragment which it uses depending on user selection.
  */
 public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler, IGameModeObserver {
 
@@ -54,8 +56,8 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     private String currentCategory;
 
-    private int hintTries = 2;   //how many times you may use hints
-    private int hints = hintTries;
+    private final int maxHints = 2;
+    private int hints = maxHints;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,24 +86,25 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         setupSupportActionBar();
         setupOnQuizEnd();
         setupButtons();
-        checkHintStatus(findViewById(android.R.id.content).getRootView());
-
-        editor.putBoolean("hintsUsed", false);
-        editor.commit();
-
+        setupHints();
     }
 
-    private void checkHintStatus(View view) {
+    private void setupHints() {
+        editor.putBoolean("hintsUsed", false);
+        editor.apply();
 
+        checkHintStatus();
+    }
+
+    private void checkHintStatus() {
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
-        viewBinding.hintButton.setVisibility(hintOn_Status ? view.VISIBLE : view.INVISIBLE);
-
+        viewBinding.hintButton.setVisibility(hintOn_Status ? View.VISIBLE : View.INVISIBLE);
     }
 
     public void giveHintQuiz(View view) {
 
         editor.putBoolean("hintsUsed", true);
-        editor.commit();
+        editor.apply();
         model.hintsUsedResults();
 
         int hintIndex = model.getHintIndex();
@@ -252,18 +255,20 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
             @Override
             public void onFinish() {
-                checkHintStatus(findViewById(android.R.id.content).getRootView());
-                viewBinding.hintButton.setClickable(true);
+                checkHintStatus();
                 disableProgressBar();
                 enableButtons(true, alternative1, alternative2, alternative3, alternative4);
-                gameMode.onNewQuestion();
-                model.changeQuestion();
                 disableProgressBar();
-                hints = hintTries;
+
+                hints = maxHints;
+                viewBinding.hintButton.setClickable(true);
 
                 if (gameModeEnd) {
                     model.gameModeForceEnd();
                 }
+
+                gameMode.onNewQuestion();
+                model.changeQuestion();
             }
 
         };

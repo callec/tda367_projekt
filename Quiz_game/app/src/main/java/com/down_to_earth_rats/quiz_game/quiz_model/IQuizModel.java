@@ -27,7 +27,6 @@ public interface IQuizModel {
     boolean checkIfCorrect(int alternativeID);
     void hintsUsedResults();
     boolean getHintsUsed();
-    void setHintsUsed(boolean bool);
 
     void gameModeForceEnd();
 }
