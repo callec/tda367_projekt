@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.quiz_model.QuizModel;
+package com.down_to_earth_rats.quiz_game.quiz_model;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
@@ -19,6 +19,7 @@ import static org.junit.Assert.fail;
 /**
  * Created by Carl Bergman
  * Small modification by Erik Blomberg, Sara Persson
+ * Even smaller modification by Henrik Johansson
  */
 public class SimpleQuizModelTest {
 
@@ -62,16 +63,16 @@ public class SimpleQuizModelTest {
 
     @Test
     public void TestGetHintsUsed () {
-        assert vm.getHintsUsed() == false;
+        assert !vm.getHintsUsed();
         vm.hintsUsedResults();
-        assert vm.getHintsUsed() == true;
+        assert vm.getHintsUsed();
     }
 
     @Test
     public void TestSetHintsUsed () {
-        assert vm.getHintsUsed() == false;
-        vm.setHintsUsed(true);
-        assert vm.getHintsUsed() == true;
+        assert !vm.getHintsUsed();
+        vm.hintsUsedResults();
+        assert vm.getHintsUsed();
     }
 
     @Test

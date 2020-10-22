@@ -122,7 +122,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void setupToolBar() {
         Toolbar toolbar = viewBinding.toolbarSettings;
-        toolbar.setTitle("Home");
+        toolbar.setTitle("Inställningar");
         setSupportActionBar(toolbar);
 
         //Gives us the return to previous page /back arrow, in the top toolbar   (<-)

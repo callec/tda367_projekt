@@ -18,7 +18,7 @@ import static org.junit.Assert.assertNull;
 /**
  * Created by Carl Bergman
  */
-public class QuestionFromFileTest {
+public class SimpleQuestionProviderTest {
 
     private IQuestionProvider provider;
 
