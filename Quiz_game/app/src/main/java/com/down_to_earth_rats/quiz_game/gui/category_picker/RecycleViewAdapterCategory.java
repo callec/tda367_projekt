@@ -14,13 +14,13 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
- * Simple adapter for the recycle view displaying the subcategories
+ * Simple adapter for the RecycleView displaying the subcategories
  */
 
 public class RecycleViewAdapterCategory extends RecyclerView.Adapter<ViewHolderCategory> {
 
     private List<String> dataSet;
-    private ICategoryClickListener listener;
+    private final ICategoryClickListener listener;
 
     public RecycleViewAdapterCategory(List<String> strings, ICategoryClickListener listener) {
         this.listener = listener;

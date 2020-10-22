@@ -19,7 +19,7 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
- * Fragment displaying a list with subcategories from a specific category
+ * Fragment displaying a list with Subcategories from a specific category
  */
 
 public class SubCategoryListFragment extends Fragment implements ICategoryClickListener {
@@ -27,7 +27,7 @@ public class SubCategoryListFragment extends Fragment implements ICategoryClickL
     private ICategoryClickListener listener;
 
     private ICategory category;
-    private List<String> subCategories = new ArrayList<>();
+    private final List<String> subCategories = new ArrayList<>();
 
     private RecyclerView recyclerView;
 
@@ -40,11 +40,13 @@ public class SubCategoryListFragment extends Fragment implements ICategoryClickL
         this.category = category;
         subCategories.clear();
 
+        //Add new subcategories
         Iterator<String> iterator = category.getSubCategories();
         while(iterator.hasNext()){
             subCategories.add(iterator.next());
         }
 
+        //Only notify if the categories are currently being displayed
         if(recyclerView != null ){
             if(recyclerView.getAdapter() != null){
                 recyclerView.getAdapter().notifyDataSetChanged();
@@ -58,7 +60,7 @@ public class SubCategoryListFragment extends Fragment implements ICategoryClickL
 
         FragmentCategoryPickerBinding binding = FragmentCategoryPickerBinding.inflate(inflater);
 
-        //Configure recycler view
+        //Configure recycler view, currently a vertical list
         recyclerView = binding.list;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(new RecycleViewAdapterCategory(subCategories, this));
@@ -71,6 +73,8 @@ public class SubCategoryListFragment extends Fragment implements ICategoryClickL
 
     @Override
     public void categoryClicked(String categoryName, String subCategoryName) {
+
+        //Send the Category name as well as the subcategory
         listener.categoryClicked(category.getCategoryName(), subCategoryName);
     }
 }

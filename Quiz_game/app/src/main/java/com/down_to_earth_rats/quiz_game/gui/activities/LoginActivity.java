@@ -17,7 +17,8 @@ import com.google.android.material.textfield.TextInputLayout;
 /**
  * Created by Erik Blomberg
  *
- *
+ * This is the Activity used to log in.
+ * It consists of Username and passwords fields and a "Log in" button
  */
 
 public class LoginActivity extends AppCompatActivity {
@@ -25,6 +26,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Binding stuff
 
         ActivityLoginBinding binding = ActivityLoginBinding.inflate(getLayoutInflater());
 
@@ -35,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         final TextInputEditText passwordInputEdit = binding.passwordInputEdit;
 
         final MaterialButton loginButton = binding.loginButton;
+
+
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                 String username;
                 String password;
 
+                //The Username-field cannot be empty
                 if(TextUtils.isEmpty(usernameInputEdit.getText())){
                     usernameInputLayout.setError("Fyll i användarnamn");
                     return;
@@ -51,6 +57,7 @@ public class LoginActivity extends AppCompatActivity {
                     username = usernameInputEdit.getText().toString();
                 }
 
+                //The Password-field cannot be empty
                 if(TextUtils.isEmpty(passwordInputEdit.getText())){
                     passwordInputLayout.setError("Fyll i lösenord");
                     return;
@@ -59,8 +66,10 @@ public class LoginActivity extends AppCompatActivity {
                     password = passwordInputEdit.getText().toString();
                 }
 
+                //Try registering. If the registering is unsuccessful, the user already exists.
                 loginService.registerUser(username, password);
 
+                //Followed by an login. If that fails, the password must be wrong
                 if(loginService.loginUser(username,password)){
                     nextActivity();
                 }else{

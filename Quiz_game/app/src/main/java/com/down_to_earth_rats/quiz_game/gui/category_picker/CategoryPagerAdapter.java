@@ -12,15 +12,17 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  *
- * Used to display a fragment on each page in the ViewPager
+ * Used to display a fragment on each page in the ViewPager.
+ * The Fragments shows a list with all subcategories
  */
 
 public class CategoryPagerAdapter extends FragmentStateAdapter {
 
-    private List<ICategory> dataSet;
-    private ICategoryClickListener listener;
+    private final List<ICategory> dataSet;
+    private final ICategoryClickListener listener;
 
-    private List<SubCategoryListFragment> fragments = new ArrayList<>();
+    //The different pages
+    private final List<SubCategoryListFragment> fragments = new ArrayList<>();
 
 
     public CategoryPagerAdapter(FragmentActivity fa, List<ICategory> dataSet, ICategoryClickListener listener) {

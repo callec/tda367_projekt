@@ -9,7 +9,8 @@ import com.down_to_earth_rats.quiz_game.databinding.SubcategoryCardBinding;
 /**
  * Created by Erik Blomberg
  *
- * The layout used in the Recycler View to display one subcategory
+ * The layout used in the Recycler View to display one subcategory, a list element.
+ *
  */
 
 public class ViewHolderCategory extends RecyclerView.ViewHolder {

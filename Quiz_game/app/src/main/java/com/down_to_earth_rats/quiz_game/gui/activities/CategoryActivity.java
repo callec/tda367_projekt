@@ -26,14 +26,14 @@ import java.util.List;
 
 /**
  * Created by Erik Blomberg
+ * Modified by Erik Blomberg, Henrik Johansson and Louise Tranborg
  *
  * This is the activity used to display all categories and their respective subcategories.
- * The activity sends to values, the category name and the subcategory name.
+ * The activity stores two values into SharedPreferences, the Category name and Subcategory name
  */
-//Changed from FragmentActivity, maybe something will go wrong!
 public class CategoryActivity extends AppCompatActivity implements ICategoryClickListener, IModelObserver {
 
-    //Use these in combination with Intent.getExtra()
+    //Keys used to access the correct data from SharedPreferences
     public static String CATEGORY_NAME = "category";
     public static String SUBCATEGORY_NAME = "sub_category";
 
@@ -86,6 +86,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryClic
         toolbar.setTitle("Välj ämne");
         setSupportActionBar(toolbar);
 
+        //Enable back button
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
             ab.setDisplayHomeAsUpEnabled(true);
@@ -94,6 +95,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryClic
 
     @Override
     public void pageUpdated(int position) {
+
         //Update subcategories
         pagerAdapter.updatePage(position);
 
@@ -111,6 +113,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryClic
         editor.putString(SUBCATEGORY_NAME, subCategoryName);
         editor.apply();
 
+        //Launch the game
         Intent intent = new Intent(this, QuizActivity.class);
 
         startActivity(intent);
@@ -129,6 +132,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryClic
 
     @Override
     public void onBackPressed() {
+        //Step backwards in the ViewPager
         if (viewPager.getCurrentItem() == 0) {
             super.onBackPressed();
         } else {
