@@ -12,23 +12,26 @@ import java.util.List;
  * Created by Erik Blomberg
  *
  * Model for displaying available categories to choose from.
- * Currently, only the standard categories are present.
+ * Currently, only the default categories and User Categories are present.
+ * Inherits the ViewModel class, data is not lost during configuration changes
  */
 
 public class CategoryModel extends ViewModel {
 
-    private List<ICategory> categories = new ArrayList<>();
+    private final List<ICategory> categories = new ArrayList<>();
 
-    private List<IModelObserver> observers = new ArrayList<>();
+    private final List<IModelObserver> observers = new ArrayList<>();
 
     public CategoryModel() {
-        getStandardCategories();
+        getDefaultCategories();
+        //User categories
         categories.add(UserSingleton.getUser().getUserCategory());
 
     }
 
-    private void getStandardCategories(){
-        Iterator<ICategory> iterator = CategoryFactory.getStandardHandler().getAllCategories();
+
+    private void getDefaultCategories(){
+        Iterator<ICategory> iterator = CategoryFactory.getDefaultHandler().getAllCategories();
         while(iterator.hasNext()){
             categories.add(iterator.next());
         }
@@ -48,6 +51,7 @@ public class CategoryModel extends ViewModel {
         observers.remove(observer);
     }
 
+    //Notify which category has been updated
     private void notifyObservers(int position){
         for(IModelObserver observer : observers){
             observer.pageUpdated(position);

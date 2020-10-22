@@ -1,6 +1,5 @@
 package com.down_to_earth_rats.quiz_game.category;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Iterator;
@@ -16,8 +15,8 @@ public class CategoryFactoryTest {
 
     @Test
     public void sameInstance() {
-        ICategoryHandler handler1 = CategoryFactory.getStandardHandler();
-        ICategoryHandler handler2 = CategoryFactory.getStandardHandler();
+        ICategoryHandler handler1 = CategoryFactory.getDefaultHandler();
+        ICategoryHandler handler2 = CategoryFactory.getDefaultHandler();
 
         assertEquals(handler1, handler2);
     }
@@ -25,7 +24,7 @@ public class CategoryFactoryTest {
     @Test
     public void handlerHasCategories() {
 
-        ICategoryHandler handler = CategoryFactory.getStandardHandler();
+        ICategoryHandler handler = CategoryFactory.getDefaultHandler();
         Iterator<ICategory> iterator = handler.getAllCategories();
         assertTrue(iterator.hasNext());
 

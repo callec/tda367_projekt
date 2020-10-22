@@ -12,13 +12,13 @@ import static org.junit.Assert.*;
  *
  */
 
-public class SimpleCategoryHandlerTest {
+public class DefaultCategoryHandlerTest {
 
     ICategoryHandler categoryHandler;
 
     @Before
     public void setUp() {
-        categoryHandler = new SimpleCategoryHandler();
+        categoryHandler = new DefaultCategoryHandler();
     }
 
 

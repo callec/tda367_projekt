@@ -5,7 +5,8 @@ import java.util.Iterator;
 /**
  * Created by Erik Blomberg
  *
- * Interface representing the components of a Category
+ * Interface representing the components of a Category.
+ * A name and subcategories
  */
 
 public interface ICategory {

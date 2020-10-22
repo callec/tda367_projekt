@@ -15,9 +15,9 @@ import java.util.List;
 
 public class ImmutableCategory implements ICategory {
 
-    private String name;
+    private final String name;
 
-    private List<String> subCategoriesList = new ArrayList<>();
+    private final List<String> subCategoriesList = new ArrayList<>();
 
     public ImmutableCategory(String name, String... subCategories) {
         this.name = name;
