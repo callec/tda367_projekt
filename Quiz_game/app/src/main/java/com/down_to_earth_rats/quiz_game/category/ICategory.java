@@ -10,8 +10,16 @@ import java.util.Iterator;
 
 public interface ICategory {
 
+    /**
+     *
+     * @return name of category
+     */
     String getCategoryName();
 
+    /**
+     *
+     * @return iterator of all subcategories belonging to this category
+     */
     Iterator<String> getSubCategories();
 
 

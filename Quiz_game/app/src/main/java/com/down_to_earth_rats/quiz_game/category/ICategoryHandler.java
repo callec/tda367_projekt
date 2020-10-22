@@ -10,6 +10,10 @@ import java.util.Iterator;
 
 public interface ICategoryHandler {
 
+    /**
+     *
+     * @return iterator of all current categories of quizzes
+     */
     Iterator<ICategory> getAllCategories();
 
 
