@@ -101,6 +101,10 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         viewBinding.hintButton.setVisibility(hintOn_Status ? View.VISIBLE : View.INVISIBLE);
     }
 
+    /**
+     * Makes a wrong answer button greyed-out and disabled
+     * @param view of the current View
+     */
     public void giveHintQuiz(View view) {
 
         editor.putBoolean("hintsUsed", true);

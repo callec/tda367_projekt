@@ -112,6 +112,11 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
         return condition;
     }
 
+    /**
+     *  Checks if alternativeID is true (right answer) of false (wrong answer)
+     * @param alternativeID that corresponds to answers in quiz
+     * @return condition of an answer (right/wrong)
+     */
     public boolean checkIfCorrect(int alternativeID) {
         List<Tuple<String, Boolean>> tupleList = new ArrayList<>();
         Iterator<Tuple<String, Boolean>> iterator = currentQuestion.getAlternatives();
@@ -124,6 +129,10 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
         return condition;
     }
 
+    /**
+     * Produces a random hint index, corresponding to one of the 4 buttons in the quiz.
+     * @return a random hint index
+     */
     public int getHintIndex() {
 
         int amountOfQuestions = 4;
@@ -150,7 +159,7 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
     }
 
     public void hintsUsedResults() {
-        hintsUsed = true;
+        setHintsUsed(true);
     }
 
     @Override

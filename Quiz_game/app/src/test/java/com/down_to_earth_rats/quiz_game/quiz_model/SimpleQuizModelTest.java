@@ -36,20 +36,25 @@ public class SimpleQuizModelTest {
         vm.initQuiz();
     }
 
+    /**
+     * Checks if checkifcorrect only has one true answer
+     */
     @Test
     public void testCheckIfCorrect() {
         int amountOfQuestions = 4;
-        for (int n = 1; n<amountOfQuestions; n++) { //there is only one true answer or no true answer.
+        for (int n = 1; n<amountOfQuestions; n++) {
             assertFalse(vm.checkIfCorrect(n)&&vm.checkIfCorrect(n+1));
-        }                                           //there is a true answer.
+        }
         assertTrue(vm.checkIfCorrect(1)||vm.checkIfCorrect(2)
                 ||vm.checkIfCorrect(3)||vm.checkIfCorrect(4));
 
     }
 
+    /**
+     * Runs 100 000 test if getHintIndex gets only wrong answers
+     */
     @Test
     public void TestGetHintIndex() {
-        //int amountOfQuestions = 4;
         vm.setTotalQuestions(100000);
         vm.initQuiz();
 
