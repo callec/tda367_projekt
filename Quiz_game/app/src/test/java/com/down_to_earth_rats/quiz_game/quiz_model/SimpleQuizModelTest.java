@@ -145,6 +145,17 @@ public class SimpleQuizModelTest {
      */
 
     @Test
+    public void testRunningState() {
+        Boolean prev = vm.getRunningState().getValue();
+        if (prev == null) {
+            fail();
+        }
+
+        vm.gameModeForceEnd();
+        assertNotEquals(prev, vm.getRunningState().getValue());
+    }
+
+    @Test
     public void gameModeForceEndTest() {
         Boolean previousvalue = vm.getIsLast().getValue();
         if (previousvalue == null) {

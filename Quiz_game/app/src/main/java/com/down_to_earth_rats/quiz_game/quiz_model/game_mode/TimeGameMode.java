@@ -26,6 +26,7 @@ public class TimeGameMode extends ViewModel {
      */
     public void init(int seconds) {
         this.maxTime = seconds * 1000;
+        this.timeLeft = seconds * 1000;
         this.countDownInterval = seconds * 10;
     }
 

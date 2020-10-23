@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.quiz_model.game_mode.Lives;
+package com.down_to_earth_rats.quiz_game.quiz_model.game_mode;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 

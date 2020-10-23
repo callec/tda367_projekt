@@ -1,4 +1,4 @@
-package com.down_to_earth_rats.quiz_game.quiz_model.game_mode.Standard;
+package com.down_to_earth_rats.quiz_game.quiz_model.game_mode;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
@@ -32,7 +32,7 @@ public class StandardGameModeTest {
     }
 
     @Test
-    public void testRest() {
+    public void testReset() {
         Integer prev = gm.getCurrentq().getValue();
         if (prev == null) {
             fail();
