@@ -13,7 +13,8 @@ import java.util.Iterator;
 public interface IQuestion {
 
     /**
-     * @return
+     *
+     * @return the question text
      */
     String getQuestionText();
 

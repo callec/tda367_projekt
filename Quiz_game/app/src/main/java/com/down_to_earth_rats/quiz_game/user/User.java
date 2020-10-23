@@ -18,9 +18,9 @@ import java.util.List;
 
 class User implements IUser{
 
-    private ArrayList<ResultObject> statistics = new ArrayList<>();
-    private String username;
-    private String password;
+    private final ArrayList<ResultObject> statistics = new ArrayList<>();
+    private final String username;
+    private final String password;
 
     public User(String username, String password) {
         this.username = username;
