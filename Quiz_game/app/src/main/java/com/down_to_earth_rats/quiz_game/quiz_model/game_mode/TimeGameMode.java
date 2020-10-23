@@ -28,10 +28,17 @@ public class TimeGameMode extends ViewModel {
         this.countDownInterval = seconds * 10;
     }
 
+    /**
+     * @return long time left in ms
+     */
     public long getTimeLeft() {
         return this.timeLeft;
     }
 
+    /**
+     * Set time left, in ms
+     * @param t long, time in ms
+     */
     public void setTimeLeft(long t) {
         if (t < 1) {
             quizRunning.setValue(false);
@@ -40,14 +47,23 @@ public class TimeGameMode extends ViewModel {
         this.timeLeft = t;
     }
 
+    /**
+     * @return long max time possible
+     */
     public long getMaxTime() {
         return this.maxTime;
     }
 
+    /**
+     * @return long countdowninterval for the progressbar
+     */
     public long getCountDownInterval() {
         return this.countDownInterval;
     }
 
+    /**
+     * @return MutableLiveData<Boolean> observable data if the gamemode is running
+     */
     public MutableLiveData<Boolean> getQuizRunning() {
         return this.quizRunning;
     }
