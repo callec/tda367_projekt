@@ -15,6 +15,7 @@ public interface IQuizModel {
 
     /**
      * Check if selected alternative is correct
+     *
      * @param alternativeID ID of selected alternative
      * @return true if correct, false if incorrect
      */
@@ -26,37 +27,35 @@ public interface IQuizModel {
     void changeQuestion();
 
     /**
-     *
      * @return current runningState
      */
     MutableLiveData<Boolean> getRunningState();
 
     /**
-     *
      * @return list of alternatives from current question
      */
     LiveData<List<String>> getAlternativeList();
 
     /**
-     *
      * @return amount of questions in quiz
      */
     int getTotalQuestions();
 
     /**
      * Set for the amount of questions
+     *
      * @param i amount of questions
      */
     void setTotalQuestions(int i);
 
     /**
-     *
      * @return amount of correct answers during the quiz
      */
     int getCorrectAnswers();
 
     /**
      * Set the current quiz's category and subcategory
+     *
      * @param category
      * @param subCategory
      */
@@ -68,19 +67,16 @@ public interface IQuizModel {
     void initQuiz();
 
     /**
-     *
      * @return whether current question is the last in quiz
      */
     MutableLiveData<Boolean> getIsLast();
 
     /**
-     *
      * @return index of random incorrect alternative
      */
     int getHintIndex();
 
     /**
-     *
      * @param alternativeID ID of alternative
      * @return if alternative is correct
      */
@@ -92,7 +88,6 @@ public interface IQuizModel {
     void hintsUsedResults();
 
     /**
-     *
      * @return whether hints has been used
      */
     boolean getHintsUsed();

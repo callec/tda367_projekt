@@ -4,7 +4,7 @@ import com.down_to_earth_rats.quiz_game.quiz_model.question_data.IQuestion;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
- *
+ * <p>
  * Interface responsible for providing questions.
  * Observers will receive notification when no more questions are left.
  */
@@ -12,6 +12,7 @@ import com.down_to_earth_rats.quiz_game.quiz_model.question_data.IQuestion;
 public interface IQuestionHandler {
     /**
      * If no more question are available, it will notify all observers.
+     *
      * @return Returns the current question
      */
     IQuestion getQuestion();
@@ -23,7 +24,6 @@ public interface IQuestionHandler {
     void nextQuestion();
 
     /**
-     *
      * @return true if only one question remains, else false.
      */
     boolean isLastQuestion();
@@ -31,7 +31,6 @@ public interface IQuestionHandler {
     void registerObserver(IQuestionHandlerObserver observer);
 
     void removeObserver(IQuestionHandlerObserver observer);
-
 
 
 }

@@ -12,6 +12,7 @@ public abstract class GameModeFactory {
 
     /**
      * Return selected GameMode.
+     *
      * @param gameMode string name of the selected GameMode
      * @return instance of IGameModeFragment
      */

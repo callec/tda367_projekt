@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * Created by Carl Bergman, Louise Tranborg
- *
+ * <p>
  * This interface defines the behaviour of QuestionProviders.
  */
 
@@ -16,7 +16,7 @@ public interface IQuestionProvider {
     /**
      * Method used to access a list of question based on subcategory and number of questions wanted
      *
-     * @param subcategory questions from this subcategory is wanted.
+     * @param subcategory       questions from this subcategory is wanted.
      * @param numberOfQuestions how many questions you want to get.
      * @return a list of questons from the wanted subcategory
      */

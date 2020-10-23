@@ -4,14 +4,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.down_to_earth_rats.quiz_game.quiz_model.question_data.IQuestion;
-import com.down_to_earth_rats.quiz_game.quiz_model.question_handler.IQuestionHandlerObserver;
 import com.down_to_earth_rats.quiz_game.quiz_model.question_handler.IQuestionHandler;
+import com.down_to_earth_rats.quiz_game.quiz_model.question_handler.IQuestionHandlerObserver;
 import com.down_to_earth_rats.quiz_game.quiz_model.question_handler.QuestionHandlerFactory;
 import com.down_to_earth_rats.quiz_game.quiz_model.question_repository.IQuestionProvider;
 import com.down_to_earth_rats.quiz_game.quiz_model.question_repository.QuestionProviderFactory;
 import com.down_to_earth_rats.quiz_game.user.ResultObject;
-import com.down_to_earth_rats.quiz_game.utility.Tuple;
 import com.down_to_earth_rats.quiz_game.user.UserSingleton;
+import com.down_to_earth_rats.quiz_game.utility.Tuple;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -21,7 +21,8 @@ import java.util.Random;
 /**
  * Created by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson
  * Modified by Carl Bergman, Louise Tranborg, Erik Blomberg, Henrik Johansson, Sara Persson
- *
+ * <p>
+ * Represents the ViewModel for a simple quiz, holds and handles data for QuizActivity.
  */
 
 public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQuestionHandlerObserver, IQuizModel {
@@ -63,11 +64,11 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
 
     }
 
-    private void createAlternativeList(IQuestion question){
+    private void createAlternativeList(IQuestion question) {
         List<String> list = new ArrayList<>();
         list.add(question.getQuestionText());
         Iterator<Tuple<String, Boolean>> iterator = question.getAlternatives();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             list.add(iterator.next().getValue1());
         }
         alternativeList.setValue(list);
@@ -103,7 +104,7 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
             tupleList.add(iterator.next());
         }
 
-        boolean condition = tupleList.get(alternativeID-1).getValue2();
+        boolean condition = tupleList.get(alternativeID - 1).getValue2();
         if (condition) {
             correctAnswers++;
         }
@@ -113,7 +114,8 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
     }
 
     /**
-     *  Checks if alternativeID is true (right answer) of false (wrong answer)
+     * Checks if alternativeID is true (right answer) of false (wrong answer)
+     *
      * @param alternativeID that corresponds to answers in quiz
      * @return condition of an answer (right/wrong)
      */
@@ -125,12 +127,13 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
             tupleList.add(iterator.next());
         }
 
-        boolean condition = tupleList.get(alternativeID-1).getValue2();
+        boolean condition = tupleList.get(alternativeID - 1).getValue2();
         return condition;
     }
 
     /**
      * Produces a random hint index, corresponding to one of the 4 buttons in the quiz.
+     *
      * @return a random hint index
      */
     public int getHintIndex() {
@@ -139,7 +142,7 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
         Random randomGenerator = new Random();
         int randomQuestionNr = randomGenerator.nextInt(amountOfQuestions);
 
-        while (this.checkIfCorrect(randomQuestionNr+1)) {
+        while (this.checkIfCorrect(randomQuestionNr + 1)) {
             randomQuestionNr = randomGenerator.nextInt(amountOfQuestions);
         }
 
@@ -165,7 +168,7 @@ public class SimpleQuizModel extends androidx.lifecycle.ViewModel implements IQu
     @Override
     public void quizFinished() {
         ResultObject resultObject = new ResultObject(totalQuestions, correctAnswers, category, subCategory,
-                "Standard", getHintsUsed()); //TODO hint and gamemode
+                "Standard", getHintsUsed()); // currently only support for standard gamemode
         UserSingleton.getUser().addResult(resultObject);
 
 

@@ -13,11 +13,10 @@ import java.util.NoSuchElementException;
 
 /**
  * Created by Erik Blomberg, Louise Tranborg
- *
+ * <p>
  * This class is responsible for storing an randomizing question/alternatives
  * When no more questions are available all observers will be notified.
  * Implements IQuestionHandler
- *
  */
 
 class RandomizingQuestionHandler implements IQuestionHandler {
@@ -30,14 +29,14 @@ class RandomizingQuestionHandler implements IQuestionHandler {
         List<IQuestion> shuffleList = new ArrayList<>();
 
         //Shuffle alternatives for each question
-        while(questions.hasNext()){
+        while (questions.hasNext()) {
             shuffleList.add(new ScrambledQuestion(questions.next()));
         }
 
         shuffleQuestions(shuffleList);
     }
 
-    private void shuffleQuestions(List<IQuestion> list){
+    private void shuffleQuestions(List<IQuestion> list) {
         Collections.shuffle(list);
         questions.addAll(list);
     }
@@ -45,9 +44,9 @@ class RandomizingQuestionHandler implements IQuestionHandler {
     @Override
     public IQuestion getQuestion() {
 
-        if(questions.isEmpty()){
+        if (questions.isEmpty()) {
             quizIsFinished();
-            return QuestionFactory.createStandardFourAltQuestion("","", "", "", "");
+            return QuestionFactory.createStandardFourAltQuestion("", "", "", "", "");
 
         }
 
@@ -57,9 +56,9 @@ class RandomizingQuestionHandler implements IQuestionHandler {
     @Override
     public void nextQuestion() {
 
-        try{
+        try {
             questions.pop();
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             quizIsFinished();
         }
 
@@ -67,7 +66,7 @@ class RandomizingQuestionHandler implements IQuestionHandler {
 
     @Override
     public void registerObserver(IQuestionHandlerObserver observer) {
-        if(!observers.contains(observer)){
+        if (!observers.contains(observer)) {
             observers.add(observer);
         }
     }
@@ -82,8 +81,8 @@ class RandomizingQuestionHandler implements IQuestionHandler {
         return (questions.size() == 1);
     }
 
-    private void quizIsFinished(){
-        for (IQuestionHandlerObserver observer: observers) {
+    private void quizIsFinished() {
+        for (IQuestionHandlerObserver observer : observers) {
             observer.quizFinished();
         }
     }

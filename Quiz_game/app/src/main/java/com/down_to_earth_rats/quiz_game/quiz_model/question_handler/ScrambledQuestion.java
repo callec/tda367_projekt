@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * Created by Erik Blomberg, Louise Tranborg
  * Modified by Erik Blomberg
- *
+ * <p>
  * This class is responsible to wrap another IQuestion and shuffle its alternatives.
  * Implements IQuestion
  */
@@ -29,7 +29,7 @@ class ScrambledQuestion implements IQuestion {
 
         Iterator<Tuple<String, Boolean>> iterator = baseQuestion.getAlternatives();
 
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             alternatives.add(iterator.next());
         }
 
@@ -37,7 +37,7 @@ class ScrambledQuestion implements IQuestion {
 
     }
 
-    private void shuffleAlternatives(){
+    private void shuffleAlternatives() {
         Collections.shuffle(alternatives);
     }
 
@@ -48,7 +48,7 @@ class ScrambledQuestion implements IQuestion {
     }
 
     @Override
-    public Iterator<Tuple<String, Boolean>> getAlternatives(){
+    public Iterator<Tuple<String, Boolean>> getAlternatives() {
         return new ListIterator<>(alternatives);
     }
 }

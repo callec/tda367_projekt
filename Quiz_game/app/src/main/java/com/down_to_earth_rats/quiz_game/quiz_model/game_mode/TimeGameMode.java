@@ -21,6 +21,7 @@ public class TimeGameMode extends ViewModel {
     /**
      * Initialise the attributes maxTimeLeft and countDownInterval from amount of seconds chosen
      * by user.
+     *
      * @param seconds int length of the quiz in seconds
      */
     public void init(int seconds) {
@@ -37,6 +38,7 @@ public class TimeGameMode extends ViewModel {
 
     /**
      * Set time left, in ms
+     *
      * @param t long, time in ms
      */
     public void setTimeLeft(long t) {

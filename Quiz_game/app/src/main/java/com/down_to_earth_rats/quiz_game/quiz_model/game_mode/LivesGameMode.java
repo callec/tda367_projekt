@@ -25,6 +25,7 @@ public class LivesGameMode extends ViewModel {
 
     /**
      * How many lives there are left.
+     *
      * @return MutableLiveData<Integer> observable integer
      */
     public MutableLiveData<Integer> getLives() {
@@ -33,6 +34,7 @@ public class LivesGameMode extends ViewModel {
 
     /**
      * Answer a question within the gamemode
+     *
      * @param correct boolean, correct/wrong answer
      */
     public void answer(boolean correct) {
