@@ -5,17 +5,19 @@ import java.util.List;
 
 /**
  * Created by Louise Tranborg, Erik Blomberg, Henrik Johansson
- *
  */
 
 class SimpleLoginService implements ILoginService {
 
+    private List<IUser> userList = new ArrayList<>();
 
-    IUser user = new User("Lisa", "12345");
-
-    List<IUser> userList = new ArrayList<>();
-
+    /**
+     * Create a simple login service (currently adds an hard coded user)
+     */
     public SimpleLoginService() {
+
+        //Create a hard coded user with a result.
+        IUser user = new User("Lisa", "12345");
         userList.add(user);
         user.addResult(new ResultObject(5, 2, "Matematik",
                 "Addition", "Standard", false));
@@ -41,7 +43,7 @@ class SimpleLoginService implements ILoginService {
         boolean condition = false;
 
         for (IUser user : userList) {
-            if (user.checkCredentials(username, password)){
+            if (user.checkCredentials(username, password)) {
                 condition = true;
                 UserSingleton.setUser(user);
                 break;

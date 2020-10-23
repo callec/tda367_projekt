@@ -2,18 +2,21 @@ package com.down_to_earth_rats.quiz_game.user;
 
 /**
  * Created by Louise Tranborg, Erik Blomberg, Henrik Johansson
- *
  */
 
 public class UserSingleton {
 
     static private IUser instance = null;
 
-    private UserSingleton() { }
+    private UserSingleton() {
+    }
 
-    static public IUser getUser() /*throws NullPointerException */{
+    /**
+     * @return currect User
+     */
+    static public IUser getUser() /*throws NullPointerException */ {
 
-        if (instance == null){
+        if (instance == null) {
             instance = new User("Guest", "123");
             //TODO?
             /*throw new NullPointerException();*/
@@ -22,7 +25,10 @@ public class UserSingleton {
         return instance;
     }
 
-    static void setUser(IUser user){
+    /**
+     * @param user User to set as current active user
+     */
+    static void setUser(IUser user) {
         instance = user;
     }
 
