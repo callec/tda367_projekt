@@ -14,12 +14,6 @@ public class UserSingletonTest extends TestCase {
 
     IUser testUser = new User(username, password);
 
-    /* TODO, passes when run alone, but fails if LoginServiceTest also runs
-    public void testGetUserException() {
-        assertTrue(UserSingleton.getUser().checkCredentials("Guest", "123"));
-    }
-     */
-
     public void testSetUser() {
 
         UserSingleton.setUser(testUser);

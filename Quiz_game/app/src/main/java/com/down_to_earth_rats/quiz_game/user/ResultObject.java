@@ -10,7 +10,7 @@ import java.util.Date;
  * It has an result from the quiz, ex. 7/10 correctanswers/totalQuestions.
  * It also contains a date from when the Quiz was played.
  * The resultObject is connected with the subcategory of the played Quiz.
- * Resultobjects will also be able to be storted by category, gamemode and hitused.
+ * Resultobjects will also be able to be sorted by category, gamemode and hits-used.
  */
 
 public class ResultObject {
