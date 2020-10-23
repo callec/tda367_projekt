@@ -11,13 +11,13 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.down_to_earth_rats.quiz_game.gui.category_picker.ICategoryClickListener;
-import com.down_to_earth_rats.quiz_game.gui.category_picker.CategoryPagerAdapter;
-import com.down_to_earth_rats.quiz_game.category.CategoryModel;
-import com.down_to_earth_rats.quiz_game.category.IModelObserver;
-import com.down_to_earth_rats.quiz_game.category.ICategory;
 import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.category.CategoryModel;
+import com.down_to_earth_rats.quiz_game.category.ICategory;
+import com.down_to_earth_rats.quiz_game.category.IModelObserver;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityCategoryPickerBinding;
+import com.down_to_earth_rats.quiz_game.gui.category_picker.CategoryPagerAdapter;
+import com.down_to_earth_rats.quiz_game.gui.category_picker.ICategoryClickListener;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by Erik Blomberg
  * Modified by Erik Blomberg, Henrik Johansson and Louise Tranborg
- *
+ * <p>
  * This is the activity used to display all categories and their respective subcategories.
  * The activity stores two values into SharedPreferences, the Category name and Subcategory name
  */
@@ -81,7 +81,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryClic
 
     }
 
-    private void setUpToolbar(Toolbar toolbar){
+    private void setUpToolbar(Toolbar toolbar) {
 
         toolbar.setTitle("Välj ämne");
         setSupportActionBar(toolbar);
@@ -124,7 +124,7 @@ public class CategoryActivity extends AppCompatActivity implements ICategoryClic
     protected void onDestroy() {
         super.onDestroy();
 
-        if(model != null){
+        if (model != null) {
             model.removeObserver(this);
         }
 

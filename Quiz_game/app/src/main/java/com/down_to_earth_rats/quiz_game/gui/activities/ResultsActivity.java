@@ -1,21 +1,22 @@
 package com.down_to_earth_rats.quiz_game.gui.activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.os.Bundle;
+import android.view.View;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.databinding.ActivityResultsBinding;
 
-import android.view.View;
-
 /**
  * Created by Carl
- * Modified by Sara,
+ * Modified by Sara
+ * <p>
+ * This class displays the results from previously answered quiz.
  */
 public class ResultsActivity extends AppCompatActivity {
 
@@ -47,11 +48,9 @@ public class ResultsActivity extends AppCompatActivity {
         setupButtons();
         setupText();
         checkHintUsed(findViewById(android.R.id.content).getRootView());
-
-
     }
 
-    private void checkHintUsed(View view){
+    private void checkHintUsed(View view) {
         boolean hintsUsed = pref.getBoolean("hintsUsed", false);
         viewBinding.HintsUsed.setVisibility(hintsUsed ? view.VISIBLE : view.INVISIBLE);
 
@@ -85,7 +84,6 @@ public class ResultsActivity extends AppCompatActivity {
         startActivity(new Intent(this, QuizActivity.class));
     }
 
-    //Change
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));

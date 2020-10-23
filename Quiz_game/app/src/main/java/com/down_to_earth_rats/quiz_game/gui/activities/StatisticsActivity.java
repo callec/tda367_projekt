@@ -8,12 +8,12 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.databinding.ActivityHighscoreBinding;
 import com.down_to_earth_rats.quiz_game.gui.modal.IRecyclerViewActivity;
 import com.down_to_earth_rats.quiz_game.gui.modal.RecyclerViewAdapter;
-import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.user.ResultObject;
 import com.down_to_earth_rats.quiz_game.user.UserSingleton;
-import com.down_to_earth_rats.quiz_game.databinding.ActivityHighscoreBinding;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -23,7 +23,9 @@ import java.util.List;
 /**
  * Created by Sara Persson
  * Modified by Henrik Johansson, Louise Tranborg, Sara Persson, Erik Blomberg
- *
+ * <p>
+ * This class helps display all previous results that a user has answered.
+ * It contains a RecyclerViewAdapter that displays the results with multiple FrameLayouts.
  */
 
 public class StatisticsActivity extends AppCompatActivity implements IRecyclerViewActivity {
@@ -48,7 +50,6 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
         toolbar.setTitle(R.string.statistics_title);
         setSupportActionBar(toolbar);
 
-        //Gives us the return to previous page /back arrow, in the top toolbar   (<-)
         ActionBar ab = getSupportActionBar();
 
         if (ab != null) {
@@ -63,24 +64,22 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        // specify an adapter≤
         mAdapter = new RecyclerViewAdapter(subcategories, this, R.layout.framelayout_result);
         recyclerView.setAdapter(mAdapter);
-
     }
 
-    private void viewStatistics(){
+    private void viewStatistics() {
         List<ResultObject> resultList = UserSingleton.getUser().getStatistics(); //Fetch the statistics from the user.
 
-        if(resultList.isEmpty()){
+        if (resultList.isEmpty()) {
             viewBinding.textViewNoStatistics.setText("Ingen historik! Spela ett quiz och kom tillbaka.");
         }
 
-        if (!resultList.isEmpty()){
+        if (!resultList.isEmpty()) {
             viewBinding.textViewNoStatistics.setText(" ");
             String[] resultArray = new String[resultList.size()];
 
-            for (int i = 0; i < resultList.size(); i++){
+            for (int i = 0; i < resultList.size(); i++) {
 
                 resultArray[i] = ("" + resultList.get(i).getCorrectAnswers() + "/" + resultList.get(i).getTotalQuestions() + " - " + getSwedishDate(resultList.get(i).getDate()) + hintsUsedSymbol(resultList.get(i).usedHint()));
             }
@@ -99,7 +98,7 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
         return hintSymbol;
     }
 
-    private String getSwedishDate(Date date){
+    private String getSwedishDate(Date date) {
 
         String day = null;
         String month = null;
@@ -110,20 +109,24 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
 
         int spaces = 0;
 
-        for (int i = 0; i < date.toString().length(); i++){
+        for (int i = 0; i < date.toString().length(); i++) {
 
-            if (date.toString().charAt(i) == ' '){
+            if (date.toString().charAt(i) == ' ') {
 
                 String substring = date.toString().substring(startIndex + 1, i);
 
-                switch (spaces){
-                    case 0: day = date.toString().substring(0, i);
+                switch (spaces) {
+                    case 0:
+                        day = date.toString().substring(0, i);
                         break;
-                    case 1: month = substring;
+                    case 1:
+                        month = substring;
                         break;
-                    case 2: dateNumber = substring;
+                    case 2:
+                        dateNumber = substring;
                         break;
-                    case 3: time = date.toString().substring(startIndex + 1, i - 3);
+                    case 3:
+                        time = date.toString().substring(startIndex + 1, i - 3);
                         break;
                 }
                 startIndex = i;
@@ -137,42 +140,63 @@ public class StatisticsActivity extends AppCompatActivity implements IRecyclerVi
         return (day + " " + dateNumber + "/" + month + " kl: " + time);
     }
 
-    private String translateDay(String day){
+    private String translateDay(String day) {
 
-        switch (day){
-            case "Mon": return "mån";
-            case "Tue": return "tis";
-            case "Wed": return "ons";
-            case "Thu": return "tors";
-            case "Fri": return "fre";
-            case "Sat": return "lör";
-            case "Sun": return "sön";
-            default: return "day";
+        switch (day) {
+            case "Mon":
+                return "mån";
+            case "Tue":
+                return "tis";
+            case "Wed":
+                return "ons";
+            case "Thu":
+                return "tors";
+            case "Fri":
+                return "fre";
+            case "Sat":
+                return "lör";
+            case "Sun":
+                return "sön";
+            default:
+                return "day";
         }
     }
 
-    private String monthNumber(String month){
+    private String monthNumber(String month) {
 
-        switch (month){
-            case "Jan": return "1";
-            case "Feb": return "2";
-            case "Mar": return "3";
-            case "Apr": return "4";
-            case "May": return "5";
-            case "Jun": return "6";
-            case "Jul": return "7";
-            case "Aug": return "8";
-            case "Sep": return "9";
-            case "Oct": return "10";
-            case "Nov": return "11";
-            case "Dec": return "12";
-            default: return "month";
+        switch (month) {
+            case "Jan":
+                return "1";
+            case "Feb":
+                return "2";
+            case "Mar":
+                return "3";
+            case "Apr":
+                return "4";
+            case "May":
+                return "5";
+            case "Jun":
+                return "6";
+            case "Jul":
+                return "7";
+            case "Aug":
+                return "8";
+            case "Sep":
+                return "9";
+            case "Oct":
+                return "10";
+            case "Nov":
+                return "11";
+            case "Dec":
+                return "12";
+            default:
+                return "month";
         }
     }
 
 
     @Override
     public void onClickRecyclerViewItem(String subcategory) {
-        //Do nothing, yet..
+        // Do nothing, yet...
     }
 }

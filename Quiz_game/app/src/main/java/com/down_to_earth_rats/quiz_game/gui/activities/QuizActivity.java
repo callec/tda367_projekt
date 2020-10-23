@@ -14,12 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.down_to_earth_rats.quiz_game.R;
+import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.gui.modal.IModalFragmentHandler;
 import com.down_to_earth_rats.quiz_game.gui.modal.ModalFragment;
-import com.down_to_earth_rats.quiz_game.R;
 import com.down_to_earth_rats.quiz_game.quiz_model.IQuizModel;
 import com.down_to_earth_rats.quiz_game.quiz_model.SimpleQuizModel;
-import com.down_to_earth_rats.quiz_game.databinding.ActivityQuizBinding;
 import com.down_to_earth_rats.quiz_game.quiz_model.game_mode.GameModeFactory;
 import com.down_to_earth_rats.quiz_game.quiz_model.game_mode.IGameModeFragment;
 import com.down_to_earth_rats.quiz_game.quiz_model.game_mode.IGameModeObserver;
@@ -34,29 +34,23 @@ import java.util.List;
  */
 public class QuizActivity extends AppCompatActivity implements IModalFragmentHandler, IGameModeObserver {
 
+    private final int maxHints = 2;
     private ActivityQuizBinding viewBinding;
-
     private int timerTextId;
     private long msUntilNextQ;
-
     private IGameModeFragment gameMode;
     private boolean gameModeEnd;
     private ModalFragment modal;
     private IQuizModel model;
-
     private Resources res;
     private SharedPreferences pref;
     private SharedPreferences.Editor editor;
-
     private Button alternative1;
     private Button alternative2;
     private Button alternative3;
     private Button alternative4;
     private CountDownTimer timeUntilNextQ;
-
     private String currentCategory;
-
-    private final int maxHints = 2;
     private int hints = maxHints;
 
     @Override
@@ -103,6 +97,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
 
     /**
      * Makes a wrong answer button greyed-out and disabled
+     *
      * @param view of the current View
      */
     public void giveHintQuiz(View view) {
@@ -112,7 +107,7 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         model.hintsUsedResults();
 
         int hintIndex = model.getHintIndex();
-        List<Button> buttons = Arrays.asList(new Button[] {alternative1, alternative2, alternative3, alternative4});
+        List<Button> buttons = Arrays.asList(new Button[]{alternative1, alternative2, alternative3, alternative4});
         Button alternative = buttons.get(hintIndex);
 
         while (!alternative.isEnabled()) {
@@ -139,8 +134,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
     private IGameModeFragment loadGameMode(String selected) {
-        // i would really like to use an enum here, but as we use SharedPreferences we would
-        // have to convert string to enum anyways so we reduce that step by using this
         Bundle args = new Bundle();
         args.putInt(getString(R.string.gamemode_time_value), pref.getInt(getString(R.string.gamemode_time_value), 30));
         args.putInt(getString(R.string.settings_totalq), pref.getInt(getString(R.string.settings_totalq), 10));
@@ -199,6 +192,11 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
     }
 
 
+    /**
+     * Handles the clicks on each alternative.
+     *
+     * @param view a view, the button pressed in this case
+     */
     public void clickAlternative(View view) {
 
         int id = 1;
@@ -220,7 +218,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         gameMode.answer(response);
         guess(response, view);
         countDown();
-        //ft.detach(this).attach(gameMode).commit();
     }
 
     private void switchActivityToResult() {
@@ -237,24 +234,21 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         startActivity(intent);
     }
 
-    // Count down to next question
     private void countDown() {
         msUntilNextQ = 1500;
         viewBinding.progressBar.setVisibility(View.VISIBLE);
         viewBinding.hintButton.setVisibility(View.INVISIBLE);
 
-        if (gameModeEnd && timeUntilNextQ != null) { // really really don't like this check but it is necessary for all
-                           // gamemodes to function correctly
+        if (gameModeEnd && timeUntilNextQ != null) {
+            // necessary for gamemodes to function correctly
             timeUntilNextQ.cancel();
         }
         timeUntilNextQ = new CountDownTimer(msUntilNextQ, msUntilNextQ / 100) {
 
             @Override
             public void onTick(long l) {
-                //viewBinding.questionText.setText(getString(timerTextId, ((l / 1000) + 1)));
                 viewBinding.progressBar.incrementProgressBy(1);
             }
-
 
 
             @Override
@@ -305,11 +299,9 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
             v.setBackgroundResource(R.drawable.correct_button);
         } else {
             v.setBackgroundResource(R.drawable.wrong_button);
-            // TODO: find correct button and set correct_grey_button
         }
     }
 
-    // Consume back press
     @Override
     public void onBackPressed() {
         gameMode.pause();
@@ -317,7 +309,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
         modal.show(this.getSupportFragmentManager(), "s");
     }
 
-    // Decide what to do depending on what button was pressed (called from modalFragment)
     @Override
     public void modalFragmentButtonPressed(int buttonIndex) {
         switch (buttonIndex) {
@@ -327,7 +318,6 @@ public class QuizActivity extends AppCompatActivity implements IModalFragmentHan
                 break;
             // "Restart"
             case 1:
-                //TODO this works for quiz of mathematical types where the questions are generated
                 model.initQuiz();
                 gameMode.reset();
                 break;

@@ -25,6 +25,9 @@ import java.util.Random;
 /**
  * Created by Sara Persson
  * Modified by Carl Bergman
+ * <p>
+ * This class represents the settings view of the application. In this there are multiple options
+ * to select different values that affect the quiz.
  */
 public class SettingsActivity extends AppCompatActivity {
 
@@ -125,7 +128,7 @@ public class SettingsActivity extends AppCompatActivity {
         toolbar.setTitle("Inställningar");
         setSupportActionBar(toolbar);
 
-        //Gives us the return to previous page /back arrow, in the top toolbar   (<-)
+        // Gives us the return to previous page /back arrow, in the top toolbar   (<-)
         ActionBar ab = getSupportActionBar();
 
         if (ab != null) {
@@ -134,17 +137,16 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     private void setupHint() {
-        hintSwitch = viewBinding.switch1; //(Switch) findViewById(R.id.switch1);
+        hintSwitch = viewBinding.switch1;
 
-        final String hintOff = getString(R.string.hintOff);    //hintSwitch.getText().toString()
+        final String hintOff = getString(R.string.hintOff);
         final String hintOn = getString(R.string.hintOn);
 
         boolean hintOn_Status = pref.getBoolean("StatusOn", false);
         hintSwitch.setChecked(hintOn_Status);
         if (hintOn_Status) {
             hintSwitch.setText(hintOn);
-        }
-        else {
+        } else {
             hintSwitch.setText(hintOff);
         }
 
