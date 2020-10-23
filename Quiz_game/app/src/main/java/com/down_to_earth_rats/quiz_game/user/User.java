@@ -9,40 +9,40 @@ import java.util.List;
 /**
  * Created by Louise Tranborg
  * Modified by Louise Tranborg, Erik Blomberg, Henrik Johansson
- *
+ * <p>
  * This class represents an simple user.
  * It contains a username, password and also its statistics.
- *
- *
  */
 
-class User implements IUser{
+class User implements IUser {
 
     private final ArrayList<ResultObject> statistics = new ArrayList<>();
     private final String username;
     private final String password;
 
+    /**
+     * Create User with username and password
+     *
+     * @param username
+     * @param password
+     */
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    /**Method used to get a statistics based on subcategory.
-     */
     @Override
-    public List<ResultObject> getStatistics(){  //TODO Return all statistics, not based on subcategory anymore
+    public List<ResultObject> getStatistics() {
         return new ArrayList<>(statistics);
     }
 
-    /**Method used to add a ResultObject in the list of statistics.
-    */
     @Override
-    public void addResult(ResultObject resultObject){
+    public void addResult(ResultObject resultObject) {
         statistics.add(resultObject);
     }
 
     @Override
-    public boolean checkCredentials(String username, String password){
+    public boolean checkCredentials(String username, String password) {
         return this.username.equals(username) && this.password.equals(password);
     }
 
@@ -53,9 +53,11 @@ class User implements IUser{
 
     @Override
     public ICategory getUserCategory() {
-        if(username.equals("Lisa")){ //Temporary solution.
+
+        //Creates a subcategory/quiz for Lisa, our hard coded user.
+        if (username.equals("Lisa")) {
             return new ImmutableCategory(username, "Matteprov");
-        } else{
+        } else {
             return new ImmutableCategory(username);
         }
 
