@@ -7,7 +7,7 @@ Download: https://developer.android.com/studio?gclid=CjwKCAjw_sn8BRBrEiwAnUGJDj_
 Install:
 https://developer.android.com/studio/install 
 
-Download Pixel XL API 30 as an emulator to run the application—do this through the “AVD Manager”. This phone version is the one we most often tested and played on.
+Download Pixel XL API 30, or 29 as an emulator to run the application—do this through the “AVD Manager”. This phone version is the one we most often tested and played on.
 
 Import the project:
 One way to do this is by going to github and downloading the project. Then from android studios you “Import project”, locate the github folder and select the project. 
