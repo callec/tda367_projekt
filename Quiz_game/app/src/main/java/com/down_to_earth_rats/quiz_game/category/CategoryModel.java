@@ -24,6 +24,7 @@ public class CategoryModel extends ViewModel {
 
     public CategoryModel() {
         getDefaultCategories();
+
         //User categories
         categories.add(UserSingleton.getUser().getUserCategory());
 
