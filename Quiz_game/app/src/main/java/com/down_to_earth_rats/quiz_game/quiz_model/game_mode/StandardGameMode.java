@@ -15,14 +15,23 @@ public class StandardGameMode extends ViewModel {
         currentq.setValue(0);
     }
 
+    /**
+     * @return MutableLiveData<Integer> observable value of number of question
+     */
     public MutableLiveData<Integer> getCurrentq() {
         return currentq;
     }
 
+    /**
+     * Increments currentq variable.
+     */
     public void nextQuestion() {
         currentq.setValue(currentq.getValue() + 1);
     }
 
+    /**
+     * Reset gamemode.
+     */
     public void reset() {
         currentq.setValue(0);
     }
